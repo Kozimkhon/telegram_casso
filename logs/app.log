@@ -10,3 +10,11 @@
 {
   "component": "UserBot"
 }
+2025-10-31 16:53:33 [INFO]: 🚀 Starting Telegram Casso Application...
+2025-10-31 16:53:33 [INFO]: ✅ Configuration validated successfully
+2025-10-31 16:53:34 [INFO]: ✅ Database initialized successfully
+2025-10-31 16:53:35 [INFO]: 🤖 Initializing UserBot...
+2025-10-31 16:53:35 [INFO]: Starting UserBot initialization...
+{
+  "component": "UserBot"
+}

@@ -170,16 +170,9 @@ class UserBot {
       new NewMessage({ incoming: true })
     );
 
-    // Handle connection state changes
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleConnectionUpdate.bind(this), 'Connection handler'),
-      'connected'
-    );
-
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleDisconnection.bind(this), 'Disconnection handler'),
-      'disconnected'
-    );
+    // Note: Connection state changes are handled differently in GramJS
+    // We'll monitor connection status through the client properties instead
+    this.logger.debug('Event handlers setup completed');
   }
 
   /**
