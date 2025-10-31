@@ -1,0 +1,12 @@
+2025-10-31 16:40:28 [ERROR]: Failed to start UserBot
+TypeError: Cannot create property 'client' on string 'connected'
+    at Object.addEventHandler (D:\experiments\telegram_casso\node_modules\telegram\client\updates.js:51:18)
+    at TelegramClient.addEventHandler (D:\experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:837:30)
+    at UserBot.setupEventHandlers (file:///D:/experiments/telegram_casso/src/bots/userBot.js:174:17)
+    at UserBot.start (file:///D:/experiments/telegram_casso/src/bots/userBot.js:70:12)
+    at async TelegramCassoApp.initializeUserBot (file:///D:/experiments/telegram_casso/src/index.js:69:7)
+    at async TelegramCassoApp.start (file:///D:/experiments/telegram_casso/src/index.js:39:7)
+    at async main (file:///D:/experiments/telegram_casso/src/index.js:216:5)
+{
+  "error": "Cannot create property 'client' on string 'connected'"
+}
