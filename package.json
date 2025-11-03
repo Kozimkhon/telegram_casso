@@ -8,7 +8,9 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "test": "node --test test/*.test.js",
-    "db:init": "node src/db/init.js"
+    "db:init": "node src/db/init.js",
+    "build": "mkdir -p dist && cp -r src/* dist/",
+    "start:prod": "node src/index.js"
   },
   "keywords": [
     "telegram",
@@ -26,7 +28,7 @@
     "dotenv": "^16.3.1",
     "input": "^1.0.1",
     "inquirer": "^9.2.12",
-    "sqlite3": "^5.1.6",
+    "sqlite3": "^5.1.7",
     "telegraf": "^4.15.6",
     "telegram": "^2.20.7",
     "winston": "^3.11.0"
@@ -36,5 +38,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }

@@ -57,9 +57,11 @@ const schemas = {
       channel_id TEXT NOT NULL,
       message_id TEXT NOT NULL,
       user_id TEXT NOT NULL,
+      forwarded_message_id TEXT,
       status TEXT NOT NULL,
       error_message TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `
 };

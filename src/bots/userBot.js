@@ -7,6 +7,7 @@ import { TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions/index.js';
 import { NewMessage } from 'telegram/events/index.js';
 import { Api } from 'telegram/tl/index.js';
+import { utils } from 'telegram';
 import input from 'input';
 import fs from 'fs/promises';
 import path from 'path';
@@ -29,7 +30,11 @@ import {
 } from '../utils/helpers.js';
 import { addChannel, getAllChannels } from '../services/channelService.js';
 import { addUser, bulkAddUsers } from '../services/userService.js';
-import { processMessageForwarding } from '../services/messageService.js';
+import { 
+  processMessageForwarding, 
+  getOldForwardedMessages, 
+  markMessageAsDeleted 
+} from '../services/messageService.js';
 
 class UserBot {
   constructor() {
@@ -37,7 +42,13 @@ class UserBot {
     this.isRunning = false;
     this.logger = createChildLogger({ component: 'UserBot' });
     this.sessionPath = config.paths.sessionPath;
-    this.connectedChannels = new Map();
+    this.connectedChannels = new Map(); // channel_id -> channelInfo
+    this.adminChannelEntities = []; // Store admin channel entities for event filtering
+    this.syncInterval = null; // Timer for periodic sync
+    this.syncIntervalMinutes = 30; // Sync every 30 minutes
+    this.deleteInterval = null; // Timer for periodic message deletion
+    this.deleteIntervalHours = 1; // Check for old messages every 1 hour
+    this.messageAgeHours = 24; // Delete messages older than 24 hours
   }
 
   /**
@@ -66,14 +77,20 @@ class UserBot {
         }
       );
 
-      // Set up event handlers before connecting
-      this.setupEventHandlers();
-
-      // Connect and authenticate
+      // Connect and authenticate FIRST
       await this.connect();
       
-      // Sync channels and users
+      // Sync channels and users BEFORE setting up event handlers
       await this.syncChannelsAndUsers();
+      
+      // NOW set up event handlers with synced channels
+      await this.setupEventHandlers();
+      
+      // Start periodic sync (every 30 minutes)
+      this.startPeriodicSync();
+      
+      // Start periodic message deletion (every 1 hour)
+      this.startPeriodicMessageDeletion();
       
       this.isRunning = true;
       this.logger.info('UserBot started successfully');
@@ -161,18 +178,30 @@ class UserBot {
   /**
    * Sets up event handlers for message monitoring
    */
-  setupEventHandlers() {
+  async setupEventHandlers() {
     this.logger.debug('Setting up event handlers');
 
-    // Handle new messages in channels
+    // Store enabled channel IDs for filtering in handleNewMessage
+    const enabledChannels = await getAllChannels(true);
+    this.enabledChannelIds = new Set(enabledChannels.map(ch => ch.channel_id));
+    
+    console.log('🔧 Setting up listener for channels:', enabledChannels.map(c => c.title));
+    console.log('🔧 Enabled channel IDs:', Array.from(this.enabledChannelIds));
+
+    // Convert channel IDs to BigInt for GramJS chats parameter
+    const chatIds = Array.from(this.enabledChannelIds).map(id => BigInt(id));
+    
+    // Listen ONLY to messages from admin channels using chats parameter
     this.client.addEventHandler(
       asyncErrorHandler(this.handleNewMessage.bind(this), 'NewMessage handler'),
-      new NewMessage({ incoming: true })
+      new NewMessage({ 
+        chats: chatIds
+      })
     );
 
-    // Note: Connection state changes are handled differently in GramJS
-    // We'll monitor connection status through the client properties instead
-    this.logger.debug('Event handlers setup completed');
+    this.logger.debug('Event handlers setup completed', {
+      channelCount: enabledChannels.length
+    });
   }
 
   /**
@@ -182,14 +211,70 @@ class UserBot {
   async handleNewMessage(event) {
     try {
       const message = event.message;
-      const chatId = message.peerId?.channelId?.toString() || 
-                   message.peerId?.chatId?.toString() || 
-                   message.peerId?.userId?.toString();
+      
+      // DEBUG: Show channel title to identify which channel sent the message
+      console.log('\n=== 📨 NEW MESSAGE ===');
+      console.log('Channel title:', message.chat?.title || 'Unknown');
+      console.log('message.chat.id:', message.chat?.id);
+      
+      // Get chat ID from message.chat.id (most reliable)
+      let chatId = null;
+      
+      if (message.chat?.id) {
+        const rawChatId = message.chat.id;
+        
+        // Convert to string properly (handles BigInt and Integer objects)
+        if (typeof rawChatId === 'bigint') {
+          chatId = rawChatId.toString();
+        } else if (rawChatId.value !== undefined) {
+          chatId = rawChatId.value.toString();
+        } else {
+          chatId = rawChatId.toString();
+        }
+        
+        console.log('✅ Got chatId from message.chat.id:', chatId);
+      } else if (message.peerId?.channelId) {
+        const rawChannelId = message.peerId.channelId;
+        
+        // Convert to string properly (handles BigInt and Integer objects)
+        let channelIdStr;
+        if (typeof rawChannelId === 'bigint') {
+          channelIdStr = rawChannelId.toString();
+        } else if (rawChannelId.value !== undefined) {
+          channelIdStr = rawChannelId.value.toString();
+        } else {
+          channelIdStr = rawChannelId.toString();
+        }
+        
+        const channelIdNum = BigInt(channelIdStr);
+        
+        // If it's a marked channel ID (negative), convert it
+        if (channelIdNum < 0n) {
+          const actualId = channelIdNum * -1n - 1000000000000n;
+          chatId = actualId.toString();
+        } else {
+          chatId = channelIdStr;
+        }
+        
+        console.log('✅ Got chatId from message.peerId.channelId:', chatId);
+      }
+      
+      console.log('🎯 FINAL chatId:', chatId);
+      console.log('📋 Enabled channel IDs:', Array.from(this.enabledChannelIds || []));
+      console.log('=== END DEBUG ===\n');
 
       if (!chatId) {
         this.logger.debug('Skipping message without valid chat ID');
         return;
       }
+
+      // Check if this channel is enabled for forwarding
+      if (!this.enabledChannelIds || !this.enabledChannelIds.has(chatId)) {
+        console.log('❌ Message from non-enabled channel:', chatId);
+        return;
+      }
+
+      console.log('✅ Message from enabled channel:', chatId);
 
       this.logger.debug('New message received', {
         chatId,
@@ -198,16 +283,15 @@ class UserBot {
         hasText: !!message.message
       });
 
-      // Check if this is from a monitored channel
-      const enabledChannels = await getAllChannels(true);
-      const isMonitored = enabledChannels.some(channel => 
-        channel.channel_id === chatId
-      );
-
-      if (!isMonitored) {
-        this.logger.debug('Message from non-monitored channel, ignoring', { chatId });
+      // ✅ IMPORTANT: Check if user is admin in this channel (only forward from YOUR channels)
+      const isAdmin = await this.isUserAdminInChannel(chatId);
+      if (!isAdmin) {
+        this.logger.debug('Not admin in this channel, ignoring', { chatId });
+        console.log('❌ You are NOT admin in channel:', chatId);
         return;
       }
+      
+      console.log('✅ You are admin in channel:', chatId, '- proceeding with forwarding');
 
       // Process message forwarding
       const results = await processMessageForwarding(
@@ -326,21 +410,38 @@ class UserBot {
    */
   async syncChannels(dialogs) {
     try {
+      // Filter only channels (not groups/chats)
       const channels = dialogs.filter(dialog => 
-        dialog.entity?.className === 'Channel' ||
-        dialog.entity?.className === 'Chat'
+        dialog.entity?.className === 'Channel' && 
+        !dialog.entity?.megagroup // Exclude megagroups (supergroups)
       );
 
-      this.logger.info(`Syncing ${channels.length} channels`);
+      this.logger.info(`Syncing ${channels.length} channels (groups excluded)`);
+
+      // Clear previous admin channel entities
+      this.adminChannelEntities = [];
 
       for (const dialog of channels) {
         try {
           const channelInfo = extractChannelInfo(dialog.entity);
           
-          // Only sync channels/groups where the user is an admin or owner
-          if (await this.isUserAdminInChannel(dialog.entity)) {
+          // DEBUG: Log both ID formats
+          console.log('\n🔍 SYNC DEBUG:');
+          console.log('Channel title:', dialog.entity.title);
+          console.log('dialog.entity.id:', dialog.entity.id);
+          console.log('Extracted channelId:', channelInfo.channelId);
+          
+          // Only sync channels where the user is an admin or owner
+          const isAdmin = await this.isUserAdminInChannel(dialog.entity);
+          
+          if (isAdmin) {
             await addChannel(channelInfo);
             this.connectedChannels.set(channelInfo.channelId, channelInfo);
+            
+            // Store the channel entity for event filtering
+            this.adminChannelEntities.push(dialog.entity);
+            
+            console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title);
             
             this.logger.debug('Channel synced', {
               channelId: channelInfo.channelId,
@@ -360,7 +461,7 @@ class UserBot {
         }
       }
 
-      this.logger.info(`Synced ${this.connectedChannels.size} channels where user is admin`);
+      this.logger.info(`Synced ${this.connectedChannels.size} channels (admin only)`);
     } catch (error) {
       this.logger.error('Error syncing channels', error);
       throw error;
@@ -372,20 +473,30 @@ class UserBot {
    * @param {Object} channel - Channel entity
    * @returns {Promise<boolean>} True if user is admin
    */
-  async isUserAdminInChannel(channel) {
+  async isUserAdminInChannel(channelInput) {
     try {
+      let channelEntity;
+      
+      // If channelInput is a string (chatId), get the entity
+      if (typeof channelInput === 'string') {
+        // Get channel entity from chatId
+        channelEntity = await this.client.getEntity(BigInt(channelInput));
+      } else {
+        // Already an entity object
+        channelEntity = channelInput;
+      }
+      
       // For regular chats, assume admin rights
-      if (channel.className === 'Chat') {
+      if (channelEntity.className === 'Chat') {
         return true;
       }
 
       // For channels, check admin rights
-      const chatId = channel.id;
       const me = await this.client.getMe();
       
       const participant = await this.client.invoke(
         new Api.channels.GetParticipant({
-          channel: chatId,
+          channel: channelEntity,
           participant: me.id
         })
       );
@@ -397,7 +508,6 @@ class UserBot {
     } catch (error) {
       // If we can't check, assume no admin rights
       this.logger.debug('Could not verify admin status', {
-        channelId: channel.id,
         error: error.message
       });
       return false;
@@ -498,6 +608,167 @@ class UserBot {
   }
 
   /**
+   * Manually trigger channel synchronization (for AdminBot)
+   * @returns {Promise<Object>} Sync results
+   */
+  async syncChannelsManually() {
+    try {
+      this.logger.info('Manual channel sync triggered');
+      
+      const dialogs = await this.client.getDialogs({ limit: 100 });
+      await this.syncChannels(dialogs);
+      
+      return {
+        success: true,
+        channelsCount: this.connectedChannels.size,
+        message: `Successfully synced ${this.connectedChannels.size} channels`
+      };
+    } catch (error) {
+      this.logger.error('Manual sync failed', error);
+      return {
+        success: false,
+        error: error.message,
+        message: 'Failed to sync channels'
+      };
+    }
+  }
+
+  /**
+   * Starts periodic synchronization of channels and users
+   * Runs every 30 minutes to keep data up-to-date
+   */
+  startPeriodicSync() {
+    // Clear any existing interval
+    if (this.syncInterval) {
+      clearInterval(this.syncInterval);
+    }
+
+    const intervalMs = this.syncIntervalMinutes * 60 * 1000;
+    
+    this.syncInterval = setInterval(async () => {
+      try {
+        this.logger.info('🔄 Starting periodic sync...', {
+          intervalMinutes: this.syncIntervalMinutes
+        });
+        
+        // Re-sync channels and users
+        await this.syncChannelsAndUsers();
+        
+        // Update event handlers with new channel list
+        await this.setupEventHandlers();
+        
+        this.logger.info('✅ Periodic sync completed successfully');
+      } catch (error) {
+        this.logger.error('❌ Periodic sync failed', {
+          error: error.message
+        });
+      }
+    }, intervalMs);
+
+    this.logger.info('⏰ Periodic sync started', {
+      intervalMinutes: this.syncIntervalMinutes,
+      nextSyncAt: new Date(Date.now() + intervalMs).toISOString()
+    });
+  }
+
+  /**
+   * Starts periodic deletion of old forwarded messages
+   * Runs every hour to delete messages older than 24 hours
+   */
+  startPeriodicMessageDeletion() {
+    // Clear any existing interval
+    if (this.deleteInterval) {
+      clearInterval(this.deleteInterval);
+    }
+
+    const intervalMs = this.deleteIntervalHours * 60 * 60 * 1000;
+    
+    // Run immediately on start
+    this.deleteOldMessages();
+    
+    this.deleteInterval = setInterval(async () => {
+      await this.deleteOldMessages();
+    }, intervalMs);
+
+    this.logger.info('🗑️ Periodic message deletion started', {
+      checkIntervalHours: this.deleteIntervalHours,
+      messageAgeHours: this.messageAgeHours,
+      nextCheckAt: new Date(Date.now() + intervalMs).toISOString()
+    });
+  }
+
+  /**
+   * Deletes old forwarded messages from user chats
+   * @returns {Promise<void>}
+   */
+  async deleteOldMessages() {
+    try {
+      this.logger.info('🗑️ Starting old message deletion...', {
+        messageAgeHours: this.messageAgeHours
+      });
+
+      // Get old forwarded messages from database
+      const oldMessages = await getOldForwardedMessages(this.messageAgeHours);
+
+      if (oldMessages.length === 0) {
+        this.logger.info('✅ No old messages to delete');
+        return;
+      }
+
+      let deletedCount = 0;
+      let failedCount = 0;
+
+      // Delete messages in batches
+      for (const msgLog of oldMessages) {
+        try {
+          const userId = BigInt(msgLog.user_id);
+          const messageId = parseInt(msgLog.forwarded_message_id);
+
+          // Delete message using Telegram API
+          await this.client.invoke(
+            new Api.messages.DeleteMessages({
+              id: [messageId],
+              revoke: true
+            })
+          );
+
+          // Mark as deleted in database
+          await markMessageAsDeleted(msgLog.user_id, msgLog.forwarded_message_id);
+
+          deletedCount++;
+          this.logger.debug('Deleted old message', {
+            userId: msgLog.user_id,
+            messageId: msgLog.forwarded_message_id,
+            age: msgLog.created_at
+          });
+
+        } catch (error) {
+          failedCount++;
+          this.logger.warn('Failed to delete old message', {
+            userId: msgLog.user_id,
+            messageId: msgLog.forwarded_message_id,
+            error: error.message
+          });
+        }
+
+        // Small delay to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      this.logger.info('✅ Old message deletion completed', {
+        total: oldMessages.length,
+        deleted: deletedCount,
+        failed: failedCount
+      });
+
+    } catch (error) {
+      this.logger.error('❌ Old message deletion failed', {
+        error: error.message
+      });
+    }
+  }
+
+  /**
    * Stops the UserBot gracefully
    * @returns {Promise<void>}
    */
@@ -506,6 +777,20 @@ class UserBot {
       this.logger.info('Stopping UserBot...');
       
       this.isRunning = false;
+      
+      // Stop periodic sync
+      if (this.syncInterval) {
+        clearInterval(this.syncInterval);
+        this.syncInterval = null;
+        this.logger.info('Periodic sync stopped');
+      }
+      
+      // Stop periodic message deletion
+      if (this.deleteInterval) {
+        clearInterval(this.deleteInterval);
+        this.deleteInterval = null;
+        this.logger.info('Periodic message deletion stopped');
+      }
       
       if (this.client) {
         await this.saveSession();

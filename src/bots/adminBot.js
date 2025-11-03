@@ -168,6 +168,12 @@ class AdminBot {
       const page = parseInt(ctx.match[1]);
       await this.showChannelsList(ctx, page);
     }, 'Channels page callback'));
+
+    // Sync channels callback
+    this.bot.action('sync_channels', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery('⏳ Syncing channels...');
+      await this.syncChannels(ctx);
+    }, 'Sync channels callback'));
   }
 
   /**
@@ -246,6 +252,9 @@ Welcome to the admin panel! Use the buttons below to manage your bot:
 
       // Build keyboard
       const buttons = [];
+      
+      // Sync button at the top
+      buttons.push([Markup.button.callback('🔄 Sync Channels', 'sync_channels')]);
       
       // Channel control buttons
       pageChannels.forEach((channel, index) => {
@@ -633,6 +642,35 @@ If you encounter any issues, check the bot logs or restart the application.
     } catch (error) {
       this.logger.error('Error showing status', error);
       await ctx.reply('❌ Error loading status.');
+    }
+  }
+
+  /**
+   * Syncs channels from UserBot
+   * @param {Object} ctx - Telegraf context
+   */
+  async syncChannels(ctx) {
+    try {
+      if (!this.userBot || !this.userBot.client) {
+        await ctx.reply('❌ UserBot is not connected. Cannot sync channels.');
+        return;
+      }
+
+      const result = await this.userBot.syncChannelsManually();
+      
+      if (result.success) {
+        await ctx.reply(`✅ ${result.message}`);
+        // Refresh the channels list
+        await this.showChannelsList(ctx, 1);
+      } else {
+        await ctx.reply(`❌ Sync failed: ${result.message}`);
+      }
+      
+      this.logger.info('Channels sync completed', result);
+      
+    } catch (error) {
+      this.logger.error('Error syncing channels', error);
+      await ctx.reply('❌ Error syncing channels. Please try again.');
     }
   }
 
