@@ -137,3 +137,34 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# --- Telegram Casso specific ignores ---
+# Node modules and local build artifacts
+node_modules/
+build/
+dist/
+out/
+tmp/
+temp/
+
+# SQLite build binaries
+sqlite3/
+**/sqlite3/build/
+**/sqlite3/Release/
+**/sqlite3/Debug/
+**/sqlite3/lib/binding/
+
+# Local environment configs
+.env.local
+.env.development.local
+.env.production.local
+
+# PM2 or process logs
+pids/
+logs/
+*.pid
+*.pid.lock
+
+# OS-specific files
+.DS_Store
+Thumbs.dbss

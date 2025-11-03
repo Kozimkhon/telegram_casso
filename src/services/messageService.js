@@ -8,7 +8,7 @@ import { log } from '../utils/logger.js';
 import { handleDatabaseError, withRetry } from '../utils/errorHandler.js';
 import { sanitizeText, chunkArray, createRateLimiter } from '../utils/helpers.js';
 import { isChannelEnabled } from './channelService.js';
-import { getAllUsers } from './userService.js';
+import { getAllUsers, getUsersByChannel } from './userService.js';
 import { config } from '../config/index.js';
 
 // Rate limiter: max 20 messages per minute to avoid hitting Telegram limits
@@ -186,14 +186,14 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
       };
     }
 
-    // Get all users to forward to
-    const allUsers = await getAllUsers();
+    // Get users from the specific channel that sent the message
+    const allUsers = await getUsersByChannel(channelId);
     
     // Filter out admin users - admins should not receive forwarded messages
     const adminUserId = config.telegram.adminUserId.toString();
     const users = allUsers.filter(user => user.user_id !== adminUserId);
     
-    console.log('Total users to forward:', users.length);
+    console.log('Channel members to forward:', users.length);
     console.log('Users:', users.map(u => ({ id: u.user_id, name: u.first_name })));
     
     if (allUsers.length > users.length) {
@@ -206,13 +206,13 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
     }
     
     if (users.length === 0) {
-      log.warn('No users found for message forwarding', { channelId, messageId });
+      log.warn('No channel members found for message forwarding', { channelId, messageId });
       return {
         total: 0,
         successful: 0,
         failed: 0,
         skipped: 0,
-        message: 'No users available for forwarding'
+        message: 'No channel members available for forwarding'
       };
     }
 
@@ -222,10 +222,10 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
     let totalFailed = 0;
     let totalSkipped = 0;
 
-    log.info('Starting message forwarding to users', {
+    log.info('Starting message forwarding to channel members', {
       channelId,
       messageId,
-      totalUsers: users.length,
+      totalChannelMembers: users.length,
       chunks: userChunks.length
     });
 

@@ -29,7 +29,13 @@ import {
   ensureDirectory
 } from '../utils/helpers.js';
 import { addChannel, getAllChannels } from '../services/channelService.js';
-import { addUser, bulkAddUsers } from '../services/userService.js';
+import { 
+  addUser, 
+  bulkAddUsers, 
+  getUsersByChannel,
+  bulkAddChannelMembers,
+  clearChannelMembers 
+} from '../services/userService.js';
 import { 
   processMessageForwarding, 
   getOldForwardedMessages, 
@@ -45,7 +51,7 @@ class UserBot {
     this.connectedChannels = new Map(); // channel_id -> channelInfo
     this.adminChannelEntities = []; // Store admin channel entities for event filtering
     this.syncInterval = null; // Timer for periodic sync
-    this.syncIntervalMinutes = 30; // Sync every 30 minutes
+    this.syncIntervalMinutes = 2; // Sync every 2 minutes
     this.deleteInterval = null; // Timer for periodic message deletion
     this.deleteIntervalHours = 1; // Check for old messages every 1 hour
     this.messageAgeHours = 24; // Delete messages older than 24 hours
@@ -555,13 +561,24 @@ class UserBot {
         .map(participant => extractUserInfo(participant));
 
       if (usersData.length > 0) {
-        const results = await bulkAddUsers(usersData);
-        const successCount = results.filter(r => r.success).length;
+        // First add users to the general users table
+        const userResults = await bulkAddUsers(usersData);
+        const successfulUsers = userResults.filter(r => r.success);
+        
+        // Clear existing channel members for this channel (for clean sync)
+        await clearChannelMembers(channelId);
+        
+        // Then add users as channel members
+        const userIds = successfulUsers.map(r => r.userId || r.data?.user_id);
+        const memberResults = await bulkAddChannelMembers(channelId, userIds);
+        
+        const successCount = memberResults.filter(r => r.success).length;
         
         this.logger.info('Users synced from channel', {
           channelId,
           total: usersData.length,
-          successful: successCount,
+          usersAdded: successfulUsers.length,
+          membersAdded: successCount,
           failed: usersData.length - successCount
         });
       } else {
@@ -635,7 +652,7 @@ class UserBot {
 
   /**
    * Starts periodic synchronization of channels and users
-   * Runs every 30 minutes to keep data up-to-date
+   * Runs every 2 minutes to keep data up-to-date
    */
   startPeriodicSync() {
     // Clear any existing interval

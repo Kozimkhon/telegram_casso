@@ -108,6 +108,153 @@ export async function getAllUsers(options = {}) {
 }
 
 /**
+ * Gets users by channel ID (channel members only)
+ * @param {string} channelId - Channel ID
+ * @param {Object} options - Query options
+ * @returns {Promise<Array>} Array of user objects
+ */
+export async function getUsersByChannel(channelId, options = {}) {
+  try {
+    const {
+      limit = null,
+      offset = 0,
+      orderBy = 'u.first_name ASC'
+    } = options;
+
+    if (!isValidUserId(channelId)) {
+      throw new Error(`Invalid channel ID: ${channelId}`);
+    }
+
+    log.dbOperation('SELECT', 'users+channel_members', { channelId, limit, offset, orderBy });
+
+    let query = `
+      SELECT u.* FROM users u
+      INNER JOIN channel_members cm ON u.user_id = cm.user_id
+      WHERE cm.channel_id = ?
+      ORDER BY ${orderBy}
+    `;
+    const params = [channelId];
+
+    if (limit) {
+      query += ' LIMIT ? OFFSET ?';
+      params.push(limit, offset);
+    }
+
+    const users = await getAllQuery(query, params);
+    
+    log.debug(`Retrieved ${users.length} users for channel ${channelId}`, options);
+    return users;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getUsersByChannel');
+  }
+}
+
+/**
+ * Adds a user to a channel's member list
+ * @param {string} channelId - Channel ID
+ * @param {string} userId - User ID
+ * @returns {Promise<boolean>} True if added successfully
+ */
+export async function addChannelMember(channelId, userId) {
+  try {
+    if (!isValidUserId(channelId) || !isValidUserId(userId)) {
+      throw new Error(`Invalid channel ID or user ID: ${channelId}, ${userId}`);
+    }
+
+    log.dbOperation('INSERT', 'channel_members', { channelId, userId });
+
+    await runQuery(
+      `INSERT OR REPLACE INTO channel_members 
+       (channel_id, user_id, updated_at) 
+       VALUES (?, ?, CURRENT_TIMESTAMP)`,
+      [channelId, userId]
+    );
+
+    log.debug('User added to channel', { channelId, userId });
+    return true;
+  } catch (error) {
+    throw handleDatabaseError(error, 'addChannelMember');
+  }
+}
+
+/**
+ * Bulk adds users to a channel's member list
+ * @param {string} channelId - Channel ID
+ * @param {Array} userIds - Array of user IDs
+ * @returns {Promise<Array>} Array of operation results
+ */
+export async function bulkAddChannelMembers(channelId, userIds) {
+  try {
+    if (!isValidUserId(channelId)) {
+      throw new Error(`Invalid channel ID: ${channelId}`);
+    }
+
+    log.info('Starting bulk channel member addition', { 
+      channelId, 
+      count: userIds.length 
+    });
+
+    const results = [];
+    
+    for (const userId of userIds) {
+      try {
+        await addChannelMember(channelId, userId);
+        results.push({ userId, success: true });
+      } catch (error) {
+        log.error('Failed to add user to channel in bulk operation', {
+          channelId,
+          userId,
+          error: error.message
+        });
+        results.push({ userId, success: false, error: error.message });
+      }
+    }
+
+    const successCount = results.filter(r => r.success).length;
+    
+    log.info('Bulk channel member addition completed', {
+      channelId,
+      total: userIds.length,
+      successful: successCount,
+      failed: userIds.length - successCount
+    });
+
+    return results;
+  } catch (error) {
+    throw handleDatabaseError(error, 'bulkAddChannelMembers');
+  }
+}
+
+/**
+ * Removes all members from a channel (for re-sync)
+ * @param {string} channelId - Channel ID
+ * @returns {Promise<number>} Number of removed members
+ */
+export async function clearChannelMembers(channelId) {
+  try {
+    if (!isValidUserId(channelId)) {
+      throw new Error(`Invalid channel ID: ${channelId}`);
+    }
+
+    log.dbOperation('DELETE', 'channel_members', { channelId });
+
+    const result = await runQuery(
+      'DELETE FROM channel_members WHERE channel_id = ?',
+      [channelId]
+    );
+
+    log.debug('Channel members cleared', { 
+      channelId, 
+      removedCount: result.changes 
+    });
+
+    return result.changes;
+  } catch (error) {
+    throw handleDatabaseError(error, 'clearChannelMembers');
+  }
+}
+
+/**
  * Updates user information
  * @param {string} userId - User ID
  * @param {Object} updates - Updates to apply
@@ -371,6 +518,10 @@ export default {
   addUser,
   getUserById,
   getAllUsers,
+  getUsersByChannel,
+  addChannelMember,
+  bulkAddChannelMembers,
+  clearChannelMembers,
   updateUser,
   removeUser,
   getUsersByUsername,
