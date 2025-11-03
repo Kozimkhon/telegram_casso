@@ -10,12 +10,13 @@ import { extractChannelInfo, isValidChannelId, sanitizeText } from '../utils/hel
 
 /**
  * Adds a new channel to the database
- * @param {Object} channelData - Channel information
+ * @param {Object} channelData - Channel information (already extracted or raw entity)
  * @returns {Promise<Object>} Added channel data
  */
 export async function addChannel(channelData) {
   try {
-    const channelInfo = extractChannelInfo(channelData);
+    // If channelData already has channelId property, it's already extracted
+    const channelInfo = channelData.channelId ? channelData : extractChannelInfo(channelData);
     
     if (!isValidChannelId(channelInfo.channelId)) {
       throw new Error(`Invalid channel ID: ${channelInfo.channelId}`);

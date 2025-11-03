@@ -9,6 +9,7 @@ import { handleDatabaseError, withRetry } from '../utils/errorHandler.js';
 import { sanitizeText, chunkArray, createRateLimiter } from '../utils/helpers.js';
 import { isChannelEnabled } from './channelService.js';
 import { getAllUsers } from './userService.js';
+import { config } from '../config/index.js';
 
 // Rate limiter: max 20 messages per minute to avoid hitting Telegram limits
 const messageLimiter = createRateLimiter(20, 60000);
@@ -18,28 +19,30 @@ const messageLimiter = createRateLimiter(20, 60000);
  * @param {string} channelId - Source channel ID
  * @param {string} messageId - Original message ID
  * @param {string} userId - Target user ID
+ * @param {string} forwardedMessageId - ID of the forwarded message (for deletion)
  * @param {string} status - Status (success, failed, skipped)
  * @param {string} errorMessage - Error message if failed
  * @returns {Promise<void>}
  */
-export async function logMessageForward(channelId, messageId, userId, status, errorMessage = null) {
+export async function logMessageForward(channelId, messageId, userId, forwardedMessageId, status, errorMessage = null) {
   try {
-    log.dbOperation('INSERT', 'message_logs', { channelId, messageId, userId, status });
+    log.dbOperation('INSERT', 'message_logs', { channelId, messageId, userId, forwardedMessageId, status });
 
     await runQuery(
       `INSERT INTO message_logs 
-       (channel_id, message_id, user_id, status, error_message) 
-       VALUES (?, ?, ?, ?, ?)`,
-      [channelId, messageId, userId, status, errorMessage]
+       (channel_id, message_id, user_id, forwarded_message_id, status, error_message) 
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [channelId, messageId, userId, forwardedMessageId, status, errorMessage]
     );
 
-    log.messageForward(channelId, userId, status, { messageId, errorMessage });
+    log.messageForward(channelId, userId, status, { messageId, forwardedMessageId, errorMessage });
   } catch (error) {
     // Don't throw here to avoid disrupting message forwarding
     log.error('Failed to log message forward attempt', {
       channelId,
       messageId,
       userId,
+      forwardedMessageId,
       status,
       error: error.message
     });
@@ -157,6 +160,11 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
   try {
     const messageId = message.id?.toString() || 'unknown';
     
+    console.log('=== FORWARDING DEBUG ===');
+    console.log('Channel ID:', channelId);
+    console.log('Message ID:', messageId);
+    console.log('Message text:', message.message);
+    
     log.info('Processing message for forwarding', {
       channelId,
       messageId,
@@ -165,6 +173,8 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
 
     // Check if forwarding is enabled for this channel
     const isEnabled = await isChannelEnabled(channelId);
+    console.log('Is channel enabled:', isEnabled);
+    
     if (!isEnabled) {
       log.info('Forwarding disabled for channel', { channelId, messageId });
       return {
@@ -177,7 +187,24 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
     }
 
     // Get all users to forward to
-    const users = await getAllUsers();
+    const allUsers = await getAllUsers();
+    
+    // Filter out admin users - admins should not receive forwarded messages
+    const adminUserId = config.telegram.adminUserId.toString();
+    const users = allUsers.filter(user => user.user_id !== adminUserId);
+    
+    console.log('Total users to forward:', users.length);
+    console.log('Users:', users.map(u => ({ id: u.user_id, name: u.first_name })));
+    
+    if (allUsers.length > users.length) {
+      console.log(`🚫 Filtered out ${allUsers.length - users.length} admin user(s)`);
+      log.debug('Admin users excluded from forwarding', {
+        totalUsers: allUsers.length,
+        filteredUsers: users.length,
+        adminUserId
+      });
+    }
+    
     if (users.length === 0) {
       log.warn('No users found for message forwarding', { channelId, messageId });
       return {
@@ -283,7 +310,7 @@ async function forwardMessageToUser(message, user, channelId, messageId, forward
     // Check rate limiting
     if (!messageLimiter(`user_${userId}`)) {
       log.warn('Rate limit exceeded for user', { userId, channelId, messageId });
-      await logMessageForward(channelId, messageId, userId, 'skipped', 'Rate limit exceeded');
+      await logMessageForward(channelId, messageId, userId, null, 'skipped', 'Rate limit exceeded');
       return { status: 'skipped', userId, reason: 'Rate limit exceeded' };
     }
 
@@ -298,8 +325,11 @@ async function forwardMessageToUser(message, user, channelId, messageId, forward
       }
     );
 
-    await logMessageForward(channelId, messageId, userId, 'success');
-    return { status: 'success', userId, result };
+    // Extract forwarded message ID from result
+    const forwardedMessageId = result?.id?.toString() || null;
+    
+    await logMessageForward(channelId, messageId, userId, forwardedMessageId, 'success');
+    return { status: 'success', userId, result, forwardedMessageId };
 
   } catch (error) {
     const errorMessage = sanitizeText(error.message, 500);
@@ -331,7 +361,7 @@ async function forwardMessageToUser(message, user, channelId, messageId, forward
       });
     }
 
-    await logMessageForward(channelId, messageId, userId, 'failed', errorMessage);
+    await logMessageForward(channelId, messageId, userId, null, 'failed', errorMessage);
     return { status: 'failed', userId, error: errorMessage, isPermanent };
   }
 }
@@ -402,6 +432,58 @@ export async function getFailedForwards(options = {}) {
     return failedForwards;
   } catch (error) {
     throw handleDatabaseError(error, 'getFailedForwards');
+  }
+}
+
+/**
+ * Gets old forwarded messages that need to be deleted (older than specified hours)
+ * @param {number} hoursOld - Delete messages older than this many hours (default: 24)
+ * @returns {Promise<Array>} Array of messages to delete
+ */
+export async function getOldForwardedMessages(hoursOld = 24) {
+  try {
+    log.dbOperation('SELECT', 'message_logs', { operation: 'old_messages', hoursOld });
+
+    const messages = await getAllQuery(
+      `SELECT user_id, forwarded_message_id, created_at 
+       FROM message_logs 
+       WHERE status = 'success' 
+         AND forwarded_message_id IS NOT NULL
+         AND created_at < datetime('now', '-${hoursOld} hours')
+       ORDER BY created_at ASC`,
+      []
+    );
+
+    log.debug(`Found ${messages.length} old forwarded messages to delete`, { hoursOld });
+    return messages;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getOldForwardedMessages');
+  }
+}
+
+/**
+ * Marks a forwarded message as deleted in the database
+ * @param {string} userId - User ID
+ * @param {string} forwardedMessageId - Forwarded message ID
+ * @returns {Promise<void>}
+ */
+export async function markMessageAsDeleted(userId, forwardedMessageId) {
+  try {
+    await runQuery(
+      `UPDATE message_logs 
+       SET forwarded_message_id = NULL, 
+           updated_at = CURRENT_TIMESTAMP 
+       WHERE user_id = ? AND forwarded_message_id = ?`,
+      [userId, forwardedMessageId]
+    );
+
+    log.debug('Marked message as deleted', { userId, forwardedMessageId });
+  } catch (error) {
+    log.error('Failed to mark message as deleted', {
+      userId,
+      forwardedMessageId,
+      error: error.message
+    });
   }
 }
 

@@ -62,7 +62,19 @@ export function sanitizeText(text, maxLength = 1000) {
  * @returns {Object} Extracted channel info
  */
 export function extractChannelInfo(channel) {
-  const channelId = channel.id?.toString() || '';
+  // Handle BigInt ID from GramJS (Integer object with value property)
+  let channelId = '';
+  if (channel.id) {
+    if (typeof channel.id === 'bigint') {
+      channelId = channel.id.toString();
+    } else if (channel.id.value !== undefined) {
+      // GramJS Integer object
+      channelId = channel.id.value.toString();
+    } else {
+      channelId = channel.id.toString();
+    }
+  }
+  
   const title = sanitizeText(channel.title || channel.name || 'Unknown Channel');
   
   return {
@@ -82,7 +94,19 @@ export function extractChannelInfo(channel) {
  * @returns {Object} Extracted user info
  */
 export function extractUserInfo(user) {
-  const userId = user.id?.toString() || '';
+  // Handle BigInt ID from GramJS (Integer object with value property)
+  let userId = '';
+  if (user.id) {
+    if (typeof user.id === 'bigint') {
+      userId = user.id.toString();
+    } else if (user.id.value !== undefined) {
+      // GramJS Integer object
+      userId = user.id.value.toString();
+    } else {
+      userId = user.id.toString();
+    }
+  }
+  
   const firstName = sanitizeText(user.firstName || user.first_name || '');
   const lastName = sanitizeText(user.lastName || user.last_name || '');
   const username = user.username || null;

@@ -15,7 +15,8 @@ import { extractUserInfo, isValidUserId, sanitizeText } from '../utils/helpers.j
  */
 export async function addUser(userData) {
   try {
-    const userInfo = extractUserInfo(userData);
+    // Check if userData is already extracted (has userId property)
+    const userInfo = userData.userId ? userData : extractUserInfo(userData);
     
     if (!isValidUserId(userInfo.userId)) {
       throw new Error(`Invalid user ID: ${userInfo.userId}`);
