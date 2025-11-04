@@ -155,8 +155,8 @@ class UserBot {
       await this.client.start({
         phoneNumber: async () => {
           this.logger.info('Phone number required for authentication');
-          const phone = await input.text('Enter your phone number (with country code): ');
-          return phone || config.telegram.phoneNumber;
+          // const phone = await input.text('Enter your phone number (with country code): ');
+          return config.telegram.phoneNumber;
         },
         password: async () => {
           this.logger.info('2FA password required');
