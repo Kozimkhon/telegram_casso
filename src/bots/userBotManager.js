@@ -130,9 +130,7 @@ class UserBotManager {
    * @returns {UserBot|null} Active userbot or null
    */
   getRandomActiveBot() {
-    const activeBots = Array.from(this.bots.values()).filter(
-      bot => bot.isRunning && !bot.isPaused
-    );
+    const activeBots = this.getActiveBots();
 
     if (activeBots.length === 0) {
       this.logger.warn('No active bots available');

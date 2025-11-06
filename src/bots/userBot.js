@@ -69,6 +69,14 @@ class UserBot {
   }
 
   /**
+   * Checks if this is running in multi-session mode
+   * @returns {boolean} True if multi-session mode
+   */
+  isMultiSessionMode() {
+    return this.phone && this.phone !== config.telegram.phoneNumber;
+  }
+
+  /**
    * Initializes and starts the UserBot
    * @returns {Promise<void>}
    */
@@ -167,7 +175,7 @@ class UserBot {
         const sessionString = this.client.session.save();
         
         // If we have a phone (multi-userbot mode), save to database
-        if (this.phone && this.phone !== config.telegram.phoneNumber) {
+        if (this.isMultiSessionMode()) {
           await saveSessionToDB({
             phone: this.phone,
             userId: this.userId,
@@ -198,7 +206,7 @@ class UserBot {
         phoneNumber: async () => {
           this.logger.info('Phone number required for authentication');
           // Use stored phone or ask for it
-          if (this.phone && this.phone !== config.telegram.phoneNumber) {
+          if (this.isMultiSessionMode()) {
             return this.phone;
           }
           return config.telegram.phoneNumber;
