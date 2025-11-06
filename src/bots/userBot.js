@@ -41,13 +41,24 @@ import {
   getOldForwardedMessages, 
   markMessageAsDeleted 
 } from '../services/messageService.js';
+import { saveSession as saveSessionToDB, updateSessionActivity } from '../services/sessionService.js';
 
 class UserBot {
-  constructor() {
+  constructor(sessionData = null) {
     this.client = null;
     this.isRunning = false;
+    this.isPaused = false;
+    this.pauseReason = null;
     this.logger = createChildLogger({ component: 'UserBot' });
-    this.sessionPath = config.paths.sessionPath;
+    
+    // Session data (for multi-userbot support)
+    this.phone = sessionData?.phone || config.telegram.phoneNumber;
+    this.sessionString = sessionData?.session_string || null;
+    this.userId = sessionData?.user_id || null;
+    
+    // Default to config path for backwards compatibility
+    this.sessionPath = sessionData ? null : config.paths.sessionPath;
+    
     this.connectedChannels = new Map(); // channel_id -> channelInfo
     this.adminChannelEntities = []; // Store admin channel entities for event filtering
     this.syncInterval = null; // Timer for periodic sync
@@ -63,10 +74,12 @@ class UserBot {
    */
   async start() {
     try {
-      this.logger.info('Starting UserBot initialization...');
+      this.logger.info('Starting UserBot initialization...', { phone: this.phone });
 
-      // Ensure data directory exists
-      await ensureDirectory(path.dirname(this.sessionPath));
+      // Ensure data directory exists (only for file-based sessions)
+      if (this.sessionPath) {
+        await ensureDirectory(path.dirname(this.sessionPath));
+      }
 
       // Load or create session
       const session = await this.loadSession();
@@ -85,6 +98,13 @@ class UserBot {
 
       // Connect and authenticate FIRST
       await this.connect();
+      
+      // Update session activity in database
+      if (this.phone) {
+        await updateSessionActivity(this.phone).catch(err => 
+          this.logger.debug('Failed to update session activity', { error: err.message })
+        );
+      }
       
       // Sync channels and users BEFORE setting up event handlers
       await this.syncChannelsAndUsers();
@@ -113,15 +133,24 @@ class UserBot {
    */
   async loadSession() {
     try {
-      const sessionData = await safeReadFile(this.sessionPath);
-      
-      if (sessionData) {
-        this.logger.info('Loading existing session');
-        return new StringSession(sessionData.trim());
-      } else {
-        this.logger.info('Creating new session');
-        return new StringSession('');
+      // If sessionString is provided from database, use it
+      if (this.sessionString) {
+        this.logger.info('Loading session from database', { phone: this.phone });
+        return new StringSession(this.sessionString.trim());
       }
+      
+      // Otherwise, try to load from file (legacy support)
+      if (this.sessionPath) {
+        const sessionData = await safeReadFile(this.sessionPath);
+        
+        if (sessionData) {
+          this.logger.info('Loading existing session from file');
+          return new StringSession(sessionData.trim());
+        }
+      }
+      
+      this.logger.info('Creating new session', { phone: this.phone });
+      return new StringSession('');
     } catch (error) {
       this.logger.warn('Error loading session, creating new one', { error: error.message });
       return new StringSession('');
@@ -129,15 +158,28 @@ class UserBot {
   }
 
   /**
-   * Saves session to file
+   * Saves session to file or database
    * @returns {Promise<void>}
    */
   async saveSession() {
     try {
       if (this.client) {
         const sessionString = this.client.session.save();
-        await safeWriteFile(this.sessionPath, sessionString);
-        this.logger.debug('Session saved successfully');
+        
+        // If we have a phone (multi-userbot mode), save to database
+        if (this.phone && this.phone !== config.telegram.phoneNumber) {
+          await saveSessionToDB({
+            phone: this.phone,
+            userId: this.userId,
+            sessionString: sessionString,
+            status: 'active'
+          });
+          this.logger.debug('Session saved to database', { phone: this.phone });
+        } else if (this.sessionPath) {
+          // Legacy mode: save to file
+          await safeWriteFile(this.sessionPath, sessionString);
+          this.logger.debug('Session saved to file');
+        }
       }
     } catch (error) {
       this.logger.error('Failed to save session', error);
@@ -150,12 +192,15 @@ class UserBot {
    */
   async connect() {
     try {
-      this.logger.info('Connecting to Telegram...');
+      this.logger.info('Connecting to Telegram...', { phone: this.phone });
       
       await this.client.start({
         phoneNumber: async () => {
           this.logger.info('Phone number required for authentication');
-          // const phone = await input.text('Enter your phone number (with country code): ');
+          // Use stored phone or ask for it
+          if (this.phone && this.phone !== config.telegram.phoneNumber) {
+            return this.phone;
+          }
           return config.telegram.phoneNumber;
         },
         password: async () => {
@@ -172,10 +217,17 @@ class UserBot {
         }
       });
 
+      // Get and store user info
+      const me = await this.client.getMe();
+      this.userId = me.id?.toString();
+      
       // Save session after successful authentication
       await this.saveSession();
       
-      this.logger.info('Successfully connected to Telegram');
+      this.logger.info('Successfully connected to Telegram', { 
+        phone: this.phone,
+        userId: this.userId 
+      });
     } catch (error) {
       throw handleTelegramError(error, 'Telegram connection');
     }
