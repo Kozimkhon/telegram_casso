@@ -950,11 +950,12 @@ class UserBot {
         channelId,
         sessionPhone: this.phone 
       });
-
+      var _offset = 0;
       // Get channel participants with optimization
       const participants = await this.client.getParticipants(channelId, {
+        offset: _offset,
+        showTotal: true,
         limit: 5000, // Increased limit for better coverage
-        aggressive: true // Enable aggressive mode for faster fetching
       });
 
       this.logger.debug(`📊 Fetched ${participants.length} participants`, {
