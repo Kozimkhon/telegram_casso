@@ -51371,3 +51371,29 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
 {
   "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
 }
+2025-11-06 11:42:52 [ERROR]: Database error during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getAllChannels
+{
+  "operation": "getAllChannels",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [ERROR]: Database error during toggleChannelForwarding
+{
+  "operation": "toggleChannelForwarding",
+  "originalError": "Database error during getChannelById",
+  "sqliteCode": "DATABASE_ERROR"
+}

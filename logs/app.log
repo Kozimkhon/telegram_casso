@@ -93748,3 +93748,53 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
 {
   "component": "UserBot"
 }
+2025-11-06 11:42:52 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "-1001234567890"
+}
+2025-11-06 11:42:52 [ERROR]: Database error during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "-1001234567890"
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": false
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getAllChannels
+{
+  "operation": "getAllChannels",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "-1001234567890"
+}
+2025-11-06 11:42:52 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:42:52 [ERROR]: Database error during toggleChannelForwarding
+{
+  "operation": "toggleChannelForwarding",
+  "originalError": "Database error during getChannelById",
+  "sqliteCode": "DATABASE_ERROR"
+}
