@@ -1941,3 +1941,4184 @@ FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/editMes
 {
   "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET"
 }
+2025-11-06 22:47:26 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 22:47:26 [INFO]: ✅ Configuration validated successfully
+2025-11-06 22:47:26 [INFO]: ✅ Database initialized successfully
+2025-11-06 22:47:26 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 22:47:26 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:47:26 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:47:26 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:47:26 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 22:47:26 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 22:47:26 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 22:47:26 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 22:47:26 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 22:47:26 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 22:47:26 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:47:26 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:47:26 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:47:28 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "/start",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:30 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "add_session",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:33 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_plus",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:34 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:34 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:35 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:36 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:48 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:50 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:51 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:53 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:54 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:56 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:57 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:47:59 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:04 [INFO]: SMS verification code sent successfully
+{
+  "phone": "+998999900979"
+}
+2025-11-06 22:48:19 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:20 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:22 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_6",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:23 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:24 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_5",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:25 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:26 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:48:41 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "OtaJalol@1998",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:41 [ERROR]: Error during text message 2FA authentication
+TypeError: client.computeCheck is not a function
+    at handlePasswordTextMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBotAuth.js:708:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBotAuth.js:118:5
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "client.computeCheck is not a function"
+}
+2025-11-06 22:48:51 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "main_menu",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:52 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "add_session",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_plus",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:56 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:57 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:58 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:48:59 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:01 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:02 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:10 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_backspace",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:12 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:13 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:15 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:16 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_6",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:17 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:18 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_1",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:19 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:25 [INFO]: SMS verification code sent successfully
+{
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:36 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_4",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:38 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_4",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:39 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:40 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_1",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:42 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:49:43 [DEBUG]: [Session] Saving session
+{
+  "phone": "+998930793681",
+  "userId": null,
+  "status": "active"
+}
+2025-11-06 22:49:43 [INFO]: [Session] Created new session
+{
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:43 [INFO]: Adding new userbot
+{
+  "component": "UserBotManager",
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:43 [INFO]: Starting UserBot initialization...
+{
+  "component": "UserBot",
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:43 [INFO]: Loading session from database
+{
+  "component": "UserBot",
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:43 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBot",
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:43 [DEBUG]: [Session] Saving session
+{
+  "phone": "+998930793681",
+  "userId": "5684628333",
+  "status": "active"
+}
+2025-11-06 22:49:44 [INFO]: [Session] Updated existing session
+{
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:44 [DEBUG]: Session saved to database
+{
+  "component": "UserBot",
+  "phone": "+998930793681"
+}
+2025-11-06 22:49:44 [INFO]: Successfully connected to Telegram
+{
+  "component": "UserBot",
+  "phone": "+998930793681",
+  "userId": "5684628333"
+}
+2025-11-06 22:49:44 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 22:49:44 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 22:49:44 [INFO]: Syncing 24 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 22:49:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1989156679",
+  "title": "Namangan LOLA optom kiloli kiyimlar 😊"
+}
+2025-11-06 22:49:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1142682191",
+  "title": "Bezmakler(maklersiz)"
+}
+2025-11-06 22:49:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2043680854",
+  "title": "PORNHUB | MОМMY"
+}
+2025-11-06 22:49:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1640331328",
+  "title": "Kvartira Toshkent Arenda Ijara"
+}
+2025-11-06 22:49:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2084105868",
+  "title": "Sheriklikka Kvartiralar | Qizlarga 🙎‍♀"
+}
+2025-11-06 22:49:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2164443223",
+  "title": "😎АРЕНДА TOSHKENT 😎"
+}
+2025-11-06 22:49:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1807950676",
+  "title": "ARENDACHI AKA Toshkent shaxr"
+}
+2025-11-06 22:49:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1754513507",
+  "title": "Shox Aka Uylari Arenda"
+}
+2025-11-06 22:49:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2493427362",
+  "title": "Аренда Алмазарский Район Шайхантахурский"
+}
+2025-11-06 22:49:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1748980384",
+  "title": "kvartira toshkent"
+}
+2025-11-06 22:49:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1926694149",
+  "title": "♨️NamanganIJARA"
+}
+2025-11-06 22:49:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027287878",
+  "title": "Арзон Аренда Ташкент"
+}
+2025-11-06 22:49:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1831450379",
+  "title": "ОИЛАГА КВАРТИРА | БЕЗМАКЛЕР | ТОШКЕНТ"
+}
+2025-11-06 22:49:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1870242872",
+  "title": "BIZNING UYLAR | IJARA / SOTUV | BEZMAKLER KVARTIRA ARENDA KUNLIK IJARA MAKLERSIZ |"
+}
+2025-11-06 22:49:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027298311",
+  "title": "Kronshtein_ hdmi_device"
+}
+2025-11-06 22:49:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1752993411",
+  "title": "kvartira bor 📌"
+}
+2025-11-06 22:49:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1409916786",
+  "title": "📲📲GSMBAZA📲 📲. ”Малика” A27"
+}
+2025-11-06 22:49:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1696090266",
+  "title": "Bezmakler Kvartira | Uy joy sotish va arendaga berish"
+}
+2025-11-06 22:49:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1519153991",
+  "title": "NAMANGAN IJARA | RASMIY"
+}
+2025-11-06 22:49:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2497327157",
+  "title": "Ijara kvartira toshkent"
+}
+2025-11-06 22:49:50 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2148669912",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:50 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2148669912"
+}
+2025-11-06 22:49:50 [INFO]: Channel added successfully
+{
+  "channelId": "2148669912",
+  "title": "...ن",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:50 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "title": "...ن",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:49:50 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2635996496",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2635996496"
+}
+2025-11-06 22:49:51 [INFO]: Channel added successfully
+{
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2545810224",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2545810224"
+}
+2025-11-06 22:49:51 [INFO]: Channel added successfully
+{
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:49:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1872489717",
+  "title": "1"
+}
+2025-11-06 22:49:51 [INFO]: Synced 3 channels (admin only) for session +998930793681
+{
+  "component": "UserBot"
+}
+2025-11-06 22:49:51 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:49:51 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:49:51 [INFO]: Syncing users from 3 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 22:49:51 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912"
+}
+2025-11-06 22:49:52 [INFO]: Starting bulk user addition
+{
+  "count": 23
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:49:52 [INFO]: User added successfully
+{
+  "userId": "8280393846",
+  "firstName": "Munisa",
+  "username": "frxd1vna"
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:49:52 [INFO]: User added successfully
+{
+  "userId": "8406465669",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:49:52 [INFO]: User added successfully
+{
+  "userId": "8141077729",
+  "firstName": "𝓝",
+  "username": null
+}
+2025-11-06 22:49:52 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "8109584267",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "7759355228",
+  "firstName": "Oʻzim",
+  "username": "nn_2322"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "7894584825",
+  "firstName": "ℛ",
+  "username": "robilvvv"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "7161953022",
+  "firstName": "...",
+  "username": null
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "729332878",
+  "firstName": "Farhod",
+  "username": null
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:49:53 [INFO]: User added successfully
+{
+  "userId": "7028887392",
+  "firstName": "Gulyuza",
+  "username": null
+}
+2025-11-06 22:49:53 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "6325209228",
+  "firstName": "𝓘𝓻𝓸𝓭𝓪",
+  "username": null
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "7513450619",
+  "firstName": "N",
+  "username": null
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "6558327175",
+  "firstName": "Hola",
+  "username": null
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "7368043698",
+  "firstName": "🕊️",
+  "username": "Sobirova_m443"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:49:54 [INFO]: User added successfully
+{
+  "userId": "566160086",
+  "firstName": "Jaloliddin Otajonov",
+  "username": "otajalol"
+}
+2025-11-06 22:49:54 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "7251983684",
+  "firstName": "𝓑𝓲𝓴𝓪𝓳𝓸𝓷",
+  "username": null
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "6508642665",
+  "firstName": "Madina🥰🥰",
+  "username": "Madina0729"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "5272172600",
+  "firstName": "И.В.Имомалиева",
+  "username": "xqmb02"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "1260053249",
+  "firstName": "Mahmudjonova Shohsanam",
+  "username": null
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:49:55 [INFO]: User added successfully
+{
+  "userId": "5879291577",
+  "firstName": "Shahlo",
+  "username": null
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:49:55 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:49:56 [INFO]: User added successfully
+{
+  "userId": "5679177209",
+  "firstName": "Muhammadamin",
+  "username": null
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:49:56 [INFO]: User added successfully
+{
+  "userId": "6455589289",
+  "firstName": "Sakinam 💕",
+  "username": "uxtiyim_08"
+}
+2025-11-06 22:49:56 [INFO]: Bulk user addition completed
+{
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2148669912"
+}
+2025-11-06 22:49:56 [DEBUG]: Channel members cleared
+{
+  "channelId": "2148669912",
+  "removedCount": 0
+}
+2025-11-06 22:49:56 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2148669912",
+  "count": 23
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:49:56 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:49:56 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:49:56 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:49:56 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:49:56 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:49:56 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:49:57 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:49:57 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:49:57 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:49:57 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:49:57 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:49:57 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:49:57 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:49:57 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:49:57 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:49:57 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:49:58 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:49:58 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:49:59 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:49:59 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:49:59 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:49:59 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:49:59 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:49:59 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:49:59 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2148669912",
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:49:59 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "total": 23,
+  "usersAdded": 23,
+  "membersAdded": 23,
+  "failed": 0
+}
+2025-11-06 22:49:59 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496"
+}
+2025-11-06 22:50:00 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:00 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:00 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:50:00 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2635996496"
+}
+2025-11-06 22:50:00 [DEBUG]: Channel members cleared
+{
+  "channelId": "2635996496",
+  "removedCount": 0
+}
+2025-11-06 22:50:00 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2635996496",
+  "count": 2
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:00 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:00 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:01 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:01 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2635996496",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:50:01 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:50:01 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224"
+}
+2025-11-06 22:50:01 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:01 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:01 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:50:01 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2545810224"
+}
+2025-11-06 22:50:01 [DEBUG]: Channel members cleared
+{
+  "channelId": "2545810224",
+  "removedCount": 0
+}
+2025-11-06 22:50:01 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2545810224",
+  "count": 2
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:01 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:50:01 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:02 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:02 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2545810224",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:50:02 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:50:02 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 22:50:02 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 22:50:02 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:50:02 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:50:02 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 3,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 22:50:02 [INFO]: ⏰ Periodic sync started
+{
+  "component": "UserBot",
+  "intervalMinutes": 2,
+  "nextSyncAt": "2025-11-06T17:52:02.094Z"
+}
+2025-11-06 22:50:02 [INFO]: 🗑️ Starting old message deletion...
+{
+  "component": "UserBot",
+  "messageAgeHours": 24
+}
+2025-11-06 22:50:02 [DEBUG]: [DB] SELECT on message_logs
+{
+  "operation": "old_messages",
+  "table": "message_logs",
+  "hoursOld": 24
+}
+2025-11-06 22:50:02 [INFO]: 🗑️ Periodic message deletion started
+{
+  "component": "UserBot",
+  "checkIntervalHours": 1,
+  "messageAgeHours": 24,
+  "nextCheckAt": "2025-11-06T18:50:02.096Z"
+}
+2025-11-06 22:50:02 [INFO]: UserBot started successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 22:50:02 [INFO]: UserBot added successfully
+{
+  "component": "UserBotManager",
+  "phone": "+998930793681"
+}
+2025-11-06 22:50:02 [DEBUG]: Found 0 old forwarded messages to delete
+{
+  "hoursOld": 24
+}
+2025-11-06 22:50:02 [INFO]: ✅ No old messages to delete
+{
+  "component": "UserBot"
+}
+2025-11-06 22:50:02 [INFO]: Session added successfully via AdminBot
+{
+  "phone": "+998930793681",
+  "userId": "5684628333"
+}
+2025-11-06 22:50:11 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "main_menu",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:50:14 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "channels_list",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:50:14 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": false
+}
+2025-11-06 22:50:14 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": false
+}
+2025-11-06 22:52:02 [INFO]: 🔄 Starting periodic sync...
+{
+  "component": "UserBot",
+  "intervalMinutes": 2
+}
+2025-11-06 22:52:02 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:02 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:02 [INFO]: Syncing 24 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1989156679",
+  "title": "Namangan LOLA optom kiloli kiyimlar 😊"
+}
+2025-11-06 22:52:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1142682191",
+  "title": "Bezmakler(maklersiz)"
+}
+2025-11-06 22:52:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2043680854",
+  "title": "PORNHUB | MОМMY"
+}
+2025-11-06 22:52:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1640331328",
+  "title": "Kvartira Toshkent Arenda Ijara"
+}
+2025-11-06 22:52:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2084105868",
+  "title": "Sheriklikka Kvartiralar | Qizlarga 🙎‍♀"
+}
+2025-11-06 22:52:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2164443223",
+  "title": "😎АРЕНДА TOSHKENT 😎"
+}
+2025-11-06 22:52:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1807950676",
+  "title": "ARENDACHI AKA Toshkent shaxr"
+}
+2025-11-06 22:52:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1754513507",
+  "title": "Shox Aka Uylari Arenda"
+}
+2025-11-06 22:52:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2493427362",
+  "title": "Аренда Алмазарский Район Шайхантахурский"
+}
+2025-11-06 22:52:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1748980384",
+  "title": "kvartira toshkent"
+}
+2025-11-06 22:52:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1926694149",
+  "title": "♨️NamanganIJARA"
+}
+2025-11-06 22:52:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027287878",
+  "title": "Арзон Аренда Ташкент"
+}
+2025-11-06 22:52:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1831450379",
+  "title": "ОИЛАГА КВАРТИРА | БЕЗМАКЛЕР | ТОШКЕНТ"
+}
+2025-11-06 22:52:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1870242872",
+  "title": "BIZNING UYLAR | IJARA / SOTUV | BEZMAKLER KVARTIRA ARENDA KUNLIK IJARA MAKLERSIZ |"
+}
+2025-11-06 22:52:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027298311",
+  "title": "Kronshtein_ hdmi_device"
+}
+2025-11-06 22:52:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1752993411",
+  "title": "kvartira bor 📌"
+}
+2025-11-06 22:52:08 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1409916786",
+  "title": "📲📲GSMBAZA📲 📲. ”Малика” A27"
+}
+2025-11-06 22:52:08 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1696090266",
+  "title": "Bezmakler Kvartira | Uy joy sotish va arendaga berish"
+}
+2025-11-06 22:52:08 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1519153991",
+  "title": "NAMANGAN IJARA | RASMIY"
+}
+2025-11-06 22:52:09 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2497327157",
+  "title": "Ijara kvartira toshkent"
+}
+2025-11-06 22:52:09 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2148669912",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:09 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2148669912"
+}
+2025-11-06 22:52:09 [INFO]: Channel added successfully
+{
+  "channelId": "2148669912",
+  "title": "...ن",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:09 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "title": "...ن",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2635996496",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2635996496"
+}
+2025-11-06 22:52:10 [INFO]: Channel added successfully
+{
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2545810224",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2545810224"
+}
+2025-11-06 22:52:10 [INFO]: Channel added successfully
+{
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:52:10 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:52:11 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1872489717",
+  "title": "1"
+}
+2025-11-06 22:52:11 [INFO]: Synced 3 channels (admin only) for session +998930793681
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:11 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:52:11 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:52:11 [INFO]: Syncing users from 3 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:11 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912"
+}
+2025-11-06 22:52:11 [INFO]: Starting bulk user addition
+{
+  "count": 23
+}
+2025-11-06 22:52:11 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:52:11 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:52:11 [INFO]: User added successfully
+{
+  "userId": "8280393846",
+  "firstName": "Munisa",
+  "username": "frxd1vna"
+}
+2025-11-06 22:52:11 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "8406465669",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "8141077729",
+  "firstName": "𝓝",
+  "username": null
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "8109584267",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "7759355228",
+  "firstName": "Oʻzim",
+  "username": "nn_2322"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "7894584825",
+  "firstName": "ℛ",
+  "username": "robilvvv"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:52:12 [INFO]: User added successfully
+{
+  "userId": "7161953022",
+  "firstName": "...",
+  "username": null
+}
+2025-11-06 22:52:12 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "729332878",
+  "firstName": "Farhod",
+  "username": null
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "7028887392",
+  "firstName": "Gulyuza",
+  "username": null
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "6325209228",
+  "firstName": "𝓘𝓻𝓸𝓭𝓪",
+  "username": null
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "7513450619",
+  "firstName": "N",
+  "username": null
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:52:13 [INFO]: User added successfully
+{
+  "userId": "6558327175",
+  "firstName": "Hola",
+  "username": null
+}
+2025-11-06 22:52:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "7368043698",
+  "firstName": "🕊️",
+  "username": "Sobirova_m443"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "566160086",
+  "firstName": "Jaloliddin Otajonov",
+  "username": "otajalol"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "7251983684",
+  "firstName": "𝓑𝓲𝓴𝓪𝓳𝓸𝓷",
+  "username": null
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "6508642665",
+  "firstName": "Madina🥰🥰",
+  "username": "Madina0729"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "5272172600",
+  "firstName": "И.В.Имомалиева",
+  "username": "xqmb02"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:52:14 [INFO]: User added successfully
+{
+  "userId": "1260053249",
+  "firstName": "Mahmudjonova Shohsanam",
+  "username": null
+}
+2025-11-06 22:52:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:15 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:52:15 [INFO]: User added successfully
+{
+  "userId": "5879291577",
+  "firstName": "Shahlo",
+  "username": null
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:52:15 [INFO]: User added successfully
+{
+  "userId": "5679177209",
+  "firstName": "Muhammadamin",
+  "username": null
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:52:15 [INFO]: User added successfully
+{
+  "userId": "6455589289",
+  "firstName": "Sakinam 💕",
+  "username": "uxtiyim_08"
+}
+2025-11-06 22:52:15 [INFO]: Bulk user addition completed
+{
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2148669912"
+}
+2025-11-06 22:52:15 [DEBUG]: Channel members cleared
+{
+  "channelId": "2148669912",
+  "removedCount": 23
+}
+2025-11-06 22:52:15 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2148669912",
+  "count": 23
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:52:15 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:52:15 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:52:15 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:52:16 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:52:16 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:52:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:52:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:52:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:52:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:52:18 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2148669912",
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:52:18 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "total": 23,
+  "usersAdded": 23,
+  "membersAdded": 23,
+  "failed": 0
+}
+2025-11-06 22:52:18 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496"
+}
+2025-11-06 22:52:19 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:52:19 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:19 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:19 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:52:19 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:19 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:19 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:52:19 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:52:19 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2635996496"
+}
+2025-11-06 22:52:20 [DEBUG]: Channel members cleared
+{
+  "channelId": "2635996496",
+  "removedCount": 2
+}
+2025-11-06 22:52:20 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2635996496",
+  "count": 2
+}
+2025-11-06 22:52:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:20 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:20 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:20 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2635996496",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:52:20 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:52:20 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224"
+}
+2025-11-06 22:52:21 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:21 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:21 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:52:21 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2545810224"
+}
+2025-11-06 22:52:21 [DEBUG]: Channel members cleared
+{
+  "channelId": "2545810224",
+  "removedCount": 2
+}
+2025-11-06 22:52:21 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2545810224",
+  "count": 2
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:21 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:21 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:52:21 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2545810224",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:52:21 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:52:21 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:21 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 22:52:21 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:52:21 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:52:21 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 3,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 22:52:21 [INFO]: ✅ Periodic sync completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:02 [INFO]: 🔄 Starting periodic sync...
+{
+  "component": "UserBot",
+  "intervalMinutes": 2
+}
+2025-11-06 22:54:02 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:02 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:02 [INFO]: Syncing 24 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1989156679",
+  "title": "Namangan LOLA optom kiloli kiyimlar 😊"
+}
+2025-11-06 22:54:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1142682191",
+  "title": "Bezmakler(maklersiz)"
+}
+2025-11-06 22:54:03 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2043680854",
+  "title": "PORNHUB | MОМMY"
+}
+2025-11-06 22:54:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1640331328",
+  "title": "Kvartira Toshkent Arenda Ijara"
+}
+2025-11-06 22:54:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2084105868",
+  "title": "Sheriklikka Kvartiralar | Qizlarga 🙎‍♀"
+}
+2025-11-06 22:54:04 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2164443223",
+  "title": "😎АРЕНДА TOSHKENT 😎"
+}
+2025-11-06 22:54:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1807950676",
+  "title": "ARENDACHI AKA Toshkent shaxr"
+}
+2025-11-06 22:54:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1754513507",
+  "title": "Shox Aka Uylari Arenda"
+}
+2025-11-06 22:54:05 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2493427362",
+  "title": "Аренда Алмазарский Район Шайхантахурский"
+}
+2025-11-06 22:54:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1748980384",
+  "title": "kvartira toshkent"
+}
+2025-11-06 22:54:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1926694149",
+  "title": "♨️NamanganIJARA"
+}
+2025-11-06 22:54:06 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027287878",
+  "title": "Арзон Аренда Ташкент"
+}
+2025-11-06 22:54:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1831450379",
+  "title": "ОИЛАГА КВАРТИРА | БЕЗМАКЛЕР | ТОШКЕНТ"
+}
+2025-11-06 22:54:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1870242872",
+  "title": "BIZNING UYLAR | IJARA / SOTUV | BEZMAKLER KVARTIRA ARENDA KUNLIK IJARA MAKLERSIZ |"
+}
+2025-11-06 22:54:07 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2027298311",
+  "title": "Kronshtein_ hdmi_device"
+}
+2025-11-06 22:54:08 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1752993411",
+  "title": "kvartira bor 📌"
+}
+2025-11-06 22:54:09 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1409916786",
+  "title": "📲📲GSMBAZA📲 📲. ”Малика” A27"
+}
+2025-11-06 22:54:09 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1696090266",
+  "title": "Bezmakler Kvartira | Uy joy sotish va arendaga berish"
+}
+2025-11-06 22:54:09 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1519153991",
+  "title": "NAMANGAN IJARA | RASMIY"
+}
+2025-11-06 22:54:10 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2497327157",
+  "title": "Ijara kvartira toshkent"
+}
+2025-11-06 22:54:10 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2148669912",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:11 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2148669912"
+}
+2025-11-06 22:54:11 [INFO]: Channel added successfully
+{
+  "channelId": "2148669912",
+  "title": "...ن",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:11 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "title": "...ن",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:54:11 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2635996496",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:11 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2635996496"
+}
+2025-11-06 22:54:11 [INFO]: Channel added successfully
+{
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:11 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "title": "Musiqalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:54:12 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2545810224",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:12 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "channelId": "2545810224"
+}
+2025-11-06 22:54:12 [INFO]: Channel added successfully
+{
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "adminSessionPhone": "+998930793681"
+}
+2025-11-06 22:54:12 [DEBUG]: Channel synced and linked
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "title": "Vazifalarm",
+  "sessionPhone": "+998930793681"
+}
+2025-11-06 22:54:13 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1872489717",
+  "title": "1"
+}
+2025-11-06 22:54:13 [INFO]: Synced 3 channels (admin only) for session +998930793681
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:13 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:54:13 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:54:13 [INFO]: Syncing users from 3 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:13 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912"
+}
+2025-11-06 22:54:13 [INFO]: Starting bulk user addition
+{
+  "count": 23
+}
+2025-11-06 22:54:13 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8280393846"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "8280393846",
+  "firstName": "Munisa",
+  "username": "frxd1vna"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8406465669"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "8406465669",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8141077729"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "8141077729",
+  "firstName": "𝓝",
+  "username": null
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "8109584267"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "8109584267",
+  "firstName": "",
+  "username": null
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7759355228"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "7759355228",
+  "firstName": "Oʻzim",
+  "username": "nn_2322"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7894584825"
+}
+2025-11-06 22:54:14 [INFO]: User added successfully
+{
+  "userId": "7894584825",
+  "firstName": "ℛ",
+  "username": "robilvvv"
+}
+2025-11-06 22:54:14 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7161953022"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "7161953022",
+  "firstName": "...",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "729332878"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "729332878",
+  "firstName": "Farhod",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7028887392"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "7028887392",
+  "firstName": "Gulyuza",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6325209228"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "6325209228",
+  "firstName": "𝓘𝓻𝓸𝓭𝓪",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7513450619"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "7513450619",
+  "firstName": "N",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6558327175"
+}
+2025-11-06 22:54:15 [INFO]: User added successfully
+{
+  "userId": "6558327175",
+  "firstName": "Hola",
+  "username": null
+}
+2025-11-06 22:54:15 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7368043698"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "7368043698",
+  "firstName": "🕊️",
+  "username": "Sobirova_m443"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "566160086"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "566160086",
+  "firstName": "Jaloliddin Otajonov",
+  "username": "otajalol"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "7251983684"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "7251983684",
+  "firstName": "𝓑𝓲𝓴𝓪𝓳𝓸𝓷",
+  "username": null
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6508642665"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "6508642665",
+  "firstName": "Madina🥰🥰",
+  "username": "Madina0729"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5272172600"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "5272172600",
+  "firstName": "И.В.Имомалиева",
+  "username": "xqmb02"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "1260053249"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "1260053249",
+  "firstName": "Mahmudjonova Shohsanam",
+  "username": null
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:16 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:54:16 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5879291577"
+}
+2025-11-06 22:54:17 [INFO]: User added successfully
+{
+  "userId": "5879291577",
+  "firstName": "Shahlo",
+  "username": null
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5679177209"
+}
+2025-11-06 22:54:17 [INFO]: User added successfully
+{
+  "userId": "5679177209",
+  "firstName": "Muhammadamin",
+  "username": null
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6455589289"
+}
+2025-11-06 22:54:17 [INFO]: User added successfully
+{
+  "userId": "6455589289",
+  "firstName": "Sakinam 💕",
+  "username": "uxtiyim_08"
+}
+2025-11-06 22:54:17 [INFO]: Bulk user addition completed
+{
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2148669912"
+}
+2025-11-06 22:54:17 [DEBUG]: Channel members cleared
+{
+  "channelId": "2148669912",
+  "removedCount": 23
+}
+2025-11-06 22:54:17 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2148669912",
+  "count": 23
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:54:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8280393846"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:54:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8406465669"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:54:17 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8141077729"
+}
+2025-11-06 22:54:17 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "8109584267"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7759355228"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7894584825"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7161953022"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "729332878"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7028887392"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:54:18 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6325209228"
+}
+2025-11-06 22:54:18 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7513450619"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6558327175"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7368043698"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "566160086"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:54:19 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "7251983684"
+}
+2025-11-06 22:54:19 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6508642665"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5272172600"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "1260053249"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5879291577"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "5679177209"
+}
+2025-11-06 22:54:20 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:54:20 [DEBUG]: User added to channel
+{
+  "channelId": "2148669912",
+  "userId": "6455589289"
+}
+2025-11-06 22:54:20 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2148669912",
+  "total": 23,
+  "successful": 23,
+  "failed": 0
+}
+2025-11-06 22:54:20 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2148669912",
+  "total": 23,
+  "usersAdded": 23,
+  "membersAdded": 23,
+  "failed": 0
+}
+2025-11-06 22:54:20 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496"
+}
+2025-11-06 22:54:21 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:21 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:21 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:54:21 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2635996496"
+}
+2025-11-06 22:54:21 [DEBUG]: Channel members cleared
+{
+  "channelId": "2635996496",
+  "removedCount": 2
+}
+2025-11-06 22:54:21 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2635996496",
+  "count": 2
+}
+2025-11-06 22:54:21 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:22 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:22 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:22 [DEBUG]: User added to channel
+{
+  "channelId": "2635996496",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:22 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2635996496",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:54:22 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2635996496",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:54:22 [DEBUG]: Syncing users from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224"
+}
+2025-11-06 22:54:22 [INFO]: Starting bulk user addition
+{
+  "count": 2
+}
+2025-11-06 22:54:22 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:22 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:22 [INFO]: User added successfully
+{
+  "userId": "6069690177",
+  "firstName": "Nafosat",
+  "username": "on_o4o9"
+}
+2025-11-06 22:54:22 [DEBUG]: [DB] INSERT on users
+{
+  "operation": "INSERT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:23 [DEBUG]: [DB] SELECT on users
+{
+  "operation": "SELECT",
+  "table": "users",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:23 [INFO]: User added successfully
+{
+  "userId": "5684628333",
+  "firstName": ".",
+  "username": "Ota_Jalol"
+}
+2025-11-06 22:54:23 [INFO]: Bulk user addition completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:54:23 [DEBUG]: [DB] DELETE on channel_members
+{
+  "operation": "DELETE",
+  "table": "channel_members",
+  "channelId": "2545810224"
+}
+2025-11-06 22:54:23 [DEBUG]: Channel members cleared
+{
+  "channelId": "2545810224",
+  "removedCount": 2
+}
+2025-11-06 22:54:23 [INFO]: Starting bulk channel member addition
+{
+  "channelId": "2545810224",
+  "count": 2
+}
+2025-11-06 22:54:23 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:23 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "6069690177"
+}
+2025-11-06 22:54:23 [DEBUG]: [DB] INSERT on channel_members
+{
+  "operation": "INSERT",
+  "table": "channel_members",
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:23 [DEBUG]: User added to channel
+{
+  "channelId": "2545810224",
+  "userId": "5684628333"
+}
+2025-11-06 22:54:23 [INFO]: Bulk channel member addition completed
+{
+  "channelId": "2545810224",
+  "total": 2,
+  "successful": 2,
+  "failed": 0
+}
+2025-11-06 22:54:23 [INFO]: Users synced from channel
+{
+  "component": "UserBot",
+  "channelId": "2545810224",
+  "total": 2,
+  "usersAdded": 2,
+  "membersAdded": 2,
+  "failed": 0
+}
+2025-11-06 22:54:23 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:23 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 22:54:23 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 22:54:23 [DEBUG]: Retrieved 3 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 22:54:23 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 3,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 22:54:23 [INFO]: ✅ Periodic sync completed successfully
+{
+  "component": "UserBot"
+}

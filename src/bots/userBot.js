@@ -277,15 +277,24 @@ class UserBot {
       })
     );
 
-    // 3. Message deletes (use Raw event for deletions)
+    // 3. Channel updates - auto-sync new channels and members
     this.client.addEventHandler(
-      asyncErrorHandler(this.handleChannelUpdate.bind(this), 'ChannelUpdate handler'),
-      // Listen to all updates for admin channels
+      asyncErrorHandler(this.handleChannelUpdate.bind(this), 'ChannelUpdate handler')
+    );
+
+    // 4. NEW: Channel participant updates - track joins/leaves
+    this.client.addEventHandler(
+      asyncErrorHandler(this.handleChannelParticipantUpdate.bind(this), 'ChannelParticipant handler')
+    );
+
+    // 5. NEW: New channel messages - detect new admin channels
+    this.client.addEventHandler(
+      asyncErrorHandler(this.handleNewChannelDetection.bind(this), 'NewChannelDetection handler')
     );
 
     this.logger.info('Event handlers setup completed', {
       channelCount: enabledChannels.length,
-      events: ['NewMessage', 'MessageEdit', 'ChannelUpdates', 'MemberChanges']
+      events: ['NewMessage', 'MessageEdit', 'ChannelUpdates', 'MemberChanges', 'NewChannelDetection']
     });
   }
 
@@ -359,21 +368,6 @@ class UserBot {
         }
       }
 
-      // Handle channel participant updates (joins, leaves, bans)
-      if (update.className === 'UpdateChannelParticipant') {
-        const channelId = update.channelId?.toString();
-
-        if (channelId && this.enabledChannelIds.has(channelId)) {
-          this.logger.info('👥 Member update', {
-            channelId,
-            userId: update.userId?.toString(),
-            prevParticipant: update.prevParticipant?.className,
-            newParticipant: update.newParticipant?.className,
-            sessionPhone: this.phone
-          });
-        }
-      }
-
       // Handle channel info changes
       if (update.className === 'UpdateChannel') {
         const channelId = update.channelId?.toString();
@@ -398,6 +392,179 @@ class UserBot {
 
     } catch (error) {
       this.logger.error('Error handling channel update', {
+        error: error.message
+      });
+    }
+  }
+
+  /**
+   * NEW: Handles channel participant updates (joins, leaves, promotions, bans)
+   * Auto-syncs user changes to database
+   * @param {Object} event - Channel participant update event
+   */
+  async handleChannelParticipantUpdate(event) {
+    try {
+      const update = event;
+
+      // Only handle UpdateChannelParticipant
+      if (update.className !== 'UpdateChannelParticipant') {
+        return;
+      }
+
+      const channelId = update.channelId?.toString();
+
+      // Check if we're admin in this channel
+      if (!channelId || !this.enabledChannelIds.has(channelId)) {
+        return;
+      }
+
+      const userId = update.userId?.toString();
+      const prevParticipant = update.prevParticipant;
+      const newParticipant = update.newParticipant;
+
+      this.logger.info('👥 Channel member update detected', {
+        channelId,
+        userId,
+        prevStatus: prevParticipant?.className,
+        newStatus: newParticipant?.className,
+        sessionPhone: this.phone
+      });
+
+      // Handle member leaving/being removed
+      if (prevParticipant && !newParticipant) {
+        this.logger.info('👋 User left/removed from channel', {
+          channelId,
+          userId,
+          sessionPhone: this.phone
+        });
+
+        // Remove user from channel_members table
+        try {
+          const { removeChannelMember } = await import('../services/userService.js');
+          await removeChannelMember(channelId, userId);
+          this.logger.debug('User removed from database', { channelId, userId });
+        } catch (error) {
+          this.logger.error('Failed to remove user from database', {
+            channelId,
+            userId,
+            error: error.message
+          });
+        }
+      }
+
+      // Handle new member joining
+      if (!prevParticipant && newParticipant) {
+        this.logger.info('👋 New user joined channel', {
+          channelId,
+          userId,
+          sessionPhone: this.phone
+        });
+
+        // Add user to database
+        try {
+          const userEntity = await this.client.getEntity(BigInt(userId));
+          const userInfo = extractUserInfo(userEntity);
+
+          // Add to users table
+          await addUser(userInfo);
+
+          // Add to channel_members table
+          const { addChannelMember } = await import('../services/userService.js');
+          await addChannelMember(channelId, userId);
+
+          this.logger.debug('New user added to database', {
+            channelId,
+            userId,
+            username: userInfo.username
+          });
+        } catch (error) {
+          this.logger.error('Failed to add new user to database', {
+            channelId,
+            userId,
+            error: error.message
+          });
+        }
+      }
+
+    } catch (error) {
+      this.logger.error('Error handling channel participant update', {
+        error: error.message
+      });
+    }
+  }
+
+  /**
+   * NEW: Detects new channels where user becomes admin
+   * Auto-syncs channel and its members to database
+   * @param {Object} event - New channel message event
+   */
+  async handleNewChannelDetection(event) {
+    try {
+      const update = event;
+
+      // Detect UpdateNewChannelMessage
+      if (update.className === 'UpdateNewChannelMessage') {
+        const message = update.message;
+        const channelId = message.peerId?.channelId?.toString();
+
+        if (!channelId) {
+          return;
+        }
+
+        // Check if this is a new channel (not in our database yet)
+        const existingChannels = await getAllChannels();
+        const isNewChannel = !existingChannels.some(ch => ch.channel_id === channelId);
+
+        if (!isNewChannel) {
+          return; // Channel already synced
+        }
+
+        this.logger.info('🆕 New channel detected!', {
+          channelId,
+          sessionPhone: this.phone
+        });
+
+        // Get channel entity
+        const channelEntity = await this.client.getEntity(BigInt(channelId));
+
+        // Check if user is admin
+        const isAdmin = await this.isUserAdminInChannel(channelEntity);
+
+        if (!isAdmin) {
+          this.logger.debug('Not admin in new channel, skipping', { channelId });
+          return;
+        }
+
+        this.logger.info('✅ New admin channel found! Auto-syncing...', {
+          channelId,
+          title: channelEntity.title,
+          sessionPhone: this.phone
+        });
+
+        // Extract and save channel info
+        const channelInfo = extractChannelInfo(channelEntity);
+        await addChannel(channelInfo, this.phone);
+        this.connectedChannels.set(channelInfo.channelId, channelInfo);
+
+        // Sync all users from this new channel (full sync once)
+        await this.syncUsersFromChannel(channelId);
+
+        // Update enabled channel IDs
+        this.enabledChannelIds.add(channelId);
+
+        this.logger.info('🎉 New admin channel synced successfully!', {
+          channelId,
+          title: channelInfo.title,
+          sessionPhone: this.phone
+        });
+
+        // Trigger event handler refresh to include new channel
+        await this.setupEventHandlers();
+
+      }
+
+    } catch (error) {
+      this.logger.error('Error detecting new channel', {
         error: error.message
       });
     }
@@ -582,12 +749,12 @@ class UserBot {
       await withRetry(
         async () => {
           // Get user's dialogs (chats, channels, groups)
-          const dialogs = await this.client.getDialogs({ limit: 100 });
+          const dialogs = await this.getAdminChannelsOptimized();
           
           this.logger.info(`Found ${dialogs.length} dialogs`);
 
           // Filter and sync channels
-          await this.syncChannels(dialogs);
+          await this.syncChannelsOptimized(dialogs);
           
           // Sync users from enabled channels
           await this.syncUsersFromChannels();
@@ -608,117 +775,147 @@ class UserBot {
   }
 
   /**
-   * Syncs channels from dialogs to database
-   * @param {Array} dialogs - Telegram dialogs
+   * Gets all channels where user is admin (OPTIMIZED - one API call)
+   * @returns {Promise<Array>} Array of admin channel entities
    */
-  async syncChannels(dialogs) {
+  async getAdminChannelsOptimized() {
     try {
-      // Filter only channels (not groups/chats)
-      const channels = dialogs.filter(dialog => 
-        dialog.entity?.className === 'Channel' && 
-        !dialog.entity?.megagroup // Exclude megagroups (supergroups)
+      this.logger.info('🚀 Fetching admin channels (optimized)...');
+
+      // Get current user
+      const me = await this.client.getMe();
+
+      // Get ALL channels where we're admin in ONE API call
+      const result = await this.client.invoke(
+        new Api.channels.GetAdminedPublicChannels({
+          byLocation: false,
+          checkLimit: false
+        })
       );
 
-      this.logger.info(`Syncing ${channels.length} channels (groups excluded)`);
+      const adminChannels = result.chats || [];
+
+      this.logger.info(`✅ Found ${adminChannels.length} admin public channels`, {
+        sessionPhone: this.phone
+      });
+
+      // Also get private admin channels from dialogs
+      const dialogs = await this.client.getDialogs({ limit: 200 });
+      
+      const privateAdminChannels = [];
+      for (const dialog of dialogs) {
+        const entity = dialog.entity;
+        
+        // Only check channels (not groups/chats)
+        if (entity?.className === 'Channel' && !entity?.megagroup) {
+          // Check if we already have this channel in public list
+          const alreadyExists = adminChannels.some(ch => 
+            ch.id?.toString() === entity.id?.toString()
+          );
+          
+          if (!alreadyExists) {
+            // Quick check: if we're creator or have admin rights
+            if (entity.creator || entity.adminRights) {
+              privateAdminChannels.push(entity);
+            }
+          }
+        }
+      }
+
+      this.logger.info(`✅ Found ${privateAdminChannels.length} private admin channels`, {
+        sessionPhone: this.phone
+      });
+
+      // Combine public and private channels
+      const allAdminChannels = [...adminChannels, ...privateAdminChannels];
+
+      this.logger.info(`🎉 Total admin channels: ${allAdminChannels.length}`, {
+        public: adminChannels.length,
+        private: privateAdminChannels.length,
+        sessionPhone: this.phone
+      });
+
+      return allAdminChannels;
+
+    } catch (error) {
+      this.logger.warn('Error getting admin channels optimized, falling back to old method', {
+        error: error.message
+      });
+      
+      // Fallback to old method
+      const dialogs = await this.client.getDialogs({ limit: 200 });
+      const channels = dialogs.filter(dialog => 
+        dialog.entity?.className === 'Channel' && 
+        !dialog.entity?.megagroup
+      );
+      
+      const adminChannels = [];
+      for (const dialog of channels) {
+        try {
+          const isAdmin = await this.isUserAdminInChannel(dialog.entity);
+          if (isAdmin) {
+            adminChannels.push(dialog.entity);
+          }
+        } catch (err) {
+          this.logger.debug('Skipping channel due to error', {
+            channel: dialog.entity?.title,
+            error: err.message
+          });
+        }
+      }
+      
+      return adminChannels;
+    }
+  }
+
+  /**
+   * Syncs admin channels to database (OPTIMIZED - no individual admin checks)
+   * @param {Array} adminChannels - Array of admin channel entities
+   */
+  async syncChannelsOptimized(adminChannels) {
+    try {
+      this.logger.info(`🔄 Syncing ${adminChannels.length} admin channels...`);
 
       // Clear previous admin channel entities
       this.adminChannelEntities = [];
 
-      for (const dialog of channels) {
+      for (const channelEntity of adminChannels) {
         try {
-          const channelInfo = extractChannelInfo(dialog.entity);
+          const channelInfo = extractChannelInfo(channelEntity);
           
-          // DEBUG: Log both ID formats
           console.log('\n🔍 SYNC DEBUG:');
-          console.log('Channel title:', dialog.entity.title);
-          console.log('dialog.entity.id:', dialog.entity.id);
-          console.log('Extracted channelId:', channelInfo.channelId);
+          console.log('Channel title:', channelEntity.title);
+          console.log('Channel ID:', channelInfo.channelId);
           
-          // Only sync channels where the user is an admin or owner
-          const isAdmin = await this.isUserAdminInChannel(dialog.entity);
+          // Add to database (linked to this session)
+          await addChannel(channelInfo, this.phone);
+          this.connectedChannels.set(channelInfo.channelId, channelInfo);
           
-          if (isAdmin) {
-            // Link channel to this session
-            await addChannel(channelInfo, this.phone);
-            this.connectedChannels.set(channelInfo.channelId, channelInfo);
-            
-            // Store the channel entity for event filtering
-            this.adminChannelEntities.push(dialog.entity);
-            
-            console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title, '-> session:', this.phone);
-            
-            this.logger.debug('Channel synced and linked', {
-              channelId: channelInfo.channelId,
-              title: channelInfo.title,
-              sessionPhone: this.phone
-            });
-          } else {
-            this.logger.debug('Skipping channel (not admin)', {
-              channelId: channelInfo.channelId,
-              title: channelInfo.title
-            });
-          }
+          // Store the channel entity for event filtering
+          this.adminChannelEntities.push(channelEntity);
+          
+          console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title, '-> session:', this.phone);
+          
+          this.logger.debug('Channel synced and linked', {
+            channelId: channelInfo.channelId,
+            title: channelInfo.title,
+            sessionPhone: this.phone
+          });
+
         } catch (error) {
           this.logger.error('Failed to sync channel', {
-            channelTitle: dialog.entity?.title || 'Unknown',
+            channelTitle: channelEntity?.title || 'Unknown',
             error: error.message
           });
         }
       }
 
-      this.logger.info(`Synced ${this.connectedChannels.size} channels (admin only) for session ${this.phone}`);
+      this.logger.info(`✅ Synced ${this.connectedChannels.size} channels for session ${this.phone}`);
     } catch (error) {
-      this.logger.error('Error syncing channels', error);
+      this.logger.error('Error syncing channels optimized', error);
       throw error;
     }
   }
-
-  /**
-   * Checks if the current user is an admin in the channel
-   * @param {Object} channel - Channel entity
-   * @returns {Promise<boolean>} True if user is admin
-   */
-  async isUserAdminInChannel(channelInput) {
-    try {
-      let channelEntity;
-      
-      // If channelInput is a string (chatId), get the entity
-      if (typeof channelInput === 'string') {
-        // Get channel entity from chatId
-        channelEntity = await this.client.getEntity(BigInt(channelInput));
-      } else {
-        // Already an entity object
-        channelEntity = channelInput;
-      }
-      
-      // For regular chats, assume admin rights
-      if (channelEntity.className === 'Chat') {
-        return true;
-      }
-
-      // For channels, check admin rights
-      const me = await this.client.getMe();
-      
-      const participant = await this.client.invoke(
-        new Api.channels.GetParticipant({
-          channel: channelEntity,
-          participant: me.id
-        })
-      );
-
-      const isAdmin = participant.participant?.className === 'ChannelParticipantAdmin' ||
-                     participant.participant?.className === 'ChannelParticipantCreator';
-
-      return isAdmin;
-    } catch (error) {
-      // If we can't check, assume no admin rights
-      this.logger.debug('Could not verify admin status', {
-        error: error.message
-      });
-      return false;
-    }
-  }
-
   /**
    * Syncs users from enabled channels
    */
@@ -744,52 +941,103 @@ class UserBot {
   }
 
   /**
-   * Syncs users from a specific channel
+   * Syncs users from a specific channel (OPTIMIZED - batch operations)
    * @param {string} channelId - Channel ID
    */
   async syncUsersFromChannel(channelId) {
     try {
-      this.logger.debug('Syncing users from channel', { channelId });
-
-      const participants = await this.client.getParticipants(channelId, {
-        limit: 1000
+      this.logger.info('🔄 Syncing users from channel (optimized)', { 
+        channelId,
+        sessionPhone: this.phone 
       });
 
+      // Get channel participants with optimization
+      const participants = await this.client.getParticipants(channelId, {
+        limit: 5000, // Increased limit for better coverage
+        aggressive: true // Enable aggressive mode for faster fetching
+      });
+
+      this.logger.debug(`📊 Fetched ${participants.length} participants`, {
+        channelId,
+        sessionPhone: this.phone
+      });
+
+      // Filter and extract user info (exclude bots)
       const usersData = participants
-        .filter(participant => !participant.bot) // Exclude bots
+        .filter(participant => !participant.bot)
         .map(participant => extractUserInfo(participant));
 
-      if (usersData.length > 0) {
-        // First add users to the general users table
-        const userResults = await bulkAddUsers(usersData);
-        const successfulUsers = userResults.filter(r => r.success);
-        
-        // Clear existing channel members for this channel (for clean sync)
-        await clearChannelMembers(channelId);
-        
-        // Then add users as channel members
-        const userIds = successfulUsers.map(r => r.userId || r.data?.user_id);
-        const memberResults = await bulkAddChannelMembers(channelId, userIds);
-        
-        const successCount = memberResults.filter(r => r.success).length;
-        
-        this.logger.info('Users synced from channel', {
-          channelId,
-          total: usersData.length,
-          usersAdded: successfulUsers.length,
-          membersAdded: successCount,
-          failed: usersData.length - successCount
-        });
-      } else {
+      if (usersData.length === 0) {
         this.logger.debug('No users to sync from channel', { channelId });
+        return {
+          success: true,
+          totalUsers: 0,
+          usersAdded: 0,
+          membersLinked: 0
+        };
       }
+
+      this.logger.info(`✅ Processing ${usersData.length} users (bots excluded)`, {
+        channelId,
+        total: participants.length,
+        afterBotFilter: usersData.length,
+        sessionPhone: this.phone
+      });
+
+      // OPTIMIZATION 1: Bulk add users to users table
+      const userResults = await bulkAddUsers(usersData);
+      const successfulUsers = userResults.filter(r => r.success);
+      
+      this.logger.debug(`📝 Added ${successfulUsers.length}/${usersData.length} users to database`, {
+        channelId,
+        sessionPhone: this.phone
+      });
+
+      // OPTIMIZATION 2: Clear existing channel members (single query)
+      const clearedCount = await clearChannelMembers(channelId);
+      
+      this.logger.debug(`🧹 Cleared ${clearedCount} existing channel members`, {
+        channelId,
+        sessionPhone: this.phone
+      });
+
+      // OPTIMIZATION 3: Bulk link users to channel
+      const userIds = successfulUsers.map(r => r.userId || r.data?.user_id);
+      const memberResults = await bulkAddChannelMembers(channelId, userIds);
+      
+      const successCount = memberResults.filter(r => r.success).length;
+
+      const result = {
+        success: true,
+        totalUsers: usersData.length,
+        usersAdded: successfulUsers.length,
+        membersLinked: successCount,
+        failed: usersData.length - successCount,
+        cleared: clearedCount
+      };
+
+      this.logger.info('✅ Users synced from channel (optimized)', {
+        channelId,
+        ...result,
+        sessionPhone: this.phone
+      });
+
+      return result;
 
     } catch (error) {
       // Don't throw here to avoid disrupting other channel syncing
-      this.logger.error('Error syncing users from specific channel', {
+      this.logger.error('❌ Error syncing users from specific channel', {
         channelId,
-        error: error.message
+        error: error.message,
+        stack: error.stack,
+        sessionPhone: this.phone
       });
+
+      return {
+        success: false,
+        error: error.message,
+        channelId
+      };
     }
   }
 
@@ -825,25 +1073,47 @@ class UserBot {
 
   /**
    * Manually trigger channel synchronization (for AdminBot)
+   * Re-syncs all admin channels and their members
    * @returns {Promise<Object>} Sync results
    */
   async syncChannelsManually() {
     try {
-      this.logger.info('Manual channel sync triggered');
+      this.logger.info('🔄 Manual channel sync triggered', { 
+        sessionPhone: this.phone 
+      });
       
-      const dialogs = await this.client.getDialogs({ limit: 100 });
-      await this.syncChannels(dialogs);
+      // Use optimized method
+      const adminChannels = await this.getAdminChannelsOptimized();
+      
+      // Sync channels
+      await this.syncChannelsOptimized(adminChannels);
+      
+      // Re-sync all users from enabled channels
+      await this.syncUsersFromChannels();
+      
+      // Update event handlers with new channel list
+      await this.setupEventHandlers();
+      
+      this.logger.info('✅ Manual sync completed successfully', {
+        channelCount: this.connectedChannels.size,
+        sessionPhone: this.phone
+      });
       
       return {
         success: true,
         channelsCount: this.connectedChannels.size,
-        message: `Successfully synced ${this.connectedChannels.size} channels`
+        sessionPhone: this.phone,
+        message: `Successfully synced ${this.connectedChannels.size} admin channels`
       };
     } catch (error) {
-      this.logger.error('Manual sync failed', error);
+      this.logger.error('❌ Manual sync failed', {
+        error: error.message,
+        sessionPhone: this.phone
+      });
       return {
         success: false,
         error: error.message,
+        sessionPhone: this.phone,
         message: 'Failed to sync channels'
       };
     }

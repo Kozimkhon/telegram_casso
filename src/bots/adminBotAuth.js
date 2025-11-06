@@ -106,70 +106,17 @@ export function setupSessionAuthentication(bot, asyncErrorHandler, userBotManage
     });
   }, 'Code confirm callback'));
 
-  // Password callbacks - numpad for 2FA password (if needed)
-  bot.action(/^password_(\d)$/, asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    const digit = ctx.match[1];
-    await handlePasswordDigit(ctx, digit);
-  }, 'Password digit callback'));
-
-  bot.action('password_backspace', asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    await handlePasswordBackspace(ctx);
-  }, 'Password backspace callback'));
-
-  bot.action('password_letters', asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    await handlePasswordLetters(ctx);
-  }, 'Password letters callback'));
-
-  bot.action('password_capslock', asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    await handlePasswordCapsLock(ctx);
-  }, 'Password capslock callback'));
-
-  bot.action('password_numbers', asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    await handlePasswordNumbers(ctx);
-  }, 'Password numbers callback'));
-
-  bot.action(/^password_letter_(.+)$/, asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    const letter = ctx.match[1];
-    await handlePasswordLetter(ctx, letter);
-  }, 'Password letter callback'));
-
-  bot.action('password_confirm', asyncErrorHandler(async (ctx) => {
-    await ctx.answerCbQuery();
-    // Run authentication asynchronously with error handling
-    setImmediate(async () => {
-      try {
-        await confirmPassword(ctx, userBotManager);
-      } catch (error) {
-        log.error('Error in password confirmation', error);
-        try {
-          await ctx.editMessageText(`❌ <b>Error</b>\n\nFailed to verify 2FA password: ${error.message}\n\nPlease try again.`, {
-            parse_mode: 'HTML',
-            reply_markup: {
-              inline_keyboard: [[
-                { text: '🔄 Try Again', callback_data: 'add_session' },
-                { text: '🏠 Main Menu', callback_data: 'main_menu' }
-              ]]
-            }
-          });
-        } catch (editError) {
-          log.error('Error editing message after password confirmation error', editError);
-        }
-      }
-    });
-  }, 'Password confirm callback'));
-
   // Cancel authentication
   bot.action(/^cancel_auth_(.+)$/, asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
     const authId = ctx.match[1];
     await cancelAuth(ctx, authId);
   }, 'Cancel auth callback'));
+
+  // Handle text messages for 2FA password
+  bot.on('text', asyncErrorHandler(async (ctx) => {
+    await handlePasswordTextMessage(ctx, userBotManager);
+  }, 'Password text message handler'));
 }
 
 /**
@@ -646,15 +593,18 @@ async function confirmVerificationCode(ctx, userBotManager) {
       // 2FA required
       authSession.step = 'password';
       authSession.password = '';
-      authSession.capsLock = true; // Default to uppercase
+      authSession.waitingForPasswordMessage = true;
       
       const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
                    `Phone: <code>${authSession.phone}</code>\n` +
                    `2FA password required!\n\n` +
-                   `Current: <code></code>\n\n` +
-                   `Enter your 2FA password:`;
+                   `📝 <b>Please send your 2FA password as a message</b>\n` +
+                   `(Type and send your password directly in the chat)\n\n` +
+                   `💡 Your password will be automatically deleted for security.`;
       
-      const keyboard = createPasswordNumpad('', authId);
+      const keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)]
+      ]);
       
       await ctx.editMessageText(text, {
         parse_mode: 'HTML',
@@ -683,475 +633,70 @@ async function confirmVerificationCode(ctx, userBotManager) {
 }
 
 /**
- * Creates a numpad keyboard for password input
+ * Cancels authentication process
  */
-function createPasswordNumpad(currentPassword = '', authId) {
-  const keyboard = [];
+async function cancelAuth(ctx, authId) {
+  const authSession = authSessions.get(authId);
   
-  // First row: 1, 2, 3
-  keyboard.push([
-    Markup.button.callback('1', 'password_1'),
-    Markup.button.callback('2', 'password_2'),
-    Markup.button.callback('3', 'password_3')
-  ]);
-  
-  // Second row: 4, 5, 6
-  keyboard.push([
-    Markup.button.callback('4', 'password_4'),
-    Markup.button.callback('5', 'password_5'),
-    Markup.button.callback('6', 'password_6')
-  ]);
-  
-  // Third row: 7, 8, 9
-  keyboard.push([
-    Markup.button.callback('7', 'password_7'),
-    Markup.button.callback('8', 'password_8'),
-    Markup.button.callback('9', 'password_9')
-  ]);
-  
-  // Fourth row: ⌫, 0, letters
-  keyboard.push([
-    Markup.button.callback('⌫', 'password_backspace'),
-    Markup.button.callback('0', 'password_0'),
-    Markup.button.callback('ABC', 'password_letters')
-  ]);
-  
-  // Fifth row: Confirm and Cancel
-  keyboard.push([
-    Markup.button.callback('✅ Confirm', 'password_confirm'),
-    Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)
-  ]);
-  
-  return Markup.inlineKeyboard(keyboard);
-}
-
-/**
- * Handles password digit input
- */
-async function handlePasswordDigit(ctx, digit) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
+  if (authSession && authSession.client) {
+    try {
+      await authSession.client.disconnect();
+    } catch (error) {
+      log.warn('Error disconnecting client during cancel', error);
     }
   }
   
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
+  authSessions.delete(authId);
   
-  // Add digit to password
-  authSession.password += digit;
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Enter your 2FA password:`;
-  
-  const keyboard = createPasswordNumpad(authSession.password, authId);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
+  await ctx.editMessageText('❌ Session authentication cancelled.', {
+    reply_markup: {
+      inline_keyboard: [[
+        { text: '🏠 Main Menu', callback_data: 'main_menu' }
+      ]]
+    }
   });
 }
 
 /**
- * Handles password backspace
+ * Handles password text message input
  */
-async function handlePasswordBackspace(ctx) {
+async function handlePasswordTextMessage(ctx, userBotManager) {
   const userId = ctx.from.id;
+  const messageText = ctx.message.text;
   
-  // Find the auth session
+  // Find the auth session waiting for password
   let authId = null;
   let authSession = null;
   
   for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
+    if (session.userId === userId && 
+        session.step === 'password' && 
+        session.waitingForPasswordMessage === true) {
       authId = id;
       authSession = session;
       break;
     }
   }
   
+  // If no session waiting for password, ignore
   if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
     return;
   }
   
-  // Remove last character
-  authSession.password = authSession.password.slice(0, -1);
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Enter your 2FA password:`;
-  
-  const keyboard = createPasswordNumpad(authSession.password, authId);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
-  });
-}
-
-/**
- * Handles password letter input
- */
-async function handlePasswordLetter(ctx, letter) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
-    }
+  // Delete user's password message for security
+  try {
+    await ctx.deleteMessage();
+  } catch (error) {
+    log.warn('Could not delete password message', error);
   }
   
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
-  
-  // Initialize capslock state if not set
-  if (authSession.capsLock === undefined) {
-    authSession.capsLock = true; // Default to uppercase
-  }
-  
-  // Handle special characters
-  let charToAdd = letter;
-  if (letter === '_') charToAdd = ' '; // Space
-  if (letter === '__') charToAdd = '_'; // Underscore
-  
-  // Add letter to password
-  authSession.password += charToAdd;
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Select letters for your password:`;
-  
-  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
-  });
-}
-
-/**
- * Handles password numbers - switches back to numpad
- */
-async function handlePasswordNumbers(ctx) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
-    }
-  }
-  
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Enter your 2FA password:`;
-  
-  const keyboard = createPasswordNumpad(authSession.password, authId);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
-  });
-}
-
-/**
- * Handles password letters input - shows alphabet keyboard
- */
-async function handlePasswordLetters(ctx) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
-    }
-  }
-  
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
-  
-  // Initialize capslock state if not set
-  if (authSession.capsLock === undefined) {
-    authSession.capsLock = true; // Default to uppercase
-  }
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Select letters for your password:`;
-  
-  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
-  });
-}
-
-/**
- * Handles capslock toggle
- */
-async function handlePasswordCapsLock(ctx) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
-    }
-  }
-  
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
-  
-  // Toggle capslock state
-  authSession.capsLock = !authSession.capsLock;
-  
-  const maskedPassword = '*'.repeat(authSession.password.length);
-  
-  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-               `Phone: <code>${authSession.phone}</code>\n` +
-               `2FA password required!\n\n` +
-               `Current: <code>${maskedPassword}</code>\n\n` +
-               `Select letters for your password:`;
-  
-  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
-  
-  await ctx.editMessageText(text, {
-    parse_mode: 'HTML',
-    ...keyboard
-  });
-}
-
-/**
- * Creates a letters keyboard for password input
- */
-function createPasswordLettersKeyboard(currentPassword = '', authId, isUpperCase = true) {
-  const keyboard = [];
-  
-  if (isUpperCase) {
-    // UPPERCASE layout
-    // First row: A-F
-    keyboard.push([
-      Markup.button.callback('A', 'password_letter_A'),
-      Markup.button.callback('B', 'password_letter_B'),
-      Markup.button.callback('C', 'password_letter_C'),
-      Markup.button.callback('D', 'password_letter_D'),
-      Markup.button.callback('E', 'password_letter_E'),
-      Markup.button.callback('F', 'password_letter_F')
-    ]);
-    
-    // Second row: G-L
-    keyboard.push([
-      Markup.button.callback('G', 'password_letter_G'),
-      Markup.button.callback('H', 'password_letter_H'),
-      Markup.button.callback('I', 'password_letter_I'),
-      Markup.button.callback('J', 'password_letter_J'),
-      Markup.button.callback('K', 'password_letter_K'),
-      Markup.button.callback('L', 'password_letter_L')
-    ]);
-    
-    // Third row: M-R
-    keyboard.push([
-      Markup.button.callback('M', 'password_letter_M'),
-      Markup.button.callback('N', 'password_letter_N'),
-      Markup.button.callback('O', 'password_letter_O'),
-      Markup.button.callback('P', 'password_letter_P'),
-      Markup.button.callback('Q', 'password_letter_Q'),
-      Markup.button.callback('R', 'password_letter_R')
-    ]);
-    
-    // Fourth row: S-X
-    keyboard.push([
-      Markup.button.callback('S', 'password_letter_S'),
-      Markup.button.callback('T', 'password_letter_T'),
-      Markup.button.callback('U', 'password_letter_U'),
-      Markup.button.callback('V', 'password_letter_V'),
-      Markup.button.callback('W', 'password_letter_W'),
-      Markup.button.callback('X', 'password_letter_X')
-    ]);
-    
-    // Fifth row: Y, Z, and special characters
-    keyboard.push([
-      Markup.button.callback('Y', 'password_letter_Y'),
-      Markup.button.callback('Z', 'password_letter_Z'),
-      Markup.button.callback('@', 'password_letter_@'),
-      Markup.button.callback('.', 'password_letter_.'),
-      Markup.button.callback('_', 'password_letter__'),
-      Markup.button.callback('-', 'password_letter_-')
-    ]);
-    
-    // Sixth row: Controls with CAPS toggle
-    keyboard.push([
-      Markup.button.callback('⌫', 'password_backspace'),
-      Markup.button.callback('🔼', 'password_capslock'),
-      Markup.button.callback('123', 'password_numbers'),
-      Markup.button.callback('Space', 'password_letter_ ')
-    ]);
-  } else {
-    // lowercase layout
-    // First row: a-f
-    keyboard.push([
-      Markup.button.callback('a', 'password_letter_a'),
-      Markup.button.callback('b', 'password_letter_b'),
-      Markup.button.callback('c', 'password_letter_c'),
-      Markup.button.callback('d', 'password_letter_d'),
-      Markup.button.callback('e', 'password_letter_e'),
-      Markup.button.callback('f', 'password_letter_f')
-    ]);
-    
-    // Second row: g-l
-    keyboard.push([
-      Markup.button.callback('g', 'password_letter_g'),
-      Markup.button.callback('h', 'password_letter_h'),
-      Markup.button.callback('i', 'password_letter_i'),
-      Markup.button.callback('j', 'password_letter_j'),
-      Markup.button.callback('k', 'password_letter_k'),
-      Markup.button.callback('l', 'password_letter_l')
-    ]);
-    
-    // Third row: m-r
-    keyboard.push([
-      Markup.button.callback('m', 'password_letter_m'),
-      Markup.button.callback('n', 'password_letter_n'),
-      Markup.button.callback('o', 'password_letter_o'),
-      Markup.button.callback('p', 'password_letter_p'),
-      Markup.button.callback('q', 'password_letter_q'),
-      Markup.button.callback('r', 'password_letter_r')
-    ]);
-    
-    // Fourth row: s-x
-    keyboard.push([
-      Markup.button.callback('s', 'password_letter_s'),
-      Markup.button.callback('t', 'password_letter_t'),
-      Markup.button.callback('u', 'password_letter_u'),
-      Markup.button.callback('v', 'password_letter_v'),
-      Markup.button.callback('w', 'password_letter_w'),
-      Markup.button.callback('x', 'password_letter_x')
-    ]);
-    
-    // Fifth row: y, z, and special characters
-    keyboard.push([
-      Markup.button.callback('y', 'password_letter_y'),
-      Markup.button.callback('z', 'password_letter_z'),
-      Markup.button.callback('@', 'password_letter_@'),
-      Markup.button.callback('.', 'password_letter_.'),
-      Markup.button.callback('_', 'password_letter__'),
-      Markup.button.callback('-', 'password_letter_-')
-    ]);
-    
-    // Sixth row: Controls with CAPS toggle
-    keyboard.push([
-      Markup.button.callback('⌫', 'password_backspace'),
-      Markup.button.callback('🔽', 'password_capslock'),
-      Markup.button.callback('123', 'password_numbers'),
-      Markup.button.callback('Space', 'password_letter_ ')
-    ]);
-  }
-  
-  // Last row: Confirm and Cancel
-  keyboard.push([
-    Markup.button.callback('✅ Confirm', 'password_confirm'),
-    Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)
-  ]);
-  
-  return Markup.inlineKeyboard(keyboard);
-}
-
-/**
- * Confirms 2FA password and completes auth
- */
-async function confirmPassword(ctx, userBotManager) {
-  const userId = ctx.from.id;
-  
-  // Find the auth session
-  let authId = null;
-  let authSession = null;
-  
-  for (const [id, session] of authSessions.entries()) {
-    if (session.userId === userId && session.step === 'password') {
-      authId = id;
-      authSession = session;
-      break;
-    }
-  }
-  
-  if (!authSession) {
-    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
-    return;
-  }
-  
-  if (!authSession.password || authSession.password.length < 1) {
-    await ctx.answerCbQuery('❌ Please enter your 2FA password', { show_alert: true });
-    return;
-  }
+  // Set password
+  authSession.password = messageText;
+  authSession.waitingForPasswordMessage = false;
   
   try {
     // Show authenticating message
-    await ctx.editMessageText(`🔐 <b>Authenticating with 2FA...</b>\n\nPhone: <code>${authSession.phone}</code>\n\n🔄 Verifying 2FA password...`, {
+    await ctx.reply(`🔐 <b>Authenticating with 2FA...</b>\n\nPhone: <code>${authSession.phone}</code>\n\n🔄 Verifying 2FA password...`, {
       parse_mode: 'HTML'
     });
     
@@ -1188,7 +733,7 @@ async function confirmPassword(ctx, userBotManager) {
     }
     
     // Success message
-    await ctx.editMessageText(`✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`, {
+    await ctx.reply(`✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`, {
       parse_mode: 'HTML',
       reply_markup: {
         inline_keyboard: [[
@@ -1202,12 +747,12 @@ async function confirmPassword(ctx, userBotManager) {
     await client.disconnect();
     authSessions.delete(authId);
     
-    log.info('Session added successfully via AdminBot with 2FA', { phone: authSession.phone, userId: me.id });
+    log.info('Session added successfully via text message 2FA', { phone: authSession.phone, userId: me.id });
     
   } catch (error) {
-    log.error('Error during 2FA authentication', error);
+    log.error('Error during text message 2FA authentication', error);
     
-    await ctx.editMessageText(`❌ <b>2FA Authentication Failed</b>\n\nIncorrect password. Please try again.`, {
+    await ctx.reply(`❌ <b>2FA Authentication Failed</b>\n\nIncorrect password. Please try again.`, {
       parse_mode: 'HTML',
       reply_markup: {
         inline_keyboard: [[
@@ -1223,31 +768,6 @@ async function confirmPassword(ctx, userBotManager) {
     }
     authSessions.delete(authId);
   }
-}
-
-/**
- * Cancels authentication process
- */
-async function cancelAuth(ctx, authId) {
-  const authSession = authSessions.get(authId);
-  
-  if (authSession && authSession.client) {
-    try {
-      await authSession.client.disconnect();
-    } catch (error) {
-      log.warn('Error disconnecting client during cancel', error);
-    }
-  }
-  
-  authSessions.delete(authId);
-  
-  await ctx.editMessageText('❌ Session authentication cancelled.', {
-    reply_markup: {
-      inline_keyboard: [[
-        { text: '🏠 Main Menu', callback_data: 'main_menu' }
-      ]]
-    }
-  });
 }
 
 /**

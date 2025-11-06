@@ -226,6 +226,39 @@ export async function bulkAddChannelMembers(channelId, userIds) {
 }
 
 /**
+ * Removes a user from a channel's member list
+ * @param {string} channelId - Channel ID
+ * @param {string} userId - User ID
+ * @returns {Promise<boolean>} True if removed successfully
+ */
+export async function removeChannelMember(channelId, userId) {
+  try {
+    if (!isValidUserId(channelId) || !isValidUserId(userId)) {
+      throw new Error(`Invalid channel ID or user ID: ${channelId}, ${userId}`);
+    }
+
+    log.dbOperation('DELETE', 'channel_members', { channelId, userId });
+
+    const result = await runQuery(
+      'DELETE FROM channel_members WHERE channel_id = ? AND user_id = ?',
+      [channelId, userId]
+    );
+
+    const removed = result.changes > 0;
+    
+    if (removed) {
+      log.debug('User removed from channel', { channelId, userId });
+    } else {
+      log.debug('User not found in channel members', { channelId, userId });
+    }
+
+    return removed;
+  } catch (error) {
+    throw handleDatabaseError(error, 'removeChannelMember');
+  }
+}
+
+/**
  * Removes all members from a channel (for re-sync)
  * @param {string} channelId - Channel ID
  * @returns {Promise<number>} Number of removed members
@@ -520,6 +553,7 @@ export default {
   getAllUsers,
   getUsersByChannel,
   addChannelMember,
+  removeChannelMember,
   bulkAddChannelMembers,
   clearChannelMembers,
   updateUser,

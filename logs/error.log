@@ -309,3 +309,28 @@ FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/editMes
 {
   "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET"
 }
+2025-11-06 22:48:26 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:48:41 [ERROR]: Error during text message 2FA authentication
+TypeError: client.computeCheck is not a function
+    at handlePasswordTextMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBotAuth.js:708:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBotAuth.js:118:5
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "client.computeCheck is not a function"
+}
