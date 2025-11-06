@@ -97,12 +97,16 @@ export function asyncErrorHandler(fn, context = 'AsyncFunction') {
 export function handleTelegramError(error, operation = 'Unknown operation') {
   let message = `Telegram API error during ${operation}`;
   let code = 'TELEGRAM_API_ERROR';
+  let waitSeconds = null;
   
   // Handle common Telegram errors
   if (error.message?.includes('FLOOD_WAIT')) {
-    const waitTime = error.message.match(/FLOOD_WAIT_(\d+)/)?.[1];
-    message = `Rate limited. Wait ${waitTime} seconds before retrying`;
+    waitSeconds = error.message.match(/FLOOD_WAIT_(\d+)/)?.[1];
+    message = `Rate limited. Wait ${waitSeconds} seconds before retrying`;
     code = 'TELEGRAM_FLOOD_WAIT';
+  } else if (error.message?.includes('SPAM') || error.errorMessage?.includes('SPAM')) {
+    message = 'Spam warning detected. Account may be restricted';
+    code = 'TELEGRAM_SPAM_WARNING';
   } else if (error.message?.includes('USER_DEACTIVATED')) {
     message = 'User has deactivated their account';
     code = 'TELEGRAM_USER_DEACTIVATED';
@@ -118,16 +122,46 @@ export function handleTelegramError(error, operation = 'Unknown operation') {
   } else if (error.message?.includes('SESSION_PASSWORD_NEEDED')) {
     message = 'Two-factor authentication password required';
     code = 'TELEGRAM_2FA_REQUIRED';
+  } else if (error.message?.includes('PEER_FLOOD')) {
+    message = 'Too many requests. Account is temporarily limited';
+    code = 'TELEGRAM_PEER_FLOOD';
   }
   
   const telegramError = new TelegramError(message, code, error);
+  telegramError.waitSeconds = waitSeconds ? parseInt(waitSeconds) : null;
+  
   log.error(message, {
     operation,
     originalError: error.message,
-    code
+    code,
+    waitSeconds
   });
   
   return telegramError;
+}
+
+/**
+ * Checks if an error is a FloodWait error
+ * @param {Error} error - Error to check
+ * @returns {Object|null} { seconds } if FloodWait, null otherwise
+ */
+export function isFloodWaitError(error) {
+  const errorMsg = error.message || error.errorMessage || '';
+  if (errorMsg.includes('FLOOD_WAIT')) {
+    const waitSeconds = errorMsg.match(/FLOOD_WAIT_(\d+)/)?.[1];
+    return { seconds: waitSeconds ? parseInt(waitSeconds) : 60 };
+  }
+  return null;
+}
+
+/**
+ * Checks if an error is a spam warning
+ * @param {Error} error - Error to check
+ * @returns {boolean} True if spam warning
+ */
+export function isSpamWarning(error) {
+  const errorMsg = error.message || error.errorMessage || '';
+  return errorMsg.includes('SPAM') || errorMsg.includes('PEER_FLOOD');
 }
 
 /**
@@ -257,5 +291,7 @@ export default {
   handleTelegramError,
   handleDatabaseError,
   withRetry,
-  setupGracefulShutdown
+  setupGracefulShutdown,
+  isFloodWaitError,
+  isSpamWarning
 };

@@ -17,17 +17,38 @@ let db = null;
  * SQL schemas for database tables
  */
 const schemas = {
+  // Admin users table - stores users who can manage the system via AdminBot
+  admins: `
+    CREATE TABLE IF NOT EXISTS admins (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id TEXT UNIQUE NOT NULL,
+      first_name TEXT,
+      last_name TEXT,
+      username TEXT,
+      role TEXT DEFAULT 'admin',
+      is_active BOOLEAN DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `,
+
+  // Channels table with additional throttling and scheduling settings
   channels: `
     CREATE TABLE IF NOT EXISTS channels (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       channel_id TEXT UNIQUE NOT NULL,
       title TEXT NOT NULL,
       forward_enabled BOOLEAN DEFAULT 1,
+      throttle_delay_ms INTEGER DEFAULT 1000,
+      throttle_per_member_ms INTEGER DEFAULT 500,
+      schedule_enabled BOOLEAN DEFAULT 0,
+      schedule_config TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `,
   
+  // Users table - represents regular users (recipients)
   users: `
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,6 +59,47 @@ const schemas = {
       phone TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `,
+  
+  // Sessions table - stores userbot sessions with status management
+  sessions: `
+    CREATE TABLE IF NOT EXISTS sessions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phone TEXT UNIQUE NOT NULL,
+      user_id TEXT,
+      session_string TEXT,
+      status TEXT DEFAULT 'active',
+      first_name TEXT,
+      last_name TEXT,
+      username TEXT,
+      auto_paused BOOLEAN DEFAULT 0,
+      pause_reason TEXT,
+      flood_wait_until DATETIME,
+      last_error TEXT,
+      last_active DATETIME,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `,
+
+  // Metrics table - tracks statistics per channel and user
+  metrics: `
+    CREATE TABLE IF NOT EXISTS metrics (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_phone TEXT,
+      channel_id TEXT,
+      user_id TEXT,
+      messages_sent INTEGER DEFAULT 0,
+      messages_failed INTEGER DEFAULT 0,
+      flood_errors INTEGER DEFAULT 0,
+      spam_warnings INTEGER DEFAULT 0,
+      last_message_at DATETIME,
+      last_flood_at DATETIME,
+      last_activity DATETIME,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(session_phone, channel_id, user_id)
     )
   `,
   
@@ -54,12 +116,14 @@ const schemas = {
   message_logs: `
     CREATE TABLE IF NOT EXISTS message_logs (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_phone TEXT,
       channel_id TEXT NOT NULL,
       message_id TEXT NOT NULL,
       user_id TEXT NOT NULL,
       forwarded_message_id TEXT,
       status TEXT NOT NULL,
       error_message TEXT,
+      retry_count INTEGER DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
