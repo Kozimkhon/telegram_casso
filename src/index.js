@@ -12,7 +12,7 @@ import AdminBot from './bots/adminBot.js';
 
 class TelegramCassoApp {
   constructor() {
-    this.userBot = null;
+    this.userBotManager = null; // Multi-session manager
     this.adminBot = null;
     this.isShuttingDown = false;
     
@@ -21,11 +21,11 @@ class TelegramCassoApp {
   }
 
   /**
-   * Initializes and starts the application
+   * Initializes and starts the application with multi-userbot support
    */
   async start() {
     try {
-      log.info('🚀 Starting Telegram Casso Application...');
+      log.info('🚀 Starting Telegram Casso Multi-User Application...');
       
       // Validate configuration
       validateConfig();
@@ -35,18 +35,18 @@ class TelegramCassoApp {
       await initializeDatabase();
       log.info('✅ Database initialized successfully');
 
-      // Initialize UserBot
-      await this.initializeUserBot();
+      // Initialize Multi-UserBot Manager
+      await this.initializeMultiUserBotManager();
       
-      // Initialize AdminBot
+      // Initialize AdminBot with multi-session support
       await this.initializeAdminBot();
 
       // Setup graceful shutdown
       setupGracefulShutdown(this.cleanup);
 
-      log.info('🎉 Telegram Casso started successfully!');
-      log.info('📱 UserBot is monitoring channels for new messages');
-      log.info('⚙️ AdminBot is ready for management commands');
+      log.info('🎉 Telegram Casso Multi-User System started successfully!');
+      log.info('📱 Multiple UserBot sessions are monitoring channels');
+      log.info('⚙️ AdminBot is ready with session management UI');
       
       // Display startup summary
       await this.displayStartupSummary();
@@ -59,47 +59,55 @@ class TelegramCassoApp {
   }
 
   /**
-   * Initializes and starts the UserBot
+   * Initializes the Multi-UserBot Manager and loads all sessions
    */
-  async initializeUserBot() {
+  async initializeMultiUserBotManager() {
     try {
-      log.info('🤖 Initializing UserBot...');
+      log.info('🎛️ Initializing Multi-UserBot Manager...');
       
-      this.userBot = new UserBot();
-      await this.userBot.start();
+      // Import UserBotManager
+      const { userBotManager } = await import('./bots/userBotManager.js');
+      this.userBotManager = userBotManager;
       
-      log.info('✅ UserBot initialized and started');
+      // Initialize all sessions from database
+      await this.userBotManager.initializeFromDatabase();
       
-      // Get user info for logging
-      try {
-        const userInfo = await this.userBot.getMe();
-        log.info('👤 UserBot authenticated', {
-          userId: userInfo.userId,
-          firstName: userInfo.firstName,
-          username: userInfo.username
-        });
-      } catch (error) {
-        log.warn('Could not retrieve user info', { error: error.message });
+      const activeSessions = this.userBotManager.getActiveBots().length;
+      const totalSessions = this.userBotManager.bots.size;
+      
+      log.info('✅ Multi-UserBot Manager initialized');
+      log.info(`📊 Active Sessions: ${activeSessions}/${totalSessions}`);
+      
+      // No automatic session creation - users must add sessions via AdminBot
+      if (totalSessions === 0) {
+        log.info('💡 No sessions found. Use AdminBot to add sessions manually');
+        log.info('📱 Send /start to AdminBot and use "Add Session" button');
       }
 
     } catch (error) {
-      log.error('❌ Failed to initialize UserBot', error);
+      log.error('❌ Failed to initialize Multi-UserBot Manager', error);
       throw error;
     }
   }
 
   /**
-   * Initializes and starts the AdminBot
+   * Initializes and starts the AdminBot with multi-session support
    */
   async initializeAdminBot() {
     try {
-      log.info('⚙️ Initializing AdminBot...');
+      log.info('⚙️ Initializing AdminBot with Session Management...');
       
-      this.adminBot = new AdminBot(this.userBot);
+      // Import AdminBot with multi-session support
+      const AdminBotClass = (await import('./bots/adminBot.js')).default;
+      
+      // Initialize with userBotManager only
+      this.adminBot = new AdminBotClass(null, this.userBotManager);
+      
       await this.adminBot.start();
       
-      log.info('✅ AdminBot initialized and started');
+      log.info('✅ AdminBot with Session Management initialized');
       log.info('👮 Admin user ID:', config.telegram.adminUserId);
+      log.info('🔐 Session management UI is available');
 
     } catch (error) {
       log.error('❌ Failed to initialize AdminBot', error);
@@ -108,24 +116,26 @@ class TelegramCassoApp {
   }
 
   /**
-   * Displays startup summary with important information
+   * Displays startup summary with multi-session information
    */
   async displayStartupSummary() {
     try {
-      const userBotStatus = this.userBot ? this.userBot.getStatus() : null;
+      const managerStatus = this.userBotManager ? this.userBotManager.getStatus() : null;
       
-      log.info('📊 Startup Summary:');
-      log.info(`   UserBot Status: ${userBotStatus?.isRunning ? '✅ Running' : '❌ Stopped'}`);
+      log.info('📊 Multi-User Startup Summary:');
+      log.info(`   Total Sessions: ${managerStatus?.totalSessions || 0}`);
+      log.info(`   Active Sessions: ${managerStatus?.activeSessions || 0}`);
+      log.info(`   Paused Sessions: ${managerStatus?.pausedSessions || 0}`);
+      log.info(`   Error Sessions: ${managerStatus?.errorSessions || 0}`);
       log.info(`   AdminBot Status: ${this.adminBot?.isRunning ? '✅ Running' : '❌ Stopped'}`);
-      log.info(`   Connected Channels: ${userBotStatus?.connectedChannels || 0}`);
       log.info(`   Database: ✅ Connected`);
       log.info(`   Environment: ${config.app.environment}`);
       
-      // Display next steps
       log.info('📋 Next Steps:');
-      log.info('   1. Send /start to your AdminBot to access the control panel');
-      log.info('   2. Use the AdminBot to enable/disable channel forwarding');
-      log.info('   3. Monitor logs for forwarding activity');
+      log.info('   1. Send /start to AdminBot for session management');
+      log.info('   2. Use "Add Session" button to authenticate new sessions');
+      log.info('   3. Sessions are authenticated via AdminBot (no console prompts)');
+      log.info('   4. Configure channel throttling and forwarding via AdminBot');
       
     } catch (error) {
       log.warn('Could not display startup summary', { error: error.message });
@@ -145,11 +155,11 @@ class TelegramCassoApp {
     log.info('🔄 Starting graceful shutdown...');
 
     try {
-      // Stop UserBot
-      if (this.userBot) {
-        log.info('Stopping UserBot...');
-        await this.userBot.stop();
-        log.info('✅ UserBot stopped');
+      // Stop UserBotManager (all sessions)
+      if (this.userBotManager) {
+        log.info('Stopping all UserBot sessions...');
+        await this.userBotManager.stopAll();
+        log.info('✅ All UserBot sessions stopped');
       }
 
       // Stop AdminBot
@@ -164,7 +174,7 @@ class TelegramCassoApp {
       await closeDatabase();
       log.info('✅ Database connection closed');
 
-      log.info('✅ Cleanup completed successfully');
+      log.info('✅ Multi-User System cleanup completed successfully');
 
     } catch (error) {
       log.error('❌ Error during cleanup', error);
@@ -173,15 +183,16 @@ class TelegramCassoApp {
   }
 
   /**
-   * Gets the current status of the application
+   * Gets the current status of the multi-user application
    * @returns {Object} Application status
    */
   getStatus() {
-    const userBotStatus = this.userBot ? this.userBot.getStatus() : null;
+    const managerStatus = this.userBotManager ? this.userBotManager.getStatus() : null;
     
     return {
       isRunning: !this.isShuttingDown,
-      userBot: userBotStatus,
+      multiUser: true,
+      userBotManager: managerStatus,
       adminBot: {
         isRunning: this.adminBot?.isRunning || false
       },

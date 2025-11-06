@@ -1,52 +1,56 @@
-# Telegram Casso
+# Telegram Casso - Multi-Session System
 
-A sophisticated Telegram UserBot + AdminBot system for automated channel management and message forwarding. Built with Node.js, GramJS, Telegraf, and SQLite.
+A sophisticated **Multi-Session Telegram automation system** for advanced channel management and message forwarding. Built with Node.js, GramJS, Telegraf, and SQLite with comprehensive session management.
 
-**⭐ NEW**: Multi-userbot support with advanced session management, spam protection, and throttling! See [MULTI_USERBOT_GUIDE.md](MULTI_USERBOT_GUIDE.md) for details.
+**🚀 PURE MULTI-SESSION**: Complete multi-session architecture with advanced load balancing, spam protection, and session management!
 
 ## 🎯 Overview
 
-Telegram Casso consists of two integrated bots:
+Telegram Casso is a **pure multi-session Telegram automation system** consisting of:
 
-1. **UserBot** - Authenticates as a user account, monitors channels, and forwards messages to channel members
-2. **AdminBot** - Provides a Telegram-based admin panel for managing channels and monitoring activity
+1. **Multi-Session Manager** - Manages unlimited user account sessions with intelligent load balancing
+2. **AdminBot Panel** - Comprehensive admin interface with session management UI
+3. **Advanced Protection** - Multi-layer spam protection and rate limiting across all sessions
+4. **Queue System** - Sequential message processing per session with auto-recovery
 
-## ✨ Features
+## ✨ Enhanced Features
 
-### UserBot Features
-- 📱 User account authentication via phone number
-- 🔍 Automatic channel monitoring and discovery
-- 📤 Message forwarding to all channel members
-- 👥 User synchronization from monitored channels
-- 🔐 Secure session management
-- 📊 Activity logging and error handling
-- 🔄 **Multi-account support** with load balancing
-- 🛡️ **Spam protection** with auto-pause on FloodWait/SpamWarning
-- ⏱️ **Advanced throttling** with exponential backoff
+### Multi-UserBot System
+- 🎛️ **Multiple Account Support** - Run unlimited userbot sessions simultaneously
+- ⚖️ **Load Balancing** - Intelligent session selection for optimal performance
+- 🔐 **Session Management** - Active, paused, error states with auto-recovery
+- 🛡️ **Advanced Spam Protection** - Auto-pause on FloodWait/SpamWarning detection
+- ⏱️ **Smart Throttling** - Per-session, per-channel, per-user rate limiting
+- 🔄 **Auto-Recovery** - Automatic session resumption after FloodWait expires
+- 📊 **Comprehensive Metrics** - Detailed statistics per session and system-wide
 
-### AdminBot Features
-- 🎛️ Interactive Telegram admin panel
-- 📋 Channel management (enable/disable forwarding)
-- 📊 Real-time statistics and monitoring
-- 👥 User analytics and recent activity
-- 🔧 Bot status monitoring
-- 🧹 Database cleanup tools
-- 🔐 **Session management UI** for multiple userbots
-- 📈 **Metrics dashboard** per session and system-wide
-- ⏸️ **Manual controls** to pause/resume/restart sessions
+### AdminBot Management Panel
+- 🎛️ **Multi-Session UI** - Complete session management interface
+- 📋 Channel management with per-session assignment
+- 📊 Real-time performance monitoring across all sessions
+- 👥 User analytics and activity tracking
+- 🔧 System status and health monitoring
+- 🧹 Database cleanup and maintenance tools
+- ⚡ Queue status and processing monitors
+- 📈 Performance statistics and memory usage
 
-## 🆕 Multi-Userbot System
+### Smart Message Processing
+- 🎯 **Channel-Admin Matching** - Messages sent only by channel admin sessions
+- 🏃 **Sequential Processing** - One message at a time per session with delays
+- 📝 **Comprehensive Logging** - All events tracked with session context
+- 🔍 **Event Monitoring** - Messages, edits, deletes, member changes, polls
+- 🎯 **Dead Letter Queue** - Failed message handling and retry logic
 
-The enhanced system now supports:
+## 🆕 Multi-User Advantages
 
-- **Multiple Telegram Accounts**: Run multiple userbot sessions simultaneously
-- **Session Management**: Active, paused, and error states with auto-recovery
-- **Spam Protection**: Automatic detection and handling of FloodWait and spam warnings
-- **Rate Limiting**: Global and per-channel throttling to avoid spam detection
-- **Metrics Tracking**: Detailed statistics per session, channel, and user
-- **Load Balancing**: Random session selection for distributing message sending
+The enhanced multi-user system provides:
 
-For detailed documentation, see [MULTI_USERBOT_GUIDE.md](MULTI_USERBOT_GUIDE.md).
+- **🔥 High Throughput**: Multiple sessions handle more messages simultaneously
+- **🛡️ Risk Distribution**: If one session gets limited, others continue working
+- **⚖️ Load Balancing**: Automatic distribution of work across active sessions
+- **🔧 Easy Management**: All sessions controlled from single AdminBot interface
+- **📊 Full Visibility**: Complete monitoring and metrics across all sessions
+- **🔄 Zero Downtime**: Pause/resume sessions without stopping the system
 
 ## 🏗️ Architecture
 
@@ -64,13 +68,14 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - Telegram API credentials ([get from my.telegram.org](https://my.telegram.org/apps))
 - Bot token from [@BotFather](https://t.me/BotFather)
 
 ### Installation
 
 1. **Clone and install dependencies:**
+
 ```bash
 git clone <repository-url>
 cd telegram_casso
@@ -78,12 +83,14 @@ npm install
 ```
 
 2. **Configure environment:**
+
 ```bash
 cp .env.example .env
 # Edit .env with your credentials
 ```
 
 3. **Required environment variables:**
+
 ```bash
 # Telegram API credentials
 API_ID=your_api_id_here
@@ -101,6 +108,7 @@ LOG_LEVEL=info
 ```
 
 4. **Start the application:**
+
 ```bash
 npm start
 ```
@@ -148,11 +156,34 @@ npm start
 - Rate limiting prevents API flooding
 - Failed forwards are logged and can be retried
 
-## 🛠️ Development
+## � Multi-Session Management
+
+### Session Management Commands
+
+```bash
+# Add a new userbot session
+npm run add-session
+
+# List all sessions with status
+npm run list-sessions
+
+# Start with multi-session support
+npm start
+```
+
+### Session Operations via AdminBot
+
+- **📊 Session Status** - View all sessions, their states, and metrics
+- **⏸️ Pause/Resume** - Control individual session operations
+- **🔄 Restart Sessions** - Restart sessions that encounter errors
+- **📈 Performance Stats** - Monitor session-specific performance metrics
+- **⚖️ Load Balancing** - System automatically distributes work across active sessions
+
+## �🛠️ Development
 
 ### Project Structure
 
-```
+```text
 telegram_casso/
 ├── src/
 │   ├── config/index.js           # Configuration loading
@@ -176,13 +207,15 @@ telegram_casso/
 ├── test/                        # Test files
 ├── data/                        # Database and session files
 ├── logs/                        # Log files
+├── scripts/                     # Session management scripts
 ├── MULTI_USERBOT_GUIDE.md      # Comprehensive guide for multi-userbot features
 └── package.json
 ```
 
 ### Database Schema
 
-**Admins Table:**
+**sessions Table:**
+
 - `id` - Primary key
 - `user_id` - Telegram user ID
 - `username` - Telegram username
@@ -190,6 +223,7 @@ telegram_casso/
 - `is_active` - Active status
 
 **Sessions Table:**
+
 - `id` - Primary key
 - `phone` - Phone number (unique)
 - `user_id` - Telegram user ID
@@ -202,6 +236,7 @@ telegram_casso/
 - `last_active` - Last activity timestamp
 
 **Metrics Table:**
+
 - `id` - Primary key
 - `session_phone` - Which session
 - `channel_id` - Which channel
@@ -213,6 +248,7 @@ telegram_casso/
 - `last_activity` - Last activity timestamp
 
 **Channels Table:**
+
 - `id` - Primary key
 - `channel_id` - Telegram channel ID
 - `title` - Channel title
@@ -223,6 +259,7 @@ telegram_casso/
 - `schedule_config` - JSON schedule configuration
 
 **Users Table:**
+
 - `id` - Primary key
 - `user_id` - Telegram user ID
 - `first_name`, `last_name` - User names
@@ -230,6 +267,7 @@ telegram_casso/
 - `phone` - Phone number
 
 **Message Logs Table:**
+
 - `id` - Primary key
 - `channel_id` - Source channel
 - `message_id` - Original message ID
@@ -312,21 +350,25 @@ Send `/start` to [@userinfobot](https://t.me/userinfobot) to get your Telegram u
 ### Common Issues
 
 **UserBot won't authenticate:**
+
 - Check API_ID and API_HASH are correct
 - Ensure phone number is in international format (+1234567890)
 - Delete session file and try again
 
 **AdminBot not responding:**
+
 - Verify ADMIN_BOT_TOKEN is correct
 - Check ADMIN_USER_ID matches your Telegram ID
 - Ensure bot is started with `/start`
 
 **Database errors:**
+
 - Check DATA_DIR permissions
 - Ensure SQLite3 is properly installed
 - Review database logs for specific errors
 
 **Rate limiting:**
+
 - Telegram has strict rate limits
 - Reduce forwarding frequency if needed
 - Monitor rate limit logs
@@ -359,4 +401,4 @@ This software is for educational and personal use only. Users are responsible fo
 
 ---
 
-**Made with ❤️ for the Telegram community**
+Made with ❤️ for the Telegram community

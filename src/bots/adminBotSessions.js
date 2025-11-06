@@ -81,7 +81,7 @@ async function showSessionsList(ctx) {
   try {
     const sessions = await getAllSessions();
     
-    let text = `🔐 *Session Management*\n\n`;
+    let text = `🔐 <b>Session Management</b>\n\n`;
     text += `Total Sessions: ${sessions.length}\n\n`;
 
     if (sessions.length === 0) {
@@ -120,9 +120,10 @@ async function showSessionsList(ctx) {
       buttons.push(sessionButtons.slice(i, i + 3));
     }
 
-    // System metrics and back buttons
+    // System metrics and control buttons
     buttons.push([
-      Markup.button.callback('📊 System Metrics', 'system_metrics')
+      Markup.button.callback('📊 System Metrics', 'system_metrics'),
+      Markup.button.callback('➕ Add Session', 'add_session')
     ]);
     buttons.push([
       Markup.button.callback('🏠 Main Menu', 'main_menu')
@@ -132,12 +133,12 @@ async function showSessionsList(ctx) {
 
     if (ctx.callbackQuery) {
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
+        parse_mode: 'HTML',
         ...keyboard
       });
     } else {
       await ctx.reply(text, {
-        parse_mode: 'Markdown',
+        parse_mode: 'HTML',
         ...keyboard
       });
     }

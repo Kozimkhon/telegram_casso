@@ -29,25 +29,38 @@ import {
   cleanupMessageLogs 
 } from '../services/messageService.js';
 import { setupSessionManagement } from './adminBotSessions.js';
+import { setupSessionAuthentication, cleanupExpiredAuthSessions } from './adminBotAuth.js';
 
 class AdminBot {
-  constructor(userBot, userBotManager = null) {
+  constructor(userBot = null, userBotManager) {
     this.bot = new Telegraf(config.telegram.adminBotToken);
-    this.userBot = userBot;
-    this.userBotManager = userBotManager; // Optional for multi-session support
+    this.userBot = userBot; // Legacy support, not used in multi-session mode
+    this.userBotManager = userBotManager; // Required for multi-session support
     this.isRunning = false;
     this.logger = createChildLogger({ component: 'AdminBot' });
     this.adminUserId = config.telegram.adminUserId;
+    
+    // Ensure userBotManager is provided for pure multi-session mode
+    if (!this.userBotManager) {
+      throw new Error('UserBotManager is required for multi-session operation');
+    }
     
     this.setupMiddleware();
     this.setupCommands();
     this.setupCallbacks();
     
-    // Setup session management if userBotManager is provided
-    if (this.userBotManager) {
-      setupSessionManagement(this.bot, asyncErrorHandler);
-      this.logger.info('Session management UI enabled');
-    }
+    // Setup session management
+    setupSessionManagement(this.bot, asyncErrorHandler);
+    
+    // Setup session authentication
+    setupSessionAuthentication(this.bot, asyncErrorHandler, this.userBotManager);
+    
+    this.logger.info('Multi-session management and authentication UI enabled');
+    
+    // Cleanup expired auth sessions every 5 minutes
+    setInterval(() => {
+      cleanupExpiredAuthSessions();
+    }, 300000);
   }
 
   /**
@@ -146,6 +159,27 @@ class AdminBot {
       await this.showBotStatus(ctx);
     }, 'Bot status callback'));
 
+    // Multi-session callbacks
+    this.bot.action('sessions_list', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      if (this.userBotManager) {
+        // This will be handled by adminBotSessions.js
+        await ctx.reply('🔐 Session management is available. Use /sessions command.');
+      } else {
+        await ctx.reply('❌ UserBotManager not initialized. Please restart the application.');
+      }
+    }, 'Sessions list callback'));
+
+    this.bot.action('queue_status', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showQueueStatus(ctx);
+    }, 'Queue status callback'));
+
+    this.bot.action('performance_stats', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showPerformanceStats(ctx);
+    }, 'Performance stats callback'));
+
     this.bot.action('main_menu', asyncErrorHandler(async (ctx) => {
       await ctx.answerCbQuery();
       await this.showMainMenu(ctx);
@@ -182,6 +216,12 @@ class AdminBot {
       await ctx.answerCbQuery('⏳ Syncing channels...');
       await this.syncChannels(ctx);
     }, 'Sync channels callback'));
+
+    // Help callback
+    this.bot.action('help', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showHelp(ctx);
+    }, 'Help callback'));
   }
 
   /**
@@ -190,29 +230,38 @@ class AdminBot {
    */
   async showMainMenu(ctx) {
     const menuText = `
-🤖 *Telegram Casso Admin Panel*
+🤖 *Telegram Casso Multi-Session Admin Panel*
 
-Welcome to the admin panel! Use the buttons below to manage your bot:
+Welcome to the multi-session management system!
 
-📊 View statistics and status
-⚙️ Manage channels and forwarding
-👥 Monitor users and activity
-🔐 Manage userbot sessions
+📊 View system-wide statistics and session status
+⚙️ Manage channels with load balancing
+👥 Monitor users across all sessions
+🔐 Full session lifecycle management
+🎛️ Advanced throttling and queue control
 `;
 
     const keyboard = Markup.inlineKeyboard([
       [
         Markup.button.callback('📋 Channels List', 'channels_list'),
-        Markup.button.callback('📊 Bot Status', 'bot_status')
+        Markup.button.callback('📊 System Status', 'bot_status')
       ],
       [
         Markup.button.callback('👥 User Stats', 'user_stats'),
         Markup.button.callback('📨 Forwarding Stats', 'forwarding_stats')
       ],
-      this.userBotManager ? [
-        Markup.button.callback('🔐 Sessions', 'sessions_list')
-      ] : []
-    ].filter(row => row.length > 0));
+      [
+        Markup.button.callback('🔐 Sessions Manager', 'sessions_list'),
+        Markup.button.callback('➕ Add Session', 'add_session')
+      ],
+      [
+        Markup.button.callback('⚡ Performance', 'performance_stats'),
+        Markup.button.callback('🎛️ Queue Status', 'queue_status')
+      ],
+      [
+        Markup.button.callback('❓ Help', 'help')
+      ]
+    ]);
 
     try {
       if (ctx.callbackQuery) {
@@ -227,8 +276,116 @@ Welcome to the admin panel! Use the buttons below to manage your bot:
         });
       }
     } catch (error) {
-      this.logger.error('Error showing main menu', error);
+      this.logger.error('Error showing multi-user main menu', error);
       await ctx.reply('❌ Error loading main menu. Please try /start again.');
+    }
+  }
+
+  /**
+   * Shows queue status across all sessions
+   */
+  async showQueueStatus(ctx) {
+    try {
+      if (!this.userBotManager) {
+        await ctx.answerCbQuery('Multi-session support not available');
+        return;
+      }
+
+      let statusText = `🎛️ *Queue Status - Multi-Session System*\n\n`;
+      
+      try {
+        const { queueManager } = await import('../utils/messageQueue.js');
+        const queueStatus = queueManager.getStatus();
+        
+        if (Object.keys(queueStatus).length === 0) {
+          statusText += `📋 No active queues\n\n`;
+        } else {
+          for (const [sessionPhone, status] of Object.entries(queueStatus)) {
+            const emoji = status.processing ? '🔄' : status.queueLength > 0 ? '⏳' : '✅';
+            statusText += `${emoji} *${sessionPhone}*\n`;
+            statusText += `   Queue: ${status.queueLength} messages\n`;
+            statusText += `   Processing: ${status.processing ? 'Yes' : 'No'}\n`;
+            statusText += `   Delays: ${status.minDelay}-${status.maxDelay}ms\n\n`;
+          }
+        }
+      } catch (error) {
+        statusText += `❌ Error loading queue status: ${error.message}\n\n`;
+      }
+
+      // Add session summary
+      const managerStatus = this.userBotManager.getStatus();
+      statusText += `📊 *Session Summary*\n`;
+      statusText += `Active: ${managerStatus.activeSessions}\n`;
+      statusText += `Paused: ${managerStatus.pausedSessions}\n`;
+      statusText += `Error: ${managerStatus.errorSessions}\n`;
+      statusText += `Total: ${managerStatus.totalSessions}`;
+
+      const keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback('🔄 Refresh', 'queue_status')],
+        [Markup.button.callback('⬅️ Back to Menu', 'main_menu')]
+      ]);
+
+      await ctx.editMessageText(statusText, {
+        parse_mode: 'Markdown',
+        ...keyboard
+      });
+
+    } catch (error) {
+      this.logger.error('Error showing queue status', error);
+      await ctx.answerCbQuery('Error loading queue status');
+    }
+  }
+
+  /**
+   * Shows performance statistics across all sessions
+   */
+  async showPerformanceStats(ctx) {
+    try {
+      if (!this.userBotManager) {
+        await ctx.answerCbQuery('Multi-session support not available');
+        return;
+      }
+
+      let statsText = `⚡ *Performance Statistics*\n\n`;
+      
+      // System uptime and memory
+      const uptime = Math.floor(process.uptime());
+      const hours = Math.floor(uptime / 3600);
+      const minutes = Math.floor((uptime % 3600) / 60);
+      const memory = process.memoryUsage();
+      
+      statsText += `🕐 *System Status*\n`;
+      statsText += `Uptime: ${hours}h ${minutes}m\n`;
+      statsText += `Memory: ${Math.round(memory.heapUsed / 1024 / 1024)}MB\n`;
+      statsText += `CPU: ${process.cpuUsage().user}μs\n\n`;
+
+      // Session performance
+      const managerStatus = this.userBotManager.getStatus();
+      statsText += `📊 *Session Performance*\n`;
+      
+      for (const session of managerStatus.sessions) {
+        const status = session.isRunning && !session.isPaused ? '✅' : 
+                      session.isPaused ? '⏸️' : '❌';
+        statsText += `${status} ${session.phone}\n`;
+        statsText += `   Channels: ${session.connectedChannels}\n`;
+        if (session.pauseReason) {
+          statsText += `   Reason: ${session.pauseReason}\n`;
+        }
+      }
+
+      const keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback('🔄 Refresh', 'performance_stats')],
+        [Markup.button.callback('⬅️ Back to Menu', 'main_menu')]
+      ]);
+
+      await ctx.editMessageText(statsText, {
+        parse_mode: 'Markdown',
+        ...keyboard
+      });
+
+    } catch (error) {
+      this.logger.error('Error showing performance stats', error);
+      await ctx.answerCbQuery('Error loading performance stats');
     }
   }
 
@@ -694,7 +851,10 @@ If you encounter any issues, check the bot logs or restart the application.
     try {
       this.logger.info('Starting AdminBot...');
       
+      this.logger.info('About to launch AdminBot...');
       await this.bot.launch();
+      this.logger.info('AdminBot launch completed');
+      
       this.isRunning = true;
       
       this.logger.info('AdminBot started successfully');
@@ -705,6 +865,7 @@ If you encounter any issues, check the bot logs or restart the application.
       
     } catch (error) {
       this.logger.error('Failed to start AdminBot', error);
+      console.error('AdminBot start error:', error);
       throw handleTelegramError(error, 'AdminBot startup');
     }
   }

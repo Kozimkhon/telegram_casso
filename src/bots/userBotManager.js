@@ -216,16 +216,22 @@ class UserBotManager {
     const bots = Array.from(this.bots.values());
     
     return {
-      total: bots.length,
-      active: bots.filter(b => b.isRunning && !b.isPaused).length,
-      paused: bots.filter(b => b.isPaused).length,
-      error: bots.filter(b => !b.isRunning && !b.isPaused).length,
-      bots: bots.map(bot => ({
+      totalSessions: bots.length,
+      activeSessions: bots.filter(b => b.isRunning && !b.isPaused).length,
+      pausedSessions: bots.filter(b => b.isPaused).length,
+      errorSessions: bots.filter(b => !b.isRunning && !b.isPaused).length,
+      sessions: bots.map(bot => ({
         phone: bot.phone,
         isRunning: bot.isRunning,
         isPaused: bot.isPaused,
+        pauseReason: bot.pauseReason,
         connectedChannels: bot.connectedChannels.size
-      }))
+      })),
+      // Legacy compatibility
+      total: bots.length,
+      active: bots.filter(b => b.isRunning && !b.isPaused).length,
+      paused: bots.filter(b => b.isPaused).length,
+      error: bots.filter(b => !b.isRunning && !b.isPaused).length
     };
   }
 

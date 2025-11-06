@@ -37,9 +37,9 @@ export const config = {
   telegram: {
     apiId: parseInt(requireEnv('API_ID', 'Telegram API ID from my.telegram.org')),
     apiHash: requireEnv('API_HASH', 'Telegram API Hash from my.telegram.org'),
-    phoneNumber: requireEnv('PHONE_NUMBER', 'Phone number for UserBot (international format)'),
+    phoneNumber: requireEnv('PHONE_NUMBER', 'Phone number in international format'),
     adminBotToken: requireEnv('ADMIN_BOT_TOKEN', 'Admin Bot token from @BotFather'),
-    adminUserId: parseInt(requireEnv('ADMIN_USER_ID', 'Your Telegram user ID')),
+    adminUserId: parseInt(requireEnv('ADMIN_USER_ID', 'Admin user Telegram ID')),
   },
 
   // Database configuration

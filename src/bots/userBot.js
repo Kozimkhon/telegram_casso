@@ -8,7 +8,6 @@ import { StringSession } from 'telegram/sessions/index.js';
 import { NewMessage } from 'telegram/events/index.js';
 import { Api } from 'telegram/tl/index.js';
 import { utils } from 'telegram';
-import input from 'input';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -204,20 +203,23 @@ class UserBot {
       
       await this.client.start({
         phoneNumber: async () => {
-          this.logger.info('Phone number required for authentication');
-          // Use stored phone or ask for it
+          // Only return phone number, no console prompts
           if (this.isMultiSessionMode()) {
             return this.phone;
           }
           return config.telegram.phoneNumber;
         },
         password: async () => {
-          this.logger.info('2FA password required');
-          return await input.password('Enter your 2FA password: ');
+          // No console prompts - throw error if password is needed
+          throw new AuthenticationError(
+            'Session requires 2FA authentication. Please authenticate via AdminBot.'
+          );
         },
         phoneCode: async () => {
-          this.logger.info('Verification code required');
-          return await input.text('Enter the verification code you received: ');
+          // No console prompts - throw error if code is needed
+          throw new AuthenticationError(
+            'Session requires phone verification. Please authenticate via AdminBot.'
+          );
         },
         onError: (err) => {
           this.logger.error('Authentication error', err);

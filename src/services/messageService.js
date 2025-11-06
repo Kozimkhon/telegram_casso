@@ -6,15 +6,12 @@
 import { runQuery, getAllQuery, getQuery } from '../db/db.js';
 import { log } from '../utils/logger.js';
 import { handleDatabaseError, withRetry, isFloodWaitError, isSpamWarning } from '../utils/errorHandler.js';
-import { sanitizeText, chunkArray, createRateLimiter } from '../utils/helpers.js';
+import { sanitizeText, chunkArray } from '../utils/helpers.js';
 import { isChannelEnabled } from './channelService.js';
 import { getAllUsers, getUsersByChannel } from './userService.js';
 import { recordMessageSent, recordFloodError, recordSpamWarning } from './metricsService.js';
 import { throttleManager, retryWithBackoff } from '../utils/throttle.js';
 import { config } from '../config/index.js';
-
-// Legacy rate limiter for backwards compatibility
-const messageLimiter = createRateLimiter(20, 60000);
 
 /**
  * Logs a message forwarding attempt with session tracking
@@ -160,11 +157,11 @@ export async function getRecentForwardingLogs(options = {}) {
  * @param {Function} forwardFunction - Function to send message to user
  * @returns {Promise<Object>} Forwarding results
  */
-export async function processMessageForwarding(message, channelId, forwardFunction) {
+export async function processMessageForwarding(message, channelId, forwardFunction = null) {
   try {
     const messageId = message.id?.toString() || 'unknown';
     
-    console.log('=== FORWARDING DEBUG ===');
+    console.log('=== MULTI-SESSION FORWARDING DEBUG ===');
     console.log('Channel ID:', channelId);
     console.log('Message ID:', messageId);
     console.log('Message text:', message.message);
@@ -299,74 +296,194 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
 }
 
 /**
- * Forwards a message to a single user with rate limiting and error handling
+ * Forwards a message to a single user with multi-session approach
  * @param {Object} message - Message object
  * @param {Object} user - User object
  * @param {string} channelId - Source channel ID
  * @param {string} messageId - Message ID
- * @param {Function} forwardFunction - Function to send message
+ * @param {Function} forwardFunction - Function to send message (deprecated)
  * @returns {Promise<Object>} Forward result
  */
 async function forwardMessageToUser(message, user, channelId, messageId, forwardFunction) {
   const userId = user.user_id;
   
   try {
-    // Check rate limiting
-    if (!messageLimiter(`user_${userId}`)) {
-      log.warn('Rate limit exceeded for user', { userId, channelId, messageId });
-      await logMessageForward(channelId, messageId, userId, null, 'skipped', 'Rate limit exceeded');
-      return { status: 'skipped', userId, reason: 'Rate limit exceeded' };
+    // Get UserBotManager instance for multi-session forwarding
+    const { userBotManager } = await import('../bots/userBotManager.js');
+    const selectedBot = userBotManager.getRandomActiveBot();
+    const sessionPhone = selectedBot?.phone || 'unknown';
+
+    if (!selectedBot) {
+      log.warn('No active session available for forwarding', { userId, channelId, messageId });
+      await logMessageForward(channelId, messageId, userId, null, 'skipped', 'No active session available');
+      return { status: 'skipped', userId, reason: 'No active session available' };
     }
 
-    // Attempt to forward message with retry
-    const result = await withRetry(
-      () => forwardFunction(message, userId),
-      {
-        maxRetries: 3,
-        delay: 1000,
-        backoff: 2,
-        context: `Forward message to user ${userId}`
-      }
+    // Use multi-session forwarding approach
+    return await forwardMessageToUserWithSession(
+      message, 
+      user, 
+      channelId, 
+      messageId, 
+      selectedBot, 
+      sessionPhone
     );
-
-    // Extract forwarded message ID from result
-    const forwardedMessageId = result?.id?.toString() || null;
-    
-    await logMessageForward(channelId, messageId, userId, forwardedMessageId, 'success');
-    return { status: 'success', userId, result, forwardedMessageId };
 
   } catch (error) {
     const errorMessage = sanitizeText(error.message, 500);
     
-    // Determine if this is a permanent failure
-    const permanentErrors = [
-      'USER_DEACTIVATED',
-      'BOT_BLOCKED',
-      'CHAT_WRITE_FORBIDDEN'
-    ];
-    
-    const isPermanent = permanentErrors.some(errType => 
-      error.message?.includes(errType)
-    );
-
-    if (isPermanent) {
-      log.warn('Permanent error forwarding to user', {
-        userId,
-        channelId,
-        messageId,
-        error: errorMessage
-      });
-    } else {
-      log.error('Temporary error forwarding to user', {
-        userId,
-        channelId,
-        messageId,
-        error: errorMessage
-      });
-    }
+    log.error('Error forwarding to user', {
+      userId,
+      channelId,
+      messageId,
+      error: errorMessage
+    });
 
     await logMessageForward(channelId, messageId, userId, null, 'failed', errorMessage);
-    return { status: 'failed', userId, error: errorMessage, isPermanent };
+    return { status: 'failed', userId, error: errorMessage };
+  }
+}
+
+/**
+ * Forwards a message to a user using multi-session approach with proper session tracking
+ * @param {Object} message - Message to forward
+ * @param {Object} user - Target user
+ * @param {string} channelId - Source channel ID
+ * @param {string} messageId - Original message ID
+ * @param {Object} selectedBot - UserBot instance to use
+ * @param {string} sessionPhone - Session phone number for tracking
+ * @returns {Promise<Object>} Forward result
+ */
+async function forwardMessageToUserWithSession(message, user, channelId, messageId, selectedBot, sessionPhone) {
+  try {
+    const userId = user.user_id;
+    let forwardedMessageId = null;
+    let status = 'failed';
+    let errorMessage = null;
+
+    console.log(`📤 Forwarding via session ${sessionPhone} to user ${user.first_name} (${userId})`);
+
+    try {
+      // Try using multi-session approach
+      if (selectedBot && typeof selectedBot.forwardMessageToUser === 'function') {
+        console.log(`🎯 Using selectedBot.forwardMessageToUser for session ${sessionPhone}`);
+        
+        // Use queue manager for sequential processing
+        try {
+          const { queueManager } = await import('../utils/messageQueue.js');
+          
+          const result = await queueManager.enqueue(
+            sessionPhone,
+            async () => {
+              return await selectedBot.forwardMessageToUser(message, userId);
+            },
+            { 
+              channelId, 
+              messageId, 
+              userId, 
+              sessionPhone 
+            }
+          );
+          
+          if (result && result.id) {
+            forwardedMessageId = result.id.toString();
+            status = 'success';
+            console.log(`✅ Message forwarded successfully via session ${sessionPhone}: ${forwardedMessageId}`);
+          } else {
+            throw new Error('No message ID returned from queue');
+          }
+        } catch (queueError) {
+          console.log(`❌ Queue forwarding failed for session ${sessionPhone}:`, queueError.message);
+          throw queueError;
+        }
+      } else {
+        throw new Error(`No valid forwarding method available for session ${sessionPhone}`);
+      }
+
+      // Record success metrics
+      if (status === 'success') {
+        try {
+          await recordMessageSent({
+            sessionPhone,
+            channelId,
+            userId,
+            success: true
+          });
+        } catch (metricsError) {
+          console.log(`⚠️ Failed to record success metrics:`, metricsError.message);
+        }
+      }
+
+    } catch (forwardError) {
+      console.log(`❌ Forward error for user ${userId} via session ${sessionPhone}:`, forwardError.message);
+      status = 'failed';
+      errorMessage = forwardError.message;
+
+      // Handle specific Telegram errors for multi-session
+      if (forwardError.message?.includes('FLOOD_WAIT')) {
+        console.log(`🚫 FloodWait detected for session ${sessionPhone}`);
+        
+        try {
+          const { userBotManager } = await import('../bots/userBotManager.js');
+          await userBotManager.handleBotError(sessionPhone, forwardError);
+        } catch (managerError) {
+          console.log(`⚠️ Failed to handle bot error:`, managerError.message);
+        }
+      }
+
+      // Record failure metrics
+      try {
+        await recordMessageSent({
+          sessionPhone,
+          channelId,
+          userId,
+          success: false
+        });
+      } catch (metricsError) {
+        console.log(`⚠️ Failed to record failure metrics:`, metricsError.message);
+      }
+    }
+
+    // Log the forwarding attempt
+    await logMessageForward(
+      channelId, 
+      messageId, 
+      userId, 
+      forwardedMessageId, 
+      status, 
+      errorMessage,
+      sessionPhone
+    );
+
+    return {
+      status,
+      userId,
+      forwardedMessageId,
+      error: errorMessage,
+      sessionPhone
+    };
+
+  } catch (error) {
+    console.log(`💥 Unexpected error forwarding to user ${user.user_id}:`, error.message);
+    
+    // Log the failed attempt
+    await logMessageForward(
+      channelId, 
+      messageId, 
+      user.user_id, 
+      null, 
+      'failed', 
+      error.message,
+      sessionPhone
+    );
+
+    return {
+      status: 'failed',
+      userId: user.user_id,
+      forwardedMessageId: null,
+      error: error.message,
+      sessionPhone
+    };
   }
 }
 
