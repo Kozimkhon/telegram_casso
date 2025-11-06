@@ -51397,3 +51397,29 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
   "originalError": "Database error during getChannelById",
   "sqliteCode": "DATABASE_ERROR"
 }
+2025-11-06 11:54:31 [ERROR]: Database error during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:54:31 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:54:31 [ERROR]: Database error during getAllChannels
+{
+  "operation": "getAllChannels",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:54:31 [ERROR]: Database error during getChannelById
+{
+  "operation": "getChannelById",
+  "originalError": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 11:54:31 [ERROR]: Database error during toggleChannelForwarding
+{
+  "operation": "toggleChannelForwarding",
+  "originalError": "Database error during getChannelById",
+  "sqliteCode": "DATABASE_ERROR"
+}

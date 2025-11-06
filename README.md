@@ -2,6 +2,8 @@
 
 A sophisticated Telegram UserBot + AdminBot system for automated channel management and message forwarding. Built with Node.js, GramJS, Telegraf, and SQLite.
 
+**⭐ NEW**: Multi-userbot support with advanced session management, spam protection, and throttling! See [MULTI_USERBOT_GUIDE.md](MULTI_USERBOT_GUIDE.md) for details.
+
 ## 🎯 Overview
 
 Telegram Casso consists of two integrated bots:
@@ -18,6 +20,9 @@ Telegram Casso consists of two integrated bots:
 - 👥 User synchronization from monitored channels
 - 🔐 Secure session management
 - 📊 Activity logging and error handling
+- 🔄 **Multi-account support** with load balancing
+- 🛡️ **Spam protection** with auto-pause on FloodWait/SpamWarning
+- ⏱️ **Advanced throttling** with exponential backoff
 
 ### AdminBot Features
 - 🎛️ Interactive Telegram admin panel
@@ -26,6 +31,22 @@ Telegram Casso consists of two integrated bots:
 - 👥 User analytics and recent activity
 - 🔧 Bot status monitoring
 - 🧹 Database cleanup tools
+- 🔐 **Session management UI** for multiple userbots
+- 📈 **Metrics dashboard** per session and system-wide
+- ⏸️ **Manual controls** to pause/resume/restart sessions
+
+## 🆕 Multi-Userbot System
+
+The enhanced system now supports:
+
+- **Multiple Telegram Accounts**: Run multiple userbot sessions simultaneously
+- **Session Management**: Active, paused, and error states with auto-recovery
+- **Spam Protection**: Automatic detection and handling of FloodWait and spam warnings
+- **Rate Limiting**: Global and per-channel throttling to avoid spam detection
+- **Metrics Tracking**: Detailed statistics per session, channel, and user
+- **Load Balancing**: Random session selection for distributing message sending
+
+For detailed documentation, see [MULTI_USERBOT_GUIDE.md](MULTI_USERBOT_GUIDE.md).
 
 ## 🏗️ Architecture
 
@@ -33,9 +54,9 @@ Telegram Casso consists of two integrated bots:
 src/
 ├── config/          # Configuration management
 ├── db/              # SQLite database layer
-├── bots/            # UserBot and AdminBot implementations
-├── services/        # Business logic (channels, users, messages)
-├── utils/           # Utilities (logging, error handling, helpers)
+├── bots/            # UserBot, AdminBot, and UserBotManager
+├── services/        # Business logic (channels, users, messages, sessions, metrics)
+├── utils/           # Utilities (logging, error handling, helpers, throttling)
 └── index.js         # Main application entry point
 ```
 
@@ -137,29 +158,69 @@ telegram_casso/
 │   ├── config/index.js           # Configuration loading
 │   ├── db/db.js                  # Database operations
 │   ├── bots/
-│   │   ├── userBot.js           # GramJS user bot
-│   │   └── adminBot.js          # Telegraf admin bot
+│   │   ├── userBot.js           # GramJS user bot (enhanced with multi-session support)
+│   │   ├── userBotManager.js    # Multi-session manager
+│   │   ├── adminBot.js          # Telegraf admin bot
+│   │   └── adminBotSessions.js  # Session management UI
 │   ├── services/
 │   │   ├── channelService.js    # Channel management
 │   │   ├── userService.js       # User management
-│   │   └── messageService.js    # Message forwarding
+│   │   ├── messageService.js    # Message forwarding with throttling
+│   │   ├── sessionService.js    # Session lifecycle management
+│   │   └── metricsService.js    # Statistics and metrics
 │   └── utils/
 │       ├── logger.js            # Winston logging
-│       ├── errorHandler.js      # Error management
+│       ├── errorHandler.js      # Error management (enhanced with FloodWait/Spam detection)
+│       ├── throttle.js          # Rate limiting and throttling
 │       └── helpers.js           # Utility functions
 ├── test/                        # Test files
 ├── data/                        # Database and session files
 ├── logs/                        # Log files
+├── MULTI_USERBOT_GUIDE.md      # Comprehensive guide for multi-userbot features
 └── package.json
 ```
 
 ### Database Schema
+
+**Admins Table:**
+- `id` - Primary key
+- `user_id` - Telegram user ID
+- `username` - Telegram username
+- `role` - Admin role (admin, superadmin, etc.)
+- `is_active` - Active status
+
+**Sessions Table:**
+- `id` - Primary key
+- `phone` - Phone number (unique)
+- `user_id` - Telegram user ID
+- `session_string` - Encrypted session data
+- `status` - Session status (active/paused/error)
+- `auto_paused` - Auto-pause flag
+- `pause_reason` - Reason for pause
+- `flood_wait_until` - When FloodWait expires
+- `last_error` - Last error message
+- `last_active` - Last activity timestamp
+
+**Metrics Table:**
+- `id` - Primary key
+- `session_phone` - Which session
+- `channel_id` - Which channel
+- `user_id` - Which user
+- `messages_sent` - Success count
+- `messages_failed` - Failure count
+- `flood_errors` - FloodWait count
+- `spam_warnings` - Spam warning count
+- `last_activity` - Last activity timestamp
 
 **Channels Table:**
 - `id` - Primary key
 - `channel_id` - Telegram channel ID
 - `title` - Channel title
 - `forward_enabled` - Enable/disable forwarding
+- `throttle_delay_ms` - Delay between messages (for spam protection)
+- `throttle_per_member_ms` - Per-user throttle delay
+- `schedule_enabled` - Enable scheduling
+- `schedule_config` - JSON schedule configuration
 
 **Users Table:**
 - `id` - Primary key
