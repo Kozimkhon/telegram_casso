@@ -28,11 +28,13 @@ import {
   getRecentForwardingLogs,
   cleanupMessageLogs 
 } from '../services/messageService.js';
+import { setupSessionManagement } from './adminBotSessions.js';
 
 class AdminBot {
-  constructor(userBot) {
+  constructor(userBot, userBotManager = null) {
     this.bot = new Telegraf(config.telegram.adminBotToken);
     this.userBot = userBot;
+    this.userBotManager = userBotManager; // Optional for multi-session support
     this.isRunning = false;
     this.logger = createChildLogger({ component: 'AdminBot' });
     this.adminUserId = config.telegram.adminUserId;
@@ -40,6 +42,12 @@ class AdminBot {
     this.setupMiddleware();
     this.setupCommands();
     this.setupCallbacks();
+    
+    // Setup session management if userBotManager is provided
+    if (this.userBotManager) {
+      setupSessionManagement(this.bot, asyncErrorHandler);
+      this.logger.info('Session management UI enabled');
+    }
   }
 
   /**
@@ -189,6 +197,7 @@ Welcome to the admin panel! Use the buttons below to manage your bot:
 📊 View statistics and status
 ⚙️ Manage channels and forwarding
 👥 Monitor users and activity
+🔐 Manage userbot sessions
 `;
 
     const keyboard = Markup.inlineKeyboard([
@@ -199,8 +208,11 @@ Welcome to the admin panel! Use the buttons below to manage your bot:
       [
         Markup.button.callback('👥 User Stats', 'user_stats'),
         Markup.button.callback('📨 Forwarding Stats', 'forwarding_stats')
-      ]
-    ]);
+      ],
+      this.userBotManager ? [
+        Markup.button.callback('🔐 Sessions', 'sessions_list')
+      ] : []
+    ].filter(row => row.length > 0));
 
     try {
       if (ctx.callbackQuery) {
