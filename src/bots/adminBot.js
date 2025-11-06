@@ -34,7 +34,19 @@ import { isUserAdmin, isUserAdminRegistered } from '../services/adminService.js'
 
 class AdminBot {
   constructor(userBot = null, userBotManager) {
-    this.bot = new Telegraf(config.telegram.adminBotToken);
+    // Create Telegraf bot with enhanced configuration
+    this.bot = new Telegraf(config.telegram.adminBotToken, {
+      telegram: {
+        // Increase timeout for better reliability
+        apiRoot: 'https://api.telegram.org',
+        webhookReply: false,
+        agent: null, // Use system's default agent
+        // Retry configuration
+        attachmentAgent: null
+      },
+      handlerTimeout: 90000 // 90 seconds timeout for handlers
+    });
+    
     this.userBot = userBot; // Legacy support, not used in multi-session mode
     this.userBotManager = userBotManager; // Required for multi-session support
     this.isRunning = false;
@@ -992,19 +1004,55 @@ Contact your system administrator or check application logs for troubleshooting.
   }
 
   /**
-   * Starts the AdminBot
+   * Starts the AdminBot with retry mechanism
    * @returns {Promise<void>}
    */
   async start() {
     try {
       this.logger.info('Starting AdminBot...');
       
-      this.logger.info('About to launch AdminBot...');
-      await this.bot.launch();
-      this.logger.info('AdminBot launch completed');
+      // Retry configuration for connection issues
+      const maxRetries = 5;
+      const retryDelay = 3000; // 3 seconds
+      let lastError;
+      
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          this.logger.info(`🔄 AdminBot launch attempt ${attempt}/${maxRetries}...`);
+          
+          // Try to launch with timeout
+          const launchPromise = this.bot.launch();
+          const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Launch timeout after 30s')), 30000)
+          );
+          
+          await Promise.race([launchPromise, timeoutPromise]);
+          
+          this.logger.info('✅ AdminBot launch completed successfully');
+          break; // Success - exit retry loop
+          
+        } catch (error) {
+          lastError = error;
+          
+          if (attempt < maxRetries) {
+            this.logger.warn(`⚠️ AdminBot launch attempt ${attempt} failed, retrying in ${retryDelay/1000}s...`, {
+              error: error.message,
+              code: error.code,
+              type: error.type
+            });
+            
+            // Wait before retry
+            await new Promise(resolve => setTimeout(resolve, retryDelay));
+          } else {
+            this.logger.error(`❌ AdminBot launch failed after ${maxRetries} attempts`, {
+              error: error.message
+            });
+            throw error;
+          }
+        }
+      }
       
       this.isRunning = true;
-      
       this.logger.info('AdminBot started successfully');
       
       // Enable graceful stop
@@ -1013,7 +1061,12 @@ Contact your system administrator or check application logs for troubleshooting.
       
     } catch (error) {
       this.logger.error('Failed to start AdminBot', error);
-      console.error('AdminBot start error:', error);
+      console.error('\n❌ AdminBot startup error:', error.message);
+      console.error('💡 Possible causes:');
+      console.error('   1. Check your internet connection');
+      console.error('   2. Verify ADMIN_BOT_TOKEN in .env is correct');
+      console.error('   3. Check if Telegram API is accessible (try: curl https://api.telegram.org)');
+      console.error('   4. If using VPN/Proxy, make sure it\'s working\n');
       throw handleTelegramError(error, 'AdminBot startup');
     }
   }
