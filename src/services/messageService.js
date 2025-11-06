@@ -11,6 +11,7 @@ import { isChannelEnabled } from './channelService.js';
 import { getAllUsers, getUsersByChannel } from './userService.js';
 import { recordMessageSent, recordFloodError, recordSpamWarning } from './metricsService.js';
 import { throttleManager, retryWithBackoff } from '../utils/throttle.js';
+import { getAllAdmins } from './adminService.js';
 import { config } from '../config/index.js';
 
 /**
@@ -191,8 +192,9 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
     const allUsers = await getUsersByChannel(channelId);
     
     // Filter out admin users - admins should not receive forwarded messages
-    const adminUserId = config.telegram.adminUserId.toString();
-    const users = allUsers.filter(user => user.user_id !== adminUserId);
+    const admins = await getAllAdmins();
+    const adminUserIds = admins.filter(admin => admin.is_active).map(admin => admin.user_id);
+    const users = allUsers.filter(user => !adminUserIds.includes(user.user_id));
     
     console.log('Channel members to forward:', users.length);
     console.log('Users:', users.map(u => ({ id: u.user_id, name: u.first_name })));

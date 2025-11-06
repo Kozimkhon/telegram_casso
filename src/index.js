@@ -106,8 +106,8 @@ class TelegramCassoApp {
       await this.adminBot.start();
       
       log.info('✅ AdminBot with Session Management initialized');
-      log.info('👮 Admin user ID:', config.telegram.adminUserId);
-      log.info('🔐 Session management UI is available');
+      log.info('� Session management UI is available');
+      log.info('� Admin access is controlled through database registration');
 
     } catch (error) {
       log.error('❌ Failed to initialize AdminBot', error);

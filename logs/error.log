@@ -22,3 +22,37 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
 {
   "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
 }
+2025-11-06 21:19:47 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:96:11
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:19:47 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:22:59 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": "566160086",
+    "first_name": "Test Admin",
+    "last_name": null,
+    "username": "testadmin",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}

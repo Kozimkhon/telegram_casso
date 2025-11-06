@@ -37,9 +37,7 @@ export const config = {
   telegram: {
     apiId: parseInt(requireEnv('API_ID', 'Telegram API ID from my.telegram.org')),
     apiHash: requireEnv('API_HASH', 'Telegram API Hash from my.telegram.org'),
-    phoneNumber: requireEnv('PHONE_NUMBER', 'Phone number in international format'),
     adminBotToken: requireEnv('ADMIN_BOT_TOKEN', 'Admin Bot token from @BotFather'),
-    adminUserId: parseInt(requireEnv('ADMIN_USER_ID', 'Admin user Telegram ID')),
   },
 
   // Database configuration
@@ -76,16 +74,6 @@ export function validateConfig() {
     // Validate API ID is a number
     if (isNaN(config.telegram.apiId)) {
       throw new Error('API_ID must be a valid number');
-    }
-
-    // Validate Admin User ID is a number
-    if (isNaN(config.telegram.adminUserId)) {
-      throw new Error('ADMIN_USER_ID must be a valid number');
-    }
-
-    // Validate phone number format (basic check)
-    if (!config.telegram.phoneNumber.startsWith('+')) {
-      throw new Error('PHONE_NUMBER must be in international format starting with +');
     }
 
     console.log('✓ Configuration validation passed');

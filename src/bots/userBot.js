@@ -51,12 +51,12 @@ class UserBot {
     this.logger = createChildLogger({ component: 'UserBot' });
     
     // Session data (for multi-userbot support)
-    this.phone = sessionData?.phone || config.telegram.phoneNumber;
+    this.phone = sessionData?.phone || null;
     this.sessionString = sessionData?.session_string || null;
     this.userId = sessionData?.user_id || null;
     
-    // Default to config path for backwards compatibility
-    this.sessionPath = sessionData ? null : config.paths.sessionPath;
+    // SessionPath is not used in multi-session mode
+    this.sessionPath = sessionData ? null : null;
     
     this.connectedChannels = new Map(); // channel_id -> channelInfo
     this.adminChannelEntities = []; // Store admin channel entities for event filtering
@@ -72,7 +72,7 @@ class UserBot {
    * @returns {boolean} True if multi-session mode
    */
   isMultiSessionMode() {
-    return this.phone && this.phone !== config.telegram.phoneNumber;
+    return this.phone && this.sessionString;
   }
 
   /**
@@ -203,11 +203,13 @@ class UserBot {
       
       await this.client.start({
         phoneNumber: async () => {
-          // Only return phone number, no console prompts
-          if (this.isMultiSessionMode()) {
+          // Only return phone number if available, no console prompts
+          if (this.phone) {
             return this.phone;
           }
-          return config.telegram.phoneNumber;
+          throw new AuthenticationError(
+            'No phone number available. Please authenticate via AdminBot.'
+          );
         },
         password: async () => {
           // No console prompts - throw error if password is needed

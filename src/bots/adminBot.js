@@ -30,6 +30,7 @@ import {
 } from '../services/messageService.js';
 import { setupSessionManagement } from './adminBotSessions.js';
 import { setupSessionAuthentication, cleanupExpiredAuthSessions } from './adminBotAuth.js';
+import { isUserAdmin } from '../services/adminService.js';
 
 class AdminBot {
   constructor(userBot = null, userBotManager) {
@@ -38,7 +39,6 @@ class AdminBot {
     this.userBotManager = userBotManager; // Required for multi-session support
     this.isRunning = false;
     this.logger = createChildLogger({ component: 'AdminBot' });
-    this.adminUserId = config.telegram.adminUserId;
     
     // Ensure userBotManager is provided for pure multi-session mode
     if (!this.userBotManager) {
@@ -71,21 +71,49 @@ class AdminBot {
     this.bot.use(asyncErrorHandler(async (ctx, next) => {
       const userId = ctx.from?.id;
       
-      if (userId !== this.adminUserId) {
+      // Check if user is admin from database
+      const adminUser = await isUserAdmin(userId);
+      
+      if (!adminUser) {
         this.logger.warn('Unauthorized access attempt', {
           userId,
           username: ctx.from?.username,
           command: ctx.message?.text
         });
         
-        await ctx.reply('❌ Unauthorized access. This bot is for admin use only.');
+        // Show registration prompt for unauthorized users
+        const text = `❌ <b>Access Denied</b>\n\n` +
+                     `You are not registered as an admin.\n` +
+                     `To get access, you need to register as an admin.\n\n` +
+                     `Contact the system administrator or use the registration option below:`;
+        
+        const keyboard = Markup.inlineKeyboard([
+          [Markup.button.callback('📝 Register as Admin', 'register_admin')],
+          [Markup.button.callback('ℹ️ Contact Support', 'contact_support')]
+        ]);
+        
+        if (ctx.callbackQuery) {
+          await ctx.editMessageText(text, {
+            parse_mode: 'HTML',
+            ...keyboard
+          });
+        } else {
+          await ctx.reply(text, {
+            parse_mode: 'HTML',
+            ...keyboard
+          });
+        }
         return;
       }
       
       this.logger.debug('Admin command received', {
         command: ctx.message?.text || ctx.callbackQuery?.data,
-        userId
+        userId,
+        adminRole: adminUser.role
       });
+      
+      // Store admin info in context for later use
+      ctx.adminUser = adminUser;
       
       return next();
     }, 'Admin auth middleware'));
@@ -138,6 +166,28 @@ class AdminBot {
    * Sets up callback query handlers
    */
   setupCallbacks() {
+    // Registration callbacks
+    this.bot.action('register_admin', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showAdminRegistration(ctx);
+    }, 'Register admin callback'));
+
+    this.bot.action('contact_support', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showContactSupport(ctx);
+    }, 'Contact support callback'));
+
+    this.bot.action('confirm_registration', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.processAdminRegistration(ctx);
+    }, 'Confirm registration callback'));
+
+    // Main menu callback
+    this.bot.action('main_menu', asyncErrorHandler(async (ctx) => {
+      await ctx.answerCbQuery();
+      await this.showMainMenu(ctx);
+    }, 'Main menu callback'));
+
     // Main menu callbacks
     this.bot.action('channels_list', asyncErrorHandler(async (ctx) => {
       await ctx.answerCbQuery();
@@ -581,7 +631,17 @@ Welcome to the multi-session management system!
       // AdminBot status
       text += `⚙️ *AdminBot Status:*\n`;
       text += `   Running: ${this.isRunning ? '✅ Yes' : '❌ No'}\n`;
-      text += `   Admin User: ${this.adminUserId}\n\n`;
+      
+      // Get admin count
+      try {
+        const { getAllAdmins } = await import('../services/adminService.js');
+        const admins = await getAllAdmins();
+        const activeAdmins = admins.filter(admin => admin.is_active).length;
+        text += `   Active Admins: ${activeAdmins}\n`;
+      } catch (error) {
+        text += `   Active Admins: Error loading\n`;
+      }
+      text += `\n`;
 
       // System info
       text += `💾 *System Info:*\n`;
@@ -887,6 +947,121 @@ If you encounter any issues, check the bot logs or restart the application.
       this.logger.error('Error stopping AdminBot', error);
       throw error;
     }
+  }
+
+  /**
+   * Shows admin registration form
+   */
+  async showAdminRegistration(ctx) {
+    const user = ctx.from;
+    
+    const text = `📝 <b>Admin Registration</b>\n\n` +
+                 `User Details:\n` +
+                 `• ID: <code>${user.id}</code>\n` +
+                 `• Name: <code>${user.first_name} ${user.last_name || ''}</code>\n` +
+                 `• Username: <code>@${user.username || 'N/A'}</code>\n\n` +
+                 `⚠️ <b>Important:</b>\n` +
+                 `By registering as an admin, you will gain full access to:\n` +
+                 `• Session management\n` +
+                 `• Channel configuration\n` +
+                 `• User statistics\n` +
+                 `• System settings\n\n` +
+                 `Do you want to proceed with registration?`;
+    
+    const keyboard = Markup.inlineKeyboard([
+      [Markup.button.callback('✅ Confirm Registration', 'confirm_registration')],
+      [Markup.button.callback('❌ Cancel', 'contact_support')]
+    ]);
+    
+    await ctx.editMessageText(text, {
+      parse_mode: 'HTML',
+      ...keyboard
+    });
+  }
+
+  /**
+   * Processes admin registration
+   */
+  async processAdminRegistration(ctx) {
+    const user = ctx.from;
+    
+    try {
+      // Import addAdmin here to avoid circular dependencies
+      const { addAdmin } = await import('../services/adminService.js');
+      
+      const success = await addAdmin({
+        user_id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+        role: 'admin'
+      });
+      
+      if (success) {
+        const text = `✅ <b>Registration Successful!</b>\n\n` +
+                     `Welcome to Telegram Casso Admin Panel!\n\n` +
+                     `You now have full admin access to:\n` +
+                     `• 📱 Session Management\n` +
+                     `• 📋 Channel Configuration\n` +
+                     `• 📊 Statistics & Analytics\n` +
+                     `• ⚙️ System Settings\n\n` +
+                     `Use /start to access the main menu.`;
+        
+        const keyboard = Markup.inlineKeyboard([
+          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        ]);
+        
+        await ctx.editMessageText(text, {
+          parse_mode: 'HTML',
+          ...keyboard
+        });
+        
+      } else {
+        await ctx.editMessageText(`❌ <b>Registration Failed</b>\n\nThere was an error during registration. Please try again or contact support.`, {
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '🔄 Try Again', callback_data: 'register_admin' },
+              { text: '📞 Contact Support', callback_data: 'contact_support' }
+            ]]
+          }
+        });
+      }
+    } catch (error) {
+      this.logger.error('Error during admin registration', { userId: user.id, error: error.message });
+      
+      await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred. Please try again later.`, {
+        parse_mode: 'HTML',
+        reply_markup: {
+          inline_keyboard: [[
+            { text: '🔄 Try Again', callback_data: 'register_admin' }
+          ]]
+        }
+      });
+    }
+  }
+
+  /**
+   * Shows contact support information
+   */
+  async showContactSupport(ctx) {
+    const text = `📞 <b>Contact Support</b>\n\n` +
+                 `For admin access to Telegram Casso, please contact:\n\n` +
+                 `• System Administrator\n` +
+                 `• Technical Support Team\n` +
+                 `• Project Developer\n\n` +
+                 `Provide your Telegram user ID: <code>${ctx.from.id}</code>\n\n` +
+                 `💡 <b>Tip:</b> You can also try the self-registration option if available.`;
+    
+    const keyboard = Markup.inlineKeyboard([
+      [Markup.button.callback('📝 Try Registration', 'register_admin')],
+      [Markup.button.callback('🔙 Back', 'main_menu')]
+    ]);
+    
+    await ctx.editMessageText(text, {
+      parse_mode: 'HTML',
+      ...keyboard
+    });
   }
 }
 
