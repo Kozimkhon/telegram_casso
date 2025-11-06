@@ -248,17 +248,22 @@ class UserBot {
     // Store enabled channel IDs for filtering in handleNewMessage
     const enabledChannels = await getAllChannels(true);
     this.enabledChannelIds = new Set(enabledChannels.map(ch => ch.channel_id));
-
+    
     console.log('🔧 Setting up listener for channels:', enabledChannels.map(c => c.title));
     console.log('🔧 Enabled channel IDs:', Array.from(this.enabledChannelIds));
 
     // Convert channel IDs to BigInt for GramJS chats parameter
     const chatIds = Array.from(this.enabledChannelIds).map(id => BigInt(id));
-
+    
+    // ❌ DISABLE all event handlers temporarily to prevent spam
+    this.logger.warn('⚠️ Event handlers disabled to prevent spam during startup');
+    
+    // TODO: Re-enable after fixing the spam issue
+    /*
     // 1. New messages
     this.client.addEventHandler(
       asyncErrorHandler(this.handleNewMessage.bind(this), 'NewMessage handler'),
-      new NewMessage({
+      new NewMessage({ 
         chats: chatIds
       })
     );
@@ -276,23 +281,23 @@ class UserBot {
       asyncErrorHandler(this.handleChannelUpdate.bind(this), 'ChannelUpdate handler')
     );
 
-    // 4. NEW: Channel participant updates - track joins/leaves
+    // 4. Channel participant updates - track joins/leaves
     this.client.addEventHandler(
       asyncErrorHandler(this.handleChannelParticipantUpdate.bind(this), 'ChannelParticipant handler')
     );
 
     // 5. NEW: New channel messages - detect new admin channels
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleNewChannelDetection.bind(this), 'NewChannelDetection handler')
-    );
+    // ❌ DISABLED: This was causing spam!
+    // this.client.addEventHandler(
+    //   asyncErrorHandler(this.handleNewChannelDetection.bind(this), 'NewChannelDetection handler')
+    // );
+    */
 
-    this.logger.info('Event handlers setup completed', {
+    this.logger.info('Event handlers setup completed (DISABLED)', {
       channelCount: enabledChannels.length,
-      events: ['NewMessage', 'MessageEdit', 'ChannelUpdates', 'MemberChanges', 'NewChannelDetection']
+      events: ['All events temporarily disabled']
     });
-  }
-
-  /**
+  }  /**
    * Handles message edits
    * @param {Object} event - Message edit event
    */

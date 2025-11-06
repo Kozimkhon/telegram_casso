@@ -6,27 +6,27 @@
 import { Telegraf, Markup } from 'telegraf';
 import { config } from '../config/index.js';
 import { log, createChildLogger } from '../utils/logger.js';
-import { 
-  handleTelegramError, 
+import {
+  handleTelegramError,
   ValidationError,
-  asyncErrorHandler 
+  asyncErrorHandler
 } from '../utils/errorHandler.js';
 import { formatTimestamp, chunkArray } from '../utils/helpers.js';
-import { 
-  getAllChannels, 
-  toggleChannelForwarding, 
+import {
+  getAllChannels,
+  toggleChannelForwarding,
   getChannelStats,
-  removeChannel 
+  removeChannel
 } from '../services/channelService.js';
-import { 
-  getUserStats, 
+import {
+  getUserStats,
   getAllUsers,
-  getRecentUsers 
+  getRecentUsers
 } from '../services/userService.js';
-import { 
-  getForwardingStats, 
+import {
+  getForwardingStats,
   getRecentForwardingLogs,
-  cleanupMessageLogs 
+  cleanupMessageLogs
 } from '../services/messageService.js';
 import { setupSessionManagement } from './adminBotSessions.js';
 import { setupSessionAuthentication, cleanupExpiredAuthSessions } from './adminBotAuth.js';
@@ -46,29 +46,29 @@ class AdminBot {
       },
       handlerTimeout: 90000 // 90 seconds timeout for handlers
     });
-    
+
     this.userBot = userBot; // Legacy support, not used in multi-session mode
     this.userBotManager = userBotManager; // Required for multi-session support
     this.isRunning = false;
     this.logger = createChildLogger({ component: 'AdminBot' });
-    
+
     // Ensure userBotManager is provided for pure multi-session mode
     if (!this.userBotManager) {
       throw new Error('UserBotManager is required for multi-session operation');
     }
-    
+
     this.setupMiddleware();
     this.setupCommands();
     this.setupCallbacks();
-    
+
     // Setup session management
     setupSessionManagement(this.bot, asyncErrorHandler);
-    
+
     // Setup session authentication
     setupSessionAuthentication(this.bot, asyncErrorHandler, this.userBotManager);
-    
+
     this.logger.info('Multi-session management and authentication UI enabled');
-    
+
     // Cleanup expired auth sessions every 5 minutes
     setInterval(() => {
       cleanupExpiredAuthSessions();
@@ -82,37 +82,37 @@ class AdminBot {
     // Admin authentication middleware
     this.bot.use(asyncErrorHandler(async (ctx, next) => {
       const userId = ctx.from?.id;
-      
+
       // Allow certain callbacks for non-admin users (registration process)
       const allowedCallbacks = ['register_admin', 'contact_support'];
       const callbackData = ctx.callbackQuery?.data;
-      
+
       if (callbackData && allowedCallbacks.includes(callbackData)) {
         // Allow registration callbacks for non-admin users
         return next();
       }
-      
+
       // Check if user is admin from database
       const adminUser = await isUserAdminRegistered(userId);
-      
+
       if (!adminUser) {
         this.logger.warn('Unauthorized access attempt', {
           userId,
           username: ctx.from?.username,
           command: ctx.message?.text || ctx.callbackQuery?.data
         });
-        
+
         // Show registration prompt for unauthorized users
         const text = `❌ <b>Access Denied</b>\n\n` +
-                     `You are not registered as an admin.\n` +
-                     `To get access, you need to register as an admin.\n\n` +
-                     `Contact the system administrator or use the registration option below:`;
-        
+          `You are not registered as an admin.\n` +
+          `To get access, you need to register as an admin.\n\n` +
+          `Contact the system administrator or use the registration option below:`;
+
         const keyboard = Markup.inlineKeyboard([
           [Markup.button.callback('📝 Register as Admin', 'register_admin')],
           [Markup.button.callback('ℹ️ Contact Support', 'contact_support')]
         ]);
-        
+
         try {
           if (ctx.callbackQuery) {
             await ctx.editMessageText(text, {
@@ -139,16 +139,16 @@ class AdminBot {
         }
         return;
       }
-      
+
       this.logger.debug('Admin command received', {
         command: ctx.message?.text || ctx.callbackQuery?.data,
         userId,
         adminRole: adminUser.role
       });
-      
+
       // Store admin info in context for later use
       ctx.adminUser = adminUser;
-      
+
       return next();
     }, 'Admin auth middleware'));
 
@@ -159,7 +159,7 @@ class AdminBot {
         userId: ctx.from?.id,
         command: ctx.message?.text || ctx.callbackQuery?.data
       });
-      
+
       ctx.reply('❌ An error occurred. Please try again.').catch(() => {
         this.logger.error('Failed to send error message to user');
       });
@@ -311,7 +311,7 @@ class AdminBot {
     // Check if there are active sessions
     let activeSessions = 0;
     let hasActiveSessions = false;
-    
+
     if (this.userBotManager) {
       try {
         const managerStatus = this.userBotManager.getStatus();
@@ -419,11 +419,11 @@ Welcome to the multi-session management system!
       }
 
       let statusText = `🎛️ *Queue Status - Multi-Session System*\n\n`;
-      
+
       try {
         const { queueManager } = await import('../utils/messageQueue.js');
         const queueStatus = queueManager.getStatus();
-        
+
         if (Object.keys(queueStatus).length === 0) {
           statusText += `📋 No active queues\n\n`;
         } else {
@@ -474,13 +474,13 @@ Welcome to the multi-session management system!
       }
 
       let statsText = `⚡ *Performance Statistics*\n\n`;
-      
+
       // System uptime and memory
       const uptime = Math.floor(process.uptime());
       const hours = Math.floor(uptime / 3600);
       const minutes = Math.floor((uptime % 3600) / 60);
       const memory = process.memoryUsage();
-      
+
       statsText += `🕐 *System Status*\n`;
       statsText += `Uptime: ${hours}h ${minutes}m\n`;
       statsText += `Memory: ${Math.round(memory.heapUsed / 1024 / 1024)}MB\n`;
@@ -489,10 +489,10 @@ Welcome to the multi-session management system!
       // Session performance
       const managerStatus = this.userBotManager.getStatus();
       statsText += `📊 *Session Performance*\n`;
-      
+
       for (const session of managerStatus.sessions) {
-        const status = session.isRunning && !session.isPaused ? '✅' : 
-                      session.isPaused ? '⏸️' : '❌';
+        const status = session.isRunning && !session.isPaused ? '✅' :
+          session.isPaused ? '⏸️' : '❌';
         statsText += `${status} ${session.phone}\n`;
         statsText += `   Channels: ${session.connectedChannels}\n`;
         if (session.pauseReason) {
@@ -531,12 +531,12 @@ Welcome to the multi-session management system!
       const pageChannels = channels.slice(startIndex, endIndex);
 
       let text = `📋 *Channels Management* (Page ${page}/${totalPages})\n\n`;
-      
+
       if (channels.length === 0) {
         text += '❌ No channels found. UserBot needs to sync channels first.';
       } else {
         text += `Total channels: ${channels.length}\n\n`;
-        
+
         pageChannels.forEach((channel, index) => {
           const status = channel.forward_enabled ? '✅ Enabled' : '❌ Disabled';
           const number = startIndex + index + 1;
@@ -548,10 +548,10 @@ Welcome to the multi-session management system!
 
       // Build keyboard
       const buttons = [];
-      
+
       // Sync button at the top
       buttons.push([Markup.button.callback('🔄 Sync Channels', 'sync_channels')]);
-      
+
       // Channel control buttons
       pageChannels.forEach((channel, index) => {
         const number = startIndex + index + 1;
@@ -605,12 +605,12 @@ Welcome to the multi-session management system!
     try {
       const channel = await toggleChannelForwarding(channelId);
       const status = channel.forward_enabled ? 'enabled' : 'disabled';
-      
+
       await ctx.reply(`✅ Channel "${channel.title}" forwarding ${status}.`);
-      
+
       // Refresh the channels list
       setTimeout(() => {
-        this.showChannelsList(ctx).catch(err => 
+        this.showChannelsList(ctx).catch(err =>
           this.logger.error('Error refreshing channels list', err)
         );
       }, 1000);
@@ -630,7 +630,7 @@ Welcome to the multi-session management system!
     try {
       const channels = await getAllChannels();
       const channel = channels.find(c => c.channel_id === channelId);
-      
+
       if (!channel) {
         await ctx.reply('❌ Channel not found.');
         return;
@@ -664,16 +664,16 @@ Welcome to the multi-session management system!
   async confirmRemoveChannel(ctx, channelId) {
     try {
       const removed = await removeChannel(channelId);
-      
+
       if (removed) {
         await ctx.reply('✅ Channel removed successfully.');
       } else {
         await ctx.reply('❌ Channel not found or already removed.');
       }
-      
+
       // Return to channels list
       setTimeout(() => {
-        this.showChannelsList(ctx).catch(err => 
+        this.showChannelsList(ctx).catch(err =>
           this.logger.error('Error returning to channels list', err)
         );
       }, 1000);
@@ -691,9 +691,9 @@ Welcome to the multi-session management system!
   async showBotStatus(ctx) {
     try {
       const userBotStatus = this.userBot ? this.userBot.getStatus() : null;
-      
+
       let text = `🤖 *Bot Status Report*\n\n`;
-      
+
       // UserBot status
       if (userBotStatus) {
         text += `👤 *UserBot Status:*\n`;
@@ -708,7 +708,7 @@ Welcome to the multi-session management system!
       // AdminBot status
       text += `⚙️ *AdminBot Status:*\n`;
       text += `   Running: ${this.isRunning ? '✅ Yes' : '❌ No'}\n`;
-      
+
       // Get admin count
       try {
         const { getAllAdmins } = await import('../services/adminService.js');
@@ -765,7 +765,7 @@ Welcome to the multi-session management system!
           const username = user.username ? `@${user.username}` : 'No username';
           text += `   ${index + 1}. ${name} (${username})\n`;
         });
-        
+
         if (recentUsers.length > 5) {
           text += `   ... and ${recentUsers.length - 5} more\n`;
         }
@@ -795,7 +795,7 @@ Welcome to the multi-session management system!
     try {
       const today = new Date().toISOString().split('T')[0];
       const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-      
+
       const [todayStats, yesterdayStats, recentLogs] = await Promise.all([
         getForwardingStats({ fromDate: today }),
         getForwardingStats({ fromDate: yesterday, toDate: today }),
@@ -803,7 +803,7 @@ Welcome to the multi-session management system!
       ]);
 
       let text = `📨 *Forwarding Statistics*\n\n`;
-      
+
       text += `📅 *Today:*\n`;
       text += `   Total: ${todayStats.total}\n`;
       text += `   Successful: ${todayStats.successful} (${todayStats.successRate}%)\n`;
@@ -887,7 +887,7 @@ Welcome to the multi-session management system!
 Contact your system administrator or check application logs for troubleshooting.
 `;
 
-    await ctx.reply(helpText, { 
+    await ctx.reply(helpText, {
       parse_mode: 'Markdown',
       reply_markup: Markup.inlineKeyboard([
         [Markup.button.callback('🏠 Main Menu', 'main_menu')]
@@ -908,7 +908,7 @@ Contact your system administrator or check application logs for troubleshooting.
       ]);
 
       let text = `📊 *Overall Statistics*\n\n`;
-      
+
       text += `📋 *Channels:*\n`;
       text += `   Total: ${channelStats.total}\n`;
       text += `   Enabled: ${channelStats.enabled}\n`;
@@ -942,11 +942,11 @@ Contact your system administrator or check application logs for troubleshooting.
   async performCleanup(ctx) {
     try {
       await ctx.reply('🧹 Starting database cleanup...');
-      
+
       const deletedLogs = await cleanupMessageLogs(30); // Keep 30 days
-      
+
       await ctx.reply(`✅ Cleanup completed!\n\nDeleted ${deletedLogs} old message logs.`);
-      
+
     } catch (error) {
       this.logger.error('Error performing cleanup', error);
       await ctx.reply('❌ Error during cleanup operation.');
@@ -960,12 +960,12 @@ Contact your system administrator or check application logs for troubleshooting.
   async showStatus(ctx) {
     try {
       const userBotStatus = this.userBot ? this.userBot.getStatus() : null;
-      
+
       let text = `🤖 *Quick Status*\n\n`;
       text += `UserBot: ${userBotStatus?.isRunning ? '✅' : '❌'}\n`;
       text += `AdminBot: ${this.isRunning ? '✅' : '❌'}\n`;
       text += `Channels: ${userBotStatus?.connectedChannels || 0}\n`;
-      
+
       await ctx.reply(text, { parse_mode: 'Markdown' });
 
     } catch (error) {
@@ -986,7 +986,7 @@ Contact your system administrator or check application logs for troubleshooting.
       }
 
       const result = await this.userBot.syncChannelsManually();
-      
+
       if (result.success) {
         await ctx.reply(`✅ ${result.message}`);
         // Refresh the channels list
@@ -994,9 +994,9 @@ Contact your system administrator or check application logs for troubleshooting.
       } else {
         await ctx.reply(`❌ Sync failed: ${result.message}`);
       }
-      
+
       this.logger.info('Channels sync completed', result);
-      
+
     } catch (error) {
       this.logger.error('Error syncing channels', error);
       await ctx.reply('❌ Error syncing channels. Please try again.');
@@ -1010,37 +1010,37 @@ Contact your system administrator or check application logs for troubleshooting.
   async start() {
     try {
       this.logger.info('Starting AdminBot...');
-      
+
       // Retry configuration for connection issues
       const maxRetries = 5;
       const retryDelay = 3000; // 3 seconds
       let lastError;
-      
+
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
           this.logger.info(`🔄 AdminBot launch attempt ${attempt}/${maxRetries}...`);
-          
+
           // Try to launch with timeout
           const launchPromise = this.bot.launch();
-          const timeoutPromise = new Promise((_, reject) => 
+          const timeoutPromise = new Promise((_, reject) =>
             setTimeout(() => reject(new Error('Launch timeout after 30s')), 30000)
           );
-          
+
           await Promise.race([launchPromise, timeoutPromise]);
-          
+
           this.logger.info('✅ AdminBot launch completed successfully');
           break; // Success - exit retry loop
-          
+
         } catch (error) {
           lastError = error;
-          
+
           if (attempt < maxRetries) {
-            this.logger.warn(`⚠️ AdminBot launch attempt ${attempt} failed, retrying in ${retryDelay/1000}s...`, {
+            this.logger.warn(`⚠️ AdminBot launch attempt ${attempt} failed, retrying in ${retryDelay / 1000}s...`, {
               error: error.message,
               code: error.code,
               type: error.type
             });
-            
+
             // Wait before retry
             await new Promise(resolve => setTimeout(resolve, retryDelay));
           } else {
@@ -1051,14 +1051,14 @@ Contact your system administrator or check application logs for troubleshooting.
           }
         }
       }
-      
+
       this.isRunning = true;
       this.logger.info('AdminBot started successfully');
-      
+
       // Enable graceful stop
       process.once('SIGINT', () => this.stop());
       process.once('SIGTERM', () => this.stop());
-      
+
     } catch (error) {
       this.logger.error('Failed to start AdminBot', error);
       console.error('\n❌ AdminBot startup error:', error.message);
@@ -1078,12 +1078,12 @@ Contact your system administrator or check application logs for troubleshooting.
   async stop() {
     try {
       this.logger.info('Stopping AdminBot...');
-      
+
       this.isRunning = false;
       this.bot.stop();
-      
+
       this.logger.info('AdminBot stopped gracefully');
-      
+
     } catch (error) {
       this.logger.error('Error stopping AdminBot', error);
       throw error;
@@ -1095,48 +1095,48 @@ Contact your system administrator or check application logs for troubleshooting.
    */
   async processAdminRegistration(ctx) {
     const user = ctx.from;
-    
+
     try {
-      
+
       // Import services here to avoid circular dependencies
       const { addAdmin, isUserAdminRegistered } = await import('../services/adminService.js');
-      
+
       // Check if user is already an admin
       const existingAdmin = await isUserAdminRegistered(user.id);
-      
+
       if (existingAdmin) {
         // User is already registered as admin
         const text = `✅ <b>Already Registered!</b>\n\n` +
-                     `Welcome back, <b>${user.first_name}</b>!\n` +
-                     `You are already registered as an admin.\n\n` +
-                     `🎯 <b>Ready to go!</b>\n` +
-                     `You can now manage your phone sessions and channels.\n\n` +
-                     `📱 If you haven't added a session yet, click "Add Session" to connect your phone number.`;
-        
+          `Welcome back, <b>${user.first_name}</b>!\n` +
+          `You are already registered as an admin.\n\n` +
+          `🎯 <b>Ready to go!</b>\n` +
+          `You can now manage your phone sessions and channels.\n\n` +
+          `📱 If you haven't added a session yet, click "Add Session" to connect your phone number.`;
+
         const keyboard = Markup.inlineKeyboard([
           [Markup.button.callback('📱 Add Session', 'add_session')],
           [Markup.button.callback('🏠 Main Menu', 'main_menu')]
         ]);
-        
+
         await ctx.editMessageText(text, {
           parse_mode: 'HTML',
           ...keyboard
         });
-        
+
         this.logger.info('Admin tried to register again (already exists)', {
           userId: user.id,
           username: user.username,
           existingRole: existingAdmin.role
         });
-        
+
         return;
       }
-      
+
       // Show processing message for new registration
       await ctx.editMessageText(`⏳ <b>Registering Admin...</b>\n\nProcessing your registration...`, {
         parse_mode: 'HTML'
       });
-      
+
       const success = await addAdmin({
         user_id: user.id,
         first_name: user.first_name,
@@ -1144,31 +1144,31 @@ Contact your system administrator or check application logs for troubleshooting.
         username: user.username,
         role: 'admin'
       });
-      
+
       if (success) {
         const text = `✅ <b>Registration Successful!</b>\n\n` +
-                     `Welcome, <b>${user.first_name}</b>!\n` +
-                     `You are now registered as an admin.\n\n` +
-                     `🎯 <b>Next Step:</b>\n` +
-                     `Add your phone session to activate the userbot functionality.\n\n` +
-                     `📱 Click "Add Session" to connect your phone number and start managing channels!`;
-        
+          `Welcome, <b>${user.first_name}</b>!\n` +
+          `You are now registered as an admin.\n\n` +
+          `🎯 <b>Next Step:</b>\n` +
+          `Add your phone session to activate the userbot functionality.\n\n` +
+          `📱 Click "Add Session" to connect your phone number and start managing channels!`;
+
         const keyboard = Markup.inlineKeyboard([
           [Markup.button.callback('📱 Add Session', 'add_session')],
           [Markup.button.callback('🏠 Main Menu', 'main_menu')]
         ]);
-        
+
         await ctx.editMessageText(text, {
           parse_mode: 'HTML',
           ...keyboard
         });
-        
+
         this.logger.info('Admin auto-registration successful', {
           userId: user.id,
           username: user.username,
           firstName: user.first_name
         });
-        
+
       } else {
         await ctx.editMessageText(`❌ <b>Registration Failed</b>\n\nThere was an error during registration. Please try again or contact support.`, {
           parse_mode: 'HTML',
@@ -1182,26 +1182,26 @@ Contact your system administrator or check application logs for troubleshooting.
       }
     } catch (error) {
       this.logger.error('Error during admin auto-registration', { userId: user.id, error: error.message });
-      
+
       // Handle specific database constraint errors
       if (error.message && error.message.includes('UNIQUE constraint failed')) {
         // This shouldn't happen now since we check first, but handle it gracefully
         const text = `ℹ️ <b>Already Registered</b>\n\n` +
-                     `It looks like you're already in our system!\n` +
-                     `Let's get you to the main menu.`;
-        
+          `It looks like you're already in our system!\n` +
+          `Let's get you to the main menu.`;
+
         const keyboard = Markup.inlineKeyboard([
           [Markup.button.callback('🏠 Main Menu', 'main_menu')]
         ]);
-        
+
         await ctx.editMessageText(text, {
           parse_mode: 'HTML',
           ...keyboard
         });
-        
+
         return;
       }
-      
+
       // Handle callback query timeout errors gracefully
       if (error.message && error.message.includes('query is too old')) {
         await ctx.reply(`❌ <b>Registration Error</b>\n\nSession expired. Please send /start and try again.`, {
@@ -1226,18 +1226,18 @@ Contact your system administrator or check application logs for troubleshooting.
    */
   async showContactSupport(ctx) {
     const text = `📞 <b>Contact Support</b>\n\n` +
-                 `For admin access to Telegram Casso, please contact:\n\n` +
-                 `• System Administrator\n` +
-                 `• Technical Support Team\n` +
-                 `• Project Developer\n\n` +
-                 `Provide your Telegram user ID: <code>${ctx.from.id}</code>\n\n` +
-                 `💡 <b>Tip:</b> You can also try the self-registration option if available.`;
-    
+      `For admin access to Telegram Casso, please contact:\n\n` +
+      `• System Administrator\n` +
+      `• Technical Support Team\n` +
+      `• Project Developer\n\n` +
+      `Provide your Telegram user ID: <code>${ctx.from.id}</code>\n\n` +
+      `💡 <b>Tip:</b> You can also try the self-registration option if available.`;
+
     const keyboard = Markup.inlineKeyboard([
       [Markup.button.callback('📝 Try Registration', 'register_admin')],
       [Markup.button.callback('🔙 Back', 'main_menu')]
     ]);
-    
+
     await ctx.editMessageText(text, {
       parse_mode: 'HTML',
       ...keyboard
