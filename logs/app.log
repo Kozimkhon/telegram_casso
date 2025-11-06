@@ -93862,3 +93862,1996 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
 {
   "error": "Converting circular structure to JSON\n    --> starting at object with constructor 'Object'\n    --- property 'self' closes the circle"
 }
+2025-11-06 17:28:33 [INFO]: 🚀 Starting Telegram Casso Application...
+2025-11-06 17:28:33 [INFO]: ✅ Configuration validated successfully
+2025-11-06 17:28:34 [INFO]: ✅ Database initialized successfully
+2025-11-06 17:28:34 [INFO]: 🤖 Initializing UserBot...
+2025-11-06 17:28:34 [INFO]: Starting UserBot initialization...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:28:34 [INFO]: Creating new session
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:28:34 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:31:24 [INFO]: 🚀 Starting Telegram Casso Application...
+2025-11-06 17:31:24 [INFO]: ✅ Configuration validated successfully
+2025-11-06 17:31:25 [INFO]: ✅ Database initialized successfully
+2025-11-06 17:31:25 [INFO]: 🤖 Initializing UserBot...
+2025-11-06 17:31:25 [INFO]: Starting UserBot initialization...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:31:25 [INFO]: Creating new session
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:31:25 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:37:18 [INFO]: 🚀 Starting Telegram Casso Application...
+2025-11-06 17:37:18 [INFO]: ✅ Configuration validated successfully
+2025-11-06 17:37:18 [INFO]: ✅ Database initialized successfully
+2025-11-06 17:37:18 [INFO]: 🤖 Initializing UserBot...
+2025-11-06 17:37:18 [INFO]: Starting UserBot initialization...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:37:18 [INFO]: Creating new session
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:37:18 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBot",
+  "phone": "+998999900979"
+}
+2025-11-06 17:37:23 [INFO]: Phone number required for authentication
+{
+  "component": "UserBot"
+}
+2025-11-06 17:37:35 [INFO]: Verification code required
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:11 [INFO]: 2FA password required
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:19 [DEBUG]: Session saved to file
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:19 [INFO]: Successfully connected to Telegram
+{
+  "component": "UserBot",
+  "phone": "+998999900979",
+  "userId": "566160086"
+}
+2025-11-06 17:38:19 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:21 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:21 [INFO]: Syncing 59 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:21 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1872489717",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:38:21 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:21 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:38:21 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1982169744",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:38:21 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:21 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:38:21 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2457520684",
+  "title": "🌸 LADY HOME OPTOM"
+}
+2025-11-06 17:38:22 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1524514114",
+  "title": "BʀᴇɴᴅRᴀʏᴀ🌸"
+}
+2025-11-06 17:38:22 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2313105397",
+  "title": "Inner_uz"
+}
+2025-11-06 17:38:22 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1469582622",
+  "title": "SamAndroid - Samsung News"
+}
+2025-11-06 17:38:22 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1223182303",
+  "title": "Telefon bozori"
+}
+2025-11-06 17:38:23 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1108816414",
+  "title": "Bartonishoes"
+}
+2025-11-06 17:38:23 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1672071394",
+  "title": "NAZAR DUNYO"
+}
+2025-11-06 17:38:23 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2426542722",
+  "title": "FERRUCCI_UZ"
+}
+2025-11-06 17:38:23 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1052068360",
+  "title": "FrontEndDev"
+}
+2025-11-06 17:38:24 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1869873447",
+  "title": "Bash Days | Linux | DevOps"
+}
+2025-11-06 17:38:24 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1753714432",
+  "title": "Sodamoda.men"
+}
+2025-11-06 17:38:24 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1379195706",
+  "title": "BUNKER | DUBAI 🇦🇪"
+}
+2025-11-06 17:38:25 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1396382488",
+  "title": "Sammy Fans - Samsung, One UI 8, Galaxy Z Fold7, S25 Edge, S25 Ultra"
+}
+2025-11-06 17:38:25 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1348259519",
+  "title": "SamMobile.com - Samsung News! #TeamSAMSUNG #TeamGALAXY"
+}
+2025-11-06 17:38:25 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1175723706",
+  "title": "Kali Linux"
+}
+2025-11-06 17:38:25 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1660437645",
+  "title": "ADAMARI UZBEKISTAN | Erkaklar kiyimlari"
+}
+2025-11-06 17:38:26 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1976117167",
+  "title": "Viki _pijamiki"
+}
+2025-11-06 17:38:26 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2811908024",
+  "title": "Доктор GPT"
+}
+2025-11-06 17:38:26 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1320863950",
+  "title": "Лучшее с AliExpress"
+}
+2025-11-06 17:38:26 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1298510437",
+  "title": "Nasiya Bozor"
+}
+2025-11-06 17:38:27 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1196199866",
+  "title": "4PDA Community"
+}
+2025-11-06 17:38:27 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1517432518",
+  "title": "TOSHKENT CHILONZOR KVARTIRA"
+}
+2025-11-06 17:38:27 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1972718875",
+  "title": "Pollyshop"
+}
+2025-11-06 17:38:27 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1684146975",
+  "title": "Анализ данных (Data analysis)"
+}
+2025-11-06 17:38:28 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2452498069",
+  "title": "Жора Шк 10"
+}
+2025-11-06 17:38:28 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1055734742",
+  "title": "Costa Fashion"
+}
+2025-11-06 17:38:28 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2103902787",
+  "title": "Ijara,oldi soti kvartiralar🏢"
+}
+2025-11-06 17:38:28 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1505467341",
+  "title": "Feredeshop_"
+}
+2025-11-06 17:38:29 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1677118209",
+  "title": "Worldfrp.net"
+}
+2025-11-06 17:38:29 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1308735496",
+  "title": "SamLover.com - Samsung World: #Samsung #OneUI8 #Android16"
+}
+2025-11-06 17:38:29 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2735645713",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:38:29 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:29 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:38:29 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296685392",
+  "title": "Ideal Phone"
+}
+2025-11-06 17:38:30 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2848782349",
+  "title": "Sandy_x_shop🛍️"
+}
+2025-11-06 17:38:30 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1842049133",
+  "title": "Ego"
+}
+2025-11-06 17:38:30 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1039626561",
+  "title": "Библиотека программиста | программирование, кодинг, разработка"
+}
+2025-11-06 17:38:30 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1962352404",
+  "title": "NURSACE"
+}
+2025-11-06 17:38:31 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203517083",
+  "title": "Игрушки НЕ погремушки"
+}
+2025-11-06 17:38:31 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2076679306",
+  "title": "MOYRA shop"
+}
+2025-11-06 17:38:31 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1681090851",
+  "title": "cloudstoreuz"
+}
+2025-11-06 17:38:32 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2481918023",
+  "title": "Charlotte_uz_official"
+}
+2025-11-06 17:38:32 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1355573994",
+  "title": "Kutubxona™"
+}
+2025-11-06 17:38:32 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1376930095",
+  "title": "APTEKA_TV"
+}
+2025-11-06 17:38:33 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1114591086",
+  "title": "Machinelearning"
+}
+2025-11-06 17:38:34 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296763421",
+  "title": "Brendpenni"
+}
+2025-11-06 17:38:34 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1258470419",
+  "title": "Комплектующие у Артема"
+}
+2025-11-06 17:38:35 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1555418015",
+  "title": "Вайб кодинг"
+}
+2025-11-06 17:38:35 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2319410656",
+  "title": "Zamonaviy_shop"
+}
+2025-11-06 17:38:35 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1591690022",
+  "title": "🦋Nursamiya Collection🦋"
+}
+2025-11-06 17:38:36 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1830750509",
+  "title": "OpenAI Community"
+}
+2025-11-06 17:38:36 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1760730934",
+  "title": "Ekstaz_uz"
+}
+2025-11-06 17:38:36 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2645728475",
+  "title": "Glamour_St0re"
+}
+2025-11-06 17:38:36 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2241733208",
+  "title": "Maryamshop"
+}
+2025-11-06 17:38:37 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1628623447",
+  "title": "IPEK HOME ПОСТЕЛЬНОЕ БЕЛЪЁ"
+}
+2025-11-06 17:38:37 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203054640",
+  "title": "Xushnudbek.uz"
+}
+2025-11-06 17:38:37 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2037068368",
+  "title": "GENTLEMEN’S GALLERY"
+}
+2025-11-06 17:38:37 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1251322302",
+  "title": "Javascript"
+}
+2025-11-06 17:38:38 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1686925755",
+  "title": "Komplistore"
+}
+2025-11-06 17:38:38 [INFO]: Synced 0 channels (admin only) for session +998999900979
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:38:38 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:38:38 [INFO]: Syncing users from 0 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:38:38 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:38:38 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 0,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 17:38:38 [INFO]: ⏰ Periodic sync started
+{
+  "component": "UserBot",
+  "intervalMinutes": 2,
+  "nextSyncAt": "2025-11-06T12:40:38.405Z"
+}
+2025-11-06 17:38:38 [INFO]: 🗑️ Starting old message deletion...
+{
+  "component": "UserBot",
+  "messageAgeHours": 24
+}
+2025-11-06 17:38:38 [DEBUG]: [DB] SELECT on message_logs
+{
+  "operation": "old_messages",
+  "table": "message_logs",
+  "hoursOld": 24
+}
+2025-11-06 17:38:38 [INFO]: 🗑️ Periodic message deletion started
+{
+  "component": "UserBot",
+  "checkIntervalHours": 1,
+  "messageAgeHours": 24,
+  "nextCheckAt": "2025-11-06T13:38:38.406Z"
+}
+2025-11-06 17:38:38 [INFO]: UserBot started successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [INFO]: ✅ UserBot initialized and started
+2025-11-06 17:38:38 [DEBUG]: Found 0 old forwarded messages to delete
+{
+  "hoursOld": 24
+}
+2025-11-06 17:38:38 [INFO]: ✅ No old messages to delete
+{
+  "component": "UserBot"
+}
+2025-11-06 17:38:38 [INFO]: 👤 UserBot authenticated
+{
+  "userId": "566160086",
+  "firstName": "Jaloliddin",
+  "username": "otajalol"
+}
+2025-11-06 17:38:38 [INFO]: ⚙️ Initializing AdminBot...
+2025-11-06 17:38:38 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 17:39:28 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "/start",
+  "userId": 566160086
+}
+2025-11-06 17:39:30 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "channels_list",
+  "userId": 566160086
+}
+2025-11-06 17:39:30 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": false
+}
+2025-11-06 17:39:30 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": false
+}
+2025-11-06 17:39:35 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "sync_channels",
+  "userId": 566160086
+}
+2025-11-06 17:39:35 [INFO]: Manual channel sync triggered
+{
+  "component": "UserBot"
+}
+2025-11-06 17:39:36 [INFO]: Syncing 58 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 17:39:37 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1872489717",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:39:37 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:37 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:37 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1982169744",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:39:37 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:37 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:37 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1344710653",
+  "title": "MOLI_UZ"
+}
+2025-11-06 17:39:38 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2457520684",
+  "title": "🌸 LADY HOME OPTOM"
+}
+2025-11-06 17:39:38 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1524514114",
+  "title": "BʀᴇɴᴅRᴀʏᴀ🌸"
+}
+2025-11-06 17:39:38 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2313105397",
+  "title": "Inner_uz"
+}
+2025-11-06 17:39:38 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1469582622",
+  "title": "SamAndroid - Samsung News"
+}
+2025-11-06 17:39:39 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1223182303",
+  "title": "Telefon bozori"
+}
+2025-11-06 17:39:39 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1108816414",
+  "title": "Bartonishoes"
+}
+2025-11-06 17:39:39 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1672071394",
+  "title": "NAZAR DUNYO"
+}
+2025-11-06 17:39:39 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2426542722",
+  "title": "FERRUCCI_UZ"
+}
+2025-11-06 17:39:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1052068360",
+  "title": "FrontEndDev"
+}
+2025-11-06 17:39:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1869873447",
+  "title": "Bash Days | Linux | DevOps"
+}
+2025-11-06 17:39:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1753714432",
+  "title": "Sodamoda.men"
+}
+2025-11-06 17:39:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1379195706",
+  "title": "BUNKER | DUBAI 🇦🇪"
+}
+2025-11-06 17:39:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1396382488",
+  "title": "Sammy Fans - Samsung, One UI 8, Galaxy Z Fold7, S25 Edge, S25 Ultra"
+}
+2025-11-06 17:39:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1348259519",
+  "title": "SamMobile.com - Samsung News! #TeamSAMSUNG #TeamGALAXY"
+}
+2025-11-06 17:39:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1175723706",
+  "title": "Kali Linux"
+}
+2025-11-06 17:39:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1660437645",
+  "title": "ADAMARI UZBEKISTAN | Erkaklar kiyimlari"
+}
+2025-11-06 17:39:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1976117167",
+  "title": "Viki _pijamiki"
+}
+2025-11-06 17:39:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2811908024",
+  "title": "Доктор GPT"
+}
+2025-11-06 17:39:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1320863950",
+  "title": "Лучшее с AliExpress"
+}
+2025-11-06 17:39:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1298510437",
+  "title": "Nasiya Bozor"
+}
+2025-11-06 17:39:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1196199866",
+  "title": "4PDA Community"
+}
+2025-11-06 17:39:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1517432518",
+  "title": "TOSHKENT CHILONZOR KVARTIRA"
+}
+2025-11-06 17:39:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1972718875",
+  "title": "Pollyshop"
+}
+2025-11-06 17:39:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1684146975",
+  "title": "Анализ данных (Data analysis)"
+}
+2025-11-06 17:39:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2452498069",
+  "title": "Жора Шк 10"
+}
+2025-11-06 17:39:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1055734742",
+  "title": "Costa Fashion"
+}
+2025-11-06 17:39:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2103902787",
+  "title": "Ijara,oldi soti kvartiralar🏢"
+}
+2025-11-06 17:39:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1505467341",
+  "title": "Feredeshop_"
+}
+2025-11-06 17:39:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1677118209",
+  "title": "Worldfrp.net"
+}
+2025-11-06 17:39:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1308735496",
+  "title": "SamLover.com - Samsung World: #Samsung #OneUI8 #Android16"
+}
+2025-11-06 17:39:50 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2735645713",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:39:50 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:50 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296685392",
+  "title": "Ideal Phone"
+}
+2025-11-06 17:39:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2848782349",
+  "title": "Sandy_x_shop🛍️"
+}
+2025-11-06 17:39:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1842049133",
+  "title": "Ego"
+}
+2025-11-06 17:39:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1039626561",
+  "title": "Библиотека программиста | программирование, кодинг, разработка"
+}
+2025-11-06 17:39:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1962352404",
+  "title": "NURSACE"
+}
+2025-11-06 17:39:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203517083",
+  "title": "Игрушки НЕ погремушки"
+}
+2025-11-06 17:39:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2076679306",
+  "title": "MOYRA shop"
+}
+2025-11-06 17:39:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1681090851",
+  "title": "cloudstoreuz"
+}
+2025-11-06 17:39:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2481918023",
+  "title": "Charlotte_uz_official"
+}
+2025-11-06 17:39:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1355573994",
+  "title": "Kutubxona™"
+}
+2025-11-06 17:39:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1376930095",
+  "title": "APTEKA_TV"
+}
+2025-11-06 17:39:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1114591086",
+  "title": "Machinelearning"
+}
+2025-11-06 17:39:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296763421",
+  "title": "Brendpenni"
+}
+2025-11-06 17:39:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1258470419",
+  "title": "Комплектующие у Артема"
+}
+2025-11-06 17:39:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1555418015",
+  "title": "Вайб кодинг"
+}
+2025-11-06 17:39:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2319410656",
+  "title": "Zamonaviy_shop"
+}
+2025-11-06 17:39:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1591690022",
+  "title": "🦋Nursamiya Collection🦋"
+}
+2025-11-06 17:39:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1830750509",
+  "title": "OpenAI Community"
+}
+2025-11-06 17:39:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1760730934",
+  "title": "Ekstaz_uz"
+}
+2025-11-06 17:39:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2645728475",
+  "title": "Glamour_St0re"
+}
+2025-11-06 17:39:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2241733208",
+  "title": "Maryamshop"
+}
+2025-11-06 17:39:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1628623447",
+  "title": "IPEK HOME ПОСТЕЛЬНОЕ БЕЛЪЁ"
+}
+2025-11-06 17:39:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203054640",
+  "title": "Xushnudbek.uz"
+}
+2025-11-06 17:39:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2037068368",
+  "title": "GENTLEMEN’S GALLERY"
+}
+2025-11-06 17:39:57 [INFO]: Synced 0 channels (admin only) for session +998999900979
+{
+  "component": "UserBot"
+}
+2025-11-06 17:39:57 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": false
+}
+2025-11-06 17:39:57 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": false
+}
+2025-11-06 17:39:58 [ERROR]: Error showing channels list
+Error: 400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AdminBot.showChannelsList (file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:304:7)
+    at async AdminBot.syncChannels (file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:676:9)
+    at async file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:183:7
+    at async file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message"
+}
+2025-11-06 17:39:58 [INFO]: Channels sync completed Successfully synced 0 channels
+{
+  "component": "AdminBot",
+  "success": true,
+  "channelsCount": 0
+}
+2025-11-06 17:40:16 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "main_menu",
+  "userId": 566160086
+}
+2025-11-06 17:40:18 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "channels_list",
+  "userId": 566160086
+}
+2025-11-06 17:40:19 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": false
+}
+2025-11-06 17:40:19 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": false
+}
+2025-11-06 17:40:38 [INFO]: 🔄 Starting periodic sync...
+{
+  "component": "UserBot",
+  "intervalMinutes": 2
+}
+2025-11-06 17:40:38 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:39 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:39 [INFO]: Syncing 58 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:39 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1872489717",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:40:39 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:39 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:40:40 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1982169744",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:40:40 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:40 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:40:40 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5463248329506819806",
+  "sessionPhone": "+998999900979"
+}
+2025-11-06 17:40:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1538612606",
+  "title": "“Women” Нижнее Белье💖"
+}
+2025-11-06 17:40:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2457520684",
+  "title": "🌸 LADY HOME OPTOM"
+}
+2025-11-06 17:40:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2037068368",
+  "title": "GENTLEMEN’S GALLERY"
+}
+2025-11-06 17:40:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1344710653",
+  "title": "MOLI_UZ"
+}
+2025-11-06 17:40:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1524514114",
+  "title": "BʀᴇɴᴅRᴀʏᴀ🌸"
+}
+2025-11-06 17:40:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2313105397",
+  "title": "Inner_uz"
+}
+2025-11-06 17:40:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1469582622",
+  "title": "SamAndroid - Samsung News"
+}
+2025-11-06 17:40:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1223182303",
+  "title": "Telefon bozori"
+}
+2025-11-06 17:40:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1108816414",
+  "title": "Bartonishoes"
+}
+2025-11-06 17:40:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1672071394",
+  "title": "NAZAR DUNYO"
+}
+2025-11-06 17:40:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2426542722",
+  "title": "FERRUCCI_UZ"
+}
+2025-11-06 17:40:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1052068360",
+  "title": "FrontEndDev"
+}
+2025-11-06 17:40:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1869873447",
+  "title": "Bash Days | Linux | DevOps"
+}
+2025-11-06 17:40:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1753714432",
+  "title": "Sodamoda.men"
+}
+2025-11-06 17:40:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1379195706",
+  "title": "BUNKER | DUBAI 🇦🇪"
+}
+2025-11-06 17:40:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1396382488",
+  "title": "Sammy Fans - Samsung, One UI 8, Galaxy Z Fold7, S25 Edge, S25 Ultra"
+}
+2025-11-06 17:40:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1348259519",
+  "title": "SamMobile.com - Samsung News! #TeamSAMSUNG #TeamGALAXY"
+}
+2025-11-06 17:40:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1175723706",
+  "title": "Kali Linux"
+}
+2025-11-06 17:40:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1660437645",
+  "title": "ADAMARI UZBEKISTAN | Erkaklar kiyimlari"
+}
+2025-11-06 17:40:46 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1976117167",
+  "title": "Viki _pijamiki"
+}
+2025-11-06 17:40:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2811908024",
+  "title": "Доктор GPT"
+}
+2025-11-06 17:40:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1320863950",
+  "title": "Лучшее с AliExpress"
+}
+2025-11-06 17:40:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1298510437",
+  "title": "Nasiya Bozor"
+}
+2025-11-06 17:40:47 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1196199866",
+  "title": "4PDA Community"
+}
+2025-11-06 17:40:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1517432518",
+  "title": "TOSHKENT CHILONZOR KVARTIRA"
+}
+2025-11-06 17:40:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1972718875",
+  "title": "Pollyshop"
+}
+2025-11-06 17:40:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1684146975",
+  "title": "Анализ данных (Data analysis)"
+}
+2025-11-06 17:40:49 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2452498069",
+  "title": "Жора Шк 10"
+}
+2025-11-06 17:40:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1055734742",
+  "title": "Costa Fashion"
+}
+2025-11-06 17:40:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2103902787",
+  "title": "Ijara,oldi soti kvartiralar🏢"
+}
+2025-11-06 17:40:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1505467341",
+  "title": "Feredeshop_"
+}
+2025-11-06 17:40:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1677118209",
+  "title": "Worldfrp.net"
+}
+2025-11-06 17:40:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1308735496",
+  "title": "SamLover.com - Samsung World: #Samsung #OneUI8 #Android16"
+}
+2025-11-06 17:40:51 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2735645713",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:40:51 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:51 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:40:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296685392",
+  "title": "Ideal Phone"
+}
+2025-11-06 17:40:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2848782349",
+  "title": "Sandy_x_shop🛍️"
+}
+2025-11-06 17:40:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1842049133",
+  "title": "Ego"
+}
+2025-11-06 17:40:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1039626561",
+  "title": "Библиотека программиста | программирование, кодинг, разработка"
+}
+2025-11-06 17:40:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1962352404",
+  "title": "NURSACE"
+}
+2025-11-06 17:40:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203517083",
+  "title": "Игрушки НЕ погремушки"
+}
+2025-11-06 17:40:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2076679306",
+  "title": "MOYRA shop"
+}
+2025-11-06 17:40:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1681090851",
+  "title": "cloudstoreuz"
+}
+2025-11-06 17:40:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2481918023",
+  "title": "Charlotte_uz_official"
+}
+2025-11-06 17:40:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1355573994",
+  "title": "Kutubxona™"
+}
+2025-11-06 17:40:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1376930095",
+  "title": "APTEKA_TV"
+}
+2025-11-06 17:40:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1114591086",
+  "title": "Machinelearning"
+}
+2025-11-06 17:40:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296763421",
+  "title": "Brendpenni"
+}
+2025-11-06 17:40:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1258470419",
+  "title": "Комплектующие у Артема"
+}
+2025-11-06 17:40:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1555418015",
+  "title": "Вайб кодинг"
+}
+2025-11-06 17:40:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2319410656",
+  "title": "Zamonaviy_shop"
+}
+2025-11-06 17:40:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1591690022",
+  "title": "🦋Nursamiya Collection🦋"
+}
+2025-11-06 17:40:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1830750509",
+  "title": "OpenAI Community"
+}
+2025-11-06 17:40:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1760730934",
+  "title": "Ekstaz_uz"
+}
+2025-11-06 17:40:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2645728475",
+  "title": "Glamour_St0re"
+}
+2025-11-06 17:40:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2241733208",
+  "title": "Maryamshop"
+}
+2025-11-06 17:40:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1628623447",
+  "title": "IPEK HOME ПОСТЕЛЬНОЕ БЕЛЪЁ"
+}
+2025-11-06 17:40:58 [INFO]: Synced 0 channels (admin only) for session +998999900979
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:58 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:40:58 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:40:58 [INFO]: Syncing users from 0 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:58 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:58 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 17:40:58 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:40:58 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:40:58 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 0,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 17:40:58 [INFO]: ✅ Periodic sync completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:42:38 [INFO]: 🔄 Starting periodic sync...
+{
+  "component": "UserBot",
+  "intervalMinutes": 2
+}
+2025-11-06 17:42:38 [INFO]: Starting channels and users synchronization...
+{
+  "component": "UserBot"
+}
+2025-11-06 17:42:39 [INFO]: Found 100 dialogs
+{
+  "component": "UserBot"
+}
+2025-11-06 17:42:39 [INFO]: Syncing 58 channels (groups excluded)
+{
+  "component": "UserBot"
+}
+2025-11-06 17:42:39 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1872489717",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:42:39 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:39 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:40 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "1982169744",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:42:40 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:40 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2077167285",
+  "title": "Maklersiz Top | Studentlarga kvartira bezmakler Talabalarga"
+}
+2025-11-06 17:42:40 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2457520684",
+  "title": "🌸 LADY HOME OPTOM"
+}
+2025-11-06 17:42:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1538612606",
+  "title": "“Women” Нижнее Белье💖"
+}
+2025-11-06 17:42:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2037068368",
+  "title": "GENTLEMEN’S GALLERY"
+}
+2025-11-06 17:42:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1344710653",
+  "title": "MOLI_UZ"
+}
+2025-11-06 17:42:41 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1524514114",
+  "title": "BʀᴇɴᴅRᴀʏᴀ🌸"
+}
+2025-11-06 17:42:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2313105397",
+  "title": "Inner_uz"
+}
+2025-11-06 17:42:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1469582622",
+  "title": "SamAndroid - Samsung News"
+}
+2025-11-06 17:42:42 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1223182303",
+  "title": "Telefon bozori"
+}
+2025-11-06 17:42:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1108816414",
+  "title": "Bartonishoes"
+}
+2025-11-06 17:42:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1672071394",
+  "title": "NAZAR DUNYO"
+}
+2025-11-06 17:42:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2426542722",
+  "title": "FERRUCCI_UZ"
+}
+2025-11-06 17:42:43 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1052068360",
+  "title": "FrontEndDev"
+}
+2025-11-06 17:42:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1869873447",
+  "title": "Bash Days | Linux | DevOps"
+}
+2025-11-06 17:42:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1753714432",
+  "title": "Sodamoda.men"
+}
+2025-11-06 17:42:44 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5215477357032247874",
+  "sessionPhone": "+998999900979"
+}
+2025-11-06 17:42:44 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5215477357032247874",
+  "sessionPhone": "+998999900979"
+}
+2025-11-06 17:42:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1379195706",
+  "title": "BUNKER | DUBAI 🇦🇪"
+}
+2025-11-06 17:42:44 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1396382488",
+  "title": "Sammy Fans - Samsung, One UI 8, Galaxy Z Fold7, S25 Edge, S25 Ultra"
+}
+2025-11-06 17:42:45 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1348259519",
+  "title": "SamMobile.com - Samsung News! #TeamSAMSUNG #TeamGALAXY"
+}
+2025-11-06 17:42:48 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1175723706",
+  "title": "Kali Linux"
+}
+2025-11-06 17:42:50 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1660437645",
+  "title": "ADAMARI UZBEKISTAN | Erkaklar kiyimlari"
+}
+2025-11-06 17:42:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1976117167",
+  "title": "Viki _pijamiki"
+}
+2025-11-06 17:42:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2811908024",
+  "title": "Доктор GPT"
+}
+2025-11-06 17:42:51 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1320863950",
+  "title": "Лучшее с AliExpress"
+}
+2025-11-06 17:42:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1298510437",
+  "title": "Nasiya Bozor"
+}
+2025-11-06 17:42:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1196199866",
+  "title": "4PDA Community"
+}
+2025-11-06 17:42:52 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1517432518",
+  "title": "TOSHKENT CHILONZOR KVARTIRA"
+}
+2025-11-06 17:42:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1972718875",
+  "title": "Pollyshop"
+}
+2025-11-06 17:42:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1684146975",
+  "title": "Анализ данных (Data analysis)"
+}
+2025-11-06 17:42:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2452498069",
+  "title": "Жора Шк 10"
+}
+2025-11-06 17:42:53 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1055734742",
+  "title": "Costa Fashion"
+}
+2025-11-06 17:42:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2103902787",
+  "title": "Ijara,oldi soti kvartiralar🏢"
+}
+2025-11-06 17:42:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1505467341",
+  "title": "Feredeshop_"
+}
+2025-11-06 17:42:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1677118209",
+  "title": "Worldfrp.net"
+}
+2025-11-06 17:42:54 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1308735496",
+  "title": "SamLover.com - Samsung World: #Samsung #OneUI8 #Android16"
+}
+2025-11-06 17:42:55 [DEBUG]: [DB] INSERT on channels
+{
+  "operation": "INSERT",
+  "table": "channels",
+  "channelId": "2735645713",
+  "adminSessionPhone": "+998999900979"
+}
+2025-11-06 17:42:55 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:55 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296685392",
+  "title": "Ideal Phone"
+}
+2025-11-06 17:42:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2848782349",
+  "title": "Sandy_x_shop🛍️"
+}
+2025-11-06 17:42:55 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1842049133",
+  "title": "Ego"
+}
+2025-11-06 17:42:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1039626561",
+  "title": "Библиотека программиста | программирование, кодинг, разработка"
+}
+2025-11-06 17:42:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1962352404",
+  "title": "NURSACE"
+}
+2025-11-06 17:42:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1203517083",
+  "title": "Игрушки НЕ погремушки"
+}
+2025-11-06 17:42:56 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2076679306",
+  "title": "MOYRA shop"
+}
+2025-11-06 17:42:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1681090851",
+  "title": "cloudstoreuz"
+}
+2025-11-06 17:42:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2481918023",
+  "title": "Charlotte_uz_official"
+}
+2025-11-06 17:42:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1355573994",
+  "title": "Kutubxona™"
+}
+2025-11-06 17:42:57 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1376930095",
+  "title": "APTEKA_TV"
+}
+2025-11-06 17:42:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1114591086",
+  "title": "Machinelearning"
+}
+2025-11-06 17:42:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1296763421",
+  "title": "Brendpenni"
+}
+2025-11-06 17:42:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1258470419",
+  "title": "Комплектующие у Артема"
+}
+2025-11-06 17:42:58 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1555418015",
+  "title": "Вайб кодинг"
+}
+2025-11-06 17:42:59 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2319410656",
+  "title": "Zamonaviy_shop"
+}
+2025-11-06 17:42:59 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1591690022",
+  "title": "🦋Nursamiya Collection🦋"
+}
+2025-11-06 17:42:59 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1830750509",
+  "title": "OpenAI Community"
+}
+2025-11-06 17:42:59 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "1760730934",
+  "title": "Ekstaz_uz"
+}
+2025-11-06 17:43:00 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2645728475",
+  "title": "Glamour_St0re"
+}
+2025-11-06 17:43:00 [DEBUG]: Skipping channel (not admin)
+{
+  "component": "UserBot",
+  "channelId": "2241733208",
+  "title": "Maryamshop"
+}
+2025-11-06 17:43:00 [INFO]: Synced 0 channels (admin only) for session +998999900979
+{
+  "component": "UserBot"
+}
+2025-11-06 17:43:00 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:43:00 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:43:00 [INFO]: Syncing users from 0 enabled channels
+{
+  "component": "UserBot"
+}
+2025-11-06 17:43:00 [INFO]: Synchronization completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:43:00 [DEBUG]: Setting up comprehensive event handlers
+{
+  "component": "UserBot"
+}
+2025-11-06 17:43:00 [DEBUG]: [DB] SELECT on channels
+{
+  "operation": "SELECT",
+  "table": "channels",
+  "onlyEnabled": true
+}
+2025-11-06 17:43:00 [DEBUG]: Retrieved 0 channels
+{
+  "onlyEnabled": true
+}
+2025-11-06 17:43:00 [INFO]: Event handlers setup completed
+{
+  "component": "UserBot",
+  "channelCount": 0,
+  "events": [
+    "NewMessage",
+    "MessageEdit",
+    "ChannelUpdates",
+    "MemberChanges"
+  ]
+}
+2025-11-06 17:43:00 [INFO]: ✅ Periodic sync completed successfully
+{
+  "component": "UserBot"
+}
+2025-11-06 17:43:27 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5163541409898168491",
+  "sessionPhone": "+998999900979"
+}
+2025-11-06 17:43:27 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5163541409898168491",
+  "sessionPhone": "+998999900979"
+}
+2025-11-06 17:43:27 [INFO]: 📊 Poll updated
+{
+  "component": "UserBot",
+  "pollId": "5163541409898168491",
+  "sessionPhone": "+998999900979"
+}

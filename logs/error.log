@@ -51423,3 +51423,150 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
   "originalError": "Database error during getChannelById",
   "sqliteCode": "DATABASE_ERROR"
 }
+2025-11-06 17:38:21 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:21 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:38:21 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:21 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:38:29 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:38:29 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:37 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:37 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:37 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:37 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:50 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:39:50 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:39:58 [ERROR]: Error showing channels list
+Error: 400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AdminBot.showChannelsList (file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:304:7)
+    at async AdminBot.syncChannels (file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:676:9)
+    at async file:///E:/Experiments/telegram_casso/src/bots/adminBot.js:183:7
+    at async file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message"
+}
+2025-11-06 17:40:39 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:39 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:40:40 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:40 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:40:51 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:40:51 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:39 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:39 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:40 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:40 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "1 card",
+  "error": "Database constraint violation during addChannel"
+}
+2025-11-06 17:42:55 [ERROR]: Database constraint violation during addChannel
+{
+  "operation": "addChannel",
+  "originalError": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "sqliteCode": "SQLITE_CONSTRAINT"
+}
+2025-11-06 17:42:55 [ERROR]: Failed to sync channel
+{
+  "channelTitle": "AsbtMobile",
+  "error": "Database constraint violation during addChannel"
+}
