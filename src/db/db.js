@@ -39,12 +39,16 @@ const schemas = {
       channel_id TEXT UNIQUE NOT NULL,
       title TEXT NOT NULL,
       forward_enabled BOOLEAN DEFAULT 1,
+      admin_session_phone TEXT,
       throttle_delay_ms INTEGER DEFAULT 1000,
       throttle_per_member_ms INTEGER DEFAULT 500,
+      min_delay_ms INTEGER DEFAULT 2000,
+      max_delay_ms INTEGER DEFAULT 5000,
       schedule_enabled BOOLEAN DEFAULT 0,
       schedule_config TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (admin_session_phone) REFERENCES sessions(phone)
     )
   `,
   

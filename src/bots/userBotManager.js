@@ -13,7 +13,9 @@ import {
   getSessionsReadyToResume,
   updateSessionActivity
 } from '../services/sessionService.js';
+import { getChannelAdminSession } from '../services/channelService.js';
 import { isFloodWaitError, isSpamWarning } from '../utils/errorHandler.js';
+import { queueManager } from '../utils/messageQueue.js';
 
 class UserBotManager {
   constructor() {
@@ -126,7 +128,52 @@ class UserBotManager {
   }
 
   /**
+   * Gets the admin bot for a specific channel
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<UserBot|null>} UserBot instance or null
+   */
+  async getBotForChannel(channelId) {
+    try {
+      const adminSessionPhone = await getChannelAdminSession(channelId);
+      
+      if (!adminSessionPhone) {
+        this.logger.warn('No admin session found for channel', { channelId });
+        return null;
+      }
+
+      const bot = this.getUserBot(adminSessionPhone);
+      
+      if (!bot) {
+        this.logger.warn('Admin session not found in bot pool', { 
+          channelId, 
+          adminSessionPhone 
+        });
+        return null;
+      }
+
+      if (!bot.isRunning || bot.isPaused) {
+        this.logger.warn('Admin bot is not active', { 
+          channelId, 
+          adminSessionPhone,
+          isRunning: bot.isRunning,
+          isPaused: bot.isPaused
+        });
+        return null;
+      }
+
+      return bot;
+    } catch (error) {
+      this.logger.error('Error getting bot for channel', {
+        channelId,
+        error: error.message
+      });
+      return null;
+    }
+  }
+
+  /**
    * Gets an active userbot (random selection for load balancing)
+   * @deprecated Use getBotForChannel for channel-specific operations
    * @returns {UserBot|null} Active userbot or null
    */
   getRandomActiveBot() {

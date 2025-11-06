@@ -242,10 +242,10 @@ class UserBot {
   }
 
   /**
-   * Sets up event handlers for message monitoring
+   * Sets up event handlers for comprehensive channel monitoring
    */
   async setupEventHandlers() {
-    this.logger.debug('Setting up event handlers');
+    this.logger.debug('Setting up comprehensive event handlers');
 
     // Store enabled channel IDs for filtering in handleNewMessage
     const enabledChannels = await getAllChannels(true);
@@ -257,7 +257,7 @@ class UserBot {
     // Convert channel IDs to BigInt for GramJS chats parameter
     const chatIds = Array.from(this.enabledChannelIds).map(id => BigInt(id));
     
-    // Listen ONLY to messages from admin channels using chats parameter
+    // 1. New messages
     this.client.addEventHandler(
       asyncErrorHandler(this.handleNewMessage.bind(this), 'NewMessage handler'),
       new NewMessage({ 
@@ -265,9 +265,181 @@ class UserBot {
       })
     );
 
-    this.logger.debug('Event handlers setup completed', {
-      channelCount: enabledChannels.length
+    // 2. Message edits
+    this.client.addEventHandler(
+      asyncErrorHandler(this.handleMessageEdit.bind(this), 'MessageEdit handler'),
+      new NewMessage({
+        chats: chatIds
+      })
+    );
+
+    // 3. Message deletes (use Raw event for deletions)
+    this.client.addEventHandler(
+      asyncErrorHandler(this.handleChannelUpdate.bind(this), 'ChannelUpdate handler'),
+      // Listen to all updates for admin channels
+    );
+
+    this.logger.info('Event handlers setup completed', {
+      channelCount: enabledChannels.length,
+      events: ['NewMessage', 'MessageEdit', 'ChannelUpdates', 'MemberChanges']
     });
+  }
+
+  /**
+   * Handles message edits
+   * @param {Object} event - Message edit event
+   */
+  async handleMessageEdit(event) {
+    try {
+      if (!event.message?.edit_date) {
+        return; // Not an edit
+      }
+
+      const message = event.message;
+      const chatId = this.extractChatId(message);
+
+      if (!chatId || !this.enabledChannelIds.has(chatId)) {
+        return;
+      }
+
+      this.logger.info('📝 Message edited', {
+        channelId: chatId,
+        messageId: message.id,
+        sessionPhone: this.phone
+      });
+
+      // Process edited message (could forward update to members)
+      // Implementation depends on requirements
+    } catch (error) {
+      this.logger.error('Error handling message edit', {
+        error: error.message
+      });
+    }
+  }
+
+  /**
+   * Handles various channel updates (deletes, pins, member changes, etc.)
+   * @param {Object} event - Channel update event
+   */
+  async handleChannelUpdate(event) {
+    try {
+      const update = event;
+
+      // Handle message deletions
+      if (update.className === 'UpdateDeleteChannelMessages' || 
+          update.className === 'UpdateDeleteMessages') {
+        const channelId = update.channelId?.toString();
+        const messages = update.messages || [];
+
+        if (channelId && this.enabledChannelIds.has(channelId)) {
+          this.logger.info('🗑️ Messages deleted', {
+            channelId,
+            count: messages.length,
+            messageIds: messages,
+            sessionPhone: this.phone
+          });
+        }
+      }
+
+      // Handle pinned messages
+      if (update.className === 'UpdatePinnedChannelMessages' ||
+          update.className === 'UpdatePinnedMessages') {
+        const channelId = update.channelId?.toString();
+
+        if (channelId && this.enabledChannelIds.has(channelId)) {
+          this.logger.info('📌 Message pinned/unpinned', {
+            channelId,
+            pinned: update.pinned,
+            sessionPhone: this.phone
+          });
+        }
+      }
+
+      // Handle channel participant updates (joins, leaves, bans)
+      if (update.className === 'UpdateChannelParticipant') {
+        const channelId = update.channelId?.toString();
+
+        if (channelId && this.enabledChannelIds.has(channelId)) {
+          this.logger.info('👥 Member update', {
+            channelId,
+            userId: update.userId?.toString(),
+            prevParticipant: update.prevParticipant?.className,
+            newParticipant: update.newParticipant?.className,
+            sessionPhone: this.phone
+          });
+        }
+      }
+
+      // Handle channel info changes
+      if (update.className === 'UpdateChannel') {
+        const channelId = update.channelId?.toString();
+
+        if (channelId && this.enabledChannelIds.has(channelId)) {
+          this.logger.info('ℹ️ Channel info updated', {
+            channelId,
+            sessionPhone: this.phone
+          });
+        }
+      }
+
+      // Handle poll updates
+      if (update.className === 'UpdateMessagePoll') {
+        const pollId = update.pollId?.toString();
+
+        this.logger.info('📊 Poll updated', {
+          pollId,
+          sessionPhone: this.phone
+        });
+      }
+
+    } catch (error) {
+      this.logger.error('Error handling channel update', {
+        error: error.message
+      });
+    }
+  }
+
+  /**
+   * Extracts chat ID from a message
+   * @param {Object} message - Message object
+   * @returns {string|null} Chat ID
+   */
+  extractChatId(message) {
+    let chatId = null;
+    
+    if (message.chat?.id) {
+      const rawChatId = message.chat.id;
+      
+      if (typeof rawChatId === 'bigint') {
+        chatId = rawChatId.toString();
+      } else if (rawChatId.value !== undefined) {
+        chatId = rawChatId.value.toString();
+      } else {
+        chatId = rawChatId.toString();
+      }
+    } else if (message.peerId?.channelId) {
+      const rawChannelId = message.peerId.channelId;
+      
+      let channelIdStr;
+      if (typeof rawChannelId === 'bigint') {
+        channelIdStr = rawChannelId.toString();
+      } else if (rawChannelId.value !== undefined) {
+        channelIdStr = rawChannelId.value.toString();
+      } else {
+        channelIdStr = rawChannelId.toString();
+      }
+      
+      const channelIdNum = BigInt(channelIdStr);
+      
+      if (channelIdNum < 0n) {
+        const actualId = channelIdNum * -1n - 1000000000000n;
+        chatId = actualId.toString();
+      } else {
+        chatId = channelIdStr;
+      }
+    }
+
+    return chatId;
   }
 
   /**
@@ -283,47 +455,8 @@ class UserBot {
       console.log('Channel title:', message.chat?.title || 'Unknown');
       console.log('message.chat.id:', message.chat?.id);
       
-      // Get chat ID from message.chat.id (most reliable)
-      let chatId = null;
-      
-      if (message.chat?.id) {
-        const rawChatId = message.chat.id;
-        
-        // Convert to string properly (handles BigInt and Integer objects)
-        if (typeof rawChatId === 'bigint') {
-          chatId = rawChatId.toString();
-        } else if (rawChatId.value !== undefined) {
-          chatId = rawChatId.value.toString();
-        } else {
-          chatId = rawChatId.toString();
-        }
-        
-        console.log('✅ Got chatId from message.chat.id:', chatId);
-      } else if (message.peerId?.channelId) {
-        const rawChannelId = message.peerId.channelId;
-        
-        // Convert to string properly (handles BigInt and Integer objects)
-        let channelIdStr;
-        if (typeof rawChannelId === 'bigint') {
-          channelIdStr = rawChannelId.toString();
-        } else if (rawChannelId.value !== undefined) {
-          channelIdStr = rawChannelId.value.toString();
-        } else {
-          channelIdStr = rawChannelId.toString();
-        }
-        
-        const channelIdNum = BigInt(channelIdStr);
-        
-        // If it's a marked channel ID (negative), convert it
-        if (channelIdNum < 0n) {
-          const actualId = channelIdNum * -1n - 1000000000000n;
-          chatId = actualId.toString();
-        } else {
-          chatId = channelIdStr;
-        }
-        
-        console.log('✅ Got chatId from message.peerId.channelId:', chatId);
-      }
+      // Use extracted method to get chat ID
+      const chatId = this.extractChatId(message);
       
       console.log('🎯 FINAL chatId:', chatId);
       console.log('📋 Enabled channel IDs:', Array.from(this.enabledChannelIds || []));
@@ -501,17 +634,19 @@ class UserBot {
           const isAdmin = await this.isUserAdminInChannel(dialog.entity);
           
           if (isAdmin) {
-            await addChannel(channelInfo);
+            // Link channel to this session
+            await addChannel(channelInfo, this.phone);
             this.connectedChannels.set(channelInfo.channelId, channelInfo);
             
             // Store the channel entity for event filtering
             this.adminChannelEntities.push(dialog.entity);
             
-            console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title);
+            console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title, '-> session:', this.phone);
             
-            this.logger.debug('Channel synced', {
+            this.logger.debug('Channel synced and linked', {
               channelId: channelInfo.channelId,
-              title: channelInfo.title
+              title: channelInfo.title,
+              sessionPhone: this.phone
             });
           } else {
             this.logger.debug('Skipping channel (not admin)', {
@@ -527,7 +662,7 @@ class UserBot {
         }
       }
 
-      this.logger.info(`Synced ${this.connectedChannels.size} channels (admin only)`);
+      this.logger.info(`Synced ${this.connectedChannels.size} channels (admin only) for session ${this.phone}`);
     } catch (error) {
       this.logger.error('Error syncing channels', error);
       throw error;

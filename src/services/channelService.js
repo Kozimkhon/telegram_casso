@@ -9,11 +9,12 @@ import { handleDatabaseError } from '../utils/errorHandler.js';
 import { extractChannelInfo, isValidChannelId, sanitizeText } from '../utils/helpers.js';
 
 /**
- * Adds a new channel to the database
+ * Adds a new channel to the database with optional admin session
  * @param {Object} channelData - Channel information (already extracted or raw entity)
+ * @param {string} adminSessionPhone - Phone number of admin session (optional)
  * @returns {Promise<Object>} Added channel data
  */
-export async function addChannel(channelData) {
+export async function addChannel(channelData, adminSessionPhone = null) {
   try {
     // If channelData already has channelId property, it's already extracted
     const channelInfo = channelData.channelId ? channelData : extractChannelInfo(channelData);
@@ -22,20 +23,24 @@ export async function addChannel(channelData) {
       throw new Error(`Invalid channel ID: ${channelInfo.channelId}`);
     }
 
-    log.dbOperation('INSERT', 'channels', { channelId: channelInfo.channelId });
+    log.dbOperation('INSERT', 'channels', { 
+      channelId: channelInfo.channelId,
+      adminSessionPhone 
+    });
 
     const result = await runQuery(
       `INSERT OR REPLACE INTO channels 
-       (channel_id, title, forward_enabled, updated_at) 
-       VALUES (?, ?, ?, CURRENT_TIMESTAMP)`,
-      [channelInfo.channelId, channelInfo.title, true]
+       (channel_id, title, forward_enabled, admin_session_phone, updated_at) 
+       VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)`,
+      [channelInfo.channelId, channelInfo.title, true, adminSessionPhone]
     );
 
     const addedChannel = await getChannelById(channelInfo.channelId);
     
     log.info('Channel added successfully', {
       channelId: channelInfo.channelId,
-      title: channelInfo.title
+      title: channelInfo.title,
+      adminSessionPhone
     });
 
     return addedChannel;
@@ -297,5 +302,86 @@ export default {
   removeChannel,
   isChannelEnabled,
   getChannelStats,
-  bulkUpdateChannels
+  bulkUpdateChannels,
+  linkChannelToSession,
+  getChannelsByAdminSession,
+  getChannelAdminSession
 };
+/**
+ * Links a channel to an admin session
+ * @param {string} channelId - Channel ID
+ * @param {string} adminSessionPhone - Phone number of admin session
+ * @returns {Promise<Object>} Updated channel
+ */
+export async function linkChannelToSession(channelId, adminSessionPhone) {
+  try {
+    log.dbOperation('UPDATE', 'channels', { 
+      channelId, 
+      adminSessionPhone,
+      operation: 'linkSession'
+    });
+
+    await runQuery(
+      `UPDATE channels 
+       SET admin_session_phone = ?, updated_at = CURRENT_TIMESTAMP 
+       WHERE channel_id = ?`,
+      [adminSessionPhone, channelId]
+    );
+
+    const updatedChannel = await getChannelById(channelId);
+
+    log.info('Channel linked to session', { 
+      channelId, 
+      adminSessionPhone 
+    });
+
+    return updatedChannel;
+  } catch (error) {
+    throw handleDatabaseError(error, 'linkChannelToSession');
+  }
+}
+
+/**
+ * Gets channels managed by a specific admin session
+ * @param {string} adminSessionPhone - Phone number of admin session
+ * @returns {Promise<Array>} List of channels
+ */
+export async function getChannelsByAdminSession(adminSessionPhone) {
+  try {
+    log.dbOperation('SELECT', 'channels', { 
+      adminSessionPhone,
+      operation: 'getByAdminSession'
+    });
+
+    const channels = await getAllQuery(
+      'SELECT * FROM channels WHERE admin_session_phone = ? ORDER BY created_at DESC',
+      [adminSessionPhone]
+    );
+
+    log.debug(`Retrieved ${channels.length} channels for admin session`, {
+      adminSessionPhone
+    });
+
+    return channels;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getChannelsByAdminSession');
+  }
+}
+
+/**
+ * Gets the admin session for a specific channel
+ * @param {string} channelId - Channel ID
+ * @returns {Promise<string|null>} Admin session phone or null
+ */
+export async function getChannelAdminSession(channelId) {
+  try {
+    const channel = await getChannelById(channelId);
+    return channel?.admin_session_phone || null;
+  } catch (error) {
+    log.error('Error getting channel admin session', { 
+      channelId, 
+      error: error.message 
+    });
+    return null;
+  }
+}
