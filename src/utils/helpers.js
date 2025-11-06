@@ -294,6 +294,49 @@ export function generateRandomString(length = 8, charset = 'ABCDEFGHIJKLMNOPQRST
   return result;
 }
 
+/**
+ * Safely edit a Telegram message, handling "message not modified" errors
+ * @param {Object} ctx - Telegraf context
+ * @param {string} text - New message text
+ * @param {Object} options - Message options (parse_mode, reply_markup, etc.)
+ * @param {string} fallbackCallback - Optional callback query answer if edit fails
+ * @returns {Promise<void>}
+ */
+export function safeEditMessage(ctx, text, options = {}, fallbackCallback = null) {
+  return new Promise(async (resolve) => {
+    try {
+      if (ctx.callbackQuery) {
+        await ctx.editMessageText(text, options);
+      } else {
+        await ctx.reply(text, options);
+      }
+      resolve();
+    } catch (error) {
+      // Handle case where message content is identical
+      if (error.message && error.message.includes('message is not modified')) {
+        // Answer the callback query to remove the loading state
+        if (ctx.callbackQuery) {
+          const callbackText = fallbackCallback || 'ℹ️ Content already up to date';
+          try {
+            await ctx.answerCbQuery(callbackText);
+          } catch (cbError) {
+            // Ignore callback query errors (might already be answered)
+          }
+        }
+        // Log for debugging but don't throw
+        log.debug('Message edit skipped - content identical', {
+          userId: ctx.from?.id,
+          command: ctx.callbackQuery?.data || ctx.message?.text
+        });
+        resolve();
+      } else {
+        // Re-throw other errors
+        throw error;
+      }
+    }
+  });
+}
+
 export default {
   sleep,
   formatTimestamp,
@@ -309,5 +352,6 @@ export default {
   ensureDirectory,
   safeReadFile,
   safeWriteFile,
-  generateRandomString
+  generateRandomString,
+  safeEditMessage
 };

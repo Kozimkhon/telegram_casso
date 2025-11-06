@@ -92,16 +92,29 @@ class AdminBot {
           [Markup.button.callback('ℹ️ Contact Support', 'contact_support')]
         ]);
         
-        if (ctx.callbackQuery) {
-          await ctx.editMessageText(text, {
-            parse_mode: 'HTML',
-            ...keyboard
-          });
-        } else {
-          await ctx.reply(text, {
-            parse_mode: 'HTML',
-            ...keyboard
-          });
+        try {
+          if (ctx.callbackQuery) {
+            await ctx.editMessageText(text, {
+              parse_mode: 'HTML',
+              ...keyboard
+            });
+          } else {
+            await ctx.reply(text, {
+              parse_mode: 'HTML',
+              ...keyboard
+            });
+          }
+        } catch (error) {
+          // Handle case where message content is identical
+          if (error.message && error.message.includes('message is not modified')) {
+            // Answer the callback query to remove the loading state
+            if (ctx.callbackQuery) {
+              await ctx.answerCbQuery('ℹ️ Already showing registration options');
+            }
+          } else {
+            // Re-throw other errors
+            throw error;
+          }
         }
         return;
       }
@@ -169,18 +182,13 @@ class AdminBot {
     // Registration callbacks
     this.bot.action('register_admin', asyncErrorHandler(async (ctx) => {
       await ctx.answerCbQuery();
-      await this.showAdminRegistration(ctx);
+      await this.processAdminRegistration(ctx);
     }, 'Register admin callback'));
 
     this.bot.action('contact_support', asyncErrorHandler(async (ctx) => {
       await ctx.answerCbQuery();
       await this.showContactSupport(ctx);
     }, 'Contact support callback'));
-
-    this.bot.action('confirm_registration', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.processAdminRegistration(ctx);
-    }, 'Confirm registration callback'));
 
     // Main menu callback
     this.bot.action('main_menu', asyncErrorHandler(async (ctx) => {
@@ -279,10 +287,57 @@ class AdminBot {
    * @param {Object} ctx - Telegraf context
    */
   async showMainMenu(ctx) {
-    const menuText = `
+    // Check if there are active sessions
+    let activeSessions = 0;
+    let hasActiveSessions = false;
+    
+    if (this.userBotManager) {
+      try {
+        const managerStatus = this.userBotManager.getStatus();
+        activeSessions = managerStatus.activeSessions || 0;
+        hasActiveSessions = activeSessions > 0;
+      } catch (error) {
+        this.logger.warn('Could not get session status for main menu', error);
+      }
+    }
+
+    let menuText;
+    let keyboard;
+
+    if (!hasActiveSessions) {
+      // Show getting started menu when no sessions
+      menuText = `
+🤖 *Telegram Casso Multi-Session Admin Panel*
+
+👋 *Welcome! Let's get you started*
+
+To begin using the system, you need to add your phone session:
+
+🔐 *Step 1:* Click "➕ Add Session" below
+📱 *Step 2:* Enter your phone number (international format)
+🔢 *Step 3:* Enter the verification code from Telegram
+🔒 *Step 4:* Enter 2FA password (if enabled)
+
+Once connected, you'll have access to all features:
+📊 System monitoring • ⚙️ Channel management • 👥 User tracking
+`;
+
+      keyboard = Markup.inlineKeyboard([
+        [
+          Markup.button.callback('➕ Add Session', 'add_session')
+        ],
+        [
+          Markup.button.callback('📊 System Status', 'bot_status'),
+          Markup.button.callback('❓ Help', 'help')
+        ]
+      ]);
+    } else {
+      // Show full menu when sessions are active
+      menuText = `
 🤖 *Telegram Casso Multi-Session Admin Panel*
 
 Welcome to the multi-session management system!
+🔢 Active Sessions: *${activeSessions}*
 
 📊 View system-wide statistics and session status
 ⚙️ Manage channels with load balancing
@@ -291,27 +346,28 @@ Welcome to the multi-session management system!
 🎛️ Advanced throttling and queue control
 `;
 
-    const keyboard = Markup.inlineKeyboard([
-      [
-        Markup.button.callback('📋 Channels List', 'channels_list'),
-        Markup.button.callback('📊 System Status', 'bot_status')
-      ],
-      [
-        Markup.button.callback('👥 User Stats', 'user_stats'),
-        Markup.button.callback('📨 Forwarding Stats', 'forwarding_stats')
-      ],
-      [
-        Markup.button.callback('🔐 Sessions Manager', 'sessions_list'),
-        Markup.button.callback('➕ Add Session', 'add_session')
-      ],
-      [
-        Markup.button.callback('⚡ Performance', 'performance_stats'),
-        Markup.button.callback('🎛️ Queue Status', 'queue_status')
-      ],
-      [
-        Markup.button.callback('❓ Help', 'help')
-      ]
-    ]);
+      keyboard = Markup.inlineKeyboard([
+        [
+          Markup.button.callback('📋 Channels List', 'channels_list'),
+          Markup.button.callback('📊 System Status', 'bot_status')
+        ],
+        [
+          Markup.button.callback('👥 User Stats', 'user_stats'),
+          Markup.button.callback('📨 Forwarding Stats', 'forwarding_stats')
+        ],
+        [
+          Markup.button.callback('🔐 Sessions Manager', 'sessions_list'),
+          Markup.button.callback('➕ Add Session', 'add_session')
+        ],
+        [
+          Markup.button.callback('⚡ Performance', 'performance_stats'),
+          Markup.button.callback('🎛️ Queue Status', 'queue_status')
+        ],
+        [
+          Markup.button.callback('❓ Help', 'help')
+        ]
+      ]);
+    }
 
     try {
       if (ctx.callbackQuery) {
@@ -770,29 +826,52 @@ Welcome to the multi-session management system!
    */
   async showHelp(ctx) {
     const helpText = `
-📖 *Help - Telegram Casso Admin Bot*
+📖 *Help - Telegram Casso Multi-Session Admin Bot*
 
-*Available Commands:*
+*🚀 Getting Started:*
+1. Click "➕ Add Session" from the main menu
+2. Enter your phone number (international format: +1234567890)
+3. Enter the verification code sent by Telegram
+4. Enter 2FA password if you have one enabled
+5. Your session will be saved and you can start managing channels!
+
+*🎯 Available Commands:*
 /start - Show main menu
-/status - Show bot status
+/status - Show bot status  
 /stats - Show statistics
 /help - Show this help message
 /cleanup - Clean old message logs
+/sessions - Manage your phone sessions
 
-*Features:*
-• Manage channel forwarding settings
-• Monitor user statistics
-• View forwarding statistics
-• Real-time bot status monitoring
+*⚡ Multi-Session Features:*
+• Multiple phone account management
+• Load-balanced message forwarding
+• Session health monitoring
+• Advanced queue management
+• Real-time performance metrics
 
-*Navigation:*
-Use the inline keyboard buttons to navigate through the admin panel. All actions are logged for security.
+*🔧 Main Functions:*
+• 📋 *Channels:* Add/remove channels, toggle forwarding
+• 👥 *Users:* Monitor user statistics across sessions
+• 📊 *Stats:* View forwarding performance and metrics
+• 🔐 *Sessions:* Manage phone sessions and authentication
+• ⚡ *Performance:* Monitor system load and queue status
 
-*Support:*
-If you encounter any issues, check the bot logs or restart the application.
+*🔒 Security:*
+• All admin actions are database-validated
+• Sessions are encrypted and stored securely
+• Full audit logging for all operations
+
+*❓ Need Help?*
+Contact your system administrator or check application logs for troubleshooting.
 `;
 
-    await ctx.reply(helpText, { parse_mode: 'Markdown' });
+    await ctx.reply(helpText, { 
+      parse_mode: 'Markdown',
+      reply_markup: Markup.inlineKeyboard([
+        [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+      ])
+    });
   }
 
   /**
@@ -950,37 +1029,7 @@ If you encounter any issues, check the bot logs or restart the application.
   }
 
   /**
-   * Shows admin registration form
-   */
-  async showAdminRegistration(ctx) {
-    const user = ctx.from;
-    
-    const text = `📝 <b>Admin Registration</b>\n\n` +
-                 `User Details:\n` +
-                 `• ID: <code>${user.id}</code>\n` +
-                 `• Name: <code>${user.first_name} ${user.last_name || ''}</code>\n` +
-                 `• Username: <code>@${user.username || 'N/A'}</code>\n\n` +
-                 `⚠️ <b>Important:</b>\n` +
-                 `By registering as an admin, you will gain full access to:\n` +
-                 `• Session management\n` +
-                 `• Channel configuration\n` +
-                 `• User statistics\n` +
-                 `• System settings\n\n` +
-                 `Do you want to proceed with registration?`;
-    
-    const keyboard = Markup.inlineKeyboard([
-      [Markup.button.callback('✅ Confirm Registration', 'confirm_registration')],
-      [Markup.button.callback('❌ Cancel', 'contact_support')]
-    ]);
-    
-    await ctx.editMessageText(text, {
-      parse_mode: 'HTML',
-      ...keyboard
-    });
-  }
-
-  /**
-   * Processes admin registration
+   * Processes admin registration - directly registers user
    */
   async processAdminRegistration(ctx) {
     const user = ctx.from;
@@ -988,6 +1037,11 @@ If you encounter any issues, check the bot logs or restart the application.
     try {
       // Import addAdmin here to avoid circular dependencies
       const { addAdmin } = await import('../services/adminService.js');
+      
+      // Show processing message
+      await ctx.editMessageText(`⏳ <b>Registering Admin...</b>\n\nProcessing your registration...`, {
+        parse_mode: 'HTML'
+      });
       
       const success = await addAdmin({
         user_id: user.id,
@@ -999,21 +1053,26 @@ If you encounter any issues, check the bot logs or restart the application.
       
       if (success) {
         const text = `✅ <b>Registration Successful!</b>\n\n` +
-                     `Welcome to Telegram Casso Admin Panel!\n\n` +
-                     `You now have full admin access to:\n` +
-                     `• 📱 Session Management\n` +
-                     `• 📋 Channel Configuration\n` +
-                     `• 📊 Statistics & Analytics\n` +
-                     `• ⚙️ System Settings\n\n` +
-                     `Use /start to access the main menu.`;
+                     `Welcome, <b>${user.first_name}</b>!\n` +
+                     `You are now registered as an admin.\n\n` +
+                     `🎯 <b>Next Step:</b>\n` +
+                     `Add your phone session to activate the userbot functionality.\n\n` +
+                     `📱 Click "Add Session" to connect your phone number and start managing channels!`;
         
         const keyboard = Markup.inlineKeyboard([
+          [Markup.button.callback('📱 Add Session', 'add_session')],
           [Markup.button.callback('🏠 Main Menu', 'main_menu')]
         ]);
         
         await ctx.editMessageText(text, {
           parse_mode: 'HTML',
           ...keyboard
+        });
+        
+        this.logger.info('Admin auto-registration successful', {
+          userId: user.id,
+          username: user.username,
+          firstName: user.first_name
         });
         
       } else {
@@ -1028,13 +1087,14 @@ If you encounter any issues, check the bot logs or restart the application.
         });
       }
     } catch (error) {
-      this.logger.error('Error during admin registration', { userId: user.id, error: error.message });
+      this.logger.error('Error during admin auto-registration', { userId: user.id, error: error.message });
       
-      await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred. Please try again later.`, {
+      await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred: ${error.message}\n\nPlease try again later.`, {
         parse_mode: 'HTML',
         reply_markup: {
           inline_keyboard: [[
-            { text: '🔄 Try Again', callback_data: 'register_admin' }
+            { text: '🔄 Try Again', callback_data: 'register_admin' },
+            { text: '📞 Contact Support', callback_data: 'contact_support' }
           ]]
         }
       });

@@ -56,3 +56,59 @@ Error: 400: Bad Request: message is not modified: specified new message content 
   },
   "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
 }
+2025-11-06 21:31:34 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBot.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:915:7)
+    at async TelegramCassoApp.initializeAdminBot (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:106:7)
+    at async TelegramCassoApp.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:42:7)
+    at async main (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:227:5)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-06 21:31:43 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:96:11
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:31:43 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:35:14 [ERROR]: Error checking admin status
+{
+  "userId": 5684628333,
+  "error": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 21:39:40 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBot.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:999:7)
+    at async TelegramCassoApp.initializeAdminBot (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:106:7)
+    at async TelegramCassoApp.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:42:7)
+    at async main (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:227:5)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}

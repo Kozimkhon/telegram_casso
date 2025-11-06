@@ -204,7 +204,7 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
       log.debug('Admin users excluded from forwarding', {
         totalUsers: allUsers.length,
         filteredUsers: users.length,
-        adminUserId
+        adminUserIds: adminUserIds
       });
     }
     

@@ -47,7 +47,6 @@ export const config = {
 
   // Session and data paths
   paths: {
-    sessionPath: process.env.SESSION_PATH || path.join(process.cwd(), 'data', 'userbot_session'),
     dataDir: process.env.DATA_DIR || path.join(process.cwd(), 'data'),
   },
 

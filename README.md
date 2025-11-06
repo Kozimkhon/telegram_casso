@@ -92,18 +92,15 @@ cp .env.example .env
 3. **Required environment variables:**
 
 ```bash
-# Telegram API credentials
+# Telegram API credentials (required)
 API_ID=your_api_id_here
 API_HASH=your_api_hash_here
-PHONE_NUMBER=+1234567890
 
-# Bot tokens and admin
+# AdminBot token (required)
 ADMIN_BOT_TOKEN=your_bot_token_here
-ADMIN_USER_ID=123456789
 
-# Paths (optional)
+# Optional settings
 DB_PATH=./data/telegram_casso.db
-SESSION_PATH=./data/userbot_session
 LOG_LEVEL=info
 ```
 
@@ -113,19 +110,43 @@ LOG_LEVEL=info
 npm start
 ```
 
-### First Run Authentication
+### 🎯 Getting Started Guide
 
-1. **UserBot Authentication:**
-   - Enter your phone number when prompted
-   - Enter the verification code from Telegram
-   - If 2FA is enabled, enter your password
-   - Session will be saved for future runs
+#### Step 1: Initial Setup
 
-2. **AdminBot Access:**
-   - Send `/start` to your AdminBot
-   - Use the interactive menu to manage channels
+1. Run `npm start` to launch the system
+2. System will start with no registered admins
 
-## 📖 Usage Guide
+#### Step 2: Register as Admin
+
+1. Send `/start` to your AdminBot in Telegram
+2. Click "Register as Admin" button
+3. Enter your phone number (international format: +1234567890)
+4. Enter the verification code from Telegram
+5. Enter 2FA password if you have one enabled
+6. You're now registered as an admin!
+
+#### Step 3: Add Your Session
+
+1. After registration, click "Add Session"
+2. Enter your userbot phone number
+3. Complete phone verification process
+4. Your session is now active and ready for forwarding!
+
+#### Step 4: Configure Channels
+
+1. Use AdminBot menu to access "📋 Channels List"
+2. Add channels you want to monitor
+3. Enable forwarding for desired channels
+4. Start receiving forwarded messages!
+
+### 🔐 Multi-Session Architecture
+
+**Database-Driven Admins**: No hardcoded admin users - all managed through database registration
+
+**Session Management**: Multiple phone sessions can be added and managed independently
+
+**Security**: Each admin registers separately, no shared credentials required
 
 ### Initial Setup
 

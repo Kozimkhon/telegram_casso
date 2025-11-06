@@ -395,3 +395,387 @@ Error: 400: Bad Request: message is not modified: specified new message content 
   },
   "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
 }
+2025-11-06 21:31:33 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:31:33 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:31:34 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:31:34 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:31:34 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:31:34 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:31:34 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:31:34 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:31:34 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:31:34 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:31:34 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:31:34 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:31:34 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:31:34 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:31:34 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:31:34 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:31:34 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBot.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:915:7)
+    at async TelegramCassoApp.initializeAdminBot (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:106:7)
+    at async TelegramCassoApp.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:42:7)
+    at async main (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:227:5)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-06 21:31:39 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:31:43 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:31:43 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:96:11
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:31:43 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:32:40 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:32:40 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:32:40 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:32:40 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:32:40 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:32:40 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:32:40 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:32:40 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:32:40 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:32:40 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:32:40 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:32:40 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:32:40 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:32:40 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:32:40 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:32:40 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:32:47 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:32:49 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:34:13 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:34:14 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:35:14 [ERROR]: Error checking admin status
+{
+  "userId": 5684628333,
+  "error": "Database not initialized. Call initializeDatabase() first."
+}
+2025-11-06 21:35:31 [INFO]: Admin user added successfully
+{
+  "user_id": "5684628333",
+  "first_name": "Ota Jalol",
+  "username": "Ota_Jalol",
+  "role": "admin"
+}
+2025-11-06 21:35:53 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:35:53 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:35:53 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:35:53 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:35:53 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:35:53 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:35:53 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:35:53 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:35:53 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:35:53 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:35:53 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:35:53 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:35:53 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:35:53 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:35:53 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:35:53 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:36:05 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "/start",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 21:39:39 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:39:39 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:39:39 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:39:39 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:39:39 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:39:39 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:39:39 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:39:39 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:39:39 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:39:39 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:39:39 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:39:39 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:39:39 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:39:39 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:39:39 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:39:39 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:39:40 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBot.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:999:7)
+    at async TelegramCassoApp.initializeAdminBot (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:106:7)
+    at async TelegramCassoApp.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:42:7)
+    at async main (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:227:5)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-06 21:40:12 [INFO]: Admin user removed successfully
+{
+  "userId": 5684628333
+}
+2025-11-06 21:40:58 [INFO]: Admin user removed successfully
+{
+  "userId": 5684628333
+}
+2025-11-06 21:41:23 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:41:23 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:41:23 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:41:23 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:41:23 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:41:23 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:41:23 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:41:23 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:41:23 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:41:23 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:41:23 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:41:23 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:41:23 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:41:23 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:41:23 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:41:23 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:41:51 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:41:53 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:43:03 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:43:03 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:43:03 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:43:03 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:43:03 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:43:03 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:43:03 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:43:03 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:43:03 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:43:03 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:43:03 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:43:03 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:43:03 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:43:03 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:43:03 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:43:03 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:43:07 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:43:09 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:43:18 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:44:34 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
