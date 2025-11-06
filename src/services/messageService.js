@@ -5,37 +5,41 @@
 
 import { runQuery, getAllQuery, getQuery } from '../db/db.js';
 import { log } from '../utils/logger.js';
-import { handleDatabaseError, withRetry } from '../utils/errorHandler.js';
+import { handleDatabaseError, withRetry, isFloodWaitError, isSpamWarning } from '../utils/errorHandler.js';
 import { sanitizeText, chunkArray, createRateLimiter } from '../utils/helpers.js';
 import { isChannelEnabled } from './channelService.js';
 import { getAllUsers, getUsersByChannel } from './userService.js';
+import { recordMessageSent, recordFloodError, recordSpamWarning } from './metricsService.js';
+import { throttleManager, retryWithBackoff } from '../utils/throttle.js';
 import { config } from '../config/index.js';
 
-// Rate limiter: max 20 messages per minute to avoid hitting Telegram limits
+// Legacy rate limiter for backwards compatibility
 const messageLimiter = createRateLimiter(20, 60000);
 
 /**
- * Logs a message forwarding attempt
+ * Logs a message forwarding attempt with session tracking
  * @param {string} channelId - Source channel ID
  * @param {string} messageId - Original message ID
  * @param {string} userId - Target user ID
  * @param {string} forwardedMessageId - ID of the forwarded message (for deletion)
  * @param {string} status - Status (success, failed, skipped)
  * @param {string} errorMessage - Error message if failed
+ * @param {string} sessionPhone - Phone number of session used
+ * @param {number} retryCount - Number of retries
  * @returns {Promise<void>}
  */
-export async function logMessageForward(channelId, messageId, userId, forwardedMessageId, status, errorMessage = null) {
+export async function logMessageForward(channelId, messageId, userId, forwardedMessageId, status, errorMessage = null, sessionPhone = null, retryCount = 0) {
   try {
-    log.dbOperation('INSERT', 'message_logs', { channelId, messageId, userId, forwardedMessageId, status });
+    log.dbOperation('INSERT', 'message_logs', { channelId, messageId, userId, forwardedMessageId, status, sessionPhone });
 
     await runQuery(
       `INSERT INTO message_logs 
-       (channel_id, message_id, user_id, forwarded_message_id, status, error_message) 
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [channelId, messageId, userId, forwardedMessageId, status, errorMessage]
+       (channel_id, message_id, user_id, forwarded_message_id, status, error_message, session_phone, retry_count) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [channelId, messageId, userId, forwardedMessageId, status, errorMessage, sessionPhone, retryCount]
     );
 
-    log.messageForward(channelId, userId, status, { messageId, forwardedMessageId, errorMessage });
+    log.messageForward(channelId, userId, status, { messageId, forwardedMessageId, errorMessage, sessionPhone });
   } catch (error) {
     // Don't throw here to avoid disrupting message forwarding
     log.error('Failed to log message forward attempt', {
@@ -487,11 +491,115 @@ export async function markMessageAsDeleted(userId, forwardedMessageId) {
   }
 }
 
+/**
+ * Forwards a message to a single user with throttling and error handling
+ * @param {Object} message - Message to forward
+ * @param {string} userId - Target user ID
+ * @param {string} channelId - Source channel ID
+ * @param {Object} channel - Channel configuration
+ * @param {Function} forwardFunction - Function to send the message
+ * @param {string} sessionPhone - Phone of session being used
+ * @returns {Promise<Object>} Forward result
+ */
+export async function forwardMessageWithThrottling(message, userId, channelId, channel, forwardFunction, sessionPhone = null) {
+  const messageId = message.id?.toString() || 'unknown';
+  let retryCount = 0;
+
+  try {
+    // Apply throttling before sending
+    await throttleManager.waitBeforeSend(channelId, userId, {
+      throttleDelayMs: channel?.throttle_delay_ms || 1000,
+      throttlePerMemberMs: channel?.throttle_per_member_ms || 500
+    });
+
+    // Send with retry and exponential backoff
+    const result = await retryWithBackoff(
+      async () => await forwardFunction(message, userId),
+      {
+        maxRetries: 3,
+        baseDelay: 1000,
+        maxDelay: 30000,
+        onRetry: (attempt, delay, error) => {
+          retryCount = attempt;
+          log.warn('Retrying message forward', {
+            userId,
+            channelId,
+            messageId,
+            attempt,
+            delay,
+            error: error.message
+          });
+        }
+      }
+    );
+
+    // Log success
+    await logMessageForward(
+      channelId,
+      messageId,
+      userId,
+      result.id?.toString(),
+      'success',
+      null,
+      sessionPhone,
+      retryCount
+    );
+
+    // Record metrics
+    if (sessionPhone) {
+      await recordMessageSent({
+        sessionPhone,
+        channelId,
+        userId,
+        success: true
+      });
+    }
+
+    return { status: 'success', result, retryCount };
+  } catch (error) {
+    // Check for FloodWait
+    const floodWait = isFloodWaitError(error);
+    if (floodWait && sessionPhone) {
+      await recordFloodError({ sessionPhone, channelId, userId });
+    }
+
+    // Check for spam warning
+    if (isSpamWarning(error) && sessionPhone) {
+      await recordSpamWarning({ sessionPhone, channelId, userId });
+    }
+
+    // Log failure
+    await logMessageForward(
+      channelId,
+      messageId,
+      userId,
+      null,
+      'failed',
+      error.message,
+      sessionPhone,
+      retryCount
+    );
+
+    // Record metrics
+    if (sessionPhone) {
+      await recordMessageSent({
+        sessionPhone,
+        channelId,
+        userId,
+        success: false
+      });
+    }
+
+    return { status: 'failed', error: error.message, retryCount };
+  }
+}
+
 export default {
   logMessageForward,
   getForwardingStats,
   getRecentForwardingLogs,
   processMessageForwarding,
   cleanupMessageLogs,
-  getFailedForwards
+  getFailedForwards,
+  forwardMessageWithThrottling
 };
