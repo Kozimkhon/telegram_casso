@@ -779,3 +779,1165 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
   "username": "Ota_Jalol",
   "command": "/start"
 }
+2025-11-06 21:45:44 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol"
+}
+2025-11-06 21:46:09 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:112:15
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:46:10 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:49:38 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:49:38 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:49:38 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:49:38 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:49:38 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:49:38 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:49:38 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:49:38 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:49:38 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:49:38 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:49:38 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:49:38 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:49:38 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:49:38 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:49:38 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:49:38 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:49:39 [ERROR]: Unhandled error in Register admin callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Register admin callback"
+}
+2025-11-06 21:49:39 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:49:39 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:50:38 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:50:38 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:50:38 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:50:38 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:50:38 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:50:38 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:50:38 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:50:38 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:50:38 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:50:38 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:50:38 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:50:38 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:50:38 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:50:38 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:50:38 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:50:38 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:51:35 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:51:37 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 21:53:48 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:53:48 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:53:48 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:53:48 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:53:48 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:53:48 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:53:48 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:53:48 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:53:48 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:53:48 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:53:48 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:53:48 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:53:48 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:53:48 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:53:48 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:53:48 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:54:15 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:54:17 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 21:55:16 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:55:16 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:55:16 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:55:16 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:55:16 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:55:16 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:55:16 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:55:16 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:55:16 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:55:16 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:55:16 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:55:16 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:55:16 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:55:31 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:55:31 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:55:31 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:55:37 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:56:27 [ERROR]: Error during admin auto-registration
+{
+  "userId": 5684628333,
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-06 21:56:45 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 21:57:26 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 21:58:07 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 21:58:07 [INFO]: ✅ Configuration validated successfully
+2025-11-06 21:58:07 [INFO]: ✅ Database initialized successfully
+2025-11-06 21:58:07 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 21:58:07 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:58:07 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:58:07 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 21:58:07 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 21:58:07 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 21:58:07 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 21:58:07 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 21:58:07 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 21:58:07 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 21:58:07 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:58:07 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:58:07 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 21:58:22 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 22:00:43 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 22:00:43 [INFO]: ✅ Configuration validated successfully
+2025-11-06 22:00:43 [INFO]: ✅ Database initialized successfully
+2025-11-06 22:00:43 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 22:00:43 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:00:43 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:00:43 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:00:43 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 22:00:43 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 22:00:43 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 22:00:43 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 22:00:43 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 22:00:43 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 22:00:43 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:00:43 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:00:43 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:00:48 [ERROR]: Unhandled error in Register admin callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Register admin callback"
+}
+2025-11-06 22:00:48 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 22:00:48 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 22:01:11 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 22:01:22 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 22:03:43 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 22:03:43 [INFO]: ✅ Configuration validated successfully
+2025-11-06 22:03:43 [INFO]: ✅ Database initialized successfully
+2025-11-06 22:03:43 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 22:03:43 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:03:43 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:03:43 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:03:43 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 22:03:43 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 22:03:43 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 22:03:43 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 22:03:43 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 22:03:43 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 22:03:43 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:03:43 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:03:43 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:03:57 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 22:07:31 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 22:07:31 [ERROR]: Bot error occurred
+{
+  "error": "Promise timed out after 90000 milliseconds",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 22:20:35 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 22:20:35 [INFO]: ✅ Configuration validated successfully
+2025-11-06 22:20:35 [INFO]: ✅ Database initialized successfully
+2025-11-06 22:20:35 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 22:20:35 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:20:35 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:20:35 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:20:35 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 22:20:35 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 22:20:35 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 22:20:35 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 22:20:35 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 22:20:35 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 22:20:35 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:20:35 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:20:35 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:20:54 [WARN]: Unauthorized access attempt
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "command": "/start"
+}
+2025-11-06 22:21:52 [INFO]: Admin user added successfully
+{
+  "user_id": 5684628333,
+  "first_name": ".",
+  "username": "Ota_Jalol",
+  "role": "admin"
+}
+2025-11-06 22:22:04 [INFO]: Admin auto-registration successful
+{
+  "component": "AdminBot",
+  "userId": 5684628333,
+  "username": "Ota_Jalol",
+  "firstName": "."
+}
+2025-11-06 22:22:23 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "main_menu",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:22:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "bot_status",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:01 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "main_menu",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:07 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "add_session",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:20 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_plus",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:24 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:26 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:33 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:38 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:40 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:44 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:49 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:53 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:23:56 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:03 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:05 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:09 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:23 [INFO]: SMS verification code sent successfully
+{
+  "phone": "+998999900979"
+}
+2025-11-06 22:24:47 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:49 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:51 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:54 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_2",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_5",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:24:58 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:05 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:25:08 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letters",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:18 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_O",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_T",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:39 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_A",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:47 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_backspace",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:52 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_backspace",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_backspace",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:25:59 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_backspace",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:26:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letters",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:07 [INFO]: 🚀 Starting Telegram Casso Multi-User Application...
+2025-11-06 22:31:07 [INFO]: ✅ Configuration validated successfully
+2025-11-06 22:31:07 [INFO]: ✅ Database initialized successfully
+2025-11-06 22:31:07 [INFO]: 🎛️ Initializing Multi-UserBot Manager...
+2025-11-06 22:31:07 [INFO]: Initializing userbots from database...
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:31:07 [INFO]: Found 0 active sessions
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:31:07 [INFO]: Resume checker started
+{
+  "component": "UserBotManager"
+}
+2025-11-06 22:31:07 [INFO]: UserBot manager initialized
+{
+  "component": "UserBotManager",
+  "activeBots": 0
+}
+2025-11-06 22:31:07 [INFO]: ✅ Multi-UserBot Manager initialized
+2025-11-06 22:31:07 [INFO]: 📊 Active Sessions: 0/0
+2025-11-06 22:31:07 [INFO]: 💡 No sessions found. Use AdminBot to add sessions manually
+2025-11-06 22:31:07 [INFO]: 📱 Send /start to AdminBot and use "Add Session" button
+2025-11-06 22:31:07 [INFO]: ⚙️ Initializing AdminBot with Session Management...
+2025-11-06 22:31:07 [INFO]: Multi-session management and authentication UI enabled
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:31:07 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:31:07 [INFO]: About to launch AdminBot...
+{
+  "component": "AdminBot"
+}
+2025-11-06 22:31:24 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "/start",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:39 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "add_session",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:44 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_plus",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:49 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:52 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:55 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:57 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:31:58 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:01 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:05 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:09 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:14 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_0",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:16 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:18 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:20 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:22 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "phone_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:32:49 [INFO]: SMS verification code sent successfully
+{
+  "phone": "+998999900979"
+}
+2025-11-06 22:33:09 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_7",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:33:13 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_3",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:33:19 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:33:22 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:33:27 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:33:45 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "code_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:34:10 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:34:34 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letters",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:34:48 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_capslock",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:04 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_capslock",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:18 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_O",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:24 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_capslock",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:30 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_t",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:33 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_a",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_capslock",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:42 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_J",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:44 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_capslock",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:47 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_a",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:50 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_l",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:53 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_o",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:35:56 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_l",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:01 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_letter_@",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:09 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_numbers",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:19 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_1",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:26 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:37 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_9",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:36:51 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_8",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:37:09 [DEBUG]: Admin command received
+{
+  "component": "AdminBot",
+  "command": "password_confirm",
+  "userId": 5684628333,
+  "adminRole": "admin"
+}
+2025-11-06 22:37:24 [ERROR]: Error during 2FA authentication
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET"
+}

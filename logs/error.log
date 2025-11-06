@@ -112,3 +112,200 @@ Error: 409: Conflict: terminated by other getUpdates request; make sure that onl
 {
   "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
 }
+2025-11-06 21:46:09 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:112:15
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:46:10 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:49:39 [ERROR]: Unhandled error in Register admin callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Register admin callback"
+}
+2025-11-06 21:49:39 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 21:49:39 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 21:51:37 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 21:54:17 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 21:56:27 [ERROR]: Error during admin auto-registration
+{
+  "userId": 5684628333,
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-06 21:57:26 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 22:00:48 [ERROR]: Unhandled error in Register admin callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Register admin callback"
+}
+2025-11-06 22:00:48 [ERROR]: Unhandled error in Admin auth middleware
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/bots/adminBot.js:193:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Admin auth middleware"
+}
+2025-11-06 22:00:48 [ERROR]: Bot error occurred
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 22:01:22 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 22:07:31 [ERROR]: Error adding admin user
+{
+  "adminData": {
+    "user_id": 5684628333,
+    "first_name": ".",
+    "username": "Ota_Jalol",
+    "role": "admin"
+  },
+  "error": "SQLITE_CONSTRAINT: UNIQUE constraint failed: admins.user_id"
+}
+2025-11-06 22:07:31 [ERROR]: Bot error occurred
+{
+  "error": "Promise timed out after 90000 milliseconds",
+  "userId": 5684628333,
+  "command": "register_admin"
+}
+2025-11-06 22:25:05 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:34:10 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-06 22:37:24 [ERROR]: Error during 2FA authentication
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/editMessageText failed, reason: read ECONNRESET"
+}

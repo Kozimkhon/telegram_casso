@@ -1,0 +1,6 @@
+-- database: ./telegram_casso.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM admins;
+DELETE FROM admins WHERE id = 2;

@@ -123,6 +123,11 @@ export function setupSessionAuthentication(bot, asyncErrorHandler, userBotManage
     await handlePasswordLetters(ctx);
   }, 'Password letters callback'));
 
+  bot.action('password_capslock', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlePasswordCapsLock(ctx);
+  }, 'Password capslock callback'));
+
   bot.action('password_numbers', asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
     await handlePasswordNumbers(ctx);
@@ -641,6 +646,7 @@ async function confirmVerificationCode(ctx, userBotManager) {
       // 2FA required
       authSession.step = 'password';
       authSession.password = '';
+      authSession.capsLock = true; // Default to uppercase
       
       const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
                    `Phone: <code>${authSession.phone}</code>\n` +
@@ -826,6 +832,11 @@ async function handlePasswordLetter(ctx, letter) {
     return;
   }
   
+  // Initialize capslock state if not set
+  if (authSession.capsLock === undefined) {
+    authSession.capsLock = true; // Default to uppercase
+  }
+  
   // Handle special characters
   let charToAdd = letter;
   if (letter === '_') charToAdd = ' '; // Space
@@ -842,7 +853,7 @@ async function handlePasswordLetter(ctx, letter) {
                `Current: <code>${maskedPassword}</code>\n\n` +
                `Select letters for your password:`;
   
-  const keyboard = createPasswordLettersKeyboard(authSession.password, authId);
+  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
   
   await ctx.editMessageText(text, {
     parse_mode: 'HTML',
@@ -912,6 +923,11 @@ async function handlePasswordLetters(ctx) {
     return;
   }
   
+  // Initialize capslock state if not set
+  if (authSession.capsLock === undefined) {
+    authSession.capsLock = true; // Default to uppercase
+  }
+  
   const maskedPassword = '*'.repeat(authSession.password.length);
   
   const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
@@ -920,7 +936,49 @@ async function handlePasswordLetters(ctx) {
                `Current: <code>${maskedPassword}</code>\n\n` +
                `Select letters for your password:`;
   
-  const keyboard = createPasswordLettersKeyboard(authSession.password, authId);
+  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
+  
+  await ctx.editMessageText(text, {
+    parse_mode: 'HTML',
+    ...keyboard
+  });
+}
+
+/**
+ * Handles capslock toggle
+ */
+async function handlePasswordCapsLock(ctx) {
+  const userId = ctx.from.id;
+  
+  // Find the auth session
+  let authId = null;
+  let authSession = null;
+  
+  for (const [id, session] of authSessions.entries()) {
+    if (session.userId === userId && session.step === 'password') {
+      authId = id;
+      authSession = session;
+      break;
+    }
+  }
+  
+  if (!authSession) {
+    await ctx.editMessageText('❌ Authentication session expired. Please start again.');
+    return;
+  }
+  
+  // Toggle capslock state
+  authSession.capsLock = !authSession.capsLock;
+  
+  const maskedPassword = '*'.repeat(authSession.password.length);
+  
+  const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
+               `Phone: <code>${authSession.phone}</code>\n` +
+               `2FA password required!\n\n` +
+               `Current: <code>${maskedPassword}</code>\n\n` +
+               `Select letters for your password:`;
+  
+  const keyboard = createPasswordLettersKeyboard(authSession.password, authId, authSession.capsLock);
   
   await ctx.editMessageText(text, {
     parse_mode: 'HTML',
@@ -931,67 +989,130 @@ async function handlePasswordLetters(ctx) {
 /**
  * Creates a letters keyboard for password input
  */
-function createPasswordLettersKeyboard(currentPassword = '', authId) {
+function createPasswordLettersKeyboard(currentPassword = '', authId, isUpperCase = true) {
   const keyboard = [];
   
-  // First row: A-F
-  keyboard.push([
-    Markup.button.callback('A', 'password_letter_A'),
-    Markup.button.callback('B', 'password_letter_B'),
-    Markup.button.callback('C', 'password_letter_C'),
-    Markup.button.callback('D', 'password_letter_D'),
-    Markup.button.callback('E', 'password_letter_E'),
-    Markup.button.callback('F', 'password_letter_F')
-  ]);
+  if (isUpperCase) {
+    // UPPERCASE layout
+    // First row: A-F
+    keyboard.push([
+      Markup.button.callback('A', 'password_letter_A'),
+      Markup.button.callback('B', 'password_letter_B'),
+      Markup.button.callback('C', 'password_letter_C'),
+      Markup.button.callback('D', 'password_letter_D'),
+      Markup.button.callback('E', 'password_letter_E'),
+      Markup.button.callback('F', 'password_letter_F')
+    ]);
+    
+    // Second row: G-L
+    keyboard.push([
+      Markup.button.callback('G', 'password_letter_G'),
+      Markup.button.callback('H', 'password_letter_H'),
+      Markup.button.callback('I', 'password_letter_I'),
+      Markup.button.callback('J', 'password_letter_J'),
+      Markup.button.callback('K', 'password_letter_K'),
+      Markup.button.callback('L', 'password_letter_L')
+    ]);
+    
+    // Third row: M-R
+    keyboard.push([
+      Markup.button.callback('M', 'password_letter_M'),
+      Markup.button.callback('N', 'password_letter_N'),
+      Markup.button.callback('O', 'password_letter_O'),
+      Markup.button.callback('P', 'password_letter_P'),
+      Markup.button.callback('Q', 'password_letter_Q'),
+      Markup.button.callback('R', 'password_letter_R')
+    ]);
+    
+    // Fourth row: S-X
+    keyboard.push([
+      Markup.button.callback('S', 'password_letter_S'),
+      Markup.button.callback('T', 'password_letter_T'),
+      Markup.button.callback('U', 'password_letter_U'),
+      Markup.button.callback('V', 'password_letter_V'),
+      Markup.button.callback('W', 'password_letter_W'),
+      Markup.button.callback('X', 'password_letter_X')
+    ]);
+    
+    // Fifth row: Y, Z, and special characters
+    keyboard.push([
+      Markup.button.callback('Y', 'password_letter_Y'),
+      Markup.button.callback('Z', 'password_letter_Z'),
+      Markup.button.callback('@', 'password_letter_@'),
+      Markup.button.callback('.', 'password_letter_.'),
+      Markup.button.callback('_', 'password_letter__'),
+      Markup.button.callback('-', 'password_letter_-')
+    ]);
+    
+    // Sixth row: Controls with CAPS toggle
+    keyboard.push([
+      Markup.button.callback('⌫', 'password_backspace'),
+      Markup.button.callback('🔼', 'password_capslock'),
+      Markup.button.callback('123', 'password_numbers'),
+      Markup.button.callback('Space', 'password_letter_ ')
+    ]);
+  } else {
+    // lowercase layout
+    // First row: a-f
+    keyboard.push([
+      Markup.button.callback('a', 'password_letter_a'),
+      Markup.button.callback('b', 'password_letter_b'),
+      Markup.button.callback('c', 'password_letter_c'),
+      Markup.button.callback('d', 'password_letter_d'),
+      Markup.button.callback('e', 'password_letter_e'),
+      Markup.button.callback('f', 'password_letter_f')
+    ]);
+    
+    // Second row: g-l
+    keyboard.push([
+      Markup.button.callback('g', 'password_letter_g'),
+      Markup.button.callback('h', 'password_letter_h'),
+      Markup.button.callback('i', 'password_letter_i'),
+      Markup.button.callback('j', 'password_letter_j'),
+      Markup.button.callback('k', 'password_letter_k'),
+      Markup.button.callback('l', 'password_letter_l')
+    ]);
+    
+    // Third row: m-r
+    keyboard.push([
+      Markup.button.callback('m', 'password_letter_m'),
+      Markup.button.callback('n', 'password_letter_n'),
+      Markup.button.callback('o', 'password_letter_o'),
+      Markup.button.callback('p', 'password_letter_p'),
+      Markup.button.callback('q', 'password_letter_q'),
+      Markup.button.callback('r', 'password_letter_r')
+    ]);
+    
+    // Fourth row: s-x
+    keyboard.push([
+      Markup.button.callback('s', 'password_letter_s'),
+      Markup.button.callback('t', 'password_letter_t'),
+      Markup.button.callback('u', 'password_letter_u'),
+      Markup.button.callback('v', 'password_letter_v'),
+      Markup.button.callback('w', 'password_letter_w'),
+      Markup.button.callback('x', 'password_letter_x')
+    ]);
+    
+    // Fifth row: y, z, and special characters
+    keyboard.push([
+      Markup.button.callback('y', 'password_letter_y'),
+      Markup.button.callback('z', 'password_letter_z'),
+      Markup.button.callback('@', 'password_letter_@'),
+      Markup.button.callback('.', 'password_letter_.'),
+      Markup.button.callback('_', 'password_letter__'),
+      Markup.button.callback('-', 'password_letter_-')
+    ]);
+    
+    // Sixth row: Controls with CAPS toggle
+    keyboard.push([
+      Markup.button.callback('⌫', 'password_backspace'),
+      Markup.button.callback('🔽', 'password_capslock'),
+      Markup.button.callback('123', 'password_numbers'),
+      Markup.button.callback('Space', 'password_letter_ ')
+    ]);
+  }
   
-  // Second row: G-L
-  keyboard.push([
-    Markup.button.callback('G', 'password_letter_G'),
-    Markup.button.callback('H', 'password_letter_H'),
-    Markup.button.callback('I', 'password_letter_I'),
-    Markup.button.callback('J', 'password_letter_J'),
-    Markup.button.callback('K', 'password_letter_K'),
-    Markup.button.callback('L', 'password_letter_L')
-  ]);
-  
-  // Third row: M-R
-  keyboard.push([
-    Markup.button.callback('M', 'password_letter_M'),
-    Markup.button.callback('N', 'password_letter_N'),
-    Markup.button.callback('O', 'password_letter_O'),
-    Markup.button.callback('P', 'password_letter_P'),
-    Markup.button.callback('Q', 'password_letter_Q'),
-    Markup.button.callback('R', 'password_letter_R')
-  ]);
-  
-  // Fourth row: S-X
-  keyboard.push([
-    Markup.button.callback('S', 'password_letter_S'),
-    Markup.button.callback('T', 'password_letter_T'),
-    Markup.button.callback('U', 'password_letter_U'),
-    Markup.button.callback('V', 'password_letter_V'),
-    Markup.button.callback('W', 'password_letter_W'),
-    Markup.button.callback('X', 'password_letter_X')
-  ]);
-  
-  // Fifth row: Y, Z, and special characters
-  keyboard.push([
-    Markup.button.callback('Y', 'password_letter_Y'),
-    Markup.button.callback('Z', 'password_letter_Z'),
-    Markup.button.callback('@', 'password_letter_@'),
-    Markup.button.callback('.', 'password_letter_.'),
-    Markup.button.callback('_', 'password_letter__'),
-    Markup.button.callback('-', 'password_letter_-')
-  ]);
-  
-  // Sixth row: Controls
-  keyboard.push([
-    Markup.button.callback('⌫', 'password_backspace'),
-    Markup.button.callback('123', 'password_numbers'),
-    Markup.button.callback('Space', 'password_letter_ ')
-  ]);
-  
-  // Seventh row: Confirm and Cancel
+  // Last row: Confirm and Cancel
   keyboard.push([
     Markup.button.callback('✅ Confirm', 'password_confirm'),
     Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)

@@ -33,7 +33,28 @@ export async function isUserAdmin(userId) {
     return null;
   }
 }
-
+export async function isUserAdminRegistered(userId) {
+  try {
+    const db = getDatabase();
+    const userIdStr = userId.toString();
+    
+    const admin = await new Promise((resolve, reject) => {
+      db.get(
+        'SELECT * FROM admins WHERE user_id = ?',
+        [userIdStr],
+        (err, row) => {
+          if (err) reject(err);
+          else resolve(row);
+        }
+      );
+    });
+    
+    return admin || null;
+  } catch (error) {
+    log.error('Error checking admin status', { userId, error: error.message });
+    return null;
+  }
+}
 /**
  * Adds a new admin user
  * @param {Object} adminData - Admin user data
@@ -47,7 +68,7 @@ export async function isUserAdmin(userId) {
 export async function addAdmin(adminData) {
   try {
     const db = getDatabase();
-    const { user_id, first_name, last_name, username, role = 'admin' } = adminData;
+    const { user_id='', first_name='', last_name='', username='', role = 'admin' } = adminData;
     
     await new Promise((resolve, reject) => {
       db.run(

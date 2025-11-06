@@ -30,7 +30,7 @@ import {
 } from '../services/messageService.js';
 import { setupSessionManagement } from './adminBotSessions.js';
 import { setupSessionAuthentication, cleanupExpiredAuthSessions } from './adminBotAuth.js';
-import { isUserAdmin } from '../services/adminService.js';
+import { isUserAdmin, isUserAdminRegistered } from '../services/adminService.js';
 
 class AdminBot {
   constructor(userBot = null, userBotManager) {
@@ -71,14 +71,23 @@ class AdminBot {
     this.bot.use(asyncErrorHandler(async (ctx, next) => {
       const userId = ctx.from?.id;
       
+      // Allow certain callbacks for non-admin users (registration process)
+      const allowedCallbacks = ['register_admin', 'contact_support'];
+      const callbackData = ctx.callbackQuery?.data;
+      
+      if (callbackData && allowedCallbacks.includes(callbackData)) {
+        // Allow registration callbacks for non-admin users
+        return next();
+      }
+      
       // Check if user is admin from database
-      const adminUser = await isUserAdmin(userId);
+      const adminUser = await isUserAdminRegistered(userId);
       
       if (!adminUser) {
         this.logger.warn('Unauthorized access attempt', {
           userId,
           username: ctx.from?.username,
-          command: ctx.message?.text
+          command: ctx.message?.text || ctx.callbackQuery?.data
         });
         
         // Show registration prompt for unauthorized users
@@ -1035,10 +1044,42 @@ Contact your system administrator or check application logs for troubleshooting.
     const user = ctx.from;
     
     try {
-      // Import addAdmin here to avoid circular dependencies
-      const { addAdmin } = await import('../services/adminService.js');
       
-      // Show processing message
+      // Import services here to avoid circular dependencies
+      const { addAdmin, isUserAdminRegistered } = await import('../services/adminService.js');
+      
+      // Check if user is already an admin
+      const existingAdmin = await isUserAdminRegistered(user.id);
+      
+      if (existingAdmin) {
+        // User is already registered as admin
+        const text = `✅ <b>Already Registered!</b>\n\n` +
+                     `Welcome back, <b>${user.first_name}</b>!\n` +
+                     `You are already registered as an admin.\n\n` +
+                     `🎯 <b>Ready to go!</b>\n` +
+                     `You can now manage your phone sessions and channels.\n\n` +
+                     `📱 If you haven't added a session yet, click "Add Session" to connect your phone number.`;
+        
+        const keyboard = Markup.inlineKeyboard([
+          [Markup.button.callback('📱 Add Session', 'add_session')],
+          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        ]);
+        
+        await ctx.editMessageText(text, {
+          parse_mode: 'HTML',
+          ...keyboard
+        });
+        
+        this.logger.info('Admin tried to register again (already exists)', {
+          userId: user.id,
+          username: user.username,
+          existingRole: existingAdmin.role
+        });
+        
+        return;
+      }
+      
+      // Show processing message for new registration
       await ctx.editMessageText(`⏳ <b>Registering Admin...</b>\n\nProcessing your registration...`, {
         parse_mode: 'HTML'
       });
@@ -1089,15 +1130,41 @@ Contact your system administrator or check application logs for troubleshooting.
     } catch (error) {
       this.logger.error('Error during admin auto-registration', { userId: user.id, error: error.message });
       
-      await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred: ${error.message}\n\nPlease try again later.`, {
-        parse_mode: 'HTML',
-        reply_markup: {
-          inline_keyboard: [[
-            { text: '🔄 Try Again', callback_data: 'register_admin' },
-            { text: '📞 Contact Support', callback_data: 'contact_support' }
-          ]]
-        }
-      });
+      // Handle specific database constraint errors
+      if (error.message && error.message.includes('UNIQUE constraint failed')) {
+        // This shouldn't happen now since we check first, but handle it gracefully
+        const text = `ℹ️ <b>Already Registered</b>\n\n` +
+                     `It looks like you're already in our system!\n` +
+                     `Let's get you to the main menu.`;
+        
+        const keyboard = Markup.inlineKeyboard([
+          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        ]);
+        
+        await ctx.editMessageText(text, {
+          parse_mode: 'HTML',
+          ...keyboard
+        });
+        
+        return;
+      }
+      
+      // Handle callback query timeout errors gracefully
+      if (error.message && error.message.includes('query is too old')) {
+        await ctx.reply(`❌ <b>Registration Error</b>\n\nSession expired. Please send /start and try again.`, {
+          parse_mode: 'HTML'
+        });
+      } else {
+        await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred: ${error.message}\n\nPlease try again later.`, {
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '🔄 Try Again', callback_data: 'register_admin' },
+              { text: '📞 Contact Support', callback_data: 'contact_support' }
+            ]]
+          }
+        });
+      }
     }
   }
 
