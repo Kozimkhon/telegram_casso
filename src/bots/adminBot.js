@@ -3,34 +3,41 @@
  * Provides web interface for managing channels, users, and forwarding settings
  */
 
-import { Telegraf, Markup } from 'telegraf';
-import { config } from '../config/index.js';
-import { log, createChildLogger } from '../utils/logger.js';
+import { Telegraf, Markup } from "telegraf";
+import { config } from "../config/index.js";
+import { log, createChildLogger } from "../utils/logger.js";
 import {
   handleTelegramError,
   ValidationError,
-  asyncErrorHandler
-} from '../utils/errorHandler.js';
-import { formatTimestamp, chunkArray } from '../utils/helpers.js';
+  asyncErrorHandler,
+} from "../utils/errorHandler.js";
+import { formatTimestamp, chunkArray } from "../utils/helpers.js";
 import {
   getAllChannels,
   toggleChannelForwarding,
   getChannelStats,
-  removeChannel
-} from '../services/channelService.js';
+  removeChannel,
+  getMyChannels,
+} from "../services/channelService.js";
 import {
   getUserStats,
   getAllUsers,
-  getRecentUsers
-} from '../services/userService.js';
+  getRecentUsers,
+} from "../services/userService.js";
 import {
   getForwardingStats,
   getRecentForwardingLogs,
-  cleanupMessageLogs
-} from '../services/messageService.js';
-import { setupSessionManagement } from './adminBotSessions.js';
-import { setupSessionAuthentication, cleanupExpiredAuthSessions } from './adminBotAuth.js';
-import { isUserAdmin, isUserAdminRegistered } from '../services/adminService.js';
+  cleanupMessageLogs,
+} from "../services/messageService.js";
+import { setupSessionManagement } from "./adminBotSessions.js";
+import {
+  setupSessionAuthentication,
+  cleanupExpiredAuthSessions,
+} from "./adminBotAuth.js";
+import {
+  isUserAdmin,
+  isUserAdminRegistered,
+} from "../services/adminService.js";
 
 class AdminBot {
   constructor(userBot = null, userBotManager) {
@@ -38,23 +45,23 @@ class AdminBot {
     this.bot = new Telegraf(config.telegram.adminBotToken, {
       telegram: {
         // Increase timeout for better reliability
-        apiRoot: 'https://api.telegram.org',
+        apiRoot: "https://api.telegram.org",
         webhookReply: false,
         agent: null, // Use system's default agent
         // Retry configuration
-        attachmentAgent: null
+        attachmentAgent: null,
       },
-      handlerTimeout: 90000 // 90 seconds timeout for handlers
+      handlerTimeout: 90000, // 90 seconds timeout for handlers
     });
 
     this.userBot = userBot; // Legacy support, not used in multi-session mode
     this.userBotManager = userBotManager; // Required for multi-session support
     this.isRunning = false;
-    this.logger = createChildLogger({ component: 'AdminBot' });
+    this.logger = createChildLogger({ component: "AdminBot" });
 
     // Ensure userBotManager is provided for pure multi-session mode
     if (!this.userBotManager) {
-      throw new Error('UserBotManager is required for multi-session operation');
+      throw new Error("UserBotManager is required for multi-session operation");
     }
 
     this.setupMiddleware();
@@ -65,9 +72,13 @@ class AdminBot {
     setupSessionManagement(this.bot, asyncErrorHandler);
 
     // Setup session authentication
-    setupSessionAuthentication(this.bot, asyncErrorHandler, this.userBotManager);
+    setupSessionAuthentication(
+      this.bot,
+      asyncErrorHandler,
+      this.userBotManager
+    );
 
-    this.logger.info('Multi-session management and authentication UI enabled');
+    this.logger.info("Multi-session management and authentication UI enabled");
 
     // Cleanup expired auth sessions every 5 minutes
     setInterval(() => {
@@ -80,88 +91,96 @@ class AdminBot {
    */
   setupMiddleware() {
     // Admin authentication middleware
-    this.bot.use(asyncErrorHandler(async (ctx, next) => {
-      const userId = ctx.from?.id;
+    this.bot.use(
+      asyncErrorHandler(async (ctx, next) => {
+        const userId = ctx.from?.id;
 
-      // Allow certain callbacks for non-admin users (registration process)
-      const allowedCallbacks = ['register_admin', 'contact_support'];
-      const callbackData = ctx.callbackQuery?.data;
+        // Allow certain callbacks for non-admin users (registration process)
+        const allowedCallbacks = ["register_admin", "contact_support"];
+        const callbackData = ctx.callbackQuery?.data;
 
-      if (callbackData && allowedCallbacks.includes(callbackData)) {
-        // Allow registration callbacks for non-admin users
-        return next();
-      }
+        if (callbackData && allowedCallbacks.includes(callbackData)) {
+          // Allow registration callbacks for non-admin users
+          return next();
+        }
 
-      // Check if user is admin from database
-      const adminUser = await isUserAdminRegistered(userId);
+        // Check if user is admin from database
+        const adminUser = await isUserAdminRegistered(userId);
 
-      if (!adminUser) {
-        this.logger.warn('Unauthorized access attempt', {
+        if (!adminUser) {
+          this.logger.warn("Unauthorized access attempt", {
+            userId,
+            username: ctx.from?.username,
+            command: ctx.message?.text || ctx.callbackQuery?.data,
+          });
+
+          // Show registration prompt for unauthorized users
+          const text =
+            `❌ <b>Access Denied</b>\n\n` +
+            `You are not registered as an admin.\n` +
+            `To get access, you need to register as an admin.\n\n` +
+            `Contact the system administrator or use the registration option below:`;
+
+          const keyboard = Markup.inlineKeyboard([
+            [Markup.button.callback("📝 Register as Admin", "register_admin")],
+            [Markup.button.callback("ℹ️ Contact Support", "contact_support")],
+          ]);
+
+          try {
+            if (ctx.callbackQuery) {
+              await ctx.editMessageText(text, {
+                parse_mode: "HTML",
+                ...keyboard,
+              });
+            } else {
+              await ctx.reply(text, {
+                parse_mode: "HTML",
+                ...keyboard,
+              });
+            }
+          } catch (error) {
+            // Handle case where message content is identical
+            if (
+              error.message &&
+              error.message.includes("message is not modified")
+            ) {
+              // Answer the callback query to remove the loading state
+              if (ctx.callbackQuery) {
+                await ctx.answerCbQuery(
+                  "ℹ️ Already showing registration options"
+                );
+              }
+            } else {
+              // Re-throw other errors
+              throw error;
+            }
+          }
+          return;
+        }
+
+        this.logger.debug("Admin command received", {
+          command: ctx.message?.text || ctx.callbackQuery?.data,
           userId,
-          username: ctx.from?.username,
-          command: ctx.message?.text || ctx.callbackQuery?.data
+          adminRole: adminUser.role,
         });
 
-        // Show registration prompt for unauthorized users
-        const text = `❌ <b>Access Denied</b>\n\n` +
-          `You are not registered as an admin.\n` +
-          `To get access, you need to register as an admin.\n\n` +
-          `Contact the system administrator or use the registration option below:`;
+        // Store admin info in context for later use
+        ctx.adminUser = adminUser;
 
-        const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('📝 Register as Admin', 'register_admin')],
-          [Markup.button.callback('ℹ️ Contact Support', 'contact_support')]
-        ]);
-
-        try {
-          if (ctx.callbackQuery) {
-            await ctx.editMessageText(text, {
-              parse_mode: 'HTML',
-              ...keyboard
-            });
-          } else {
-            await ctx.reply(text, {
-              parse_mode: 'HTML',
-              ...keyboard
-            });
-          }
-        } catch (error) {
-          // Handle case where message content is identical
-          if (error.message && error.message.includes('message is not modified')) {
-            // Answer the callback query to remove the loading state
-            if (ctx.callbackQuery) {
-              await ctx.answerCbQuery('ℹ️ Already showing registration options');
-            }
-          } else {
-            // Re-throw other errors
-            throw error;
-          }
-        }
-        return;
-      }
-
-      this.logger.debug('Admin command received', {
-        command: ctx.message?.text || ctx.callbackQuery?.data,
-        userId,
-        adminRole: adminUser.role
-      });
-
-      // Store admin info in context for later use
-      ctx.adminUser = adminUser;
-
-      return next();
-    }, 'Admin auth middleware'));
+        return next();
+      }, "Admin auth middleware")
+    );
 
     // Error handling middleware
     this.bot.catch((err, ctx) => {
-      this.logger.error('Bot error occurred', {
+      this.logger.error("Bot error occurred", {
         error: err.message,
         userId: ctx.from?.id,
-        command: ctx.message?.text || ctx.callbackQuery?.data
+        command: ctx.message?.text || ctx.callbackQuery?.data,
       });
 
-      ctx.reply('❌ An error occurred. Please try again.').catch(() => {
-        this.logger.error('Failed to send error message to user');
+      ctx.reply("❌ An error occurred. Please try again.").catch(() => {
+        this.logger.error("Failed to send error message to user");
       });
     });
   }
@@ -171,29 +190,44 @@ class AdminBot {
    */
   setupCommands() {
     // Start command - main menu
-    this.bot.command('start', asyncErrorHandler(async (ctx) => {
-      await this.showMainMenu(ctx);
-    }, 'Start command'));
+    this.bot.command(
+      "start",
+      asyncErrorHandler(async (ctx) => {
+        await this.showMainMenu(ctx);
+      }, "Start command")
+    );
 
     // Status command
-    this.bot.command('status', asyncErrorHandler(async (ctx) => {
-      await this.showStatus(ctx);
-    }, 'Status command'));
+    this.bot.command(
+      "status",
+      asyncErrorHandler(async (ctx) => {
+        await this.showStatus(ctx);
+      }, "Status command")
+    );
 
     // Help command
-    this.bot.command('help', asyncErrorHandler(async (ctx) => {
-      await this.showHelp(ctx);
-    }, 'Help command'));
+    this.bot.command(
+      "help",
+      asyncErrorHandler(async (ctx) => {
+        await this.showHelp(ctx);
+      }, "Help command")
+    );
 
     // Statistics command
-    this.bot.command('stats', asyncErrorHandler(async (ctx) => {
-      await this.showStatistics(ctx);
-    }, 'Stats command'));
+    this.bot.command(
+      "stats",
+      asyncErrorHandler(async (ctx) => {
+        await this.showStatistics(ctx);
+      }, "Stats command")
+    );
 
     // Cleanup command
-    this.bot.command('cleanup', asyncErrorHandler(async (ctx) => {
-      await this.performCleanup(ctx);
-    }, 'Cleanup command'));
+    this.bot.command(
+      "cleanup",
+      asyncErrorHandler(async (ctx) => {
+        await this.performCleanup(ctx);
+      }, "Cleanup command")
+    );
   }
 
   /**
@@ -201,106 +235,161 @@ class AdminBot {
    */
   setupCallbacks() {
     // Registration callbacks
-    this.bot.action('register_admin', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.processAdminRegistration(ctx);
-    }, 'Register admin callback'));
+    this.bot.action(
+      "register_admin",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.processAdminRegistration(ctx);
+      }, "Register admin callback")
+    );
 
-    this.bot.action('contact_support', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showContactSupport(ctx);
-    }, 'Contact support callback'));
+    this.bot.action(
+      "contact_support",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showContactSupport(ctx);
+      }, "Contact support callback")
+    );
 
     // Main menu callback
-    this.bot.action('main_menu', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showMainMenu(ctx);
-    }, 'Main menu callback'));
+    this.bot.action(
+      "main_menu",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showMainMenu(ctx);
+      }, "Main menu callback")
+    );
 
     // Main menu callbacks
-    this.bot.action('channels_list', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showChannelsList(ctx);
-    }, 'Channels list callback'));
+    this.bot.action(
+      "channels_list",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showChannelsList(ctx);
+      }, "Channels list callback")
+    );
 
-    this.bot.action('user_stats', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showUserStats(ctx);
-    }, 'User stats callback'));
+    this.bot.action(
+      "user_stats",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showUserStats(ctx);
+      }, "User stats callback")
+    );
 
-    this.bot.action('forwarding_stats', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showForwardingStats(ctx);
-    }, 'Forwarding stats callback'));
+    this.bot.action(
+      "forwarding_stats",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showForwardingStats(ctx);
+      }, "Forwarding stats callback")
+    );
 
-    this.bot.action('bot_status', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showBotStatus(ctx);
-    }, 'Bot status callback'));
+    this.bot.action(
+      "bot_status",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showBotStatus(ctx);
+      }, "Bot status callback")
+    );
 
     // Multi-session callbacks
-    this.bot.action('sessions_list', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      if (this.userBotManager) {
-        // This will be handled by adminBotSessions.js
-        await ctx.reply('🔐 Session management is available. Use /sessions command.');
-      } else {
-        await ctx.reply('❌ UserBotManager not initialized. Please restart the application.');
-      }
-    }, 'Sessions list callback'));
+    this.bot.action(
+      "sessions_list",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        if (this.userBotManager) {
+          // This will be handled by adminBotSessions.js
+          await ctx.reply(
+            "🔐 Session management is available. Use /sessions command."
+          );
+        } else {
+          await ctx.reply(
+            "❌ UserBotManager not initialized. Please restart the application."
+          );
+        }
+      }, "Sessions list callback")
+    );
 
-    this.bot.action('queue_status', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showQueueStatus(ctx);
-    }, 'Queue status callback'));
+    this.bot.action(
+      "queue_status",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showQueueStatus(ctx);
+      }, "Queue status callback")
+    );
 
-    this.bot.action('performance_stats', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showPerformanceStats(ctx);
-    }, 'Performance stats callback'));
+    this.bot.action(
+      "performance_stats",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showPerformanceStats(ctx);
+      }, "Performance stats callback")
+    );
 
-    this.bot.action('main_menu', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showMainMenu(ctx);
-    }, 'Main menu callback'));
+    this.bot.action(
+      "main_menu",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showMainMenu(ctx);
+      }, "Main menu callback")
+    );
 
     // Channel management callbacks
-    this.bot.action(/^toggle_channel_(.+)$/, asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      const channelId = ctx.match[1];
-      await this.toggleChannel(ctx, channelId);
-    }, 'Toggle channel callback'));
+    this.bot.action(
+      /^toggle_channel_(.+)$/,
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        const channelId = ctx.match[1];
+        await this.toggleChannel(ctx, channelId);
+      }, "Toggle channel callback")
+    );
 
-    this.bot.action(/^remove_channel_(.+)$/, asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      const channelId = ctx.match[1];
-      await this.removeChannelConfirm(ctx, channelId);
-    }, 'Remove channel callback'));
+    this.bot.action(
+      /^remove_channel_(.+)$/,
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        const channelId = ctx.match[1];
+        await this.removeChannelConfirm(ctx, channelId);
+      }, "Remove channel callback")
+    );
 
-    this.bot.action(/^confirm_remove_(.+)$/, asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      const channelId = ctx.match[1];
-      await this.confirmRemoveChannel(ctx, channelId);
-    }, 'Confirm remove channel callback'));
+    this.bot.action(
+      /^confirm_remove_(.+)$/,
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        const channelId = ctx.match[1];
+        await this.confirmRemoveChannel(ctx, channelId);
+      }, "Confirm remove channel callback")
+    );
 
     // Navigation callbacks
-    this.bot.action(/^channels_page_(\d+)$/, asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      const page = parseInt(ctx.match[1]);
-      await this.showChannelsList(ctx, page);
-    }, 'Channels page callback'));
+    this.bot.action(
+      /^channels_page_(\d+)$/,
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        const page = parseInt(ctx.match[1]);
+        await this.showChannelsList(ctx, page);
+      }, "Channels page callback")
+    );
 
     // Sync channels callback
-    this.bot.action('sync_channels', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery('⏳ Syncing channels...');
-      await this.syncChannels(ctx);
-    }, 'Sync channels callback'));
+    this.bot.action(
+      "sync_channels",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery("⏳ Syncing channels...");
+        await this.syncChannels(ctx);
+      }, "Sync channels callback")
+    );
 
     // Help callback
-    this.bot.action('help', asyncErrorHandler(async (ctx) => {
-      await ctx.answerCbQuery();
-      await this.showHelp(ctx);
-    }, 'Help callback'));
+    this.bot.action(
+      "help",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        await this.showHelp(ctx);
+      }, "Help callback")
+    );
   }
 
   /**
@@ -318,7 +407,7 @@ class AdminBot {
         activeSessions = managerStatus.activeSessions || 0;
         hasActiveSessions = activeSessions > 0;
       } catch (error) {
-        this.logger.warn('Could not get session status for main menu', error);
+        this.logger.warn("Could not get session status for main menu", error);
       }
     }
 
@@ -344,13 +433,11 @@ Once connected, you'll have access to all features:
 `;
 
       keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback("➕ Add Session", "add_session")],
         [
-          Markup.button.callback('➕ Add Session', 'add_session')
+          Markup.button.callback("📊 System Status", "bot_status"),
+          Markup.button.callback("❓ Help", "help"),
         ],
-        [
-          Markup.button.callback('📊 System Status', 'bot_status'),
-          Markup.button.callback('❓ Help', 'help')
-        ]
       ]);
     } else {
       // Show full menu when sessions are active
@@ -369,42 +456,40 @@ Welcome to the multi-session management system!
 
       keyboard = Markup.inlineKeyboard([
         [
-          Markup.button.callback('📋 Channels List', 'channels_list'),
-          Markup.button.callback('📊 System Status', 'bot_status')
+          Markup.button.callback("📋 Channels List", "channels_list"),
+          Markup.button.callback("📊 System Status", "bot_status"),
         ],
         [
-          Markup.button.callback('👥 User Stats', 'user_stats'),
-          Markup.button.callback('📨 Forwarding Stats', 'forwarding_stats')
+          Markup.button.callback("👥 User Stats", "user_stats"),
+          Markup.button.callback("📨 Forwarding Stats", "forwarding_stats"),
         ],
         [
-          Markup.button.callback('🔐 Sessions Manager', 'sessions_list'),
-          Markup.button.callback('➕ Add Session', 'add_session')
+          Markup.button.callback("🔐 Sessions Manager", "sessions_list"),
+          Markup.button.callback("➕ Add Session", "add_session"),
         ],
         [
-          Markup.button.callback('⚡ Performance', 'performance_stats'),
-          Markup.button.callback('🎛️ Queue Status', 'queue_status')
+          Markup.button.callback("⚡ Performance", "performance_stats"),
+          Markup.button.callback("🎛️ Queue Status", "queue_status"),
         ],
-        [
-          Markup.button.callback('❓ Help', 'help')
-        ]
+        [Markup.button.callback("❓ Help", "help")],
       ]);
     }
 
     try {
       if (ctx.callbackQuery) {
         await ctx.editMessageText(menuText, {
-          parse_mode: 'Markdown',
-          ...keyboard
+          parse_mode: "Markdown",
+          ...keyboard,
         });
       } else {
         await ctx.reply(menuText, {
-          parse_mode: 'Markdown',
-          ...keyboard
+          parse_mode: "Markdown",
+          ...keyboard,
         });
       }
     } catch (error) {
-      this.logger.error('Error showing multi-user main menu', error);
-      await ctx.reply('❌ Error loading main menu. Please try /start again.');
+      this.logger.error("Error showing multi-user main menu", error);
+      await ctx.reply("❌ Error loading main menu. Please try /start again.");
     }
   }
 
@@ -414,24 +499,30 @@ Welcome to the multi-session management system!
   async showQueueStatus(ctx) {
     try {
       if (!this.userBotManager) {
-        await ctx.answerCbQuery('Multi-session support not available');
+        await ctx.answerCbQuery("Multi-session support not available");
         return;
       }
 
       let statusText = `🎛️ *Queue Status - Multi-Session System*\n\n`;
 
       try {
-        const { queueManager } = await import('../utils/messageQueue.js');
+        const { queueManager } = await import("../utils/messageQueue.js");
         const queueStatus = queueManager.getStatus();
 
         if (Object.keys(queueStatus).length === 0) {
           statusText += `📋 No active queues\n\n`;
         } else {
           for (const [sessionPhone, status] of Object.entries(queueStatus)) {
-            const emoji = status.processing ? '🔄' : status.queueLength > 0 ? '⏳' : '✅';
+            const emoji = status.processing
+              ? "🔄"
+              : status.queueLength > 0
+              ? "⏳"
+              : "✅";
             statusText += `${emoji} *${sessionPhone}*\n`;
             statusText += `   Queue: ${status.queueLength} messages\n`;
-            statusText += `   Processing: ${status.processing ? 'Yes' : 'No'}\n`;
+            statusText += `   Processing: ${
+              status.processing ? "Yes" : "No"
+            }\n`;
             statusText += `   Delays: ${status.minDelay}-${status.maxDelay}ms\n\n`;
           }
         }
@@ -448,18 +539,17 @@ Welcome to the multi-session management system!
       statusText += `Total: ${managerStatus.totalSessions}`;
 
       const keyboard = Markup.inlineKeyboard([
-        [Markup.button.callback('🔄 Refresh', 'queue_status')],
-        [Markup.button.callback('⬅️ Back to Menu', 'main_menu')]
+        [Markup.button.callback("🔄 Refresh", "queue_status")],
+        [Markup.button.callback("⬅️ Back to Menu", "main_menu")],
       ]);
 
       await ctx.editMessageText(statusText, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing queue status', error);
-      await ctx.answerCbQuery('Error loading queue status');
+      this.logger.error("Error showing queue status", error);
+      await ctx.answerCbQuery("Error loading queue status");
     }
   }
 
@@ -469,7 +559,7 @@ Welcome to the multi-session management system!
   async showPerformanceStats(ctx) {
     try {
       if (!this.userBotManager) {
-        await ctx.answerCbQuery('Multi-session support not available');
+        await ctx.answerCbQuery("Multi-session support not available");
         return;
       }
 
@@ -491,8 +581,12 @@ Welcome to the multi-session management system!
       statsText += `📊 *Session Performance*\n`;
 
       for (const session of managerStatus.sessions) {
-        const status = session.isRunning && !session.isPaused ? '✅' :
-          session.isPaused ? '⏸️' : '❌';
+        const status =
+          session.isRunning && !session.isPaused
+            ? "✅"
+            : session.isPaused
+            ? "⏸️"
+            : "❌";
         statsText += `${status} ${session.phone}\n`;
         statsText += `   Channels: ${session.connectedChannels}\n`;
         if (session.pauseReason) {
@@ -501,18 +595,17 @@ Welcome to the multi-session management system!
       }
 
       const keyboard = Markup.inlineKeyboard([
-        [Markup.button.callback('🔄 Refresh', 'performance_stats')],
-        [Markup.button.callback('⬅️ Back to Menu', 'main_menu')]
+        [Markup.button.callback("🔄 Refresh", "performance_stats")],
+        [Markup.button.callback("⬅️ Back to Menu", "main_menu")],
       ]);
 
       await ctx.editMessageText(statsText, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing performance stats', error);
-      await ctx.answerCbQuery('Error loading performance stats');
+      this.logger.error("Error showing performance stats", error);
+      await ctx.answerCbQuery("Error loading performance stats");
     }
   }
 
@@ -523,7 +616,7 @@ Welcome to the multi-session management system!
    */
   async showChannelsList(ctx, page = 1) {
     try {
-      const channels = await getAllChannels();
+      const channels = await getMyChannels(ctx.adminUser.user_id);
       const itemsPerPage = 5;
       const totalPages = Math.ceil(channels.length / itemsPerPage);
       const startIndex = (page - 1) * itemsPerPage;
@@ -533,12 +626,12 @@ Welcome to the multi-session management system!
       let text = `📋 *Channels Management* (Page ${page}/${totalPages})\n\n`;
 
       if (channels.length === 0) {
-        text += '❌ No channels found. UserBot needs to sync channels first.';
+        text += "❌ No channels found. UserBot needs to sync channels first.";
       } else {
         text += `Total channels: ${channels.length}\n\n`;
 
         pageChannels.forEach((channel, index) => {
-          const status = channel.forward_enabled ? '✅ Enabled' : '❌ Disabled';
+          const status = channel.forward_enabled ? "✅ Enabled" : "❌ Disabled";
           const number = startIndex + index + 1;
           text += `${number}. *${channel.title}*\n`;
           text += `   Status: ${status}\n`;
@@ -550,15 +643,25 @@ Welcome to the multi-session management system!
       const buttons = [];
 
       // Sync button at the top
-      buttons.push([Markup.button.callback('🔄 Sync Channels', 'sync_channels')]);
+      buttons.push([
+        Markup.button.callback("🔄 Sync Channels", "sync_channels"),
+      ]);
 
       // Channel control buttons
       pageChannels.forEach((channel, index) => {
         const number = startIndex + index + 1;
-        const toggleText = channel.forward_enabled ? `❌ Disable ${number}` : `✅ Enable ${number}`;
+        const toggleText = channel.forward_enabled
+          ? `❌ Disable ${number}`
+          : `✅ Enable ${number}`;
         buttons.push([
-          Markup.button.callback(toggleText, `toggle_channel_${channel.channel_id}`),
-          Markup.button.callback(`🗑 Remove ${number}`, `remove_channel_${channel.channel_id}`)
+          Markup.button.callback(
+            toggleText,
+            `toggle_channel_${channel.channel_id}`
+          ),
+          Markup.button.callback(
+            `🗑 Remove ${number}`,
+            `remove_channel_${channel.channel_id}`
+          ),
         ]);
       });
 
@@ -567,12 +670,12 @@ Welcome to the multi-session management system!
         const paginationButtons = [];
         if (page > 1) {
           paginationButtons.push(
-            Markup.button.callback('⬅️ Previous', `channels_page_${page - 1}`)
+            Markup.button.callback("⬅️ Previous", `channels_page_${page - 1}`)
           );
         }
         if (page < totalPages) {
           paginationButtons.push(
-            Markup.button.callback('➡️ Next', `channels_page_${page + 1}`)
+            Markup.button.callback("➡️ Next", `channels_page_${page + 1}`)
           );
         }
         if (paginationButtons.length > 0) {
@@ -581,18 +684,17 @@ Welcome to the multi-session management system!
       }
 
       // Back to main menu
-      buttons.push([Markup.button.callback('🏠 Main Menu', 'main_menu')]);
+      buttons.push([Markup.button.callback("🏠 Main Menu", "main_menu")]);
 
       const keyboard = Markup.inlineKeyboard(buttons);
 
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing channels list', error);
-      await ctx.reply('❌ Error loading channels list.');
+      this.logger.error("Error showing channels list", error);
+      await ctx.reply("❌ Error loading channels list.");
     }
   }
 
@@ -604,20 +706,22 @@ Welcome to the multi-session management system!
   async toggleChannel(ctx, channelId) {
     try {
       const channel = await toggleChannelForwarding(channelId);
-      const status = channel.forward_enabled ? 'enabled' : 'disabled';
+      const status = channel.forward_enabled ? "enabled" : "disabled";
 
       await ctx.reply(`✅ Channel "${channel.title}" forwarding ${status}.`);
 
       // Refresh the channels list
       setTimeout(() => {
-        this.showChannelsList(ctx).catch(err =>
-          this.logger.error('Error refreshing channels list', err)
+        this.showChannelsList(ctx).catch((err) =>
+          this.logger.error("Error refreshing channels list", err)
         );
       }, 1000);
-
     } catch (error) {
-      this.logger.error('Error toggling channel', { channelId, error: error.message });
-      await ctx.reply('❌ Error toggling channel status.');
+      this.logger.error("Error toggling channel", {
+        channelId,
+        error: error.message,
+      });
+      await ctx.reply("❌ Error toggling channel status.");
     }
   }
 
@@ -629,10 +733,10 @@ Welcome to the multi-session management system!
   async removeChannelConfirm(ctx, channelId) {
     try {
       const channels = await getAllChannels();
-      const channel = channels.find(c => c.channel_id === channelId);
+      const channel = channels.find((c) => c.channel_id === channelId);
 
       if (!channel) {
-        await ctx.reply('❌ Channel not found.');
+        await ctx.reply("❌ Channel not found.");
         return;
       }
 
@@ -640,19 +744,24 @@ Welcome to the multi-session management system!
 
       const keyboard = Markup.inlineKeyboard([
         [
-          Markup.button.callback('✅ Yes, Remove', `confirm_remove_${channelId}`),
-          Markup.button.callback('❌ Cancel', 'channels_list')
-        ]
+          Markup.button.callback(
+            "✅ Yes, Remove",
+            `confirm_remove_${channelId}`
+          ),
+          Markup.button.callback("❌ Cancel", "channels_list"),
+        ],
       ]);
 
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing remove confirmation', { channelId, error: error.message });
-      await ctx.reply('❌ Error loading confirmation dialog.');
+      this.logger.error("Error showing remove confirmation", {
+        channelId,
+        error: error.message,
+      });
+      await ctx.reply("❌ Error loading confirmation dialog.");
     }
   }
 
@@ -666,21 +775,23 @@ Welcome to the multi-session management system!
       const removed = await removeChannel(channelId);
 
       if (removed) {
-        await ctx.reply('✅ Channel removed successfully.');
+        await ctx.reply("✅ Channel removed successfully.");
       } else {
-        await ctx.reply('❌ Channel not found or already removed.');
+        await ctx.reply("❌ Channel not found or already removed.");
       }
 
       // Return to channels list
       setTimeout(() => {
-        this.showChannelsList(ctx).catch(err =>
-          this.logger.error('Error returning to channels list', err)
+        this.showChannelsList(ctx).catch((err) =>
+          this.logger.error("Error returning to channels list", err)
         );
       }, 1000);
-
     } catch (error) {
-      this.logger.error('Error removing channel', { channelId, error: error.message });
-      await ctx.reply('❌ Error removing channel.');
+      this.logger.error("Error removing channel", {
+        channelId,
+        error: error.message,
+      });
+      await ctx.reply("❌ Error removing channel.");
     }
   }
 
@@ -697,8 +808,10 @@ Welcome to the multi-session management system!
       // UserBot status
       if (userBotStatus) {
         text += `👤 *UserBot Status:*\n`;
-        text += `   Running: ${userBotStatus.isRunning ? '✅ Yes' : '❌ No'}\n`;
-        text += `   Connected: ${userBotStatus.isConnected ? '✅ Yes' : '❌ No'}\n`;
+        text += `   Running: ${userBotStatus.isRunning ? "✅ Yes" : "❌ No"}\n`;
+        text += `   Connected: ${
+          userBotStatus.isConnected ? "✅ Yes" : "❌ No"
+        }\n`;
         text += `   Monitored Channels: ${userBotStatus.connectedChannels}\n`;
         text += `   Last Check: ${userBotStatus.lastStatusCheck}\n\n`;
       } else {
@@ -707,13 +820,13 @@ Welcome to the multi-session management system!
 
       // AdminBot status
       text += `⚙️ *AdminBot Status:*\n`;
-      text += `   Running: ${this.isRunning ? '✅ Yes' : '❌ No'}\n`;
+      text += `   Running: ${this.isRunning ? "✅ Yes" : "❌ No"}\n`;
 
       // Get admin count
       try {
-        const { getAllAdmins } = await import('../services/adminService.js');
+        const { getAllAdmins } = await import("../services/adminService.js");
         const admins = await getAllAdmins();
-        const activeAdmins = admins.filter(admin => admin.is_active).length;
+        const activeAdmins = admins.filter((admin) => admin.is_active).length;
         text += `   Active Admins: ${activeAdmins}\n`;
       } catch (error) {
         text += `   Active Admins: Error loading\n`;
@@ -723,22 +836,23 @@ Welcome to the multi-session management system!
       // System info
       text += `💾 *System Info:*\n`;
       text += `   Uptime: ${Math.floor(process.uptime())} seconds\n`;
-      text += `   Memory Usage: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB\n`;
+      text += `   Memory Usage: ${Math.round(
+        process.memoryUsage().heapUsed / 1024 / 1024
+      )} MB\n`;
       text += `   Node.js Version: ${process.version}\n`;
 
       const keyboard = Markup.inlineKeyboard([
-        [Markup.button.callback('🔄 Refresh', 'bot_status')],
-        [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        [Markup.button.callback("🔄 Refresh", "bot_status")],
+        [Markup.button.callback("🏠 Main Menu", "main_menu")],
       ]);
 
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing bot status', error);
-      await ctx.reply('❌ Error loading bot status.');
+      this.logger.error("Error showing bot status", error);
+      await ctx.reply("❌ Error loading bot status.");
     }
   }
 
@@ -761,8 +875,8 @@ Welcome to the multi-session management system!
       if (recentUsers.length > 0) {
         text += `🆕 *Recent Users (last 7 days):*\n`;
         recentUsers.slice(0, 5).forEach((user, index) => {
-          const name = user.first_name || 'Unknown';
-          const username = user.username ? `@${user.username}` : 'No username';
+          const name = user.first_name || "Unknown";
+          const username = user.username ? `@${user.username}` : "No username";
           text += `   ${index + 1}. ${name} (${username})\n`;
         });
 
@@ -772,18 +886,17 @@ Welcome to the multi-session management system!
       }
 
       const keyboard = Markup.inlineKeyboard([
-        [Markup.button.callback('🔄 Refresh', 'user_stats')],
-        [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        [Markup.button.callback("🔄 Refresh", "user_stats")],
+        [Markup.button.callback("🏠 Main Menu", "main_menu")],
       ]);
 
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing user stats', error);
-      await ctx.reply('❌ Error loading user statistics.');
+      this.logger.error("Error showing user stats", error);
+      await ctx.reply("❌ Error loading user statistics.");
     }
   }
 
@@ -793,13 +906,15 @@ Welcome to the multi-session management system!
    */
   async showForwardingStats(ctx) {
     try {
-      const today = new Date().toISOString().split('T')[0];
-      const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+      const today = new Date().toISOString().split("T")[0];
+      const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0];
 
       const [todayStats, yesterdayStats, recentLogs] = await Promise.all([
         getForwardingStats({ fromDate: today }),
         getForwardingStats({ fromDate: yesterday, toDate: today }),
-        getRecentForwardingLogs({ limit: 10 })
+        getRecentForwardingLogs({ limit: 10 }),
       ]);
 
       let text = `📨 *Forwarding Statistics*\n\n`;
@@ -817,7 +932,7 @@ Welcome to the multi-session management system!
       if (recentLogs.length > 0) {
         text += `🕐 *Recent Activity:*\n`;
         recentLogs.slice(0, 5).forEach((log, index) => {
-          const status = log.status === 'success' ? '✅' : '❌';
+          const status = log.status === "success" ? "✅" : "❌";
           const time = new Date(log.created_at).toLocaleTimeString();
           text += `   ${status} ${time} - Channel ${log.channel_id}\n`;
         });
@@ -826,18 +941,17 @@ Welcome to the multi-session management system!
       }
 
       const keyboard = Markup.inlineKeyboard([
-        [Markup.button.callback('🔄 Refresh', 'forwarding_stats')],
-        [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+        [Markup.button.callback("🔄 Refresh", "forwarding_stats")],
+        [Markup.button.callback("🏠 Main Menu", "main_menu")],
       ]);
 
       await ctx.editMessageText(text, {
-        parse_mode: 'Markdown',
-        ...keyboard
+        parse_mode: "Markdown",
+        ...keyboard,
       });
-
     } catch (error) {
-      this.logger.error('Error showing forwarding stats', error);
-      await ctx.reply('❌ Error loading forwarding statistics.');
+      this.logger.error("Error showing forwarding stats", error);
+      await ctx.reply("❌ Error loading forwarding statistics.");
     }
   }
 
@@ -888,10 +1002,10 @@ Contact your system administrator or check application logs for troubleshooting.
 `;
 
     await ctx.reply(helpText, {
-      parse_mode: 'Markdown',
+      parse_mode: "Markdown",
       reply_markup: Markup.inlineKeyboard([
-        [Markup.button.callback('🏠 Main Menu', 'main_menu')]
-      ])
+        [Markup.button.callback("🏠 Main Menu", "main_menu")],
+      ]),
     });
   }
 
@@ -904,7 +1018,7 @@ Contact your system administrator or check application logs for troubleshooting.
       const [channelStats, userStats, forwardingStats] = await Promise.all([
         getChannelStats(),
         getUserStats(),
-        getForwardingStats()
+        getForwardingStats(),
       ]);
 
       let text = `📊 *Overall Statistics*\n\n`;
@@ -927,11 +1041,10 @@ Contact your system administrator or check application logs for troubleshooting.
 
       text += `🕐 *Last Updated:* ${formatTimestamp()}`;
 
-      await ctx.reply(text, { parse_mode: 'Markdown' });
-
+      await ctx.reply(text, { parse_mode: "Markdown" });
     } catch (error) {
-      this.logger.error('Error showing statistics', error);
-      await ctx.reply('❌ Error loading statistics.');
+      this.logger.error("Error showing statistics", error);
+      await ctx.reply("❌ Error loading statistics.");
     }
   }
 
@@ -941,15 +1054,16 @@ Contact your system administrator or check application logs for troubleshooting.
    */
   async performCleanup(ctx) {
     try {
-      await ctx.reply('🧹 Starting database cleanup...');
+      await ctx.reply("🧹 Starting database cleanup...");
 
       const deletedLogs = await cleanupMessageLogs(30); // Keep 30 days
 
-      await ctx.reply(`✅ Cleanup completed!\n\nDeleted ${deletedLogs} old message logs.`);
-
+      await ctx.reply(
+        `✅ Cleanup completed!\n\nDeleted ${deletedLogs} old message logs.`
+      );
     } catch (error) {
-      this.logger.error('Error performing cleanup', error);
-      await ctx.reply('❌ Error during cleanup operation.');
+      this.logger.error("Error performing cleanup", error);
+      await ctx.reply("❌ Error during cleanup operation.");
     }
   }
 
@@ -962,15 +1076,14 @@ Contact your system administrator or check application logs for troubleshooting.
       const userBotStatus = this.userBot ? this.userBot.getStatus() : null;
 
       let text = `🤖 *Quick Status*\n\n`;
-      text += `UserBot: ${userBotStatus?.isRunning ? '✅' : '❌'}\n`;
-      text += `AdminBot: ${this.isRunning ? '✅' : '❌'}\n`;
+      text += `UserBot: ${userBotStatus?.isRunning ? "✅" : "❌"}\n`;
+      text += `AdminBot: ${this.isRunning ? "✅" : "❌"}\n`;
       text += `Channels: ${userBotStatus?.connectedChannels || 0}\n`;
 
-      await ctx.reply(text, { parse_mode: 'Markdown' });
-
+      await ctx.reply(text, { parse_mode: "Markdown" });
     } catch (error) {
-      this.logger.error('Error showing status', error);
-      await ctx.reply('❌ Error loading status.');
+      this.logger.error("Error showing status", error);
+      await ctx.reply("❌ Error loading status.");
     }
   }
 
@@ -981,7 +1094,7 @@ Contact your system administrator or check application logs for troubleshooting.
   async syncChannels(ctx) {
     try {
       if (!this.userBot || !this.userBot.client) {
-        await ctx.reply('❌ UserBot is not connected. Cannot sync channels.');
+        await ctx.reply("❌ UserBot is not connected. Cannot sync channels.");
         return;
       }
 
@@ -995,11 +1108,10 @@ Contact your system administrator or check application logs for troubleshooting.
         await ctx.reply(`❌ Sync failed: ${result.message}`);
       }
 
-      this.logger.info('Channels sync completed', result);
-
+      this.logger.info("Channels sync completed", result);
     } catch (error) {
-      this.logger.error('Error syncing channels', error);
-      await ctx.reply('❌ Error syncing channels. Please try again.');
+      this.logger.error("Error syncing channels", error);
+      await ctx.reply("❌ Error syncing channels. Please try again.");
     }
   }
 
@@ -1009,7 +1121,7 @@ Contact your system administrator or check application logs for troubleshooting.
    */
   async start() {
     try {
-      this.logger.info('Starting AdminBot...');
+      this.logger.info("Starting AdminBot...");
 
       // Retry configuration for connection issues
       const maxRetries = 5;
@@ -1018,56 +1130,44 @@ Contact your system administrator or check application logs for troubleshooting.
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-          this.logger.info(`🔄 AdminBot launch attempt ${attempt}/${maxRetries}...`);
-
-          // Try to launch with timeout
-          const launchPromise = this.bot.launch();
-          const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Launch timeout after 30s')), 30000)
+          this.logger.info(
+            `🔄 AdminBot launch attempt ${attempt}/${maxRetries}...`
           );
 
-          await Promise.race([launchPromise, timeoutPromise]);
+          this.bot.launch({ dropPendingUpdates: true });
 
-          this.logger.info('✅ AdminBot launch completed successfully');
           break; // Success - exit retry loop
-
         } catch (error) {
           lastError = error;
 
           if (attempt < maxRetries) {
-            this.logger.warn(`⚠️ AdminBot launch attempt ${attempt} failed, retrying in ${retryDelay / 1000}s...`, {
-              error: error.message,
-              code: error.code,
-              type: error.type
-            });
-
-            // Wait before retry
-            await new Promise(resolve => setTimeout(resolve, retryDelay));
+            this.logger.warn(
+              `⚠️ AdminBot launch attempt ${attempt} failed, retrying in ${
+                retryDelay / 1000
+              }s...`,
+              {
+                error: error.message,
+                code: error.code,
+                type: error.type,
+              }
+            );
           } else {
-            this.logger.error(`❌ AdminBot launch failed after ${maxRetries} attempts`, {
-              error: error.message
-            });
+            this.logger.error(
+              `❌ AdminBot launch failed after ${maxRetries} attempts`,
+              {
+                error: error.message,
+              }
+            );
             throw error;
           }
         }
       }
 
       this.isRunning = true;
-      this.logger.info('AdminBot started successfully');
-
-      // Enable graceful stop
-      process.once('SIGINT', () => this.stop());
-      process.once('SIGTERM', () => this.stop());
-
+      this.logger.info("AdminBot started successfully");
     } catch (error) {
-      this.logger.error('Failed to start AdminBot', error);
-      console.error('\n❌ AdminBot startup error:', error.message);
-      console.error('💡 Possible causes:');
-      console.error('   1. Check your internet connection');
-      console.error('   2. Verify ADMIN_BOT_TOKEN in .env is correct');
-      console.error('   3. Check if Telegram API is accessible (try: curl https://api.telegram.org)');
-      console.error('   4. If using VPN/Proxy, make sure it\'s working\n');
-      throw handleTelegramError(error, 'AdminBot startup');
+      this.logger.error("Failed to start AdminBot", error);
+      throw handleTelegramError(error, "AdminBot startup");
     }
   }
 
@@ -1077,15 +1177,14 @@ Contact your system administrator or check application logs for troubleshooting.
    */
   async stop() {
     try {
-      this.logger.info('Stopping AdminBot...');
+      this.logger.info("Stopping AdminBot...");
 
       this.isRunning = false;
       this.bot.stop();
 
-      this.logger.info('AdminBot stopped gracefully');
-
+      this.logger.info("AdminBot stopped gracefully");
     } catch (error) {
-      this.logger.error('Error stopping AdminBot', error);
+      this.logger.error("Error stopping AdminBot", error);
       throw error;
     }
   }
@@ -1097,16 +1196,18 @@ Contact your system administrator or check application logs for troubleshooting.
     const user = ctx.from;
 
     try {
-
       // Import services here to avoid circular dependencies
-      const { addAdmin, isUserAdminRegistered } = await import('../services/adminService.js');
+      const { addAdmin, isUserAdminRegistered } = await import(
+        "../services/adminService.js"
+      );
 
       // Check if user is already an admin
       const existingAdmin = await isUserAdminRegistered(user.id);
 
       if (existingAdmin) {
         // User is already registered as admin
-        const text = `✅ <b>Already Registered!</b>\n\n` +
+        const text =
+          `✅ <b>Already Registered!</b>\n\n` +
           `Welcome back, <b>${user.first_name}</b>!\n` +
           `You are already registered as an admin.\n\n` +
           `🎯 <b>Ready to go!</b>\n` +
@@ -1114,39 +1215,43 @@ Contact your system administrator or check application logs for troubleshooting.
           `📱 If you haven't added a session yet, click "Add Session" to connect your phone number.`;
 
         const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('📱 Add Session', 'add_session')],
-          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+          [Markup.button.callback("📱 Add Session", "add_session")],
+          [Markup.button.callback("🏠 Main Menu", "main_menu")],
         ]);
 
         await ctx.editMessageText(text, {
-          parse_mode: 'HTML',
-          ...keyboard
+          parse_mode: "HTML",
+          ...keyboard,
         });
 
-        this.logger.info('Admin tried to register again (already exists)', {
+        this.logger.info("Admin tried to register again (already exists)", {
           userId: user.id,
           username: user.username,
-          existingRole: existingAdmin.role
+          existingRole: existingAdmin.role,
         });
 
         return;
       }
 
       // Show processing message for new registration
-      await ctx.editMessageText(`⏳ <b>Registering Admin...</b>\n\nProcessing your registration...`, {
-        parse_mode: 'HTML'
-      });
+      await ctx.editMessageText(
+        `⏳ <b>Registering Admin...</b>\n\nProcessing your registration...`,
+        {
+          parse_mode: "HTML",
+        }
+      );
 
       const success = await addAdmin({
         user_id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
         username: user.username,
-        role: 'admin'
+        role: "admin",
       });
 
       if (success) {
-        const text = `✅ <b>Registration Successful!</b>\n\n` +
+        const text =
+          `✅ <b>Registration Successful!</b>\n\n` +
           `Welcome, <b>${user.first_name}</b>!\n` +
           `You are now registered as an admin.\n\n` +
           `🎯 <b>Next Step:</b>\n` +
@@ -1154,69 +1259,91 @@ Contact your system administrator or check application logs for troubleshooting.
           `📱 Click "Add Session" to connect your phone number and start managing channels!`;
 
         const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('📱 Add Session', 'add_session')],
-          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+          [Markup.button.callback("📱 Add Session", "add_session")],
+          [Markup.button.callback("🏠 Main Menu", "main_menu")],
         ]);
 
         await ctx.editMessageText(text, {
-          parse_mode: 'HTML',
-          ...keyboard
+          parse_mode: "HTML",
+          ...keyboard,
         });
 
-        this.logger.info('Admin auto-registration successful', {
+        this.logger.info("Admin auto-registration successful", {
           userId: user.id,
           username: user.username,
-          firstName: user.first_name
+          firstName: user.first_name,
         });
-
       } else {
-        await ctx.editMessageText(`❌ <b>Registration Failed</b>\n\nThere was an error during registration. Please try again or contact support.`, {
-          parse_mode: 'HTML',
-          reply_markup: {
-            inline_keyboard: [[
-              { text: '🔄 Try Again', callback_data: 'register_admin' },
-              { text: '📞 Contact Support', callback_data: 'contact_support' }
-            ]]
+        await ctx.editMessageText(
+          `❌ <b>Registration Failed</b>\n\nThere was an error during registration. Please try again or contact support.`,
+          {
+            parse_mode: "HTML",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  { text: "🔄 Try Again", callback_data: "register_admin" },
+                  {
+                    text: "📞 Contact Support",
+                    callback_data: "contact_support",
+                  },
+                ],
+              ],
+            },
           }
-        });
+        );
       }
     } catch (error) {
-      this.logger.error('Error during admin auto-registration', { userId: user.id, error: error.message });
+      this.logger.error("Error during admin auto-registration", {
+        userId: user.id,
+        error: error.message,
+      });
 
       // Handle specific database constraint errors
-      if (error.message && error.message.includes('UNIQUE constraint failed')) {
+      if (error.message && error.message.includes("UNIQUE constraint failed")) {
         // This shouldn't happen now since we check first, but handle it gracefully
-        const text = `ℹ️ <b>Already Registered</b>\n\n` +
+        const text =
+          `ℹ️ <b>Already Registered</b>\n\n` +
           `It looks like you're already in our system!\n` +
           `Let's get you to the main menu.`;
 
         const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('🏠 Main Menu', 'main_menu')]
+          [Markup.button.callback("🏠 Main Menu", "main_menu")],
         ]);
 
         await ctx.editMessageText(text, {
-          parse_mode: 'HTML',
-          ...keyboard
+          parse_mode: "HTML",
+          ...keyboard,
         });
 
         return;
       }
 
       // Handle callback query timeout errors gracefully
-      if (error.message && error.message.includes('query is too old')) {
-        await ctx.reply(`❌ <b>Registration Error</b>\n\nSession expired. Please send /start and try again.`, {
-          parse_mode: 'HTML'
-        });
-      } else {
-        await ctx.editMessageText(`❌ <b>Registration Error</b>\n\nAn unexpected error occurred: ${error.message}\n\nPlease try again later.`, {
-          parse_mode: 'HTML',
-          reply_markup: {
-            inline_keyboard: [[
-              { text: '🔄 Try Again', callback_data: 'register_admin' },
-              { text: '📞 Contact Support', callback_data: 'contact_support' }
-            ]]
+      if (error.message && error.message.includes("query is too old")) {
+        await ctx.reply(
+          `❌ <b>Registration Error</b>\n\nSession expired. Please send /start and try again.`,
+          {
+            parse_mode: "HTML",
           }
-        });
+        );
+      } else {
+        await ctx.editMessageText(
+          `❌ <b>Registration Error</b>\n\nAn unexpected error occurred: ${error.message}\n\nPlease try again later.`,
+          {
+            parse_mode: "HTML",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  { text: "🔄 Try Again", callback_data: "register_admin" },
+                  {
+                    text: "📞 Contact Support",
+                    callback_data: "contact_support",
+                  },
+                ],
+              ],
+            },
+          }
+        );
       }
     }
   }
@@ -1225,7 +1352,8 @@ Contact your system administrator or check application logs for troubleshooting.
    * Shows contact support information
    */
   async showContactSupport(ctx) {
-    const text = `📞 <b>Contact Support</b>\n\n` +
+    const text =
+      `📞 <b>Contact Support</b>\n\n` +
       `For admin access to Telegram Casso, please contact:\n\n` +
       `• System Administrator\n` +
       `• Technical Support Team\n` +
@@ -1234,13 +1362,13 @@ Contact your system administrator or check application logs for troubleshooting.
       `💡 <b>Tip:</b> You can also try the self-registration option if available.`;
 
     const keyboard = Markup.inlineKeyboard([
-      [Markup.button.callback('📝 Try Registration', 'register_admin')],
-      [Markup.button.callback('🔙 Back', 'main_menu')]
+      [Markup.button.callback("📝 Try Registration", "register_admin")],
+      [Markup.button.callback("🔙 Back", "main_menu")],
     ]);
 
     await ctx.editMessageText(text, {
-      parse_mode: 'HTML',
-      ...keyboard
+      parse_mode: "HTML",
+      ...keyboard,
     });
   }
 }

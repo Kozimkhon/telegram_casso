@@ -13,6 +13,7 @@ import { recordMessageSent, recordFloodError, recordSpamWarning } from './metric
 import { throttleManager, retryWithBackoff } from '../utils/throttle.js';
 import { getAllAdmins } from './adminService.js';
 import { config } from '../config/index.js';
+import { TelegramClient } from 'telegram';
 
 /**
  * Logs a message forwarding attempt with session tracking
@@ -153,12 +154,13 @@ export async function getRecentForwardingLogs(options = {}) {
 
 /**
  * Processes a message for forwarding to all users
+ * @param {TelegramClient} client - Telegram client instance
  * @param {Object} message - Message object from Telegram
  * @param {string} channelId - Source channel ID
  * @param {Function} forwardFunction - Function to send message to user
  * @returns {Promise<Object>} Forwarding results
  */
-export async function processMessageForwarding(message, channelId, forwardFunction = null) {
+export async function processMessageForwarding(client, message, channelId, forwardFunction = null) {
   try {
     const messageId = message.id?.toString() || 'unknown';
     
@@ -172,21 +174,6 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
       messageId,
       messageType: message.className || 'unknown'
     });
-
-    // Check if forwarding is enabled for this channel
-    const isEnabled = await isChannelEnabled(channelId);
-    console.log('Is channel enabled:', isEnabled);
-    
-    if (!isEnabled) {
-      log.info('Forwarding disabled for channel', { channelId, messageId });
-      return {
-        total: 0,
-        successful: 0,
-        failed: 0,
-        skipped: 1,
-        message: 'Forwarding disabled for this channel'
-      };
-    }
 
     // Get users from the specific channel that sent the message
     const allUsers = await getUsersByChannel(channelId);
@@ -244,7 +231,7 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
 
       // Process users in parallel within the chunk
       const chunkResults = await Promise.allSettled(
-        chunk.map(user => forwardMessageToUser(message, user, channelId, messageId, forwardFunction))
+        chunk.map(user => forwardMessageToUser( client,message, user, channelId, messageId, forwardFunction))
       );
 
       // Count results
@@ -299,20 +286,20 @@ export async function processMessageForwarding(message, channelId, forwardFuncti
 
 /**
  * Forwards a message to a single user with multi-session approach
+ * @param {TelegramClient} client - Telegram client instance
  * @param {Object} message - Message object
  * @param {Object} user - User object
  * @param {string} channelId - Source channel ID
  * @param {string} messageId - Message ID
- * @param {Function} forwardFunction - Function to send message (deprecated)
  * @returns {Promise<Object>} Forward result
  */
-async function forwardMessageToUser(message, user, channelId, messageId, forwardFunction) {
+async function forwardMessageToUser(client, message, user, channelId, messageId) {
   const userId = user.user_id;
   
   try {
     // Get UserBotManager instance for multi-session forwarding
     const { userBotManager } = await import('../bots/userBotManager.js');
-    const selectedBot = userBotManager.getRandomActiveBot();
+    const selectedBot = await userBotManager.getBotForChannel(channelId);
     const sessionPhone = selectedBot?.phone || 'unknown';
 
     if (!selectedBot) {
@@ -583,7 +570,45 @@ export async function getOldForwardedMessages(hoursOld = 24) {
     throw handleDatabaseError(error, 'getOldForwardedMessages');
   }
 }
-
+export async function getMessagesByMessageId(messageId) {
+  try {
+    log.dbOperation('SELECT', 'message_logs', { operation: 'by_message_id', messageId });
+    const messages = await getAllQuery(
+      `SELECT user_id, forwarded_message_id, created_at 
+       FROM message_logs 
+       WHERE status = 'success' 
+         AND forwarded_message_id IS NOT NULL
+         AND message_id = ?
+       ORDER BY created_at ASC`,
+      [messageId]
+    );
+    return messages;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getMessagesByMessageId');
+  }
+}
+/**
+ * Gets forwarded messages by forwarded message ID
+ * @param {string} forwardedMessageId - Forwarded message ID
+ * @returns {Promise<Array>} Array of forwarded messages
+ */
+export async function getForwardedMessagesByForwardedMessageId(channelId,forwardedMessageId) {
+  try {
+    log.dbOperation('SELECT', 'message_logs', { operation: 'by_forwarded_message_id', forwardedMessageId });
+    const messages = await getAllQuery(
+      `SELECT user_id, forwarded_message_id, created_at
+       FROM message_logs
+       WHERE status = 'success'
+          AND channel_id = ?
+          AND forwarded_message_id = ?
+       ORDER BY created_at ASC`,
+      [channelId,forwardedMessageId]
+    );
+    return messages;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getForwardedMessagesByForwardedMessageId');
+  }
+}
 /**
  * Marks a forwarded message as deleted in the database
  * @param {string} userId - User ID

@@ -115,7 +115,32 @@ export async function getAllAdmins() {
     return [];
   }
 }
+/**
+ * Gets all admin users
+ * @returns {Promise<User>} List of admin users
+ */
+export async function getAdminById(userId) {
+  try {
+    const db = getDatabase();
+    const userIdStr = userId.toString();
 
+    const admin = await new Promise((resolve, reject) => {
+      db.get(
+        'SELECT * FROM sessions WHERE user_id = ?',
+        [userIdStr],
+        (err, row) => {
+          if (err) reject(err);
+          else resolve(row);
+        }
+      );
+    });
+
+    return admin || null;
+  } catch (error) {
+    log.error('Error getting admin user by ID', { userId, error: error.message });
+    return null;
+  }
+}
 /**
  * Removes an admin user
  * @param {string|number} userId - Telegram user ID

@@ -3,43 +3,52 @@
  * Handles authentication, channel monitoring, and message forwarding to channel members
  */
 
-import { TelegramClient } from 'telegram';
-import { StringSession } from 'telegram/sessions/index.js';
-import { NewMessage } from 'telegram/events/index.js';
-import { Api } from 'telegram/tl/index.js';
-import { utils } from 'telegram';
-import fs from 'fs/promises';
-import path from 'path';
+import { TelegramClient } from "telegram";
+import { StringSession } from "telegram/sessions/index.js";
+import { NewMessage } from "telegram/events/index.js";
+import { Api } from "telegram/tl/index.js";
+import { utils } from "telegram";
+import fs from "fs/promises";
+import path from "path";
 
-import { config } from '../config/index.js';
-import { log, createChildLogger } from '../utils/logger.js';
+import { config } from "../config/index.js";
+import { log, createChildLogger } from "../utils/logger.js";
 import {
   handleTelegramError,
   AuthenticationError,
   withRetry,
-  asyncErrorHandler
-} from '../utils/errorHandler.js';
+  asyncErrorHandler,
+} from "../utils/errorHandler.js";
 import {
   extractChannelInfo,
   extractUserInfo,
   safeReadFile,
   safeWriteFile,
   formatTimestamp,
-  ensureDirectory
-} from '../utils/helpers.js';
-import { addChannel, getAllChannels } from '../services/channelService.js';
+  ensureDirectory,
+} from "../utils/helpers.js";
+import {
+  addChannel,
+  getAllChannels,
+  getChannelById,
+  isChannelEnabled,
+} from "../services/channelService.js";
 import {
   addUser,
   bulkAddUsers,
   getUsersByChannel,
-  bulkAddChannelMembers
-} from '../services/userService.js';
+  bulkAddChannelMembers,
+} from "../services/userService.js";
 import {
   processMessageForwarding,
   getOldForwardedMessages,
-  markMessageAsDeleted
-} from '../services/messageService.js';
-import { saveSession as saveSessionToDB, updateSessionActivity } from '../services/sessionService.js';
+  markMessageAsDeleted,
+  getForwardedMessagesByForwardedMessageId,
+} from "../services/messageService.js";
+import {
+  saveSession as saveSessionToDB,
+  updateSessionActivity,
+} from "../services/sessionService.js";
 
 class UserBot {
   constructor(sessionData = null) {
@@ -47,7 +56,7 @@ class UserBot {
     this.isRunning = false;
     this.isPaused = false;
     this.pauseReason = null;
-    this.logger = createChildLogger({ component: 'UserBot' });
+    this.logger = createChildLogger({ component: "UserBot" });
 
     // Session data (for multi-userbot support)
     this.phone = sessionData?.phone || null;
@@ -80,7 +89,9 @@ class UserBot {
    */
   async start() {
     try {
-      this.logger.info('Starting UserBot initialization...', { phone: this.phone });
+      this.logger.info("Starting UserBot initialization...", {
+        phone: this.phone,
+      });
 
       // Ensure data directory exists (only for file-based sessions)
       if (this.sessionPath) {
@@ -98,7 +109,7 @@ class UserBot {
         {
           connectionRetries: 5,
           timeout: 30000,
-          requestRetries: 3
+          requestRetries: 3,
         }
       );
 
@@ -107,8 +118,10 @@ class UserBot {
 
       // Update session activity in database
       if (this.phone) {
-        await updateSessionActivity(this.phone).catch(err =>
-          this.logger.debug('Failed to update session activity', { error: err.message })
+        await updateSessionActivity(this.phone).catch((err) =>
+          this.logger.debug("Failed to update session activity", {
+            error: err.message,
+          })
         );
       }
 
@@ -120,11 +133,10 @@ class UserBot {
       this.startPeriodicMessageDeletion();
 
       this.isRunning = true;
-      this.logger.info('UserBot started successfully');
-
+      this.logger.info("UserBot started successfully");
     } catch (error) {
-      this.logger.error('Failed to start UserBot', error);
-      throw handleTelegramError(error, 'UserBot initialization');
+      this.logger.error("Failed to start UserBot", error);
+      throw handleTelegramError(error, "UserBot initialization");
     }
   }
 
@@ -136,7 +148,9 @@ class UserBot {
     try {
       // If sessionString is provided from database, use it
       if (this.sessionString) {
-        this.logger.info('Loading session from database', { phone: this.phone });
+        this.logger.info("Loading session from database", {
+          phone: this.phone,
+        });
         return new StringSession(this.sessionString.trim());
       }
 
@@ -145,16 +159,18 @@ class UserBot {
         const sessionData = await safeReadFile(this.sessionPath);
 
         if (sessionData) {
-          this.logger.info('Loading existing session from file');
+          this.logger.info("Loading existing session from file");
           return new StringSession(sessionData.trim());
         }
       }
 
-      this.logger.info('Creating new session', { phone: this.phone });
-      return new StringSession('');
+      this.logger.info("Creating new session", { phone: this.phone });
+      return new StringSession("");
     } catch (error) {
-      this.logger.warn('Error loading session, creating new one', { error: error.message });
-      return new StringSession('');
+      this.logger.warn("Error loading session, creating new one", {
+        error: error.message,
+      });
+      return new StringSession("");
     }
   }
 
@@ -173,17 +189,17 @@ class UserBot {
             phone: this.phone,
             userId: this.userId,
             sessionString: sessionString,
-            status: 'active'
+            status: "active",
           });
-          this.logger.debug('Session saved to database', { phone: this.phone });
+          this.logger.debug("Session saved to database", { phone: this.phone });
         } else if (this.sessionPath) {
           // Legacy mode: save to file
           await safeWriteFile(this.sessionPath, sessionString);
-          this.logger.debug('Session saved to file');
+          this.logger.debug("Session saved to file");
         }
       }
     } catch (error) {
-      this.logger.error('Failed to save session', error);
+      this.logger.error("Failed to save session", error);
     }
   }
 
@@ -193,7 +209,7 @@ class UserBot {
    */
   async connect() {
     try {
-      this.logger.info('Connecting to Telegram...', { phone: this.phone });
+      this.logger.info("Connecting to Telegram...", { phone: this.phone });
 
       await this.client.start({
         phoneNumber: async () => {
@@ -202,25 +218,27 @@ class UserBot {
             return this.phone;
           }
           throw new AuthenticationError(
-            'No phone number available. Please authenticate via AdminBot.'
+            "No phone number available. Please authenticate via AdminBot."
           );
         },
         password: async () => {
           // No console prompts - throw error if password is needed
           throw new AuthenticationError(
-            'Session requires 2FA authentication. Please authenticate via AdminBot.'
+            "Session requires 2FA authentication. Please authenticate via AdminBot."
           );
         },
         phoneCode: async () => {
           // No console prompts - throw error if code is needed
           throw new AuthenticationError(
-            'Session requires phone verification. Please authenticate via AdminBot.'
+            "Session requires phone verification. Please authenticate via AdminBot."
           );
         },
         onError: (err) => {
-          this.logger.error('Authentication error', err);
-          throw new AuthenticationError(`Authentication failed: ${err.message}`);
-        }
+          this.logger.error("Authentication error", err);
+          throw new AuthenticationError(
+            `Authentication failed: ${err.message}`
+          );
+        },
       });
 
       // Get and store user info
@@ -230,12 +248,12 @@ class UserBot {
       // Save session after successful authentication
       await this.saveSession();
 
-      this.logger.info('Successfully connected to Telegram', {
+      this.logger.info("Successfully connected to Telegram", {
         phone: this.phone,
-        userId: this.userId
+        userId: this.userId,
       });
     } catch (error) {
-      throw handleTelegramError(error, 'Telegram connection');
+      throw handleTelegramError(error, "Telegram connection");
     }
   }
 
@@ -243,61 +261,40 @@ class UserBot {
    * Sets up event handlers for comprehensive channel monitoring
    */
   async setupEventHandlers() {
-    this.logger.debug('Setting up comprehensive event handlers');
+    this.logger.debug("Setting up comprehensive event handlers");
 
     // Store enabled channel IDs for filtering in handleNewMessage
     const enabledChannels = await getAllChannels(true);
-    this.enabledChannelIds = new Set(enabledChannels.map(ch => ch.channel_id));
-    
-    console.log('🔧 Setting up listener for channels:', enabledChannels.map(c => c.title));
-    console.log('🔧 Enabled channel IDs:', Array.from(this.enabledChannelIds));
+    this.enabledChannelIds = new Set(
+      enabledChannels.map((ch) => ch.channel_id)
+    );
+
+    console.log(
+      "🔧 Setting up listener for channels:",
+      enabledChannels.map((c) => c.title)
+    );
+    console.log("🔧 Enabled channel IDs:", Array.from(this.enabledChannelIds));
 
     // Convert channel IDs to BigInt for GramJS chats parameter
-    const chatIds = Array.from(this.enabledChannelIds).map(id => BigInt(id));
-    
+    const chatIds = Array.from(this.enabledChannelIds).map((id) => BigInt(id));
+
     // ❌ DISABLE all event handlers temporarily to prevent spam
-    this.logger.warn('⚠️ Event handlers disabled to prevent spam during startup');
-    
+    this.logger.warn(
+      "⚠️ Event handlers disabled to prevent spam during startup"
+    );
+
     // TODO: Re-enable after fixing the spam issue
-    /*
-    // 1. New messages
+
     this.client.addEventHandler(
-      asyncErrorHandler(this.handleNewMessage.bind(this), 'NewMessage handler'),
-      new NewMessage({ 
-        chats: chatIds
-      })
+      asyncErrorHandler(this.asyncHandlerUni.bind(this), "UniversalHandler")
     );
 
-    // 2. Message edits
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleMessageEdit.bind(this), 'MessageEdit handler'),
-      new NewMessage({
-        chats: chatIds
-      })
-    );
-
-    // 3. Channel updates - auto-sync new channels and members
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleChannelUpdate.bind(this), 'ChannelUpdate handler')
-    );
-
-    // 4. Channel participant updates - track joins/leaves
-    this.client.addEventHandler(
-      asyncErrorHandler(this.handleChannelParticipantUpdate.bind(this), 'ChannelParticipant handler')
-    );
-
-    // 5. NEW: New channel messages - detect new admin channels
-    // ❌ DISABLED: This was causing spam!
-    // this.client.addEventHandler(
-    //   asyncErrorHandler(this.handleNewChannelDetection.bind(this), 'NewChannelDetection handler')
-    // );
-    */
-
-    this.logger.info('Event handlers setup completed (DISABLED)', {
+    this.logger.info("Event handlers setup completed (DISABLED)", {
       channelCount: enabledChannels.length,
-      events: ['All events temporarily disabled']
+      events: ["All events temporarily disabled"],
     });
-  }  /**
+  }
+  /**
    * Handles message edits
    * @param {Object} event - Message edit event
    */
@@ -314,17 +311,17 @@ class UserBot {
         return;
       }
 
-      this.logger.info('📝 Message edited', {
+      this.logger.info("📝 Message edited", {
         channelId: chatId,
         messageId: message.id,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       // Process edited message (could forward update to members)
       // Implementation depends on requirements
     } catch (error) {
-      this.logger.error('Error handling message edit', {
-        error: error.message
+      this.logger.error("Error handling message edit", {
+        error: error.message,
       });
     }
   }
@@ -338,60 +335,63 @@ class UserBot {
       const update = event;
 
       // Handle message deletions
-      if (update.className === 'UpdateDeleteChannelMessages' ||
-        update.className === 'UpdateDeleteMessages') {
+      if (
+        update.className === "UpdateDeleteChannelMessages" ||
+        update.className === "UpdateDeleteMessages"
+      ) {
         const channelId = update.channelId?.toString();
         const messages = update.messages || [];
 
         if (channelId && this.enabledChannelIds.has(channelId)) {
-          this.logger.info('🗑️ Messages deleted', {
+          this.logger.info("🗑️ Messages deleted", {
             channelId,
             count: messages.length,
             messageIds: messages,
-            sessionPhone: this.phone
+            sessionPhone: this.phone,
           });
         }
       }
 
       // Handle pinned messages
-      if (update.className === 'UpdatePinnedChannelMessages' ||
-        update.className === 'UpdatePinnedMessages') {
+      if (
+        update.className === "UpdatePinnedChannelMessages" ||
+        update.className === "UpdatePinnedMessages"
+      ) {
         const channelId = update.channelId?.toString();
 
         if (channelId && this.enabledChannelIds.has(channelId)) {
-          this.logger.info('📌 Message pinned/unpinned', {
+          this.logger.info("📌 Message pinned/unpinned", {
             channelId,
             pinned: update.pinned,
-            sessionPhone: this.phone
+            sessionPhone: this.phone,
           });
         }
       }
 
       // Handle channel info changes
-      if (update.className === 'UpdateChannel') {
+      if (update.className === "UpdateChannel") {
         const channelId = update.channelId?.toString();
 
         if (channelId && this.enabledChannelIds.has(channelId)) {
-          this.logger.info('ℹ️ Channel info updated', {
+          this.logger.info("ℹ️ Channel info updated", {
             channelId,
-            sessionPhone: this.phone
+            sessionPhone: this.phone,
           });
         }
       }
 
       // Handle poll updates
-      if (update.className === 'UpdateMessagePoll') {
+      if (update.className === "UpdateMessagePoll") {
         const pollId = update.pollId?.toString();
 
-        this.logger.info('📊 Poll updated', {
+        this.logger.info("📊 Poll updated", {
           pollId,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
       }
-
     } catch (error) {
-      this.logger.error('Error handling channel update', {
-        error: error.message
+      this.logger.error("Error handling channel update", {
+        error: error.message,
       });
     }
   }
@@ -406,7 +406,7 @@ class UserBot {
       const update = event;
 
       // Only handle UpdateChannelParticipant
-      if (update.className !== 'UpdateChannelParticipant') {
+      if (update.className !== "UpdateChannelParticipant") {
         return;
       }
 
@@ -421,42 +421,47 @@ class UserBot {
       const prevParticipant = update.prevParticipant;
       const newParticipant = update.newParticipant;
 
-      this.logger.info('👥 Channel member update detected', {
+      this.logger.info("👥 Channel member update detected", {
         channelId,
         userId,
         prevStatus: prevParticipant?.className,
         newStatus: newParticipant?.className,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       // Handle member leaving/being removed
       if (prevParticipant && !newParticipant) {
-        this.logger.info('👋 User left/removed from channel', {
+        this.logger.info("👋 User left/removed from channel", {
           channelId,
           userId,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
 
         // Remove user from channel_members table
         try {
-          const { removeChannelMember } = await import('../services/userService.js');
+          const { removeChannelMember } = await import(
+            "../services/userService.js"
+          );
           await removeChannelMember(channelId, userId);
-          this.logger.debug('User removed from database', { channelId, userId });
-        } catch (error) {
-          this.logger.error('Failed to remove user from database', {
+          this.logger.debug("User removed from database", {
             channelId,
             userId,
-            error: error.message
+          });
+        } catch (error) {
+          this.logger.error("Failed to remove user from database", {
+            channelId,
+            userId,
+            error: error.message,
           });
         }
       }
 
       // Handle new member joining
       if (!prevParticipant && newParticipant) {
-        this.logger.info('👋 New user joined channel', {
+        this.logger.info("👋 New user joined channel", {
           channelId,
           userId,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
 
         // Add user to database
@@ -468,26 +473,27 @@ class UserBot {
           await addUser(userInfo);
 
           // Add to channel_members table
-          const { addChannelMember } = await import('../services/userService.js');
+          const { addChannelMember } = await import(
+            "../services/userService.js"
+          );
           await addChannelMember(channelId, userId);
 
-          this.logger.debug('New user added to database', {
+          this.logger.debug("New user added to database", {
             channelId,
             userId,
-            username: userInfo.username
+            username: userInfo.username,
           });
         } catch (error) {
-          this.logger.error('Failed to add new user to database', {
+          this.logger.error("Failed to add new user to database", {
             channelId,
             userId,
-            error: error.message
+            error: error.message,
           });
         }
       }
-
     } catch (error) {
-      this.logger.error('Error handling channel participant update', {
-        error: error.message
+      this.logger.error("Error handling channel participant update", {
+        error: error.message,
       });
     }
   }
@@ -502,7 +508,7 @@ class UserBot {
       const update = event;
 
       // Detect UpdateNewChannelMessage
-      if (update.className === 'UpdateNewChannelMessage') {
+      if (update.className === "UpdateNewChannelMessage") {
         const message = update.message;
         const channelId = message.peerId?.channelId?.toString();
 
@@ -512,32 +518,36 @@ class UserBot {
 
         // Check if this is a new channel (not in our database yet)
         const existingChannels = await getAllChannels();
-        const isNewChannel = !existingChannels.some(ch => ch.channel_id === channelId);
+        const isNewChannel = !existingChannels.some(
+          (ch) => ch.channel_id === channelId
+        );
 
         if (!isNewChannel) {
           return; // Channel already synced
         }
 
-        this.logger.info('🆕 New channel detected!', {
+        this.logger.info("🆕 New channel detected!", {
           channelId,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
 
         // Get channel entity
         const channelEntity = await this.client.getEntity(BigInt(channelId));
 
         // Check if user is admin
-        const isAdmin = channelEntity.adminRights?true:false;
+        const isAdmin = channelEntity.adminRights ? true : false;
 
         if (!isAdmin) {
-          this.logger.debug('Not admin in new channel, skipping', { channelId });
+          this.logger.debug("Not admin in new channel, skipping", {
+            channelId,
+          });
           return;
         }
 
-        this.logger.info('✅ New admin channel found! Auto-syncing...', {
+        this.logger.info("✅ New admin channel found! Auto-syncing...", {
           channelId,
           title: channelEntity.title,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
 
         // Extract and save channel info
@@ -551,17 +561,15 @@ class UserBot {
         // Update enabled channel IDs
         this.enabledChannelIds.add(channelId);
 
-        this.logger.info('🎉 New admin channel synced successfully!', {
+        this.logger.info("🎉 New admin channel synced successfully!", {
           channelId,
           title: channelInfo.title,
-          sessionPhone: this.phone
+          sessionPhone: this.phone,
         });
-
       }
-
     } catch (error) {
-      this.logger.error('Error detecting new channel', {
-        error: error.message
+      this.logger.error("Error detecting new channel", {
+        error: error.message,
       });
     }
   }
@@ -574,36 +582,17 @@ class UserBot {
   extractChatId(message) {
     let chatId = null;
 
-    if (message.chat?.id) {
-      const rawChatId = message.chat.id;
-
-      if (typeof rawChatId === 'bigint') {
-        chatId = rawChatId.toString();
-      } else if (rawChatId.value !== undefined) {
-        chatId = rawChatId.value.toString();
-      } else {
-        chatId = rawChatId.toString();
-      }
-    } else if (message.peerId?.channelId) {
-      const rawChannelId = message.peerId.channelId;
-
-      let channelIdStr;
-      if (typeof rawChannelId === 'bigint') {
-        channelIdStr = rawChannelId.toString();
-      } else if (rawChannelId.value !== undefined) {
-        channelIdStr = rawChannelId.value.toString();
-      } else {
-        channelIdStr = rawChannelId.toString();
-      }
-
-      const channelIdNum = BigInt(channelIdStr);
-
-      if (channelIdNum < 0n) {
-        const actualId = channelIdNum * -1n - 1000000000000n;
-        chatId = actualId.toString();
-      } else {
-        chatId = channelIdStr;
-      }
+    if (message?.chatId) {
+      chatId = message?.chatId;
+    } else if (message.peerId instanceof Api.PeerChannel) {
+      chatId = message.peerId.channelId;
+    }
+    const channelIdNum = BigInt(chatId);
+    if (channelIdNum < 0n) {
+      const actualId = channelIdNum * -1n - 1000000000000n;
+      chatId = actualId.toString();
+    } else {
+      chatId = channelIdNum.toString();
     }
 
     return chatId;
@@ -613,58 +602,134 @@ class UserBot {
    * Handles new messages from monitored channels
    * @param {Object} event - New message event
    */
-  async handleNewMessage(event) {
+  async asyncHandlerUni(event) {
     try {
-      const message = event.message;
-
-      // DEBUG: Show channel title to identify which channel sent the message
-      console.log('\n=== 📨 NEW MESSAGE ===');
-      console.log('Channel title:', message.chat?.title || 'Unknown');
-      console.log('message.chat.id:', message.chat?.id);
-
-      // Use extracted method to get chat ID
-      const chatId = this.extractChatId(message);
-
-      console.log('🎯 FINAL chatId:', chatId);
-      console.log('📋 Enabled channel IDs:', Array.from(this.enabledChannelIds || []));
-      console.log('=== END DEBUG ===\n');
-
-      if (!chatId) {
-        this.logger.debug('Skipping message without valid chat ID');
+      // 1️⃣ Event turi aniqlanadi
+      const eventName = event?.className || "UnknownEvent";
+      if (eventName == "UpdateUserStatus" || eventName == "UpdateReadChannelInbox") return;
+      var channelId = event?.channelId?.toString();
+      const message = event?.message;
+      if (!message && channelId == undefined) {
+        this.logger.debug("No message found in event, skipping", { eventName });
         return;
       }
+      if (channelId == undefined) {
+        channelId = this.extractChatId(message);
+      }
+      if (!channelId) {
+        this.logger.debug("Channel ID not found, skipping message", {
+          message,
+        });
+        return;
+      }
+      var channel = await getChannelById(channelId);
+      if (!channel) {
+        this.logger.debug("Channel not found, skipping message", { channelId });
+        return;
+      }
+      // 2️⃣ Turiga qarab yo‘naltiramiz
+      switch (eventName) {
+        case "UpdateNewChannelMessage": {
+          return this.handleNewMessage(message, channelId);
+        }
+
+        case "UpdateEditChannelMessage":
+          return this.handleMessageEdit(event.message);
+
+        case "ChatAction":
+          return this.handleChannelParticipantUpdate(event);
+
+        case "ChatUpdate":
+          return this.handleChannelUpdate(event);
+        case "UpdateDeleteChannelMessages":
+          return this.handleDeleteChannelMessages(event); //TODO implement this method
+        default:
+          this.logger.debug(`⚪ Ignored event: ${eventName}`);
+      }
+    } catch (error) {
+      this.logger.error("❌ Error in universalEventHandler", { error });
+    }
+  }
+  async handleDeleteChannelMessages(event) {
+    try {
+      const channelId = event.channelId?.toString();
+
+      const messages = event.messages || [];
+      if (channelId && this.enabledChannelIds.has(channelId)) {
+        this.logger.info("🗑️ Messages deleted", {
+          channelId,
+          messages,
+        });
+        for (const messageId of messages) {
+          this.logger.info("🗑️ Message deleted", {
+            channelId,
+            messageId,
+          });
+          var forwardedMessages =
+            await getForwardedMessagesByForwardedMessageId(
+              channelId,
+              messageId
+            );
+          for (const fwdMsg of forwardedMessages) {
+            try {
+              const userId = BigInt(fwdMsg.user_id);
+              const messageId = parseInt(fwdMsg.forwarded_message_id);
+
+              // Delete message using Telegram API
+              await this.client.invoke(
+                new Api.messages.DeleteMessages({
+                  id: [messageId],
+                  revoke: true,
+                })
+              );
+
+              // Mark as deleted in database
+              await markMessageAsDeleted(userId, messageId);
+            } catch (e) {}
+          }
+        }
+      }
+    } catch (error) {
+      this.logger.error("Error handling deleted channel messages", {
+        error: error.message,
+      });
+    }
+  }
+
+  async handleNewMessage(message, channelId) {
+    try {
 
       // Check if this channel is enabled for forwarding
-      if (!this.enabledChannelIds || !this.enabledChannelIds.has(chatId)) {
-        console.log('❌ Message from non-enabled channel:', chatId);
+      if (!isChannelEnabled(channelId)) {
+        console.log("❌ Message from non-enabled channel:", channelId);
         return;
       }
 
-      console.log('✅ Message from enabled channel:', chatId);
+      console.log("✅ Message from enabled channel:", channelId);
 
-      this.logger.debug('New message received', {
-        chatId,
+      this.logger.debug("New message received", {
+        channelId,
         messageId: message.id,
         messageType: message.className,
-        hasText: !!message.message
+        hasText: !!message.message,
       });
       // Process message forwarding
       const results = await processMessageForwarding(
+        this.client,
         message,
-        chatId,
+        channelId,
         this.forwardMessageToUser.bind(this)
       );
 
-      this.logger.info('Message forwarding completed', {
-        chatId,
+      this.logger.info("Message forwarding completed", {
+        channelId,
         messageId: message.id,
-        ...results
+        ...results,
       });
-
     } catch (error) {
-      this.logger.error('Error handling new message', {
+      this.logger.error("Error handling new message", {
         error: error.message,
-        messageId: event.message?.id
+        messageId: event.message?.id,
       });
     }
   }
@@ -675,55 +740,75 @@ class UserBot {
    * @param {string} userId - Target user ID
    * @returns {Promise<Object>} Forward result
    */
-  async forwardMessageToUser(message, userId) {
-    try {
-      this.logger.debug('Forwarding message to user', {
-        userId,
-        messageId: message.id,
-        hasText: !!message.message
-      });
+async forwardMessageToUser(message, userId) {
+  try {
+    this.logger.debug("📤 Forwarding message to user", {
+      userId,
+      messageId: message.id,
+      hasText: !!message.message,
+    });
 
-      // Send message to user
-      const result = await this.client.sendMessage(userId, {
-        message: message.message || '',
-        file: message.media || undefined,
-        replyMarkup: message.replyMarkup || undefined,
-        parseMode: 'html'
-      });
+    // 1️⃣ Kimdan forward qilinadi
+    const fromPeer = await this.client.getEntity(message.peerId);
 
-      this.logger.debug('Message forwarded successfully', {
-        userId,
-        messageId: message.id,
-        sentMessageId: result.id
-      });
+    // 2️⃣ Qayerga forward qilinadi
+    const toPeer = await this.client.getEntity(userId);
 
-      return result;
-    } catch (error) {
-      this.logger.error('Failed to forward message to user', {
-        userId,
-        messageId: message.id,
-        error: error.message
-      });
-      throw handleTelegramError(error, `Forward message to user ${userId}`);
+    // 3️⃣ Forward RPC chaqiruvi
+    const result = await this.client.invoke(
+      new Api.messages.ForwardMessages({
+        fromPeer,
+        id: [message.id],
+        toPeer,
+        dropAuthor: false,       // muallifni ko‘rsatish
+        silent: false,           // notifikatsiya bilan yuborish
+        randomId: [BigInt(Date.now())], // har forward uchun unique ID
+      })
+    );
+
+    this.logger.debug("✅ Message forwarded successfully", {
+      userId,
+      messageId: message.id,
+    });
+    var message= null;
+if (result.className === "Updates" && result.updates?.length) {
+  for (const update of result.updates) {
+    if (update.className === "UpdateNewMessage" && update.message) {
+      message = update.message;
+      break;
     }
   }
+}
+
+
+    return message;
+
+  } catch (error) {
+    this.logger.error("❌ Failed to forward message to user", {
+      userId,
+      messageId: message?.id,
+      error: error.message,
+    });
+
+    throw handleTelegramError(error, `Forward message to user ${userId}`);
+  }
+}
+
 
   /**
    * Handles connection updates
    */
   async handleConnectionUpdate() {
-    this.logger.info('UserBot connected to Telegram');
+    this.logger.info("UserBot connected to Telegram");
   }
 
   /**
    * Handles disconnection
    */
   async handleDisconnection() {
-    this.logger.warn('UserBot disconnected from Telegram');
+    this.logger.warn("UserBot disconnected from Telegram");
     this.isRunning = false;
   }
-
-
 
   /**
    * Gets all channels where user is admin (OPTIMIZED - one API call)
@@ -731,7 +816,7 @@ class UserBot {
    */
   async getAdminChannelsOptimized() {
     try {
-      this.logger.info('🚀 Fetching admin channels (optimized)...');
+      this.logger.info("🚀 Fetching admin channels (optimized)...");
 
       // Get current user
       const me = await this.client.getMe();
@@ -740,15 +825,18 @@ class UserBot {
       const result = await this.client.invoke(
         new Api.channels.GetAdminedPublicChannels({
           byLocation: false,
-          checkLimit: false
+          checkLimit: false,
         })
       );
 
       const adminChannels = result.chats || [];
 
-      this.logger.info(`✅ Found ${adminChannels.length} admin public channels`, {
-        sessionPhone: this.phone
-      });
+      this.logger.info(
+        `✅ Found ${adminChannels.length} admin public channels`,
+        {
+          sessionPhone: this.phone,
+        }
+      );
 
       // Also get private admin channels from dialogs
       const dialogs = await this.client.getDialogs({ limit: 200 });
@@ -758,10 +846,10 @@ class UserBot {
         const entity = dialog.entity;
 
         // Only check channels (not groups/chats)
-        if (entity?.className === 'Channel' && !entity?.megagroup) {
+        if (entity?.className === "Channel" && !entity?.megagroup) {
           // Check if we already have this channel in public list
-          const alreadyExists = adminChannels.some(ch =>
-            ch.id?.toString() === entity.id?.toString()
+          const alreadyExists = adminChannels.some(
+            (ch) => ch.id?.toString() === entity.id?.toString()
           );
 
           if (!alreadyExists) {
@@ -773,9 +861,12 @@ class UserBot {
         }
       }
 
-      this.logger.info(`✅ Found ${privateAdminChannels.length} private admin channels`, {
-        sessionPhone: this.phone
-      });
+      this.logger.info(
+        `✅ Found ${privateAdminChannels.length} private admin channels`,
+        {
+          sessionPhone: this.phone,
+        }
+      );
 
       // Combine public and private channels
       const allAdminChannels = [...adminChannels, ...privateAdminChannels];
@@ -783,15 +874,17 @@ class UserBot {
       this.logger.info(`🎉 Total admin channels: ${allAdminChannels.length}`, {
         public: adminChannels.length,
         private: privateAdminChannels.length,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       return allAdminChannels;
-
     } catch (error) {
-      this.logger.warn('Error getting admin channels optimized, falling back to old method', {
-        error: error.message
-      });
+      this.logger.warn(
+        "Error getting admin channels optimized, falling back to old method",
+        {
+          error: error.message,
+        }
+      );
       return [];
     }
   }
@@ -811,9 +904,9 @@ class UserBot {
         try {
           const channelInfo = extractChannelInfo(channelEntity);
 
-          console.log('\n🔍 SYNC DEBUG:');
-          console.log('Channel title:', channelEntity.title);
-          console.log('Channel ID:', channelInfo.channelId);
+          console.log("\n🔍 SYNC DEBUG:");
+          console.log("Channel title:", channelEntity.title);
+          console.log("Channel ID:", channelInfo.channelId);
 
           // Add to database (linked to this session)
           await addChannel(channelInfo, this.phone);
@@ -822,25 +915,33 @@ class UserBot {
           // Store the channel entity for event filtering
           this.adminChannelEntities.push(channelEntity);
 
-          console.log('✅ Admin channel synced:', channelInfo.channelId, '-', channelInfo.title, '-> session:', this.phone);
+          console.log(
+            "✅ Admin channel synced:",
+            channelInfo.channelId,
+            "-",
+            channelInfo.title,
+            "-> session:",
+            this.phone
+          );
 
-          this.logger.debug('Channel synced and linked', {
+          this.logger.debug("Channel synced and linked", {
             channelId: channelInfo.channelId,
             title: channelInfo.title,
-            sessionPhone: this.phone
+            sessionPhone: this.phone,
           });
-
         } catch (error) {
-          this.logger.error('Failed to sync channel', {
-            channelTitle: channelEntity?.title || 'Unknown',
-            error: error.message
+          this.logger.error("Failed to sync channel", {
+            channelTitle: channelEntity?.title || "Unknown",
+            error: error.message,
           });
         }
       }
 
-      this.logger.info(`✅ Synced ${this.connectedChannels.size} channels for session ${this.phone}`);
+      this.logger.info(
+        `✅ Synced ${this.connectedChannels.size} channels for session ${this.phone}`
+      );
     } catch (error) {
-      this.logger.error('Error syncing channels optimized', error);
+      this.logger.error("Error syncing channels optimized", error);
       throw error;
     }
   }
@@ -850,21 +951,23 @@ class UserBot {
   async syncUsersFromChannels() {
     try {
       const enabledChannels = await getAllChannels(true);
-      this.logger.info(`Syncing users from ${enabledChannels.length} enabled channels`);
+      this.logger.info(
+        `Syncing users from ${enabledChannels.length} enabled channels`
+      );
 
       for (const channel of enabledChannels) {
         try {
           await this.syncUsersFromChannel(channel.channel_id);
         } catch (error) {
-          this.logger.error('Failed to sync users from channel', {
+          this.logger.error("Failed to sync users from channel", {
             channelId: channel.channel_id,
             channelTitle: channel.title,
-            error: error.message
+            error: error.message,
           });
         }
       }
     } catch (error) {
-      this.logger.error('Error syncing users from channels', error);
+      this.logger.error("Error syncing users from channels", error);
     }
   }
 
@@ -874,19 +977,22 @@ class UserBot {
    */
   async syncUsersFromChannel(channelId) {
     try {
-      this.logger.info('🔄 Syncing users from channel (paginated)', {
+      this.logger.info("🔄 Syncing users from channel (paginated)", {
         channelId,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       // Get existing members from database to avoid duplicates
       const existingMembers = await getUsersByChannel(channelId);
-      const existingUserIds = new Set(existingMembers.map(m => m.user_id));
+      const existingUserIds = new Set(existingMembers.map((m) => m.user_id));
 
-      this.logger.debug(`📋 Found ${existingUserIds.size} existing members in database`, {
-        channelId,
-        sessionPhone: this.phone
-      });
+      this.logger.debug(
+        `📋 Found ${existingUserIds.size} existing members in database`,
+        {
+          channelId,
+          sessionPhone: this.phone,
+        }
+      );
 
       let offset = 0;
       const limit = 100; // Fetch 100 users at a time
@@ -898,36 +1004,45 @@ class UserBot {
       while (true) {
         pageNumber++;
 
-        this.logger.debug(`📄 Fetching page ${pageNumber} (offset: ${offset}, limit: ${limit})`, {
-          channelId,
-          sessionPhone: this.phone
-        });
+        this.logger.debug(
+          `📄 Fetching page ${pageNumber} (offset: ${offset}, limit: ${limit})`,
+          {
+            channelId,
+            sessionPhone: this.phone,
+          }
+        );
 
         // Fetch participants page
         const participants = await this.client.getParticipants(channelId, {
           offset: offset,
-          limit: limit
+          limit: limit,
         });
 
         // If no participants returned, we've reached the end
         if (!participants || participants.length === 0) {
-          this.logger.debug(`✅ Reached end of participants (page ${pageNumber})`, {
-            channelId,
-            totalFetched,
-            sessionPhone: this.phone
-          });
+          this.logger.debug(
+            `✅ Reached end of participants (page ${pageNumber})`,
+            {
+              channelId,
+              totalFetched,
+              sessionPhone: this.phone,
+            }
+          );
           break;
         }
 
-        this.logger.debug(`📊 Page ${pageNumber}: fetched ${participants.length} participants`, {
-          channelId,
-          sessionPhone: this.phone
-        });
+        this.logger.debug(
+          `📊 Page ${pageNumber}: fetched ${participants.length} participants`,
+          {
+            channelId,
+            sessionPhone: this.phone,
+          }
+        );
 
         // Filter bots and extract user info
         const pageUsersData = participants
-          .filter(participant => !participant.bot)
-          .map(participant => extractUserInfo(participant));
+          .filter((participant) => !participant.bot)
+          .map((participant) => extractUserInfo(participant));
 
         allUsersData.push(...pageUsersData);
         totalFetched += participants.length;
@@ -936,75 +1051,96 @@ class UserBot {
         offset += participants.length;
 
         // Small delay to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         // If we got less than limit, we've reached the end
         if (participants.length < limit) {
-          this.logger.debug(`✅ Last page reached (got ${participants.length} < ${limit})`, {
-            channelId,
-            totalFetched,
-            sessionPhone: this.phone
-          });
+          this.logger.debug(
+            `✅ Last page reached (got ${participants.length} < ${limit})`,
+            {
+              channelId,
+              totalFetched,
+              sessionPhone: this.phone,
+            }
+          );
           break;
         }
       }
 
       if (allUsersData.length === 0) {
-        this.logger.debug('No users to sync from channel', { channelId });
+        this.logger.debug("No users to sync from channel", { channelId });
         return {
           success: true,
           totalFetched: totalFetched,
           totalUsers: 0,
           newUsersAdded: 0,
           newMembersLinked: 0,
-          skippedExisting: 0
+          skippedExisting: 0,
         };
       }
 
-      this.logger.info(`✅ Total fetched: ${totalFetched} participants, ${allUsersData.length} users (bots excluded)`, {
-        channelId,
-        pages: pageNumber,
-        sessionPhone: this.phone
-      });
+      this.logger.info(
+        `✅ Total fetched: ${totalFetched} participants, ${allUsersData.length} users (bots excluded)`,
+        {
+          channelId,
+          pages: pageNumber,
+          sessionPhone: this.phone,
+        }
+      );
 
       // Filter out existing members (incremental sync)
-      const newUsersData = allUsersData.filter(user => !existingUserIds.has(user.userId));
+      const newUsersData = allUsersData.filter(
+        (user) => !existingUserIds.has(user.userId)
+      );
 
       if (newUsersData.length === 0) {
-        this.logger.info('✅ No new users to add - all members already synced', {
-          channelId,
-          total: allUsersData.length,
-          sessionPhone: this.phone
-        });
+        this.logger.info(
+          "✅ No new users to add - all members already synced",
+          {
+            channelId,
+            total: allUsersData.length,
+            sessionPhone: this.phone,
+          }
+        );
         return {
           success: true,
           totalFetched: totalFetched,
           totalUsers: allUsersData.length,
           newUsersAdded: 0,
           newMembersLinked: 0,
-          skippedExisting: allUsersData.length
+          skippedExisting: allUsersData.length,
         };
       }
 
-      this.logger.info(`📝 Processing ${newUsersData.length} NEW users (skipped ${allUsersData.length - newUsersData.length} existing)`, {
-        channelId,
-        sessionPhone: this.phone
-      });
+      this.logger.info(
+        `📝 Processing ${newUsersData.length} NEW users (skipped ${
+          allUsersData.length - newUsersData.length
+        } existing)`,
+        {
+          channelId,
+          sessionPhone: this.phone,
+        }
+      );
 
       // OPTIMIZATION 1: Bulk add new users to users table
       const userResults = await bulkAddUsers(newUsersData);
-      const successfulUsers = userResults.filter(r => r.success);
+      const successfulUsers = userResults.filter((r) => r.success);
 
-      this.logger.debug(`✅ Added ${successfulUsers.length}/${newUsersData.length} users to database`, {
-        channelId,
-        sessionPhone: this.phone
-      });
+      this.logger.debug(
+        `✅ Added ${successfulUsers.length}/${newUsersData.length} users to database`,
+        {
+          channelId,
+          sessionPhone: this.phone,
+        }
+      );
 
       // OPTIMIZATION 2: Bulk link new users to channel (no clearing needed!)
-      const newUserIds = successfulUsers.map(r => r.userId || r.data?.user_id);
+      const newUserIds = successfulUsers.map(
+        (r) => r.userId || r.data?.user_id
+      );
       const memberResults = await bulkAddChannelMembers(channelId, newUserIds);
 
-      const successCount = memberResults.filter(r => r.success).length;
+      const successCount = memberResults.filter((r) => r.success).length;
 
       const result = {
         success: true,
@@ -1014,30 +1150,32 @@ class UserBot {
         newMembersLinked: successCount,
         skippedExisting: allUsersData.length - newUsersData.length,
         failed: newUsersData.length - successCount,
-        pages: pageNumber
+        pages: pageNumber,
       };
 
-      this.logger.info('✅ Users synced from channel (paginated + incremental)', {
-        channelId,
-        ...result,
-        sessionPhone: this.phone
-      });
+      this.logger.info(
+        "✅ Users synced from channel (paginated + incremental)",
+        {
+          channelId,
+          ...result,
+          sessionPhone: this.phone,
+        }
+      );
 
       return result;
-
     } catch (error) {
       // Don't throw here to avoid disrupting other channel syncing
-      this.logger.error('❌ Error syncing users from specific channel', {
+      this.logger.error("❌ Error syncing users from specific channel", {
         channelId,
         error: error.message,
         stack: error.stack,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       return {
         success: false,
         error: error.message,
-        channelId
+        channelId,
       };
     }
   }
@@ -1049,13 +1187,13 @@ class UserBot {
   async getMe() {
     try {
       if (!this.client) {
-        throw new Error('Client not initialized');
+        throw new Error("Client not initialized");
       }
 
       const me = await this.client.getMe();
       return extractUserInfo(me);
     } catch (error) {
-      throw handleTelegramError(error, 'Get user info');
+      throw handleTelegramError(error, "Get user info");
     }
   }
 
@@ -1068,7 +1206,7 @@ class UserBot {
       isRunning: this.isRunning,
       isConnected: this.client?.connected || false,
       connectedChannels: this.connectedChannels.size,
-      lastStatusCheck: formatTimestamp()
+      lastStatusCheck: formatTimestamp(),
     };
   }
 
@@ -1079,8 +1217,8 @@ class UserBot {
    */
   async syncChannelsManually() {
     try {
-      this.logger.info('🔄 Manual channel sync triggered', {
-        sessionPhone: this.phone
+      this.logger.info("🔄 Manual channel sync triggered", {
+        sessionPhone: this.phone,
       });
 
       // Use optimized method
@@ -1092,27 +1230,27 @@ class UserBot {
       // Re-sync all users from enabled channels
       await this.syncUsersFromChannels();
 
-      this.logger.info('✅ Manual sync completed successfully', {
+      this.logger.info("✅ Manual sync completed successfully", {
         channelCount: this.connectedChannels.size,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
 
       return {
         success: true,
         channelsCount: this.connectedChannels.size,
         sessionPhone: this.phone,
-        message: `Successfully synced ${this.connectedChannels.size} admin channels`
+        message: `Successfully synced ${this.connectedChannels.size} admin channels`,
       };
     } catch (error) {
-      this.logger.error('❌ Manual sync failed', {
+      this.logger.error("❌ Manual sync failed", {
         error: error.message,
-        sessionPhone: this.phone
+        sessionPhone: this.phone,
       });
       return {
         success: false,
         error: error.message,
         sessionPhone: this.phone,
-        message: 'Failed to sync channels'
+        message: "Failed to sync channels",
       };
     }
   }
@@ -1136,10 +1274,10 @@ class UserBot {
       await this.deleteOldMessages();
     }, intervalMs);
 
-    this.logger.info('🗑️ Periodic message deletion started', {
+    this.logger.info("🗑️ Periodic message deletion started", {
       checkIntervalHours: this.deleteIntervalHours,
       messageAgeHours: this.messageAgeHours,
-      nextCheckAt: new Date(Date.now() + intervalMs).toISOString()
+      nextCheckAt: new Date(Date.now() + intervalMs).toISOString(),
     });
   }
 
@@ -1149,15 +1287,15 @@ class UserBot {
    */
   async deleteOldMessages() {
     try {
-      this.logger.info('🗑️ Starting old message deletion...', {
-        messageAgeHours: this.messageAgeHours
+      this.logger.info("🗑️ Starting old message deletion...", {
+        messageAgeHours: this.messageAgeHours,
       });
 
       // Get old forwarded messages from database
       const oldMessages = await getOldForwardedMessages(this.messageAgeHours);
 
       if (oldMessages.length === 0) {
-        this.logger.info('✅ No old messages to delete');
+        this.logger.info("✅ No old messages to delete");
         return;
       }
 
@@ -1174,42 +1312,43 @@ class UserBot {
           await this.client.invoke(
             new Api.messages.DeleteMessages({
               id: [messageId],
-              revoke: true
+              revoke: true,
             })
           );
 
           // Mark as deleted in database
-          await markMessageAsDeleted(msgLog.user_id, msgLog.forwarded_message_id);
+          await markMessageAsDeleted(
+            msgLog.user_id,
+            msgLog.forwarded_message_id
+          );
 
           deletedCount++;
-          this.logger.debug('Deleted old message', {
+          this.logger.debug("Deleted old message", {
             userId: msgLog.user_id,
             messageId: msgLog.forwarded_message_id,
-            age: msgLog.created_at
+            age: msgLog.created_at,
           });
-
         } catch (error) {
           failedCount++;
-          this.logger.warn('Failed to delete old message', {
+          this.logger.warn("Failed to delete old message", {
             userId: msgLog.user_id,
             messageId: msgLog.forwarded_message_id,
-            error: error.message
+            error: error.message,
           });
         }
 
         // Small delay to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
-      this.logger.info('✅ Old message deletion completed', {
+      this.logger.info("✅ Old message deletion completed", {
         total: oldMessages.length,
         deleted: deletedCount,
-        failed: failedCount
+        failed: failedCount,
       });
-
     } catch (error) {
-      this.logger.error('❌ Old message deletion failed', {
-        error: error.message
+      this.logger.error("❌ Old message deletion failed", {
+        error: error.message,
       });
     }
   }
@@ -1220,7 +1359,7 @@ class UserBot {
    */
   async stop() {
     try {
-      this.logger.info('Stopping UserBot...');
+      this.logger.info("Stopping UserBot...");
 
       this.isRunning = false;
 
@@ -1228,27 +1367,26 @@ class UserBot {
       if (this.syncInterval) {
         clearInterval(this.syncInterval);
         this.syncInterval = null;
-        this.logger.info('Periodic sync stopped');
+        this.logger.info("Periodic sync stopped");
       }
 
       // Stop periodic message deletion
       if (this.deleteInterval) {
         clearInterval(this.deleteInterval);
         this.deleteInterval = null;
-        this.logger.info('Periodic message deletion stopped');
+        this.logger.info("Periodic message deletion stopped");
       }
 
       if (this.client) {
         await this.saveSession();
         await this.client.disconnect();
-        this.logger.info('UserBot disconnected gracefully');
+        this.logger.info("UserBot disconnected gracefully");
       }
 
       this.client = null;
       this.connectedChannels.clear();
-
     } catch (error) {
-      this.logger.error('Error stopping UserBot', error);
+      this.logger.error("Error stopping UserBot", error);
       throw error;
     }
   }

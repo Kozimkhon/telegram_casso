@@ -7,6 +7,8 @@ import { runQuery, getAllQuery, getQuery } from '../db/db.js';
 import { log } from '../utils/logger.js';
 import { handleDatabaseError } from '../utils/errorHandler.js';
 import { extractChannelInfo, isValidChannelId, sanitizeText } from '../utils/helpers.js';
+import { getUserById } from './userService.js';
+import { getAdminById, getAllAdmins } from './adminService.js';
 
 /**
  * Adds a new channel to the database with optional admin session
@@ -92,6 +94,25 @@ export async function getAllChannels(onlyEnabled = false) {
     return channels;
   } catch (error) {
     throw handleDatabaseError(error, 'getAllChannels');
+  }
+}
+export async function getMyChannels(userId, onlyEnabled = false) {
+  try {
+    log.dbOperation('SELECT', 'channels', { userId, onlyEnabled });
+    var user = await getAdminById(userId);
+    if (!user) {
+      throw new Error(`Admin user not found: ${userId}`);
+    }
+    const query = onlyEnabled 
+      ? 'SELECT * FROM channels WHERE forward_enabled = 1 AND admin_session_phone = ? ORDER BY title ASC'
+      : 'SELECT * FROM channels WHERE admin_session_phone = ? ORDER BY title ASC';
+
+    const channels = await getAllQuery(query, [user.phone]);
+
+    log.debug(`Retrieved ${channels.length} channels`, { userId, onlyEnabled });
+    return channels;
+  } catch (error) {
+    throw handleDatabaseError(error, 'getMyChannels');
   }
 }
 

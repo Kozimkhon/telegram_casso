@@ -1,0 +1,225 @@
+2025-11-07 12:32:21 [ERROR]: unhandledRejection: request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (E:\Experiments\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (E:\Experiments\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": {
+    "message": "request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established",
+    "type": "system",
+    "errno": "ECONNRESET",
+    "code": "ECONNRESET"
+  },
+  "rejection": true,
+  "date": "Fri Nov 07 2025 12:32:21 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 20268,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 83955712,
+      "heapTotal": 28168192,
+      "heapUsed": 25266824,
+      "external": 2947402,
+      "arrayBuffers": 446883
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 11325.671
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\node-fetch\\lib\\index.js",
+      "function": null,
+      "line": 1501,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "node:events",
+      "function": "ClientRequest.emit",
+      "line": 507,
+      "method": "emit",
+      "native": false
+    },
+    {
+      "column": 11,
+      "file": "node:_http_client",
+      "function": "emitErrorEvent",
+      "line": 104,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:_http_client",
+      "function": "TLSSocket.socketErrorListener",
+      "line": 518,
+      "method": "socketErrorListener",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "node:events",
+      "function": "TLSSocket.emit",
+      "line": 507,
+      "method": "emit",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "node:internal/streams/destroy",
+      "function": "emitErrorNT",
+      "line": 170,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 3,
+      "file": "node:internal/streams/destroy",
+      "function": "emitErrorCloseNT",
+      "line": 129,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 90,
+      "method": "processTicksAndRejections",
+      "native": false
+    }
+  ]
+}
+2025-11-07 14:04:02 [ERROR]: unhandledRejection: Database error during getChannelById
+DatabaseError: Database error during getChannelById
+    at handleDatabaseError (file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:185:19)
+    at getChannelById (file:///E:/Experiments/telegram_casso/src/services/channelService.js:72:11)
+    at UserBot.asyncHandlerUni (file:///E:/Experiments/telegram_casso/src/bots/userBot.js:569:21)
+    at file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:83:20
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+DatabaseError: Database error during getChannelById
+    at handleDatabaseError (file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:185:19)
+    at getChannelById (file:///E:/Experiments/telegram_casso/src/services/channelService.js:72:11)
+    at UserBot.asyncHandlerUni (file:///E:/Experiments/telegram_casso/src/bots/userBot.js:569:21)
+    at file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js:83:20
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": {
+    "name": "DatabaseError",
+    "code": "DATABASE_ERROR",
+    "statusCode": 500,
+    "isOperational": true,
+    "originalError": {}
+  },
+  "rejection": true,
+  "date": "Fri Nov 07 2025 14:04:02 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 16584,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 81940480,
+      "heapTotal": 28168192,
+      "heapUsed": 25114880,
+      "external": 2719246,
+      "arrayBuffers": 218155
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 16826.343
+  },
+  "trace": [
+    {
+      "column": 19,
+      "file": "file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js",
+      "function": "handleDatabaseError",
+      "line": 185,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 11,
+      "file": "file:///E:/Experiments/telegram_casso/src/services/channelService.js",
+      "function": "getChannelById",
+      "line": 72,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "file:///E:/Experiments/telegram_casso/src/bots/userBot.js",
+      "function": "UserBot.asyncHandlerUni",
+      "line": 569,
+      "method": "asyncHandlerUni",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "file:///E:/Experiments/telegram_casso/src/utils/errorHandler.js",
+      "function": null,
+      "line": 83,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 146,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    }
+  ]
+}
