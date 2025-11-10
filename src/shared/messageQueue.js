@@ -3,8 +3,8 @@
  * Ensures messages are sent one at a time with configurable delays
  */
 
-import { log } from '../utils/logger.js';
-import { sleep } from '../utils/throttle.js';
+import { log } from './logger.js';
+import { sleep } from './throttle.js';
 
 /**
  * Queue for processing messages sequentially

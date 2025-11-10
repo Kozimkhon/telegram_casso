@@ -112,7 +112,7 @@ class Application {
 
       // Start AdminBot
       console.log('👤 Starting AdminBot...');
-      if (config.adminBot.token) {
+      if (config.telegram.adminBotToken) {
         try {
           // Import AdminBotController
           const { default: AdminBotController } = await import('./presentation/controllers/AdminBotController.js');

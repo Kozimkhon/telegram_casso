@@ -11,9 +11,9 @@ import { NewMessage } from "telegram/events/index.js";
 import { Api } from "telegram/tl/index.js";
 
 import { config } from "../../config/index.js";
-import { createChildLogger } from "../../utils/logger.js";
-import { handleTelegramError, AuthenticationError } from "../../utils/errorHandler.js";
-import { extractChannelInfo, extractUserInfo } from "../../utils/helpers.js";
+import { createChildLogger } from "../../shared/logger.js";
+import { handleTelegramError, AuthenticationError } from "../../shared/errorHandler.js";
+import { extractChannelInfo, extractUserInfo } from "../../shared/helpers.js";
 
 /**
  * UserBot Controller

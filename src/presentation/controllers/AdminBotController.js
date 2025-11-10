@@ -7,9 +7,9 @@
 
 import { Telegraf, Markup } from 'telegraf';
 import { config } from '../../config/index.js';
-import { createChildLogger } from '../../utils/logger.js';
-import { asyncErrorHandler } from '../../utils/errorHandler.js';
-import { formatTimestamp, chunkArray } from '../../utils/helpers.js';
+import { createChildLogger } from '../../shared/logger.js';
+import { asyncErrorHandler } from '../../shared/errorHandler.js';
+import { formatTimestamp, chunkArray } from '../../shared/helpers.js';
 
 /**
  * AdminBot Controller

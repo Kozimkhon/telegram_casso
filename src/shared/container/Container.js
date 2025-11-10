@@ -186,7 +186,7 @@ class Container {
     } = await import('../../domain/services/index.js');
 
     // Register core infrastructure
-    this.registerSingleton('stateManager', () => StateManager.getInstance());
+    this.registerSingleton('stateManager', () => StateManager);
     this.registerSingleton('dataSource', () => new SQLiteDataSource(config.database.path));
 
     // Register repositories
