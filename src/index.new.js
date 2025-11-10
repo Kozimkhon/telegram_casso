@@ -70,8 +70,41 @@ class Application {
       
       if (sessions.length > 0) {
         console.log(`   Found ${sessions.length} active session(s)`);
-        // TODO: Initialize UserBotController here
-        console.log('   ⚠️  UserBotController not yet implemented');
+        
+        // Import UserBotController
+        const { default: UserBotController } = await import('./presentation/controllers/UserBotController.js');
+        
+        // Start each session
+        for (const session of sessions) {
+          try {
+            const userBot = new UserBotController({
+              createSessionUseCase: this.#container.resolve('createSessionUseCase'),
+              addChannelUseCase: this.#container.resolve('addChannelUseCase'),
+              bulkAddUsersUseCase: this.#container.resolve('bulkAddUsersUseCase'),
+              addUserToChannelUseCase: this.#container.resolve('addUserToChannelUseCase'),
+              getUsersByChannelUseCase: this.#container.resolve('getUsersByChannelUseCase'),
+              logMessageUseCase: this.#container.resolve('logMessageUseCase'),
+              markMessageAsDeletedUseCase: this.#container.resolve('markMessageAsDeletedUseCase'),
+              findOldMessagesUseCase: this.#container.resolve('findOldMessagesUseCase'),
+              forwardingService: this.#container.resolve('forwardingService'),
+              queueService: null, // TODO: Create queue per session
+              throttleService: this.#container.resolve('throttleService'),
+              stateManager: this.#container.resolve('stateManager'),
+              channelRepository: this.#container.resolve('channelRepository'),
+              sessionRepository: this.#container.resolve('sessionRepository'),
+            }, {
+              phone: session.phone,
+              session_string: session.sessionString,
+              user_id: session.userId,
+            });
+            
+            await userBot.start();
+            this.#bots[`userbot_${session.phone}`] = userBot;
+            console.log(`   ✅ UserBot started: ${session.phone}`);
+          } catch (error) {
+            console.error(`   ❌ Failed to start UserBot ${session.phone}:`, error.message);
+          }
+        }
       } else {
         console.log('   ⚠️  No active sessions found');
       }
@@ -80,8 +113,52 @@ class Application {
       // Start AdminBot
       console.log('👤 Starting AdminBot...');
       if (config.adminBot.token) {
-        // TODO: Initialize AdminBotController here
-        console.log('   ⚠️  AdminBotController not yet implemented');
+        try {
+          // Import AdminBotController
+          const { default: AdminBotController } = await import('./presentation/controllers/AdminBotController.js');
+          
+          const adminBot = new AdminBotController({
+            // Channel use cases
+            addChannelUseCase: this.#container.resolve('addChannelUseCase'),
+            toggleChannelForwardingUseCase: this.#container.resolve('toggleChannelForwardingUseCase'),
+            removeChannelUseCase: this.#container.resolve('removeChannelUseCase'),
+            getChannelStatsUseCase: this.#container.resolve('getChannelStatsUseCase'),
+            
+            // Session use cases
+            getSessionStatsUseCase: this.#container.resolve('getSessionStatsUseCase'),
+            pauseSessionUseCase: this.#container.resolve('pauseSessionUseCase'),
+            resumeSessionUseCase: this.#container.resolve('resumeSessionUseCase'),
+            deleteSessionUseCase: this.#container.resolve('deleteSessionUseCase'),
+            
+            // User use cases
+            getUsersByChannelUseCase: this.#container.resolve('getUsersByChannelUseCase'),
+            
+            // Message use cases
+            getForwardingStatsUseCase: this.#container.resolve('getForwardingStatsUseCase'),
+            cleanupOldMessagesUseCase: this.#container.resolve('cleanupOldMessagesUseCase'),
+            
+            // Admin use cases
+            checkAdminAccessUseCase: this.#container.resolve('checkAdminAccessUseCase'),
+            addAdminUseCase: this.#container.resolve('addAdminUseCase'),
+            getAdminStatsUseCase: this.#container.resolve('getAdminStatsUseCase'),
+            
+            // Services
+            metricsService: this.#container.resolve('metricsService'),
+            
+            // State
+            stateManager: this.#container.resolve('stateManager'),
+            
+            // Repositories
+            channelRepository: this.#container.resolve('channelRepository'),
+            sessionRepository: this.#container.resolve('sessionRepository'),
+          });
+          
+          await adminBot.start();
+          this.#bots.adminBot = adminBot;
+          console.log('   ✅ AdminBot started successfully');
+        } catch (error) {
+          console.error('   ❌ Failed to start AdminBot:', error.message);
+        }
       } else {
         console.log('   ⚠️  Admin bot token not configured');
       }
@@ -99,13 +176,12 @@ class Application {
       console.log('✅ Data Layer        - Complete');
       console.log('✅ Domain Layer      - Complete');
       console.log('✅ Infrastructure    - Complete');
-      console.log('⚠️  Presentation     - Pending (Controllers)');
+      console.log('✅ Presentation      - Complete');
       console.log('═══════════════════════════════════════════\n');
-      console.log('📝 Next steps:');
-      console.log('   1. Implement UserBotController');
-      console.log('   2. Implement AdminBotController');
-      console.log('   3. Test end-to-end functionality');
-      console.log('   4. Remove old service files\n');
+      console.log('🎉 Migration Complete!');
+      console.log(`   Active Bots: ${Object.keys(this.#bots).length}`);
+      console.log(`   Services: ${this.#container.getRegisteredServices().length}`);
+      console.log('\n📱 Bot is now running...\n');
 
     } catch (error) {
       console.error('❌ Failed to start application:', error);
