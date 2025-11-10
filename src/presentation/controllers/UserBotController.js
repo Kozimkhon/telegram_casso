@@ -344,7 +344,9 @@ class UserBotController {
   async #syncChannelMembers(channel) {
     try {
       // Get channel entity from Telegram
-      const channelEntity = await this.#client.getEntity(channel.channelId);
+      // Convert string ID to BigInt for proper entity resolution
+      const channelId = BigInt(channel.channelId);
+      const channelEntity = await this.#client.getEntity(channelId);
       
       // Store for event filtering
       this.#adminChannelEntities.push(channelEntity);
@@ -455,7 +457,7 @@ class UserBotController {
    */
   async #forwardMessageToUser(userId, message) {
     try {
-      const userEntity = await this.#client.getEntity(parseInt(userId));
+      const userEntity = await this.#client.getEntity(BigInt(userId));
       
       const result = await this.#client.forwardMessages(userEntity, {
         messages: [message.id],
@@ -533,7 +535,7 @@ class UserBotController {
 
       for (const msg of result.messages) {
         try {
-          const userEntity = await this.#client.getEntity(parseInt(msg.userId));
+          const userEntity = await this.#client.getEntity(BigInt(msg.userId));
           await this.#client.deleteMessages(userEntity, [msg.forwardedMessageId], {
             revoke: true,
           });
