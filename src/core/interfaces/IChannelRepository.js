@@ -1,76 +1,66 @@
 /**
- * Channel Repository Interface
- * Defines contract for channel data operations
- * 
+ * @fileoverview Channel Repository Interface
+ * Contract for channel repository implementations
  * @module core/interfaces/IChannelRepository
  */
 
-import { IRepository } from './IRepository.js';
+import IRepository from './IRepository.js';
 
 /**
+ * Channel Repository Interface
+ * Defines channel-specific operations
+ * 
  * @interface IChannelRepository
- * @extends {IRepository}
- * @description Repository interface for Channel entity operations
+ * @extends IRepository
  */
-export class IChannelRepository extends IRepository {
+class IChannelRepository extends IRepository {
   /**
-   * Finds channels by admin session phone
-   * @param {string} phone - Admin session phone
-   * @returns {Promise<Array<Channel>>} Array of channels
+   * Finds channels by admin session
    * @abstract
+   * @param {string} phone - Admin session phone
+   * @returns {Promise<Array>} Channels
    */
   async findByAdminSession(phone) {
-    throw new Error('Method findByAdminSession() must be implemented');
+    throw new Error('findByAdminSession() must be implemented');
   }
 
   /**
-   * Finds enabled channels only
-   * @returns {Promise<Array<Channel>>} Array of enabled channels
+   * Finds enabled channels
    * @abstract
+   * @returns {Promise<Array>} Enabled channels
    */
   async findEnabled() {
-    throw new Error('Method findEnabled() must be implemented');
+    throw new Error('findEnabled() must be implemented');
   }
 
   /**
-   * Toggles channel forwarding status
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Channel>} Updated channel
+   * Toggles channel forwarding
    * @abstract
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<Object>} Updated channel
    */
   async toggleForwarding(channelId) {
-    throw new Error('Method toggleForwarding() must be implemented');
+    throw new Error('toggleForwarding() must be implemented');
   }
 
   /**
-   * Links channel to admin session
-   * @param {string} channelId - Channel ID
-   * @param {string} phone - Admin session phone
-   * @returns {Promise<Channel>} Updated channel
+   * Links channel to session
    * @abstract
+   * @param {string} channelId - Channel ID
+   * @param {string} phone - Session phone
+   * @returns {Promise<Object>} Updated channel
    */
   async linkToSession(channelId, phone) {
-    throw new Error('Method linkToSession() must be implemented');
-  }
-
-  /**
-   * Updates throttle settings for a channel
-   * @param {string} channelId - Channel ID
-   * @param {Object} settings - Throttle settings
-   * @returns {Promise<Channel>} Updated channel
-   * @abstract
-   */
-  async updateThrottleSettings(channelId, settings) {
-    throw new Error('Method updateThrottleSettings() must be implemented');
+    throw new Error('linkToSession() must be implemented');
   }
 
   /**
    * Gets channel statistics
-   * @returns {Promise<Object>} Channel statistics
    * @abstract
+   * @returns {Promise<Object>} Statistics
    */
   async getStatistics() {
-    throw new Error('Method getStatistics() must be implemented');
+    throw new Error('getStatistics() must be implemented');
   }
 }
 

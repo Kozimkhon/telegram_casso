@@ -1,68 +1,88 @@
 /**
- * User Repository Interface
- * Defines contract for user data operations
- * 
+ * @fileoverview User Repository Interface
+ * Contract for user repository implementations
  * @module core/interfaces/IUserRepository
  */
 
-import { IRepository } from './IRepository.js';
+import IRepository from './IRepository.js';
 
 /**
+ * User Repository Interface
+ * Defines user-specific operations
+ * 
  * @interface IUserRepository
- * @extends {IRepository}
- * @description Repository interface for User entity operations
+ * @extends IRepository
  */
-export class IUserRepository extends IRepository {
+class IUserRepository extends IRepository {
   /**
-   * Finds users by channel ID
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Array<User>>} Array of users
+   * Finds users by channel
    * @abstract
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<Array>} Users
    */
   async findByChannel(channelId) {
-    throw new Error('Method findByChannel() must be implemented');
-  }
-
-  /**
-   * Bulk creates or updates users
-   * @param {Array<Object>} users - Array of user data
-   * @returns {Promise<Array<User>>} Array of created/updated users
-   * @abstract
-   */
-  async bulkCreateOrUpdate(users) {
-    throw new Error('Method bulkCreateOrUpdate() must be implemented');
-  }
-
-  /**
-   * Links users to a channel (channel members)
-   * @param {string} channelId - Channel ID
-   * @param {Array<string>} userIds - Array of user IDs
-   * @returns {Promise<number>} Number of users linked
-   * @abstract
-   */
-  async linkToChannel(channelId, userIds) {
-    throw new Error('Method linkToChannel() must be implemented');
-  }
-
-  /**
-   * Removes user from channel
-   * @param {string} channelId - Channel ID
-   * @param {string} userId - User ID
-   * @returns {Promise<boolean>} True if removed
-   * @abstract
-   */
-  async unlinkFromChannel(channelId, userId) {
-    throw new Error('Method unlinkFromChannel() must be implemented');
+    throw new Error('findByChannel() must be implemented');
   }
 
   /**
    * Finds users by username
-   * @param {string} username - Username to search
-   * @returns {Promise<Array<User>>} Array of matching users
    * @abstract
+   * @param {string} username - Username
+   * @returns {Promise<Array>} Users
    */
   async findByUsername(username) {
-    throw new Error('Method findByUsername() must be implemented');
+    throw new Error('findByUsername() must be implemented');
+  }
+
+  /**
+   * Adds user to channel
+   * @abstract
+   * @param {string} channelId - Channel ID
+   * @param {string} userId - User ID
+   * @returns {Promise<boolean>} True if added
+   */
+  async addToChannel(channelId, userId) {
+    throw new Error('addToChannel() must be implemented');
+  }
+
+  /**
+   * Removes user from channel
+   * @abstract
+   * @param {string} channelId - Channel ID
+   * @param {string} userId - User ID
+   * @returns {Promise<boolean>} True if removed
+   */
+  async removeFromChannel(channelId, userId) {
+    throw new Error('removeFromChannel() must be implemented');
+  }
+
+  /**
+   * Clears channel members
+   * @abstract
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<number>} Number of removed users
+   */
+  async clearChannelMembers(channelId) {
+    throw new Error('clearChannelMembers() must be implemented');
+  }
+
+  /**
+   * Bulk adds users
+   * @abstract
+   * @param {Array} users - Users to add
+   * @returns {Promise<Array>} Results
+   */
+  async bulkCreate(users) {
+    throw new Error('bulkCreate() must be implemented');
+  }
+
+  /**
+   * Gets user statistics
+   * @abstract
+   * @returns {Promise<Object>} Statistics
+   */
+  async getStatistics() {
+    throw new Error('getStatistics() must be implemented');
   }
 }
 
