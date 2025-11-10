@@ -1,10 +1,11 @@
 /**
- * Application-wide constants
+ * @fileoverview Application Constants
+ * Central location for all application-wide constants
  * @module shared/constants
  */
 
 /**
- * Session status constants
+ * Session status enum
  * @readonly
  * @enum {string}
  */
@@ -12,8 +13,7 @@ export const SessionStatus = {
   ACTIVE: 'active',
   PAUSED: 'paused',
   ERROR: 'error',
-  AUTHENTICATING: 'authenticating',
-  DISCONNECTED: 'disconnected'
+  INACTIVE: 'inactive'
 };
 
 /**
@@ -21,100 +21,53 @@ export const SessionStatus = {
  * @readonly
  * @enum {string}
  */
-export const MessageStatus = {
-  PENDING: 'pending',
-  SENT: 'sent',
+export const ForwardingStatus = {
+  SUCCESS: 'success',
   FAILED: 'failed',
-  RETRYING: 'retrying',
-  DELETED: 'deleted'
+  SKIPPED: 'skipped',
+  PENDING: 'pending'
 };
 
 /**
- * User role constants
+ * Admin roles
  * @readonly
  * @enum {string}
  */
-export const UserRole = {
-  ADMIN: 'admin',
+export const AdminRole = {
   SUPER_ADMIN: 'super_admin',
-  USER: 'user'
+  ADMIN: 'admin',
+  MODERATOR: 'moderator'
 };
 
 /**
- * Error types for better error handling
+ * State Manager Events
  * @readonly
  * @enum {string}
  */
-export const ErrorType = {
-  AUTHENTICATION: 'AUTHENTICATION_ERROR',
-  DATABASE: 'DATABASE_ERROR',
-  TELEGRAM: 'TELEGRAM_ERROR',
-  VALIDATION: 'VALIDATION_ERROR',
-  NETWORK: 'NETWORK_ERROR',
-  RATE_LIMIT: 'RATE_LIMIT_ERROR',
-  PERMISSION: 'PERMISSION_ERROR'
-};
-
-/**
- * Rate limiting constants
- * @readonly
- */
-export const RateLimits = {
-  DEFAULT_DELAY_MS: 1000,
-  PER_MEMBER_DELAY_MS: 500,
-  MIN_DELAY_MS: 2000,
-  MAX_DELAY_MS: 5000,
-  MAX_RETRY_ATTEMPTS: 3,
-  RETRY_DELAY_MS: 5000,
-  FLOOD_WAIT_BUFFER_SEC: 10
-};
-
-/**
- * Database table names
- * @readonly
- */
-export const Tables = {
-  ADMINS: 'admins',
-  CHANNELS: 'channels',
-  USERS: 'users',
-  SESSIONS: 'sessions',
-  METRICS: 'metrics',
-  SETTINGS: 'settings',
-  MESSAGE_LOGS: 'message_logs',
-  CHANNEL_MEMBERS: 'channel_members'
-};
-
-/**
- * Application events for event-driven architecture
- * @readonly
- * @enum {string}
- */
-export const AppEvents = {
+export const StateEvents = {
   // Session events
-  SESSION_CREATED: 'session:created',
-  SESSION_AUTHENTICATED: 'session:authenticated',
-  SESSION_PAUSED: 'session:paused',
-  SESSION_RESUMED: 'session:resumed',
-  SESSION_ERROR: 'session:error',
-  SESSION_DELETED: 'session:deleted',
+  SESSION_ADDED: 'session:added',
+  SESSION_UPDATED: 'session:updated',
+  SESSION_REMOVED: 'session:removed',
+  SESSION_STATUS_CHANGED: 'session:status_changed',
   
   // Channel events
   CHANNEL_ADDED: 'channel:added',
-  CHANNEL_REMOVED: 'channel:removed',
   CHANNEL_UPDATED: 'channel:updated',
+  CHANNEL_REMOVED: 'channel:removed',
   CHANNEL_FORWARDING_TOGGLED: 'channel:forwarding_toggled',
   
-  // Message events
-  MESSAGE_RECEIVED: 'message:received',
-  MESSAGE_FORWARDED: 'message:forwarded',
-  MESSAGE_FAILED: 'message:failed',
-  MESSAGE_DELETED: 'message:deleted',
+  // User events
+  USER_ADDED: 'user:added',
+  USER_UPDATED: 'user:updated',
+  USER_REMOVED: 'user:removed',
   
-  // Application events
-  APP_STARTED: 'app:started',
-  APP_STOPPING: 'app:stopping',
-  APP_STOPPED: 'app:stopped',
-  APP_ERROR: 'app:error'
+  // Bot events
+  BOT_REGISTERED: 'bot:registered',
+  BOT_UNREGISTERED: 'bot:unregistered',
+  
+  // System events
+  STATE_CLEARED: 'state:cleared'
 };
 
 /**
@@ -122,21 +75,44 @@ export const AppEvents = {
  * @readonly
  */
 export const ValidationRules = {
-  MAX_TITLE_LENGTH: 200,
-  MAX_USERNAME_LENGTH: 32,
-  MAX_PHONE_LENGTH: 20,
-  MIN_PHONE_LENGTH: 10,
+  PHONE_MIN_LENGTH: 10,
+  PHONE_MAX_LENGTH: 20,
+  USERNAME_MAX_LENGTH: 50,
+  NAME_MAX_LENGTH: 100,
+  TITLE_MAX_LENGTH: 200,
+  ERROR_MESSAGE_MAX_LENGTH: 500
+};
+
+/**
+ * Telegram API limits
+ * @readonly
+ */
+export const TelegramLimits = {
   MAX_MESSAGE_LENGTH: 4096,
-  CHANNEL_ID_PATTERN: /^-?\d+$/
+  MAX_CAPTION_LENGTH: 1024,
+  DEFAULT_FLOOD_WAIT: 60,
+  MIN_DELAY_BETWEEN_MESSAGES: 1000,
+  MAX_RETRIES: 3
+};
+
+/**
+ * Default configuration values
+ * @readonly
+ */
+export const Defaults = {
+  PAGE_SIZE: 10,
+  LOG_RETENTION_DAYS: 30,
+  MESSAGE_AGE_HOURS: 24,
+  SYNC_INTERVAL_MINUTES: 2,
+  DELETE_INTERVAL_HOURS: 1
 };
 
 export default {
   SessionStatus,
-  MessageStatus,
-  UserRole,
-  ErrorType,
-  RateLimits,
-  Tables,
-  AppEvents,
-  ValidationRules
+  ForwardingStatus,
+  AdminRole,
+  StateEvents,
+  ValidationRules,
+  TelegramLimits,
+  Defaults
 };
