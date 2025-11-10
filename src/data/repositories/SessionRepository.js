@@ -1,296 +1,277 @@
 /**
- * Session Repository Implementation
- * Implements session data access using SQLite
- * 
+ * @fileoverview Session Repository Implementation
+ * Handles session data persistence
  * @module data/repositories/SessionRepository
  */
 
-import { ISessionRepository } from '../../core/interfaces/ISessionRepository.js';
-import { Session } from '../../core/entities/Session.js';
-import { Tables, SessionStatus } from '../../shared/constants/index.js';
+import ISessionRepository from '../../core/interfaces/ISessionRepository.js';
+import Session from '../../core/entities/Session.entity.js';
+import { SessionStatus } from '../../shared/constants/index.js';
 
 /**
+ * Session Repository
+ * Implements session data access operations
+ * 
  * @class SessionRepository
- * @extends {ISessionRepository}
- * @description Repository implementation for Session entity
- * Handles all database operations for sessions
+ * @implements {ISessionRepository}
  */
-export class SessionRepository extends ISessionRepository {
+class SessionRepository extends ISessionRepository {
   /**
-   * Creates a new SessionRepository
-   * @param {SQLiteDataSource} dataSource - Database data source
+   * Data source
+   * @private
+   */
+  #dataSource;
+
+  /**
+   * Creates session repository
+   * @param {SQLiteDataSource} dataSource - Data source
    */
   constructor(dataSource) {
     super();
-    this.dataSource = dataSource;
-    this.tableName = Tables.SESSIONS;
+    this.#dataSource = dataSource;
   }
 
   /**
-   * Finds a session by phone (ID)
-   * @param {string} phone - Session phone number
+   * Finds session by ID (phone)
+   * @param {string} id - Phone number
    * @returns {Promise<Session|null>} Session or null
    */
-  async findById(phone) {
-    const sql = `SELECT * FROM ${this.tableName} WHERE phone = ?`;
-    const row = await this.dataSource.getOne(sql, [phone]);
+  async findById(id) {
+    return await this.findByPhone(id);
+  }
+
+  /**
+   * Finds session by phone
+   * @param {string} phone - Phone number
+   * @returns {Promise<Session|null>} Session or null
+   */
+  async findByPhone(phone) {
+    const row = await this.#dataSource.getOne(
+      'SELECT * FROM sessions WHERE phone = ?',
+      [phone]
+    );
     return row ? Session.fromDatabaseRow(row) : null;
   }
 
   /**
-   * Finds all sessions with optional filtering
-   * @param {Object} [filter] - Filter options
-   * @param {string} [filter.status] - Filter by status
-   * @returns {Promise<Array<Session>>} Array of sessions
+   * Finds all sessions
+   * @param {Object} filters - Filters
+   * @param {string} [filters.status] - Filter by status
+   * @returns {Promise<Array<Session>>} Sessions
    */
-  async findAll(filter = {}) {
-    let sql = `SELECT * FROM ${this.tableName}`;
+  async findAll(filters = {}) {
+    let query = 'SELECT * FROM sessions';
     const params = [];
 
-    if (filter.status) {
-      sql += ' WHERE status = ?';
-      params.push(filter.status);
+    if (filters.status) {
+      query += ' WHERE status = ?';
+      params.push(filters.status);
     }
 
-    sql += ' ORDER BY created_at DESC';
+    query += ' ORDER BY created_at DESC';
 
-    const rows = await this.dataSource.getAll(sql, params);
-    return Session.fromDatabaseRows(rows);
+    const rows = await this.#dataSource.getMany(query, params);
+    return rows.map(row => Session.fromDatabaseRow(row));
   }
 
   /**
-   * Finds sessions by status
-   * @param {string} status - Session status
-   * @returns {Promise<Array<Session>>} Array of sessions
-   */
-  async findByStatus(status) {
-    return this.findAll({ status });
-  }
-
-  /**
-   * Finds active sessions
-   * @returns {Promise<Array<Session>>} Array of active sessions
-   */
-  async findActive() {
-    return this.findByStatus(SessionStatus.ACTIVE);
-  }
-
-  /**
-   * Creates a new session
-   * @param {Object} data - Session data
+   * Creates new session
+   * @param {Session} session - Session entity
    * @returns {Promise<Session>} Created session
    */
-  async create(data) {
-    const session = new Session(data);
-    const obj = session.toObject();
+  async create(session) {
+    const data = session.toObject();
 
-    const sql = `
-      INSERT INTO ${this.tableName}
-      (phone, user_id, session_string, status, first_name, last_name, username,
-       auto_paused, pause_reason, flood_wait_until, last_error, last_active,
-       created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-    `;
+    // Check if session exists
+    const existing = await this.findByPhone(session.phone);
+    
+    if (existing) {
+      // Update existing
+      return await this.update(session.phone, data);
+    }
 
-    await this.dataSource.run(sql, [
-      obj.phone,
-      obj.userId,
-      obj.sessionString,
-      obj.status,
-      obj.firstName,
-      obj.lastName,
-      obj.username,
-      obj.autoPaused ? 1 : 0,
-      obj.pauseReason,
-      obj.floodWaitUntil ? obj.floodWaitUntil.toISOString() : null,
-      obj.lastError,
-      obj.lastActive ? obj.lastActive.toISOString() : null
-    ]);
+    await this.#dataSource.execute(
+      `INSERT INTO sessions 
+       (phone, user_id, session_string, status, first_name, last_name, username, 
+        auto_paused, pause_reason, flood_wait_until, last_error, last_active, 
+        created_at, updated_at) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        data.phone,
+        data.user_id,
+        data.session_string,
+        data.status,
+        data.first_name,
+        data.last_name,
+        data.username,
+        data.auto_paused,
+        data.pause_reason,
+        data.flood_wait_until,
+        data.last_error,
+        data.last_active,
+        data.created_at,
+        data.updated_at
+      ]
+    );
 
-    return this.findById(obj.phone);
+    return await this.findByPhone(session.phone);
   }
 
   /**
-   * Updates an existing session
-   * @param {string} phone - Session phone
-   * @param {Object} data - Update data
+   * Updates session
+   * @param {string} id - Phone number
+   * @param {Object} updates - Updates
    * @returns {Promise<Session>} Updated session
    */
-  async update(phone, data) {
-    const existing = await this.findById(phone);
-    if (!existing) {
-      throw new Error(`Session not found: ${phone}`);
+  async update(id, updates) {
+    const session = await this.findByPhone(id);
+    if (!session) {
+      throw new Error(`Session not found: ${id}`);
     }
 
-    const updates = [];
-    const params = [];
-
-    if (data.userId !== undefined) {
-      updates.push('user_id = ?');
-      params.push(data.userId);
-    }
-    if (data.sessionString !== undefined) {
-      updates.push('session_string = ?');
-      params.push(data.sessionString);
-    }
-    if (data.status !== undefined) {
-      updates.push('status = ?');
-      params.push(data.status);
-    }
-    if (data.firstName !== undefined) {
-      updates.push('first_name = ?');
-      params.push(data.firstName);
-    }
-    if (data.lastName !== undefined) {
-      updates.push('last_name = ?');
-      params.push(data.lastName);
-    }
-    if (data.username !== undefined) {
-      updates.push('username = ?');
-      params.push(data.username);
-    }
-    if (data.autoPaused !== undefined) {
-      updates.push('auto_paused = ?');
-      params.push(data.autoPaused ? 1 : 0);
-    }
-    if (data.pauseReason !== undefined) {
-      updates.push('pause_reason = ?');
-      params.push(data.pauseReason);
-    }
-    if (data.floodWaitUntil !== undefined) {
-      updates.push('flood_wait_until = ?');
-      params.push(data.floodWaitUntil ? data.floodWaitUntil.toISOString() : null);
-    }
-    if (data.lastError !== undefined) {
-      updates.push('last_error = ?');
-      params.push(data.lastError);
-    }
-    if (data.lastActive !== undefined) {
-      updates.push('last_active = ?');
-      params.push(data.lastActive ? data.lastActive.toISOString() : null);
+    // Apply updates to entity
+    if (updates.status) {
+      if (updates.status === SessionStatus.ACTIVE) {
+        session.activate();
+      } else if (updates.status === SessionStatus.PAUSED) {
+        session.pause(updates.pause_reason || 'Manual pause');
+      } else if (updates.status === SessionStatus.ERROR) {
+        session.markError(updates.last_error || 'Unknown error');
+      }
     }
 
-    if (updates.length === 0) {
-      return existing;
-    }
+    if (updates.session_string) session.sessionString = updates.session_string;
+    if (updates.first_name) session.firstName = updates.first_name;
+    if (updates.last_name) session.lastName = updates.last_name;
+    if (updates.username) session.username = updates.username;
 
-    updates.push('updated_at = CURRENT_TIMESTAMP');
-    params.push(phone);
+    const data = session.toObject();
 
-    const sql = `UPDATE ${this.tableName} SET ${updates.join(', ')} WHERE phone = ?`;
-    await this.dataSource.run(sql, params);
+    await this.#dataSource.execute(
+      `UPDATE sessions 
+       SET user_id = ?, session_string = ?, status = ?, first_name = ?, 
+           last_name = ?, username = ?, auto_paused = ?, pause_reason = ?, 
+           flood_wait_until = ?, last_error = ?, last_active = ?, updated_at = ? 
+       WHERE phone = ?`,
+      [
+        data.user_id,
+        data.session_string,
+        data.status,
+        data.first_name,
+        data.last_name,
+        data.username,
+        data.auto_paused,
+        data.pause_reason,
+        data.flood_wait_until,
+        data.last_error,
+        data.last_active,
+        data.updated_at,
+        id
+      ]
+    );
 
-    return this.findById(phone);
+    return await this.findByPhone(id);
   }
 
   /**
-   * Deletes a session
-   * @param {string} phone - Session phone
+   * Deletes session
+   * @param {string} id - Phone number
    * @returns {Promise<boolean>} True if deleted
    */
-  async delete(phone) {
-    const sql = `DELETE FROM ${this.tableName} WHERE phone = ?`;
-    const result = await this.dataSource.run(sql, [phone]);
+  async delete(id) {
+    const result = await this.#dataSource.execute(
+      'DELETE FROM sessions WHERE phone = ?',
+      [id]
+    );
     return result.changes > 0;
   }
 
   /**
    * Checks if session exists
-   * @param {string} phone - Session phone
+   * @param {string} id - Phone number
    * @returns {Promise<boolean>} True if exists
    */
-  async exists(phone) {
-    const sql = `SELECT 1 FROM ${this.tableName} WHERE phone = ? LIMIT 1`;
-    const row = await this.dataSource.getOne(sql, [phone]);
-    return row !== null;
+  async exists(id) {
+    const session = await this.findByPhone(id);
+    return session !== null;
   }
 
   /**
-   * Counts sessions with optional filtering
-   * @param {Object} [filter] - Filter options
-   * @returns {Promise<number>} Count of sessions
+   * Counts sessions
+   * @param {Object} filters - Filters
+   * @returns {Promise<number>} Count
    */
-  async count(filter = {}) {
-    let sql = `SELECT COUNT(*) as count FROM ${this.tableName}`;
+  async count(filters = {}) {
+    let query = 'SELECT COUNT(*) as count FROM sessions';
     const params = [];
 
-    if (filter.status) {
-      sql += ' WHERE status = ?';
-      params.push(filter.status);
+    if (filters.status) {
+      query += ' WHERE status = ?';
+      params.push(filters.status);
     }
 
-    const row = await this.dataSource.getOne(sql, params);
-    return row?.count || 0;
+    const result = await this.#dataSource.getOne(query, params);
+    return result?.count || 0;
   }
 
   /**
-   * Updates session status
-   * @param {string} phone - Session phone
-   * @param {string} status - New status
-   * @returns {Promise<Session>} Updated session
+   * Finds sessions by status
+   * @param {string} status - Session status
+   * @returns {Promise<Array<Session>>} Sessions
    */
-  async updateStatus(phone, status) {
-    return this.update(phone, { status });
+  async findByStatus(status) {
+    return await this.findAll({ status });
   }
 
   /**
-   * Updates session activity timestamp
-   * @param {string} phone - Session phone
-   * @returns {Promise<Session>} Updated session
+   * Finds sessions ready to resume
+   * @returns {Promise<Array<Session>>} Sessions ready to resume
+   */
+  async findReadyToResume() {
+    const rows = await this.#dataSource.getMany(
+      `SELECT * FROM sessions 
+       WHERE status = ? 
+       AND auto_paused = 1 
+       AND flood_wait_until IS NOT NULL 
+       AND flood_wait_until < datetime('now')`,
+      [SessionStatus.PAUSED]
+    );
+    return rows.map(row => Session.fromDatabaseRow(row));
+  }
+
+  /**
+   * Updates session activity
+   * @param {string} phone - Phone number
+   * @returns {Promise<void>}
    */
   async updateActivity(phone) {
-    return this.update(phone, { lastActive: new Date() });
+    await this.#dataSource.execute(
+      `UPDATE sessions 
+       SET last_active = datetime('now'), updated_at = datetime('now') 
+       WHERE phone = ?`,
+      [phone]
+    );
   }
 
   /**
-   * Sets flood wait for session
-   * @param {string} phone - Session phone
-   * @param {number} seconds - Seconds to wait
-   * @returns {Promise<Session>} Updated session
+   * Gets session statistics
+   * @returns {Promise<Object>} Statistics
    */
-  async setFloodWait(phone, seconds) {
-    const floodWaitUntil = new Date(Date.now() + seconds * 1000);
-    return this.update(phone, {
-      floodWaitUntil,
-      status: SessionStatus.PAUSED,
-      autoPaused: true,
-      pauseReason: `Flood wait: ${seconds}s`
-    });
-  }
+  async getStatistics() {
+    const [total, active, paused, error] = await Promise.all([
+      this.count(),
+      this.count({ status: SessionStatus.ACTIVE }),
+      this.count({ status: SessionStatus.PAUSED }),
+      this.count({ status: SessionStatus.ERROR })
+    ]);
 
-  /**
-   * Clears flood wait for session
-   * @param {string} phone - Session phone
-   * @returns {Promise<Session>} Updated session
-   */
-  async clearFloodWait(phone) {
-    const session = await this.findById(phone);
-    if (!session) {
-      throw new Error(`Session not found: ${phone}`);
-    }
-
-    const updates = {
-      floodWaitUntil: null
+    return {
+      total,
+      active,
+      paused,
+      error,
+      inactive: total - active - paused - error
     };
-
-    // If session was auto-paused, activate it
-    if (session.autoPaused) {
-      updates.status = SessionStatus.ACTIVE;
-      updates.autoPaused = false;
-      updates.pauseReason = null;
-    }
-
-    return this.update(phone, updates);
-  }
-
-  /**
-   * Saves or updates session string
-   * @param {string} phone - Session phone
-   * @param {string} sessionString - Session string
-   * @returns {Promise<Session>} Updated session
-   */
-  async saveSessionString(phone, sessionString) {
-    return this.update(phone, { sessionString });
   }
 }
 
