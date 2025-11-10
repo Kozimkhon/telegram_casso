@@ -12172,3 +12172,128 @@ Error: Could not find the input entity for {"userId":"2929375693","className":"P
 {
   "error": {}
 }
+2025-11-10 09:10:34 [ERROR]: Authentication error
+Error: Code is empty
+    at Object.signInUser (/workspaces/telegram_casso/node_modules/telegram/client/auth.js:118:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async _authFlow (/workspaces/telegram_casso/node_modules/telegram/client/auth.js:363:11)
+    at async Object.start (/workspaces/telegram_casso/node_modules/telegram/client/auth.js:52:5)
+    at async UserBot.connect (file:///workspaces/telegram_casso/src/bots/userBot.js:214:7)
+    at async UserBot.start (file:///workspaces/telegram_casso/src/bots/userBot.js:117:7)
+    at async UserBotManager.addUserBot (file:///workspaces/telegram_casso/src/bots/userBotManager.js:83:7)
+    at async UserBotManager.initializeFromDatabase (file:///workspaces/telegram_casso/src/bots/userBotManager.js:40:11)
+    at async TelegramCassoApp.initializeMultiUserBotManager (file:///workspaces/telegram_casso/src/index.js:73:7)
+    at async TelegramCassoApp.start (file:///workspaces/telegram_casso/src/index.js:39:7)
+{
+  "error": "Code is empty"
+}
+2025-11-10 09:10:34 [ERROR]: Telegram API error during Telegram connection
+{
+  "operation": "Telegram connection",
+  "originalError": "Authentication failed: Code is empty",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-10 09:10:34 [ERROR]: Failed to start UserBot
+TelegramError: Telegram API error during Telegram connection
+    at handleTelegramError (file:///workspaces/telegram_casso/src/utils/errorHandler.js:130:25)
+    at UserBot.connect (file:///workspaces/telegram_casso/src/bots/userBot.js:256:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBot.start (file:///workspaces/telegram_casso/src/bots/userBot.js:117:7)
+    at async UserBotManager.addUserBot (file:///workspaces/telegram_casso/src/bots/userBotManager.js:83:7)
+    at async UserBotManager.initializeFromDatabase (file:///workspaces/telegram_casso/src/bots/userBotManager.js:40:11)
+    at async TelegramCassoApp.initializeMultiUserBotManager (file:///workspaces/telegram_casso/src/index.js:73:7)
+    at async TelegramCassoApp.start (file:///workspaces/telegram_casso/src/index.js:39:7)
+    at async main (file:///workspaces/telegram_casso/src/index.js:227:5)
+{
+  "error": "Telegram API error during Telegram connection"
+}
+2025-11-10 09:10:34 [ERROR]: Telegram API error during UserBot initialization
+{
+  "operation": "UserBot initialization",
+  "originalError": "Telegram API error during Telegram connection",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-10 09:10:34 [ERROR]: Failed to add userbot
+{
+  "phone": "+998998386838",
+  "error": "Telegram API error during UserBot initialization"
+}
+2025-11-10 09:10:34 [ERROR]: Failed to initialize session
+{
+  "phone": "+998998386838",
+  "error": "Telegram API error during UserBot initialization"
+}
+2025-11-10 09:10:39 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"3269369967","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1005:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:949:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1220:7)
+{
+  "channelId": "3269369967",
+  "error": "Could not find the input entity for {\"userId\":\"3269369967\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}
+2025-11-10 09:10:41 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"2929375693","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1005:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:949:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1220:7)
+{
+  "channelId": "2929375693",
+  "error": "Could not find the input entity for {\"userId\":\"2929375693\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}
+2025-11-10 09:16:55 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"3269369967","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1005:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:949:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1220:7)
+{
+  "channelId": "3269369967",
+  "error": "Could not find the input entity for {\"userId\":\"3269369967\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}
+2025-11-10 09:16:58 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"2929375693","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1005:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:949:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1220:7)
+{
+  "channelId": "2929375693",
+  "error": "Could not find the input entity for {\"userId\":\"2929375693\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}

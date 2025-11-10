@@ -261,38 +261,10 @@ class UserBot {
    * Sets up event handlers for comprehensive channel monitoring
    */
   async setupEventHandlers() {
-    this.logger.debug("Setting up comprehensive event handlers");
-
-    // Store enabled channel IDs for filtering in handleNewMessage
-    const enabledChannels = await getAllChannels(true);
-    this.enabledChannelIds = new Set(
-      enabledChannels.map((ch) => ch.channel_id)
-    );
-
-    console.log(
-      "🔧 Setting up listener for channels:",
-      enabledChannels.map((c) => c.title)
-    );
-    console.log("🔧 Enabled channel IDs:", Array.from(this.enabledChannelIds));
-
-    // Convert channel IDs to BigInt for GramJS chats parameter
-    const chatIds = Array.from(this.enabledChannelIds).map((id) => BigInt(id));
-
-    // ❌ DISABLE all event handlers temporarily to prevent spam
-    this.logger.warn(
-      "⚠️ Event handlers disabled to prevent spam during startup"
-    );
-
-    // TODO: Re-enable after fixing the spam issue
-
     this.client.addEventHandler(
       asyncErrorHandler(this.asyncHandlerUni.bind(this), "UniversalHandler")
     );
 
-    this.logger.info("Event handlers setup completed (DISABLED)", {
-      channelCount: enabledChannels.length,
-      events: ["All events temporarily disabled"],
-    });
   }
   /**
    * Handles message edits
@@ -627,10 +599,27 @@ class UserBot {
         this.logger.debug("Channel not found, skipping message", { channelId });
         return;
       }
-      // 2️⃣ Turiga qarab yo‘naltiramiz
+            // 2️⃣ Turiga qarab yo'naltiramiz
       switch (eventName) {
         case "UpdateNewChannelMessage": {
-          return this.handleNewMessage(message, channelId);
+          // ✅ GROUPED MESSAGE (ALBUM) SUPPORT
+          const groupedId = message.groupedId?.toString();
+          
+          if (groupedId) {
+            // Agar grouped message bo'lsa, wait qilish kerak
+            // Bir guruh ichidagi barcha rasmlar kelguncha kutamiz
+            this.logger.debug("📸 Grouped message detected, waiting for full album", {
+              channelId,
+              messageId: message.id,
+              groupedId
+            });
+            
+            // Grouped message ni handle qilish
+            return await this.handleGroupedMessage(message, channelId, groupedId);
+          } else {
+            // Oddiy single message
+            return this.handleNewMessage(message, channelId);
+          }
         }
 
         case "UpdateEditChannelMessage":
@@ -693,6 +682,152 @@ class UserBot {
       this.logger.error("Error handling deleted channel messages", {
         error: error.message,
       });
+    }
+  }
+
+  /**
+   * Handles grouped messages (media albums - multiple photos/videos sent together)
+   * @param {Object} message - First message of the group
+   * @param {string} channelId - Channel ID
+   * @param {string} groupedId - Grouped message ID
+   */
+  async handleGroupedMessage(message, channelId, groupedId) {
+    try {
+      // Check if this channel is enabled for forwarding
+      if (!isChannelEnabled(channelId)) {
+        this.logger.debug("❌ Grouped message from non-enabled channel", { channelId });
+        return;
+      }
+
+      this.logger.info("📸 Handling grouped message (album)", {
+        channelId,
+        groupedId,
+        firstMessageId: message.id,
+      });
+
+      // Wait a bit for all messages in the group to arrive
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Get all messages with the same groupedId from the channel
+      const fromPeer = await this.client.getEntity(message.peerId);
+      const messages = await this.client.getMessages(fromPeer, {
+        limit: 100, // Get last 100 messages to find all grouped ones
+      });
+
+      // Filter messages with the same groupedId
+      const groupedMessages = messages.filter(
+        msg => msg.groupedId?.toString() === groupedId
+      );
+
+      this.logger.info("📸 Found grouped messages", {
+        channelId,
+        groupedId,
+        count: groupedMessages.length,
+        messageIds: groupedMessages.map(m => m.id),
+      });
+
+      if (groupedMessages.length === 0) {
+        this.logger.warn("⚠️ No grouped messages found, falling back to single message", {
+          channelId,
+          groupedId,
+        });
+        return this.handleNewMessage(message, channelId);
+      }
+
+      // Forward the entire album to all users
+      const results = await this.forwardAlbumToUsers(groupedMessages, channelId, groupedId);
+
+      this.logger.info("✅ Album forwarding completed", {
+        channelId,
+        groupedId,
+        messageCount: groupedMessages.length,
+        ...results,
+      });
+    } catch (error) {
+      this.logger.error("❌ Error handling grouped message", {
+        error: error.message,
+        channelId,
+        groupedId,
+      });
+    }
+  }
+
+  /**
+   * Forwards an album (grouped messages) to all channel users
+   * @param {Array} messages - Array of messages in the album
+   * @param {string} channelId - Channel ID
+   * @param {string} groupedId - Grouped message ID
+   * @returns {Promise<Object>} Forward results
+   */
+  async forwardAlbumToUsers(messages, channelId, groupedId) {
+    try {
+      // Get all users for this channel
+      const users = await getUsersByChannel(channelId);
+      
+      this.logger.info("📤 Forwarding album to users", {
+        channelId,
+        groupedId,
+        userCount: users.length,
+        messageCount: messages.length,
+      });
+
+      let successCount = 0;
+      let failCount = 0;
+
+      // Forward to each user
+      for (const user of users) {
+        try {
+          const userId = BigInt(user.user_id);
+          const toPeer = await this.client.getEntity(userId);
+          const fromPeer = await this.client.getEntity(messages[0].peerId);
+
+          // Forward all messages as a group
+          const messageIds = messages.map(msg => msg.id);
+
+          const result = await this.client.invoke(
+            new Api.messages.ForwardMessages({
+              fromPeer: fromPeer,
+              toPeer: toPeer,
+              id: messageIds,
+              randomId: messageIds.map(() => BigInt(Math.floor(Math.random() * 1e16))),
+              grouped: true, // Keep them grouped as album
+            })
+          );
+
+          successCount++;
+
+          this.logger.debug("✅ Album forwarded to user", {
+            userId: user.user_id,
+            groupedId,
+            messageCount: messageIds.length,
+          });
+
+          // Small delay to avoid rate limits
+          await new Promise(resolve => setTimeout(resolve, 100));
+        } catch (error) {
+          failCount++;
+          this.logger.error("❌ Failed to forward album to user", {
+            userId: user.user_id,
+            groupedId,
+            error: error.message,
+          });
+        }
+      }
+
+      return {
+        totalUsers: users.length,
+        successCount,
+        failCount,
+        groupedId,
+        messageCount: messages.length,
+      };
+    } catch (error) {
+      this.logger.error("❌ Error in forwardAlbumToUsers", {
+        error: error.message,
+        channelId,
+        groupedId,
+      });
+      throw error;
     }
   }
 
