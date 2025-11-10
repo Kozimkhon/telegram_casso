@@ -1,260 +1,123 @@
 /**
  * @fileoverview Channel Repository Implementation
- * Handles channel data persistence
+ * Handles channel data persistence using TypeORM
  * @module data/repositories/ChannelRepository
  */
 
 import IChannelRepository from '../../core/interfaces/IChannelRepository.js';
 import Channel from '../../core/entities/Channel.entity.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
-/**
- * Channel Repository
- * Implements channel data access operations
- * 
- * @class ChannelRepository
- * @implements {IChannelRepository}
- */
 class ChannelRepository extends IChannelRepository {
-  /**
-   * Data source
-   * @private
-   */
-  #dataSource;
+  #ormRepository;
 
-  /**
-   * Creates channel repository
-   * @param {SQLiteDataSource} dataSource - Data source
-   */
-  constructor(dataSource) {
+  constructor() {
     super();
-    this.#dataSource = dataSource;
+    this.#ormRepository = RepositoryFactory.getChannelRepository();
   }
 
-  /**
-   * Finds channel by ID
-   * @param {string} id - Channel ID
-   * @returns {Promise<Channel|null>} Channel or null
-   */
+  #toDomainEntity(ormEntity) {
+    if (!ormEntity) return null;
+    
+    return Channel.fromDatabaseRow({
+      id: ormEntity.id,
+      channel_id: ormEntity.channelId,
+      title: ormEntity.title,
+      username: ormEntity.username,
+      member_count: ormEntity.memberCount,
+      forward_enabled: ormEntity.forwardEnabled,
+      admin_session_phone: ormEntity.adminSessionPhone,
+      created_at: ormEntity.createdAt,
+      updated_at: ormEntity.updatedAt
+    });
+  }
+
   async findById(id) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM channels WHERE channel_id = ?',
-      [id]
-    );
-    return row ? Channel.fromDatabaseRow(row) : null;
+    const entity = await this.#ormRepository.findById(id);
+    return this.#toDomainEntity(entity);
   }
 
-  /**
-   * Finds all channels
-   * @param {Object} filters - Filters
-   * @param {boolean} [filters.forwardEnabled] - Filter by forward enabled
-   * @param {string} [filters.adminSessionPhone] - Filter by admin session
-   * @returns {Promise<Array<Channel>>} Channels
-   */
+  async findByChannelId(channelId) {
+    const entity = await this.#ormRepository.findByChannelId(channelId);
+    return this.#toDomainEntity(entity);
+  }
+
   async findAll(filters = {}) {
-    let query = 'SELECT * FROM channels';
-    const params = [];
-    const conditions = [];
-
-    if (filters.forwardEnabled !== undefined) {
-      conditions.push('forward_enabled = ?');
-      params.push(filters.forwardEnabled ? 1 : 0);
+    let entities;
+    
+    if (filters.enabled) {
+      entities = await this.#ormRepository.findByForwardingEnabled(true);
+    } else {
+      entities = await this.#ormRepository.findAll();
     }
 
-    if (filters.adminSessionPhone) {
-      conditions.push('admin_session_phone = ?');
-      params.push(filters.adminSessionPhone);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    query += ' ORDER BY title ASC';
-
-    const rows = await this.#dataSource.getMany(query, params);
-    return rows.map(row => Channel.fromDatabaseRow(row));
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
-  /**
-   * Creates new channel
-   * @param {Channel} channel - Channel entity
-   * @returns {Promise<Channel>} Created channel
-   */
   async create(channel) {
     const data = channel.toObject();
     
-    await this.#dataSource.execute(
-      `INSERT OR REPLACE INTO channels 
-       (channel_id, title, forward_enabled, admin_session_phone, member_count, created_at, updated_at) 
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [
-        data.channel_id,
-        data.title,
-        data.forward_enabled,
-        data.admin_session_phone,
-        data.member_count,
-        data.created_at,
-        data.updated_at
-      ]
-    );
+    const created = await this.#ormRepository.create({
+      channelId: data.channel_id,
+      title: data.title,
+      username: data.username,
+      memberCount: data.member_count,
+      forwardEnabled: data.forward_enabled,
+      adminSessionPhone: data.admin_session_phone
+    });
 
-    return await this.findById(channel.channelId);
+    return this.#toDomainEntity(created);
   }
 
-  /**
-   * Updates channel
-   * @param {string} id - Channel ID
-   * @param {Object} updates - Updates
-   * @returns {Promise<Channel>} Updated channel
-   */
   async update(id, updates) {
-    const channel = await this.findById(id);
-    if (!channel) {
-      throw new Error(`Channel not found: ${id}`);
-    }
+    const ormUpdates = {};
+    
+    if (updates.title) ormUpdates.title = updates.title;
+    if (updates.username) ormUpdates.username = updates.username;
+    if (updates.member_count !== undefined) ormUpdates.memberCount = updates.member_count;
+    if (updates.forward_enabled !== undefined) ormUpdates.forwardEnabled = updates.forward_enabled;
+    if (updates.admin_session_phone) ormUpdates.adminSessionPhone = updates.admin_session_phone;
 
-    // Apply updates to entity
-    if (updates.title) channel.updateTitle(updates.title);
-    if (updates.forwardEnabled !== undefined) {
-      updates.forwardEnabled ? channel.enableForwarding() : channel.disableForwarding();
-    }
-    if (updates.adminSessionPhone) channel.linkToSession(updates.adminSessionPhone);
-    if (updates.memberCount !== undefined) channel.updateMemberCount(updates.memberCount);
-
-    const data = channel.toObject();
-
-    await this.#dataSource.execute(
-      `UPDATE channels 
-       SET title = ?, forward_enabled = ?, admin_session_phone = ?, 
-           member_count = ?, updated_at = ? 
-       WHERE channel_id = ?`,
-      [
-        data.title,
-        data.forward_enabled,
-        data.admin_session_phone,
-        data.member_count,
-        data.updated_at,
-        id
-      ]
-    );
-
-    return await this.findById(id);
+    const updated = await this.#ormRepository.update(id, ormUpdates);
+    return this.#toDomainEntity(updated);
   }
 
-  /**
-   * Deletes channel
-   * @param {string} id - Channel ID
-   * @returns {Promise<boolean>} True if deleted
-   */
   async delete(id) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM channels WHERE channel_id = ?',
-      [id]
-    );
-    return result.changes > 0;
+    return await this.#ormRepository.delete(id);
   }
 
-  /**
-   * Checks if channel exists
-   * @param {string} id - Channel ID
-   * @returns {Promise<boolean>} True if exists
-   */
   async exists(id) {
     const channel = await this.findById(id);
     return channel !== null;
   }
 
-  /**
-   * Counts channels
-   * @param {Object} filters - Filters
-   * @returns {Promise<number>} Count
-   */
   async count(filters = {}) {
-    let query = 'SELECT COUNT(*) as count FROM channels';
-    const params = [];
-    const conditions = [];
-
-    if (filters.forwardEnabled !== undefined) {
-      conditions.push('forward_enabled = ?');
-      params.push(filters.forwardEnabled ? 1 : 0);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    const result = await this.#dataSource.getOne(query, params);
-    return result?.count || 0;
+    const channels = await this.findAll(filters);
+    return channels.length;
   }
 
-  /**
-   * Finds channels by admin session
-   * @param {string} phone - Admin session phone
-   * @returns {Promise<Array<Channel>>} Channels
-   */
-  async findByAdminSession(phone) {
-    const rows = await this.#dataSource.getMany(
-      'SELECT * FROM channels WHERE admin_session_phone = ? ORDER BY created_at DESC',
-      [phone]
-    );
-    return rows.map(row => Channel.fromDatabaseRow(row));
-  }
-
-  /**
-   * Finds enabled channels
-   * @returns {Promise<Array<Channel>>} Enabled channels
-   */
   async findEnabled() {
-    return await this.findAll({ forwardEnabled: true });
+    return await this.findAll({ enabled: true });
   }
 
-  /**
-   * Toggles channel forwarding
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Channel>} Updated channel
-   */
   async toggleForwarding(channelId) {
-    const channel = await this.findById(channelId);
-    if (!channel) {
-      throw new Error(`Channel not found: ${channelId}`);
-    }
-
-    channel.toggleForwarding();
-    const data = channel.toObject();
-
-    await this.#dataSource.execute(
-      'UPDATE channels SET forward_enabled = ?, updated_at = ? WHERE channel_id = ?',
-      [data.forward_enabled, data.updated_at, channelId]
-    );
-
-    return await this.findById(channelId);
+    const channel = await this.findByChannelId(channelId);
+    if (!channel) throw new Error(`Channel not found: ${channelId}`);
+    
+    await this.#ormRepository.toggleForwarding(channelId);
+    return await this.findById(channel.id);
   }
 
-  /**
-   * Links channel to session
-   * @param {string} channelId - Channel ID
-   * @param {string} phone - Session phone
-   * @returns {Promise<Channel>} Updated channel
-   */
-  async linkToSession(channelId, phone) {
-    return await this.update(channelId, { adminSessionPhone: phone });
-  }
-
-  /**
-   * Gets channel statistics
-   * @returns {Promise<Object>} Statistics
-   */
   async getStatistics() {
-    const [total, enabled, disabled] = await Promise.all([
-      this.count(),
-      this.count({ forwardEnabled: true }),
-      this.count({ forwardEnabled: false })
-    ]);
+    const all = await this.findAll();
+    const enabled = await this.findEnabled();
+    const totalMembers = all.reduce((sum, ch) => sum + (ch.memberCount || 0), 0);
 
     return {
-      total,
-      enabled,
-      disabled
+      total: all.length,
+      enabled: enabled.length,
+      disabled: all.length - enabled.length,
+      totalMembers
     };
   }
 }

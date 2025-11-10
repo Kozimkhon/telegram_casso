@@ -1,311 +1,147 @@
 /**
  * @fileoverview User Repository Implementation
- * Handles user data persistence
+ * Handles user data persistence using TypeORM
  * @module data/repositories/UserRepository
  */
 
 import IUserRepository from '../../core/interfaces/IUserRepository.js';
 import User from '../../core/entities/User.entity.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
-/**
- * User Repository
- * Implements user data access operations
- * 
- * @class UserRepository
- * @implements {IUserRepository}
- */
 class UserRepository extends IUserRepository {
-  /**
-   * Data source
-   * @private
-   */
-  #dataSource;
+  #ormRepository;
 
-  /**
-   * Creates user repository
-   * @param {SQLiteDataSource} dataSource - Data source
-   */
-  constructor(dataSource) {
+  constructor() {
     super();
-    this.#dataSource = dataSource;
+    this.#ormRepository = RepositoryFactory.getUserRepository();
   }
 
-  /**
-   * Finds user by ID
-   * @param {string} id - User ID
-   * @returns {Promise<User|null>} User or null
-   */
-  async findById(id) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM users WHERE user_id = ?',
-      [id]
-    );
-    return row ? User.fromDatabaseRow(row) : null;
-  }
-
-  /**
-   * Finds all users
-   * @param {Object} filters - Filters
-   * @returns {Promise<Array<User>>} Users
-   */
-  async findAll(filters = {}) {
-    const { limit, offset, orderBy = 'first_name ASC' } = filters;
+  #toDomainEntity(ormEntity) {
+    if (!ormEntity) return null;
     
-    let query = `SELECT * FROM users ORDER BY ${orderBy}`;
-    const params = [];
+    return User.fromDatabaseRow({
+      id: ormEntity.id,
+      user_id: ormEntity.userId,
+      first_name: ormEntity.firstName,
+      last_name: ormEntity.lastName,
+      username: ormEntity.username,
+      phone: ormEntity.phone,
+      is_bot: ormEntity.isBot,
+      is_premium: ormEntity.isPremium,
+      created_at: ormEntity.createdAt,
+      updated_at: ormEntity.updatedAt
+    });
+  }
 
-    if (limit) {
-      query += ' LIMIT ? OFFSET ?';
-      params.push(limit, offset || 0);
+  async findById(id) {
+    const entity = await this.#ormRepository.findById(id);
+    return this.#toDomainEntity(entity);
+  }
+
+  async findByUserId(userId) {
+    const entity = await this.#ormRepository.findByUserId(userId);
+    return this.#toDomainEntity(entity);
+  }
+
+  async findAll(filters = {}) {
+    let entities;
+    
+    if (filters.active) {
+      entities = await this.#ormRepository.findAllActive();
+    } else {
+      entities = await this.#ormRepository.findAll();
     }
 
-    const rows = await this.#dataSource.getMany(query, params);
-    return rows.map(row => User.fromDatabaseRow(row));
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
-  /**
-   * Creates new user
-   * @param {User} user - User entity
-   * @returns {Promise<User>} Created user
-   */
   async create(user) {
     const data = user.toObject();
+    
+    const created = await this.#ormRepository.create({
+      userId: data.user_id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      username: data.username,
+      phone: data.phone,
+      isBot: data.is_bot,
+      isPremium: data.is_premium
+    });
 
-    await this.#dataSource.execute(
-      `INSERT OR REPLACE INTO users 
-       (user_id, first_name, last_name, username, phone, created_at, updated_at) 
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [
-        data.user_id,
-        data.first_name,
-        data.last_name,
-        data.username,
-        data.phone,
-        data.created_at,
-        data.updated_at
-      ]
-    );
-
-    return await this.findById(user.userId);
+    return this.#toDomainEntity(created);
   }
 
-  /**
-   * Updates user
-   * @param {string} id - User ID
-   * @param {Object} updates - Updates
-   * @returns {Promise<User>} Updated user
-   */
   async update(id, updates) {
-    const user = await this.findById(id);
-    if (!user) {
-      throw new Error(`User not found: ${id}`);
-    }
+    const ormUpdates = {};
+    
+    if (updates.first_name) ormUpdates.firstName = updates.first_name;
+    if (updates.last_name) ormUpdates.lastName = updates.last_name;
+    if (updates.username) ormUpdates.username = updates.username;
+    if (updates.phone) ormUpdates.phone = updates.phone;
+    if (updates.is_premium !== undefined) ormUpdates.isPremium = updates.is_premium;
 
-    // Apply updates to entity
-    if (updates.first_name) user.updateFirstName(updates.first_name);
-    if (updates.last_name !== undefined) user.updateLastName(updates.last_name);
-    if (updates.username !== undefined) user.updateUsername(updates.username);
-    if (updates.phone !== undefined) user.updatePhone(updates.phone);
-
-    const data = user.toObject();
-
-    await this.#dataSource.execute(
-      `UPDATE users 
-       SET first_name = ?, last_name = ?, username = ?, phone = ?, updated_at = ? 
-       WHERE user_id = ?`,
-      [
-        data.first_name,
-        data.last_name,
-        data.username,
-        data.phone,
-        data.updated_at,
-        id
-      ]
-    );
-
-    return await this.findById(id);
+    const updated = await this.#ormRepository.update(id, ormUpdates);
+    return this.#toDomainEntity(updated);
   }
 
-  /**
-   * Deletes user
-   * @param {string} id - User ID
-   * @returns {Promise<boolean>} True if deleted
-   */
   async delete(id) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM users WHERE user_id = ?',
-      [id]
-    );
-    return result.changes > 0;
+    return await this.#ormRepository.delete(id);
   }
 
-  /**
-   * Checks if user exists
-   * @param {string} id - User ID
-   * @returns {Promise<boolean>} True if exists
-   */
   async exists(id) {
     const user = await this.findById(id);
     return user !== null;
   }
 
-  /**
-   * Counts users
-   * @param {Object} filters - Filters
-   * @returns {Promise<number>} Count
-   */
   async count(filters = {}) {
-    const result = await this.#dataSource.getOne(
-      'SELECT COUNT(*) as count FROM users'
-    );
-    return result?.count || 0;
+    const users = await this.findAll(filters);
+    return users.length;
   }
 
-  /**
-   * Finds users by channel
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Array<User>>} Users
-   */
-  async findByChannel(channelId) {
-    const rows = await this.#dataSource.getMany(
-      `SELECT u.* FROM users u
-       INNER JOIN channel_members cm ON u.user_id = cm.user_id
-       WHERE cm.channel_id = ?
-       ORDER BY u.first_name ASC`,
-      [channelId]
-    );
-    return rows.map(row => User.fromDatabaseRow(row));
-  }
+  async bulkCreate(usersData) {
+    const results = { added: 0, updated: 0, errors: [] };
 
-  /**
-   * Finds users by username
-   * @param {string} username - Username
-   * @returns {Promise<Array<User>>} Users
-   */
-  async findByUsername(username) {
-    const rows = await this.#dataSource.getMany(
-      'SELECT * FROM users WHERE username LIKE ? ORDER BY first_name ASC',
-      [`%${username}%`]
-    );
-    return rows.map(row => User.fromDatabaseRow(row));
-  }
-
-  /**
-   * Adds user to channel
-   * @param {string} channelId - Channel ID
-   * @param {string} userId - User ID
-   * @returns {Promise<boolean>} True if added
-   */
-  async addToChannel(channelId, userId) {
-    await this.#dataSource.execute(
-      `INSERT OR REPLACE INTO channel_members 
-       (channel_id, user_id, updated_at) 
-       VALUES (?, ?, datetime('now'))`,
-      [channelId, userId]
-    );
-    return true;
-  }
-
-  /**
-   * Removes user from channel
-   * @param {string} channelId - Channel ID
-   * @param {string} userId - User ID
-   * @returns {Promise<boolean>} True if removed
-   */
-  async removeFromChannel(channelId, userId) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM channel_members WHERE channel_id = ? AND user_id = ?',
-      [channelId, userId]
-    );
-    return result.changes > 0;
-  }
-
-  /**
-   * Clears channel members
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<number>} Number of removed users
-   */
-  async clearChannelMembers(channelId) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM channel_members WHERE channel_id = ?',
-      [channelId]
-    );
-    return result.changes;
-  }
-
-  /**
-   * Bulk adds users
-   * @param {Array<User>} users - Users to add
-   * @returns {Promise<Array>} Results
-   */
-  async bulkCreate(users) {
-    const results = [];
-    
-    for (const user of users) {
+    for (const userData of usersData) {
       try {
-        const created = await this.create(user);
-        results.push({ success: true, userId: user.userId, data: created });
+        const existing = await this.findByUserId(userData.userId);
+        
+        if (existing) {
+          await this.update(existing.id, {
+            first_name: userData.firstName,
+            last_name: userData.lastName,
+            username: userData.username,
+            phone: userData.phone
+          });
+          results.updated++;
+        } else {
+          await this.#ormRepository.create(userData);
+          results.added++;
+        }
       } catch (error) {
-        results.push({ success: false, userId: user.userId, error: error.message });
+        results.errors.push({ userId: userData.userId, error: error.message });
       }
     }
 
     return results;
   }
 
-  /**
-   * Bulk adds users to channel
-   * @param {string} channelId - Channel ID
-   * @param {Array<string>} userIds - User IDs
-   * @returns {Promise<Array>} Results
-   */
-  async bulkAddToChannel(channelId, userIds) {
-    const results = [];
-    
-    for (const userId of userIds) {
-      try {
-        await this.addToChannel(channelId, userId);
-        results.push({ success: true, userId });
-      } catch (error) {
-        results.push({ success: false, userId, error: error.message });
-      }
-    }
-
-    return results;
+  async search(searchTerm) {
+    const entities = await this.#ormRepository.search(searchTerm);
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
-  /**
-   * Gets user statistics
-   * @returns {Promise<Object>} Statistics
-   */
   async getStatistics() {
-    const [total, withUsername, withPhone] = await Promise.all([
-      this.count(),
-      this.#dataSource.getOne('SELECT COUNT(*) as count FROM users WHERE username IS NOT NULL'),
-      this.#dataSource.getOne('SELECT COUNT(*) as count FROM users WHERE phone IS NOT NULL')
-    ]);
+    const all = await this.findAll();
+    const withUsername = all.filter(u => u.username);
+    const premium = all.filter(u => u.isPremium);
+    const bots = all.filter(u => u.isBot);
 
     return {
-      total,
-      withUsername: withUsername?.count || 0,
-      withPhone: withPhone?.count || 0,
-      withoutUsername: total - (withUsername?.count || 0),
-      withoutPhone: total - (withPhone?.count || 0)
+      total: all.length,
+      withUsername: withUsername.length,
+      premium: premium.length,
+      bots: bots.length
     };
-  }
-
-  /**
-   * Gets recent users
-   * @param {number} days - Number of days
-   * @returns {Promise<Array<User>>} Recent users
-   */
-  async getRecentUsers(days = 7) {
-    const rows = await this.#dataSource.getMany(
-      `SELECT * FROM users 
-       WHERE created_at >= datetime('now', '-${days} days') 
-       ORDER BY created_at DESC`
-    );
-    return rows.map(row => User.fromDatabaseRow(row));
   }
 }
 

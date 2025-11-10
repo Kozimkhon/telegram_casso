@@ -1,276 +1,153 @@
 /**
  * @fileoverview Session Repository Implementation
- * Handles session data persistence
+ * Handles session data persistence using TypeORM
  * @module data/repositories/SessionRepository
  */
 
 import ISessionRepository from '../../core/interfaces/ISessionRepository.js';
 import Session from '../../core/entities/Session.entity.js';
-import { SessionStatus } from '../../shared/constants/index.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
-/**
- * Session Repository
- * Implements session data access operations
- * 
- * @class SessionRepository
- * @implements {ISessionRepository}
- */
 class SessionRepository extends ISessionRepository {
-  /**
-   * Data source
-   * @private
-   */
-  #dataSource;
+  #ormRepository;
 
-  /**
-   * Creates session repository
-   * @param {SQLiteDataSource} dataSource - Data source
-   */
-  constructor(dataSource) {
+  constructor() {
     super();
-    this.#dataSource = dataSource;
+    this.#ormRepository = RepositoryFactory.getSessionRepository();
   }
 
-  /**
-   * Finds session by ID (phone)
-   * @param {string} id - Phone number
-   * @returns {Promise<Session|null>} Session or null
-   */
+  #toDomainEntity(ormEntity) {
+    if (!ormEntity) return null;
+    
+    return Session.fromDatabaseRow({
+      id: ormEntity.id,
+      phone: ormEntity.phone,
+      session_string: ormEntity.sessionString,
+      is_paused: ormEntity.isPaused,
+      status: ormEntity.status,
+      flood_wait_until: ormEntity.floodWaitUntil,
+      last_activity: ormEntity.lastActivity,
+      admin_id: ormEntity.adminId,
+      created_at: ormEntity.createdAt,
+      updated_at: ormEntity.updatedAt
+    });
+  }
+
   async findById(id) {
-    return await this.findByPhone(id);
+    const entity = await this.#ormRepository.findById(id);
+    return this.#toDomainEntity(entity);
   }
 
-  /**
-   * Finds session by phone
-   * @param {string} phone - Phone number
-   * @returns {Promise<Session|null>} Session or null
-   */
   async findByPhone(phone) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM sessions WHERE phone = ?',
-      [phone]
-    );
-    return row ? Session.fromDatabaseRow(row) : null;
+    const entity = await this.#ormRepository.findByPhone(phone);
+    return this.#toDomainEntity(entity);
   }
 
-  /**
-   * Finds all sessions
-   * @param {Object} filters - Filters
-   * @param {string} [filters.status] - Filter by status
-   * @returns {Promise<Array<Session>>} Sessions
-   */
   async findAll(filters = {}) {
-    let query = 'SELECT * FROM sessions';
-    const params = [];
-
-    if (filters.status) {
-      query += ' WHERE status = ?';
-      params.push(filters.status);
+    let entities;
+    
+    if (filters.active) {
+      entities = await this.#ormRepository.findAllActive();
+    } else if (filters.status) {
+      entities = await this.#ormRepository.findByStatus(filters.status);
+    } else {
+      entities = await this.#ormRepository.findAll();
     }
 
-    query += ' ORDER BY created_at DESC';
-
-    const rows = await this.#dataSource.getMany(query, params);
-    return rows.map(row => Session.fromDatabaseRow(row));
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
-  /**
-   * Creates new session
-   * @param {Session} session - Session entity
-   * @returns {Promise<Session>} Created session
-   */
   async create(session) {
     const data = session.toObject();
-
-    // Check if session exists
-    const existing = await this.findByPhone(session.phone);
     
-    if (existing) {
-      // Update existing
-      return await this.update(session.phone, data);
-    }
+    const created = await this.#ormRepository.create({
+      phone: data.phone,
+      sessionString: data.session_string,
+      isPaused: data.is_paused,
+      status: data.status,
+      adminId: data.admin_id
+    });
 
-    await this.#dataSource.execute(
-      `INSERT INTO sessions 
-       (phone, user_id, session_string, status, first_name, last_name, username, 
-        auto_paused, pause_reason, flood_wait_until, last_error, last_active, 
-        created_at, updated_at) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        data.phone,
-        data.user_id,
-        data.session_string,
-        data.status,
-        data.first_name,
-        data.last_name,
-        data.username,
-        data.auto_paused,
-        data.pause_reason,
-        data.flood_wait_until,
-        data.last_error,
-        data.last_active,
-        data.created_at,
-        data.updated_at
-      ]
-    );
-
-    return await this.findByPhone(session.phone);
+    return this.#toDomainEntity(created);
   }
 
-  /**
-   * Updates session
-   * @param {string} id - Phone number
-   * @param {Object} updates - Updates
-   * @returns {Promise<Session>} Updated session
-   */
   async update(id, updates) {
-    const session = await this.findByPhone(id);
-    if (!session) {
-      throw new Error(`Session not found: ${id}`);
-    }
+    const ormUpdates = {};
+    
+    if (updates.session_string) ormUpdates.sessionString = updates.session_string;
+    if (updates.is_paused !== undefined) ormUpdates.isPaused = updates.is_paused;
+    if (updates.status) ormUpdates.status = updates.status;
+    if (updates.flood_wait_until) ormUpdates.floodWaitUntil = updates.flood_wait_until;
+    if (updates.last_activity) ormUpdates.lastActivity = updates.last_activity;
 
-    // Apply updates to entity
-    if (updates.status) {
-      if (updates.status === SessionStatus.ACTIVE) {
-        session.activate();
-      } else if (updates.status === SessionStatus.PAUSED) {
-        session.pause(updates.pause_reason || 'Manual pause');
-      } else if (updates.status === SessionStatus.ERROR) {
-        session.markError(updates.last_error || 'Unknown error');
-      }
-    }
-
-    if (updates.session_string) session.sessionString = updates.session_string;
-    if (updates.first_name) session.firstName = updates.first_name;
-    if (updates.last_name) session.lastName = updates.last_name;
-    if (updates.username) session.username = updates.username;
-
-    const data = session.toObject();
-
-    await this.#dataSource.execute(
-      `UPDATE sessions 
-       SET user_id = ?, session_string = ?, status = ?, first_name = ?, 
-           last_name = ?, username = ?, auto_paused = ?, pause_reason = ?, 
-           flood_wait_until = ?, last_error = ?, last_active = ?, updated_at = ? 
-       WHERE phone = ?`,
-      [
-        data.user_id,
-        data.session_string,
-        data.status,
-        data.first_name,
-        data.last_name,
-        data.username,
-        data.auto_paused,
-        data.pause_reason,
-        data.flood_wait_until,
-        data.last_error,
-        data.last_active,
-        data.updated_at,
-        id
-      ]
-    );
-
-    return await this.findByPhone(id);
+    const updated = await this.#ormRepository.update(id, ormUpdates);
+    return this.#toDomainEntity(updated);
   }
 
-  /**
-   * Deletes session
-   * @param {string} id - Phone number
-   * @returns {Promise<boolean>} True if deleted
-   */
   async delete(id) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM sessions WHERE phone = ?',
-      [id]
-    );
-    return result.changes > 0;
+    return await this.#ormRepository.delete(id);
   }
 
-  /**
-   * Checks if session exists
-   * @param {string} id - Phone number
-   * @returns {Promise<boolean>} True if exists
-   */
   async exists(id) {
-    const session = await this.findByPhone(id);
+    const session = await this.findById(id);
     return session !== null;
   }
 
-  /**
-   * Counts sessions
-   * @param {Object} filters - Filters
-   * @returns {Promise<number>} Count
-   */
   async count(filters = {}) {
-    let query = 'SELECT COUNT(*) as count FROM sessions';
-    const params = [];
-
-    if (filters.status) {
-      query += ' WHERE status = ?';
-      params.push(filters.status);
-    }
-
-    const result = await this.#dataSource.getOne(query, params);
-    return result?.count || 0;
+    const sessions = await this.findAll(filters);
+    return sessions.length;
   }
 
-  /**
-   * Finds sessions by status
-   * @param {string} status - Session status
-   * @returns {Promise<Array<Session>>} Sessions
-   */
   async findByStatus(status) {
     return await this.findAll({ status });
   }
 
-  /**
-   * Finds sessions ready to resume
-   * @returns {Promise<Array<Session>>} Sessions ready to resume
-   */
+  async findActive() {
+    return await this.findAll({ active: true });
+  }
+
   async findReadyToResume() {
-    const rows = await this.#dataSource.getMany(
-      `SELECT * FROM sessions 
-       WHERE status = ? 
-       AND auto_paused = 1 
-       AND flood_wait_until IS NOT NULL 
-       AND flood_wait_until < datetime('now')`,
-      [SessionStatus.PAUSED]
-    );
-    return rows.map(row => Session.fromDatabaseRow(row));
+    const entities = await this.#ormRepository.findReadyToResume();
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
-  /**
-   * Updates session activity
-   * @param {string} phone - Phone number
-   * @returns {Promise<void>}
-   */
+  async pause(id) {
+    await this.#ormRepository.pause(id);
+    return await this.findById(id);
+  }
+
+  async resume(id) {
+    await this.#ormRepository.resume(id);
+    return await this.findById(id);
+  }
+
+  async setFloodWait(phone, seconds) {
+    const session = await this.findByPhone(phone);
+    if (!session) throw new Error(`Session not found: ${phone}`);
+    
+    await this.#ormRepository.setFloodWait(phone, seconds);
+    return await this.findById(session.id);
+  }
+
   async updateActivity(phone) {
-    await this.#dataSource.execute(
-      `UPDATE sessions 
-       SET last_active = datetime('now'), updated_at = datetime('now') 
-       WHERE phone = ?`,
-      [phone]
-    );
+    const session = await this.findByPhone(phone);
+    if (!session) throw new Error(`Session not found: ${phone}`);
+    
+    await this.#ormRepository.updateActivity(phone);
+    return await this.findById(session.id);
   }
 
-  /**
-   * Gets session statistics
-   * @returns {Promise<Object>} Statistics
-   */
   async getStatistics() {
-    const [total, active, paused, error] = await Promise.all([
-      this.count(),
-      this.count({ status: SessionStatus.ACTIVE }),
-      this.count({ status: SessionStatus.PAUSED }),
-      this.count({ status: SessionStatus.ERROR })
-    ]);
+    const all = await this.findAll();
+    const active = await this.findActive();
+    const paused = all.filter(s => s.isPaused);
+    const floodWait = all.filter(s => s.isInFloodWait());
 
     return {
-      total,
-      active,
-      paused,
-      error,
-      inactive: total - active - paused - error
+      total: all.length,
+      active: active.length,
+      paused: paused.length,
+      floodWait: floodWait.length
     };
   }
 }

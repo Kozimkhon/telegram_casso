@@ -159,9 +159,8 @@ class Container {
 
     // Import dependencies
     const { default: StateManager } = await import('../state/StateManager.js');
-    const { default: SQLiteDataSource } = await import('../../data/datasources/SQLiteDataSource.js');
     
-    // Import repositories
+    // Import repositories (now using TypeORM)
     const { 
       ChannelRepository, 
       SessionRepository, 
@@ -187,24 +186,13 @@ class Container {
 
     // Register core infrastructure
     this.registerSingleton('stateManager', () => StateManager);
-    this.registerSingleton('dataSource', () => new SQLiteDataSource(config.database.path));
 
-    // Register repositories
-    this.registerSingleton('channelRepository', (c) => 
-      new ChannelRepository(c.resolve('dataSource'))
-    );
-    this.registerSingleton('sessionRepository', (c) => 
-      new SessionRepository(c.resolve('dataSource'))
-    );
-    this.registerSingleton('userRepository', (c) => 
-      new UserRepository(c.resolve('dataSource'))
-    );
-    this.registerSingleton('messageRepository', (c) => 
-      new MessageRepository(c.resolve('dataSource'))
-    );
-    this.registerSingleton('adminRepository', (c) => 
-      new AdminRepository(c.resolve('dataSource'))
-    );
+    // Register repositories (TypeORM - no datasource needed)
+    this.registerSingleton('channelRepository', () => new ChannelRepository());
+    this.registerSingleton('sessionRepository', () => new SessionRepository());
+    this.registerSingleton('userRepository', () => new UserRepository());
+    this.registerSingleton('messageRepository', () => new MessageRepository());
+    this.registerSingleton('adminRepository', () => new AdminRepository());
 
     // Register domain services
     this.registerSingleton('throttleService', () => new ThrottleService());

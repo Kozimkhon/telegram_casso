@@ -1,312 +1,131 @@
 /**
  * @fileoverview Message Repository Implementation
- * Handles message log data persistence
+ * Handles message data persistence using TypeORM
  * @module data/repositories/MessageRepository
  */
 
 import IMessageRepository from '../../core/interfaces/IMessageRepository.js';
 import Message from '../../core/entities/Message.entity.js';
-import { ForwardingStatus } from '../../shared/constants/index.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
-/**
- * Message Repository
- * Implements message data access operations
- * 
- * @class MessageRepository
- * @implements {IMessageRepository}
- */
 class MessageRepository extends IMessageRepository {
-  /**
-   * Data source
-   * @private
-   */
-  #dataSource;
+  #ormRepository;
 
-  /**
-   * Creates message repository
-   * @param {SQLiteDataSource} dataSource - Data source
-   */
-  constructor(dataSource) {
+  constructor() {
     super();
-    this.#dataSource = dataSource;
+    this.#ormRepository = RepositoryFactory.getMessageRepository();
   }
 
-  /**
-   * Finds message by ID
-   * @param {string} id - Message log ID
-   * @returns {Promise<Message|null>} Message or null
-   */
-  async findById(id) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM message_logs WHERE id = ?',
-      [id]
-    );
-    return row ? Message.fromDatabaseRow(row) : null;
-  }
-
-  /**
-   * Finds all messages
-   * @param {Object} filters - Filters
-   * @returns {Promise<Array<Message>>} Messages
-   */
-  async findAll(filters = {}) {
-    const { limit = 100, status, channelId } = filters;
+  #toDomainEntity(ormEntity) {
+    if (!ormEntity) return null;
     
-    let query = 'SELECT * FROM message_logs';
-    const params = [];
-    const conditions = [];
-
-    if (status) {
-      conditions.push('status = ?');
-      params.push(status);
-    }
-
-    if (channelId) {
-      conditions.push('channel_id = ?');
-      params.push(channelId);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    query += ' ORDER BY created_at DESC LIMIT ?';
-    params.push(limit);
-
-    const rows = await this.#dataSource.getMany(query, params);
-    return rows.map(row => Message.fromDatabaseRow(row));
+    return Message.fromDatabaseRow({
+      id: ormEntity.id,
+      message_id: ormEntity.messageId,
+      channel_id: ormEntity.channelId,
+      user_id: ormEntity.userId,
+      text: ormEntity.text,
+      status: ormEntity.status,
+      error_message: ormEntity.errorMessage,
+      retry_count: ormEntity.retryCount,
+      sent_at: ormEntity.sentAt,
+      created_at: ormEntity.createdAt,
+      updated_at: ormEntity.updatedAt
+    });
   }
 
-  /**
-   * Creates new message log
-   * @param {Message} message - Message entity
-   * @returns {Promise<Message>} Created message
-   */
+  async findById(id) {
+    const entity = await this.#ormRepository.findById(id);
+    return this.#toDomainEntity(entity);
+  }
+
+  async findAll(filters = {}) {
+    let entities = await this.#ormRepository.findAll();
+
+    if (filters.status) {
+      entities = entities.filter(e => e.status === filters.status);
+    }
+    if (filters.channelId) {
+      entities = entities.filter(e => e.channelId === filters.channelId);
+    }
+    if (filters.limit) {
+      entities = entities.slice(0, filters.limit);
+    }
+
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
+  }
+
+  async findByChannel(channelId) {
+    const entities = await this.#ormRepository.findByChannel(channelId);
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
+  }
+
   async create(message) {
     const data = message.toObject();
+    
+    const created = await this.#ormRepository.create({
+      messageId: data.message_id,
+      channelId: data.channel_id,
+      userId: data.user_id,
+      text: data.text,
+      status: data.status
+    });
 
-    const result = await this.#dataSource.execute(
-      `INSERT INTO message_logs 
-       (channel_id, message_id, user_id, forwarded_message_id, status, 
-        error_message, session_phone, retry_count, created_at, updated_at) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        data.channel_id,
-        data.message_id,
-        data.user_id,
-        data.forwarded_message_id,
-        data.status,
-        data.error_message,
-        data.session_phone,
-        data.retry_count,
-        data.created_at,
-        data.updated_at
-      ]
-    );
-
-    return await this.findById(result.lastID);
+    return this.#toDomainEntity(created);
   }
 
-  /**
-   * Updates message
-   * @param {string} id - Message ID
-   * @param {Object} updates - Updates
-   * @returns {Promise<Message>} Updated message
-   */
   async update(id, updates) {
-    const message = await this.findById(id);
-    if (!message) {
-      throw new Error(`Message not found: ${id}`);
-    }
+    const ormUpdates = {};
+    
+    if (updates.status) ormUpdates.status = updates.status;
+    if (updates.error_message) ormUpdates.errorMessage = updates.error_message;
+    if (updates.retry_count !== undefined) ormUpdates.retryCount = updates.retry_count;
+    if (updates.sent_at) ormUpdates.sentAt = updates.sent_at;
 
-    // Apply updates
-    if (updates.status === ForwardingStatus.SUCCESS && updates.forwardedMessageId) {
-      message.markSuccess(updates.forwardedMessageId);
-    } else if (updates.status === ForwardingStatus.FAILED && updates.errorMessage) {
-      message.markFailed(updates.errorMessage);
-    } else if (updates.status === ForwardingStatus.SKIPPED && updates.errorMessage) {
-      message.markSkipped(updates.errorMessage);
-    }
-
-    const data = message.toObject();
-
-    await this.#dataSource.execute(
-      `UPDATE message_logs 
-       SET forwarded_message_id = ?, status = ?, error_message = ?, 
-           retry_count = ?, updated_at = ? 
-       WHERE id = ?`,
-      [
-        data.forwarded_message_id,
-        data.status,
-        data.error_message,
-        data.retry_count,
-        data.updated_at,
-        id
-      ]
-    );
-
-    return await this.findById(id);
+    const updated = await this.#ormRepository.update(id, ormUpdates);
+    return this.#toDomainEntity(updated);
   }
 
-  /**
-   * Deletes message
-   * @param {string} id - Message ID
-   * @returns {Promise<boolean>} True if deleted
-   */
   async delete(id) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM message_logs WHERE id = ?',
-      [id]
-    );
-    return result.changes > 0;
+    return await this.#ormRepository.delete(id);
   }
 
-  /**
-   * Checks if message exists
-   * @param {string} id - Message ID
-   * @returns {Promise<boolean>} True if exists
-   */
   async exists(id) {
     const message = await this.findById(id);
     return message !== null;
   }
 
-  /**
-   * Counts messages
-   * @param {Object} filters - Filters
-   * @returns {Promise<number>} Count
-   */
   async count(filters = {}) {
-    let query = 'SELECT COUNT(*) as count FROM message_logs';
-    const params = [];
-    const conditions = [];
-
-    if (filters.status) {
-      conditions.push('status = ?');
-      params.push(filters.status);
-    }
-
-    if (filters.channelId) {
-      conditions.push('channel_id = ?');
-      params.push(filters.channelId);
-    }
-
-    if (filters.fromDate) {
-      conditions.push('created_at >= ?');
-      params.push(filters.fromDate);
-    }
-
-    if (filters.toDate) {
-      conditions.push('created_at <= ?');
-      params.push(filters.toDate);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    const result = await this.#dataSource.getOne(query, params);
-    return result?.count || 0;
+    const messages = await this.findAll(filters);
+    return messages.length;
   }
 
-  /**
-   * Finds messages by channel
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Array<Message>>} Messages
-   */
-  async findByChannel(channelId) {
-    return await this.findAll({ channelId });
+  async markAsSent(id) {
+    await this.#ormRepository.markAsSent(id);
+    return await this.findById(id);
   }
 
-  /**
-   * Finds messages by status
-   * @param {string} status - Message status
-   * @returns {Promise<Array<Message>>} Messages
-   */
-  async findByStatus(status) {
-    return await this.findAll({ status });
+  async markAsFailed(id, errorMessage) {
+    await this.#ormRepository.markAsFailed(id, errorMessage);
+    return await this.findById(id);
   }
 
-  /**
-   * Finds old messages
-   * @param {number} hoursOld - Hours old
-   * @returns {Promise<Array<Message>>} Old messages
-   */
-  async findOldMessages(hoursOld) {
-    const rows = await this.#dataSource.getMany(
-      `SELECT * FROM message_logs 
-       WHERE status = ? 
-       AND forwarded_message_id IS NOT NULL
-       AND created_at < datetime('now', '-${hoursOld} hours')
-       ORDER BY created_at ASC`,
-      [ForwardingStatus.SUCCESS]
-    );
-    return rows.map(row => Message.fromDatabaseRow(row));
-  }
-
-  /**
-   * Gets forwarding statistics
-   * @param {Object} filters - Filters
-   * @returns {Promise<Object>} Statistics
-   */
   async getForwardingStatistics(filters = {}) {
-    const [total, successful, failed, skipped] = await Promise.all([
-      this.count(filters),
-      this.count({ ...filters, status: ForwardingStatus.SUCCESS }),
-      this.count({ ...filters, status: ForwardingStatus.FAILED }),
-      this.count({ ...filters, status: ForwardingStatus.SKIPPED })
-    ]);
+    const messages = await this.findAll(filters);
+    
+    const sent = messages.filter(m => m.status === 'sent');
+    const failed = messages.filter(m => m.status === 'failed');
+    const pending = messages.filter(m => m.status === 'pending');
 
     return {
-      total,
-      successful,
-      failed,
-      skipped,
-      successRate: total > 0 ? ((successful / total) * 100).toFixed(2) : '0.00'
+      total: messages.length,
+      sent: sent.length,
+      failed: failed.length,
+      pending: pending.length,
+      successRate: messages.length > 0 
+        ? ((sent.length / messages.length) * 100).toFixed(2) + '%' 
+        : '0%'
     };
-  }
-
-  /**
-   * Cleans up old logs
-   * @param {number} daysToKeep - Days to keep
-   * @returns {Promise<number>} Number of deleted records
-   */
-  async cleanupOldLogs(daysToKeep) {
-    const result = await this.#dataSource.execute(
-      `DELETE FROM message_logs 
-       WHERE created_at < datetime('now', '-${daysToKeep} days')`
-    );
-    return result.changes;
-  }
-
-  /**
-   * Marks message as deleted
-   * @param {string} userId - User ID
-   * @param {string} forwardedMessageId - Forwarded message ID
-   * @returns {Promise<void>}
-   */
-  async markAsDeleted(userId, forwardedMessageId) {
-    await this.#dataSource.execute(
-      `UPDATE message_logs 
-       SET forwarded_message_id = NULL, updated_at = datetime('now') 
-       WHERE user_id = ? AND forwarded_message_id = ?`,
-      [userId, forwardedMessageId]
-    );
-  }
-
-  /**
-   * Finds messages by forwarded message ID
-   * @param {string} channelId - Channel ID
-   * @param {string} forwardedMessageId - Forwarded message ID
-   * @returns {Promise<Array<Message>>} Messages
-   */
-  async findByForwardedMessageId(channelId, forwardedMessageId) {
-    const rows = await this.#dataSource.getMany(
-      `SELECT * FROM message_logs 
-       WHERE channel_id = ? AND forwarded_message_id = ? AND status = ?`,
-      [channelId, forwardedMessageId, ForwardingStatus.SUCCESS]
-    );
-    return rows.map(row => Message.fromDatabaseRow(row));
   }
 }
 

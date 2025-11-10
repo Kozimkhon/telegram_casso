@@ -4,9 +4,10 @@
  * @module index.new
  */
 
+import 'reflect-metadata';
 import Container from './shared/container/Container.js';
 import config from './config/index.js';
-import { initializeDatabase } from './db/db.js';
+import { initializeTypeORM, closeTypeORM } from './config/database.js';
 
 /**
  * Application Class
@@ -48,10 +49,10 @@ class Application {
     try {
       console.log('🚀 Starting Telegram Casso (Clean Architecture)...\n');
 
-      // Initialize database
-      console.log('📦 Initializing database...');
-      await initializeDatabase();
-      console.log('✅ Database initialized\n');
+      // Initialize TypeORM database
+      console.log('📦 Initializing TypeORM database...');
+      await initializeTypeORM();
+      console.log('✅ TypeORM initialized\n');
 
       // Initialize DI container
       console.log('🔧 Initializing dependency injection container...');
@@ -209,12 +210,10 @@ class Application {
         }
       }
 
-      // Close database
-      const dataSource = this.#container.resolve('dataSource');
-      if (dataSource && dataSource.close) {
-        await dataSource.close();
-        console.log('   Database closed');
-      }
+      // Close TypeORM database
+      console.log('   Closing TypeORM database...');
+      await closeTypeORM();
+      console.log('   Database closed');
 
       this.#running = false;
       console.log('✅ Application stopped gracefully\n');

@@ -1,34 +1,53 @@
 /**
  * @fileoverview Admin Repository Implementation
- * Handles admin user data persistence
+ * Handles admin user data persistence using TypeORM
  * @module data/repositories/AdminRepository
  */
 
 import IAdminRepository from '../../core/interfaces/IAdminRepository.js';
 import Admin from '../../core/entities/Admin.entity.js';
 import { AdminRole } from '../../shared/constants/index.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
 /**
  * Admin Repository
- * Implements admin data access operations
+ * Implements admin data access operations using TypeORM
  * 
  * @class AdminRepository
  * @implements {IAdminRepository}
  */
 class AdminRepository extends IAdminRepository {
   /**
-   * Data source
+   * TypeORM repository
    * @private
    */
-  #dataSource;
+  #ormRepository;
 
   /**
    * Creates admin repository
-   * @param {SQLiteDataSource} dataSource - Data source
    */
-  constructor(dataSource) {
+  constructor() {
     super();
-    this.#dataSource = dataSource;
+    this.#ormRepository = RepositoryFactory.getAdminRepository();
+  }
+
+  /**
+   * Converts TypeORM entity to domain entity
+   * @param {Object} ormEntity - TypeORM entity
+   * @returns {Admin} Domain entity
+   * @private
+   */
+  #toDomainEntity(ormEntity) {
+    if (!ormEntity) return null;
+    
+    return Admin.fromDatabaseRow({
+      id: ormEntity.id,
+      telegram_user_id: ormEntity.userId,
+      role: ormEntity.role,
+      is_active: ormEntity.isActive,
+      created_at: ormEntity.createdAt,
+      updated_at: ormEntity.updatedAt
+    });
   }
 
   /**
@@ -37,11 +56,8 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin|null>} Admin or null
    */
   async findById(id) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM admins WHERE id = ?',
-      [id]
-    );
-    return row ? Admin.fromDatabaseRow(row) : null;
+    const entity = await this.#ormRepository.findById(id);
+    return this.#toDomainEntity(entity);
   }
 
   /**
@@ -50,30 +66,17 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Array<Admin>>} Admins
    */
   async findAll(filters = {}) {
-    const { active, role } = filters;
+    let entities;
     
-    let query = 'SELECT * FROM admins';
-    const params = [];
-    const conditions = [];
-
-    if (active !== undefined) {
-      conditions.push('is_active = ?');
-      params.push(active ? 1 : 0);
+    if (filters.active === true) {
+      entities = await this.#ormRepository.findAllActive();
+    } else if (filters.role) {
+      entities = await this.#ormRepository.findByRole(filters.role);
+    } else {
+      entities = await this.#ormRepository.findAll();
     }
 
-    if (role) {
-      conditions.push('role = ?');
-      params.push(role);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    query += ' ORDER BY created_at ASC';
-
-    const rows = await this.#dataSource.getMany(query, params);
-    return rows.map(row => Admin.fromDatabaseRow(row));
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 
   /**
@@ -83,21 +86,14 @@ class AdminRepository extends IAdminRepository {
    */
   async create(admin) {
     const data = admin.toObject();
+    
+    const created = await this.#ormRepository.create({
+      userId: data.telegram_user_id,
+      role: data.role,
+      isActive: data.is_active
+    });
 
-    const result = await this.#dataSource.execute(
-      `INSERT INTO admins 
-       (telegram_user_id, role, is_active, created_at, updated_at) 
-       VALUES (?, ?, ?, ?, ?)`,
-      [
-        data.telegram_user_id,
-        data.role,
-        data.is_active,
-        data.created_at,
-        data.updated_at
-      ]
-    );
-
-    return await this.findById(result.lastID);
+    return this.#toDomainEntity(created);
   }
 
   /**
@@ -121,15 +117,13 @@ class AdminRepository extends IAdminRepository {
     }
 
     const data = admin.toObject();
+    
+    const updated = await this.#ormRepository.update(id, {
+      role: data.role,
+      isActive: data.is_active
+    });
 
-    await this.#dataSource.execute(
-      `UPDATE admins 
-       SET role = ?, is_active = ?, updated_at = ? 
-       WHERE id = ?`,
-      [data.role, data.is_active, data.updated_at, id]
-    );
-
-    return await this.findById(id);
+    return this.#toDomainEntity(updated);
   }
 
   /**
@@ -138,11 +132,7 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<boolean>} True if deleted
    */
   async delete(id) {
-    const result = await this.#dataSource.execute(
-      'DELETE FROM admins WHERE id = ?',
-      [id]
-    );
-    return result.changes > 0;
+    return await this.#ormRepository.delete(id);
   }
 
   /**
@@ -161,26 +151,8 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<number>} Count
    */
   async count(filters = {}) {
-    let query = 'SELECT COUNT(*) as count FROM admins';
-    const params = [];
-    const conditions = [];
-
-    if (filters.active !== undefined) {
-      conditions.push('is_active = ?');
-      params.push(filters.active ? 1 : 0);
-    }
-
-    if (filters.role) {
-      conditions.push('role = ?');
-      params.push(filters.role);
-    }
-
-    if (conditions.length > 0) {
-      query += ' WHERE ' + conditions.join(' AND ');
-    }
-
-    const result = await this.#dataSource.getOne(query, params);
-    return result?.count || 0;
+    const admins = await this.findAll(filters);
+    return admins.length;
   }
 
   /**
@@ -189,11 +161,8 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin|null>} Admin or null
    */
   async findByUserId(telegramUserId) {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM admins WHERE telegram_user_id = ?',
-      [telegramUserId]
-    );
-    return row ? Admin.fromDatabaseRow(row) : null;
+    const entity = await this.#ormRepository.findByUserId(telegramUserId);
+    return this.#toDomainEntity(entity);
   }
 
   /**
@@ -239,7 +208,8 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin>} Updated admin
    */
   async activate(id) {
-    return await this.update(id, { is_active: true });
+    await this.#ormRepository.activate(id);
+    return await this.findById(id);
   }
 
   /**
@@ -248,7 +218,8 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin>} Updated admin
    */
   async deactivate(id) {
-    return await this.update(id, { is_active: false });
+    await this.#ormRepository.deactivate(id);
+    return await this.findById(id);
   }
 
   /**
@@ -256,11 +227,14 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin|null>} Super admin or null
    */
   async getFirstSuperAdmin() {
-    const row = await this.#dataSource.getOne(
-      'SELECT * FROM admins WHERE role = ? AND is_active = 1 ORDER BY created_at ASC LIMIT 1',
-      [AdminRole.SUPER_ADMIN]
-    );
-    return row ? Admin.fromDatabaseRow(row) : null;
+    const entities = await this.#ormRepository.findByRole(AdminRole.SUPER_ADMIN);
+    const activeEntities = entities.filter(e => e.isActive);
+    
+    if (activeEntities.length === 0) return null;
+    
+    // Sort by createdAt and get first
+    activeEntities.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    return this.#toDomainEntity(activeEntities[0]);
   }
 
   /**
