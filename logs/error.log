@@ -12297,3 +12297,59 @@ Error: Could not find the input entity for {"userId":"2929375693","className":"P
   "error": "Could not find the input entity for {\"userId\":\"2929375693\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
   "sessionPhone": "+998930793681"
 }
+2025-11-10 12:04:05 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"3269369967","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1151:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:1095:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1366:7)
+{
+  "channelId": "3269369967",
+  "error": "Could not find the input entity for {\"userId\":\"3269369967\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}
+2025-11-10 12:04:08 [ERROR]: ❌ Error syncing users from specific channel
+Error: Could not find the input entity for {"userId":"2929375693","className":"PeerUser"}.
+         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+    at getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:337:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.getInputEntity (/workspaces/telegram_casso/node_modules/telegram/client/users.js:281:39)
+    at async _ParticipantsIter._init (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:111:18)
+    at async Object.next (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:38:25)
+    at async _ParticipantsIter.collect (/workspaces/telegram_casso/node_modules/telegram/requestIter.js:88:68)
+    at async Object.getParticipants (/workspaces/telegram_casso/node_modules/telegram/client/chats.js:305:13)
+    at async UserBot.syncUsersFromChannel (file:///workspaces/telegram_casso/src/bots/userBot.js:1151:30)
+    at async UserBot.syncUsersFromChannels (file:///workspaces/telegram_casso/src/bots/userBot.js:1095:11)
+    at async UserBot.syncChannelsManually (file:///workspaces/telegram_casso/src/bots/userBot.js:1366:7)
+{
+  "channelId": "2929375693",
+  "error": "Could not find the input entity for {\"userId\":\"2929375693\",\"className\":\"PeerUser\"}.\n         Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.",
+  "sessionPhone": "+998930793681"
+}
+2025-11-10 12:05:41 [ERROR]: Database error during getMyChannels
+{
+  "operation": "getMyChannels",
+  "originalError": "Admin user not found: 566160086"
+}
+2025-11-10 12:05:41 [ERROR]: Error showing channels list
+DatabaseError: Database error during getMyChannels
+    at handleDatabaseError (file:///workspaces/telegram_casso/src/utils/errorHandler.js:185:19)
+    at getMyChannels (file:///workspaces/telegram_casso/src/services/channelService.js:115:11)
+    at async AdminBot.showChannelsList (file:///workspaces/telegram_casso/src/bots/adminBot.js:619:24)
+    at async file:///workspaces/telegram_casso/src/bots/adminBot.js:268:9
+    at async file:///workspaces/telegram_casso/src/utils/errorHandler.js:83:14
+    at async execute (/workspaces/telegram_casso/node_modules/telegraf/lib/composer.js:518:17)
+    at async /workspaces/telegram_casso/node_modules/telegraf/lib/composer.js:519:21
+    at async execute (/workspaces/telegram_casso/node_modules/telegraf/lib/composer.js:518:17)
+    at async /workspaces/telegram_casso/node_modules/telegraf/lib/composer.js:519:21
+    at async execute (/workspaces/telegram_casso/node_modules/telegraf/lib/composer.js:518:17)
+{
+  "error": "Database error during getMyChannels"
+}
