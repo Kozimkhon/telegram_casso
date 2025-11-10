@@ -73,20 +73,20 @@ class AdminBotController {
       toggleChannelForwarding: dependencies.toggleChannelForwardingUseCase,
       removeChannel: dependencies.removeChannelUseCase,
       getChannelStats: dependencies.getChannelStatsUseCase,
-      
+
       // Session use cases
       getSessionStats: dependencies.getSessionStatsUseCase,
       pauseSession: dependencies.pauseSessionUseCase,
       resumeSession: dependencies.resumeSessionUseCase,
       deleteSession: dependencies.deleteSessionUseCase,
-      
+
       // User use cases
       getUsersByChannel: dependencies.getUsersByChannelUseCase,
-      
+
       // Message use cases
       getForwardingStats: dependencies.getForwardingStatsUseCase,
       cleanupOldMessages: dependencies.cleanupOldMessagesUseCase,
-      
+
       // Admin use cases
       checkAdminAccess: dependencies.checkAdminAccessUseCase,
       addAdmin: dependencies.addAdminUseCase,
@@ -177,7 +177,44 @@ class AdminBotController {
         const access = await this.#useCases.checkAdminAccess.execute(userId);
 
         if (!access.hasAccess) {
-          await ctx.reply('⛔ Access denied. You are not authorized to use this bot.');
+          const text =
+            `❌ <b>Access Denied</b>\n\n` +
+            `You are not registered as an admin.\n` +
+            `To get access, you need to register as an admin.\n\n` +
+            `Contact the system administrator or use the registration option below:`;
+          const keyboard = Markup.inlineKeyboard([
+            [Markup.button.callback("📝 Register as Admin", "register_admin")],
+            [Markup.button.callback("ℹ️ Contact Support", "contact_support")],
+          ]);
+          try {
+            if (ctx.callbackQuery) {
+              await ctx.editMessageText(text, {
+                parse_mode: "HTML",
+                ...keyboard,
+              });
+            } else {
+              await ctx.reply(text, {
+                parse_mode: "HTML",
+                ...keyboard,
+              });
+            }
+          } catch (error) {
+            // Handle case where message content is identical
+            if (
+              error.message &&
+              error.message.includes("message is not modified")
+            ) {
+              // Answer the callback query to remove the loading state
+              if (ctx.callbackQuery) {
+                await ctx.answerCbQuery(
+                  "ℹ️ Already showing registration options"
+                );
+              }
+            } else {
+              // Re-throw other errors
+              throw error;
+            }
+          }
           return;
         }
 
@@ -271,6 +308,13 @@ class AdminBotController {
       await ctx.answerCbQuery();
       await this.#handleSystemStats(ctx);
     }));
+    this.#bot.action(
+          "register_admin",
+          asyncErrorHandler(async (ctx) => {
+            await ctx.answerCbQuery();
+            await processAdminRegistration(ctx);
+          }, "Register admin callback")
+        );
   }
 
   /**
