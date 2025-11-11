@@ -104,6 +104,12 @@ class Application {
             console.log(`   ✅ UserBot started: ${session.phone}`);
           } catch (error) {
             console.error(`   ❌ Failed to start UserBot ${session.phone}:`, error.message);
+            
+            // Check if it's an AUTH error
+            if (error.code === 401 || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
+              console.warn(`   ⚠️  Session ${session.phone} has invalid authentication.`);
+              console.warn(`   💡 Please delete this session and create a new one via AdminBot.`);
+            }
           }
         }
       } else {

@@ -185,6 +185,24 @@ class UserBotController {
 
     } catch (error) {
       this.#logger.error('Failed to start UserBot', error);
+      
+      // If AUTH error, mark session as invalid
+      if (error.code === 401 || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
+        this.#logger.error('Authentication error detected - session needs re-authentication');
+        try {
+          const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+          if (session) {
+            await this.sessionRepository.update(session.id, {
+              status: 'error',
+              last_error: 'Authentication failed: Session key invalid. Delete and recreate session.',
+              is_paused: true
+            });
+          }
+        } catch (dbError) {
+          this.#logger.error('Failed to update session after auth error', dbError);
+        }
+      }
+      
       throw handleTelegramError(error, 'UserBot initialization');
     }
   }
@@ -286,19 +304,64 @@ class UserBotController {
         },
       });
 
-      // Get user info
-      const me = await this.#client.getMe();
-      this.#sessionData.userId = me.id?.toString();
+      // Get user info with error handling
+      try {
+        const me = await this.#client.getMe();
+        this.#sessionData.userId = me.id?.toString();
 
-      // Save session
-      await this.#saveSession();
+        // Save session
+        await this.#saveSession();
 
-      this.#logger.info('Connected to Telegram', {
-        userId: this.#sessionData.userId,
-        phone: this.#sessionData.phone,
-      });
+        this.#logger.info('Connected to Telegram', {
+          userId: this.#sessionData.userId,
+          phone: this.#sessionData.phone,
+        });
+      } catch (authError) {
+        // Handle AUTH_KEY_UNREGISTERED error
+        if (authError.errorMessage === 'AUTH_KEY_UNREGISTERED' || authError.code === 401) {
+          this.#logger.error('Session authentication failed - session is invalid or expired', {
+            phone: this.#sessionData.phone,
+            error: authError.message
+          });
+          
+          // Mark session as invalid in database
+          try {
+            const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+            if (session) {
+              await this.sessionRepository.update(session.id, {
+                status: 'error',
+                last_error: 'AUTH_KEY_UNREGISTERED: Session expired or revoked. Re-authentication required.',
+                is_paused: true
+              });
+              this.#logger.info('Session marked as error and paused', { phone: this.#sessionData.phone });
+            }
+          } catch (dbError) {
+            this.#logger.error('Failed to update session status', dbError);
+          }
+          
+          throw new AuthenticationError(
+            'Session authentication failed. The session key is no longer valid. ' +
+            'Please delete this session and create a new one through the AdminBot.'
+          );
+        }
+        throw authError;
+      }
 
     } catch (error) {
+      // Update session with error info
+      try {
+        const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+        if (session) {
+          await this.sessionRepository.update(session.id, {
+            status: 'error',
+            last_error: error.message,
+            is_paused: true
+          });
+        }
+      } catch (dbError) {
+        this.#logger.error('Failed to update session error status', dbError);
+      }
+      
       throw handleTelegramError(error, 'Telegram connection');
     }
   }

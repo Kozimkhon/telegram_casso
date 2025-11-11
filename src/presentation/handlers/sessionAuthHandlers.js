@@ -9,6 +9,7 @@ import { Markup } from 'telegraf';
 import { TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions/index.js';
 import { Api } from 'telegram/tl/index.js';
+import { computeCheck } from 'telegram/Password.js';
 import { config } from '../../config/index.js';
 import { createChildLogger } from '../../shared/logger.js';
 
@@ -284,88 +285,98 @@ export function createSessionAuthHandlers(dependencies) {
 
       const client = authSession.client;
 
-      await client.invoke(
-        new Api.auth.SignIn({
-          phoneNumber: authSession.phone,
-          phoneCodeHash: authSession.phoneCodeHash,
-          phoneCode: authSession.code
-        })
-      );
+      // Try to sign in with verification code
+      try {
+        await client.invoke(
+          new Api.auth.SignIn({
+            phoneNumber: authSession.phone,
+            phoneCodeHash: authSession.phoneCodeHash,
+            phoneCode: authSession.code
+          })
+        );
 
-      const me = await client.getMe();
-      const sessionString = client.session.save();
+        // If we reach here, no 2FA required - authentication successful!
+        const me = await client.getMe();
+        const sessionString = client.session.save();
 
-      // Update admin with phone number
-      await updateAdminUseCase.execute(ctx.from.id.toString(), {
-        phone: authSession.phone
-      });
+        // Update admin with phone number
+        await updateAdminUseCase.execute(ctx.from.id.toString(), {
+          phone: authSession.phone
+        });
 
-      // Save session via use case
-      await createSessionUseCase.execute({
-        adminId: ctx.from.id.toString(),
-        sessionString: sessionString,
-        status: 'active'
-      });
-
-      // Add to UserBot controller if available
-      if (userBotController) {
-        await userBotController.addSession({
-          admin_id: ctx.from.id.toString(),
-          session_string: sessionString,
+        // Save session via use case
+        await createSessionUseCase.execute({
+          adminId: ctx.from.id.toString(),
+          sessionString: sessionString,
           status: 'active'
         });
-      }
 
-      await ctx.editMessageText(
-        `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,
-        {
-          parse_mode: 'HTML',
-          reply_markup: {
-            inline_keyboard: [[
-              { text: '📋 View Sessions', callback_data: 'sessions_list' },
-              { text: '🏠 Main Menu', callback_data: 'main_menu' }
-            ]]
-          }
+        // Add to UserBot controller if available
+        if (userBotController) {
+          await userBotController.addSession({
+            admin_id: ctx.from.id.toString(),
+            session_string: sessionString,
+            status: 'active'
+          });
         }
-      );
 
-      await client.disconnect();
-      authSessions.delete(authId);
-
-      logger.info('Session added successfully', { phone: authSession.phone, userId: me.id });
-
-    } catch (error) {
-      logger.error('Error during authentication', error);
-
-      // Check if 2FA required
-      if (error.message === 'PASSWORD_REQUIRED' || 
-          error.errorMessage === 'SESSION_PASSWORD_NEEDED' || 
-          error.className === 'SessionPasswordNeededError' ||
-          error.message.includes('SESSION_PASSWORD_NEEDED')) {
-        
-        authSession.step = 'password';
-        authSession.password = '';
-        authSession.waitingForPasswordMessage = true;
-
-        const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
-                     `Phone: <code>${authSession.phone}</code>\n` +
-                     `2FA password required!\n\n` +
-                     `📝 <b>Please send your 2FA password as a message</b>\n` +
-                     `(Type and send your password directly in the chat)\n\n` +
-                     `💡 Your password will be automatically deleted for security.`;
-
-        const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)]
-        ]);
-
-        await ctx.editMessageText(text, {
-          parse_mode: 'HTML',
-          ...keyboard
-        });
-
-      } else {
         await ctx.editMessageText(
-          `❌ <b>Authentication Failed</b>\n\n${error.message}\n\nPlease try again.`,
+          `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,
+          {
+            parse_mode: 'HTML',
+            reply_markup: {
+              inline_keyboard: [[
+                { text: '📋 View Sessions', callback_data: 'sessions_list' },
+                { text: '🏠 Main Menu', callback_data: 'main_menu' }
+              ]]
+            }
+          }
+        );
+
+        await client.disconnect();
+        authSessions.delete(authId);
+
+        logger.info('Session added successfully (no 2FA)', { phone: authSession.phone, userId: me.id });
+
+      } catch (signInError) {
+        // Check if 2FA is required
+        if (signInError.errorMessage === 'SESSION_PASSWORD_NEEDED' ||
+            signInError.message?.includes('SESSION_PASSWORD_NEEDED') ||
+            signInError.message === 'PASSWORD_REQUIRED' ||
+            signInError.className === 'SessionPasswordNeededError') {
+          
+          logger.info('2FA required - requesting password', { phone: authSession.phone });
+
+          // Move to 2FA password step
+          authSession.step = 'password';
+          authSession.password = '';
+          authSession.waitingForPasswordMessage = true;
+
+          const text = `🔐 <b>Two-Factor Authentication</b>\n\n` +
+                       `Phone: <code>${authSession.phone}</code>\n` +
+                       `Code verified! ✅\n\n` +
+                       `2FA password required!\n\n` +
+                       `📝 <b>Please send your 2FA password as a message</b>\n` +
+                       `(Type and send your password directly in the chat)\n\n` +
+                       `💡 Your password will be automatically deleted for security.`;
+
+          const keyboard = Markup.inlineKeyboard([
+            [Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)]
+          ]);
+
+          await ctx.editMessageText(text, {
+            parse_mode: 'HTML',
+            ...keyboard
+          });
+
+          return; // Wait for password message
+        }
+
+        // If it's not a 2FA error, show error message
+        logger.error('Sign in failed (not 2FA)', signInError);
+
+        await ctx.editMessageText(
+          `❌ <b>Authentication Failed</b>\n\n${signInError.errorMessage || signInError.message}\n\nPlease try again.`,
           {
             parse_mode: 'HTML',
             reply_markup: {
@@ -382,6 +393,27 @@ export function createSessionAuthHandlers(dependencies) {
         }
         authSessions.delete(authId);
       }
+
+    } catch (error) {
+      logger.error('Unexpected error during verification', error);
+      
+      await ctx.editMessageText(
+        `❌ <b>Unexpected Error</b>\n\n${error.message}\n\nPlease try again.`,
+        {
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '🔄 Try Again', callback_data: 'add_session' },
+              { text: '🏠 Main Menu', callback_data: 'main_menu' }
+            ]]
+          }
+        }
+      );
+
+      if (authSession.client) {
+        await authSession.client.disconnect();
+      }
+      authSessions.delete(authId);
     }
   };
 
@@ -416,9 +448,19 @@ export function createSessionAuthHandlers(dependencies) {
 
       const client = authSession.client;
 
+      // Get password SRP parameters
+      const passwordSrpResult = await client.invoke(new Api.account.GetPassword());
+      
+      // Compute password check
+      const passwordCheck = await computeCheck(
+        passwordSrpResult,
+        authSession.password
+      );
+
+      // Authenticate with 2FA password
       await client.invoke(
         new Api.auth.CheckPassword({
-          password: await client.computeCheck(authSession.password)
+          password: passwordCheck
         })
       );
 

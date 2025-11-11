@@ -456,3 +456,147 @@ Error: Admin already exists for user: 566160086
 {
   "error": "Admin already exists for user: 566160086"
 }
+2025-11-11 18:56:41 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-11 18:56:57 [ERROR]: Error during 2FA authentication
+TypeError: client.computeCheck is not a function
+    at Object.handlePasswordTextMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:421:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/commands.js:44:7
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "client.computeCheck is not a function"
+}
+2025-11-11 19:10:26 [ERROR]: Error during admin registration
+ReferenceError: user is not defined
+    at Object.handleAdminRegistration (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/adminHandlers.js:65:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "user is not defined"
+}
+2025-11-11 19:15:57 [ERROR]: Unhandled error in AsyncFunction
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET",
+  "code": "ECONNRESET",
+  "context": "AsyncFunction"
+}
+2025-11-11 19:15:57 [ERROR]: Middleware error
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET"
+}
+2025-11-11 19:15:57 [ERROR]: Unhandled error in AsyncFunction
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/sendMessage failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/sendMessage failed, reason: read ECONNRESET",
+  "code": "ECONNRESET",
+  "context": "AsyncFunction"
+}
+2025-11-11 19:15:58 [ERROR]: Failed to start AdminBot
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/sendMessage failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/sendMessage failed, reason: read ECONNRESET"
+}
+2025-11-11 19:22:22 [ERROR]: Unhandled error in AsyncFunction
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET",
+  "code": "ECONNRESET",
+  "context": "AsyncFunction"
+}
+2025-11-11 19:22:22 [ERROR]: Middleware error
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET
+    at ClientRequest.<anonymous> (E:\experiments\workspace\web-dev\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at TLSSocket.socketErrorListener (node:_http_client:518:5)
+    at TLSSocket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/answerCallbackQuery failed, reason: read ECONNRESET"
+}
+2025-11-11 19:49:43 [ERROR]: Error during authentication
+RPCError: 401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "401: SESSION_PASSWORD_NEEDED (caused by auth.SignIn)"
+}
+2025-11-11 19:51:02 [ERROR]: Error sending verification code
+RPCError: 400: PHONE_NUMBER_INVALID (caused by auth.SendCode)
+    at RPCMessageToError (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\errors\index.js:28:12)
+    at MTProtoSender._handleRPCResult (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:561:58)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": "400: PHONE_NUMBER_INVALID (caused by auth.SendCode)"
+}
