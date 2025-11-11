@@ -20,6 +20,7 @@ class SessionRepository extends ISessionRepository {
     if (!ormEntity) return null;
     
     return Session.fromDatabaseRow({
+      id: ormEntity.id,
       admin_id: ormEntity.adminId,
       session_string: ormEntity.sessionString,
       status: ormEntity.status,

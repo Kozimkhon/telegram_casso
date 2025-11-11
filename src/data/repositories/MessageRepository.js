@@ -22,13 +22,12 @@ class MessageRepository extends IMessageRepository {
     return Message.fromDatabaseRow({
       id: ormEntity.id,
       message_id: ormEntity.messageId,
-      channel_id: ormEntity.channelId,
-      user_id: ormEntity.userId,
-      text: ormEntity.text,
+      forwarded_message_id: ormEntity.forwardedMessageId,
       status: ormEntity.status,
       error_message: ormEntity.errorMessage,
       retry_count: ormEntity.retryCount,
-      sent_at: ormEntity.sentAt,
+      channel_id: ormEntity.channelId,
+      user_id: ormEntity.userId,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -65,10 +64,12 @@ class MessageRepository extends IMessageRepository {
     
     const created = await this.#ormRepository.create({
       messageId: data.message_id,
+      forwardedMessageId: data.forwarded_message_id,
+      status: data.status,
+      errorMessage: data.error_message,
+      retryCount: data.retry_count,
       channelId: data.channel_id,
-      userId: data.user_id,
-      text: data.text,
-      status: data.status
+      userId: data.user_id
     });
 
     return this.#toDomainEntity(created);
@@ -77,10 +78,10 @@ class MessageRepository extends IMessageRepository {
   async update(id, updates) {
     const ormUpdates = {};
     
+    if (updates.forwarded_message_id !== undefined) ormUpdates.forwardedMessageId = updates.forwarded_message_id;
     if (updates.status) ormUpdates.status = updates.status;
-    if (updates.error_message) ormUpdates.errorMessage = updates.error_message;
+    if (updates.error_message !== undefined) ormUpdates.errorMessage = updates.error_message;
     if (updates.retry_count !== undefined) ormUpdates.retryCount = updates.retry_count;
-    if (updates.sent_at) ormUpdates.sentAt = updates.sent_at;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

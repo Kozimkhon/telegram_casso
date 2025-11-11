@@ -20,12 +20,20 @@ class ChannelRepository extends IChannelRepository {
     if (!ormEntity) return null;
     
     return Channel.fromDatabaseRow({
+      id: ormEntity.id,
       channel_id: ormEntity.channelId,
       title: ormEntity.title,
       username: ormEntity.username,
       member_count: ormEntity.memberCount,
       forward_enabled: ormEntity.forwardEnabled,
       admin_session_phone: ormEntity.adminSessionPhone,
+      throttle_delay_ms: ormEntity.throttleDelayMs,
+      throttle_per_member_ms: ormEntity.throttlePerMemberMs,
+      min_delay_ms: ormEntity.minDelayMs,
+      max_delay_ms: ormEntity.maxDelayMs,
+      schedule_enabled: ormEntity.scheduleEnabled,
+      schedule_config: ormEntity.scheduleConfig,
+      admin_user_id: ormEntity.adminUserId,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -62,7 +70,14 @@ class ChannelRepository extends IChannelRepository {
       username: data.username,
       memberCount: data.member_count,
       forwardEnabled: Boolean(data.forward_enabled),
-      adminSessionPhone: data.admin_session_phone
+      adminSessionPhone: data.admin_session_phone,
+      throttleDelayMs: data.throttle_delay_ms,
+      throttlePerMemberMs: data.throttle_per_member_ms,
+      minDelayMs: data.min_delay_ms,
+      maxDelayMs: data.max_delay_ms,
+      scheduleEnabled: Boolean(data.schedule_enabled),
+      scheduleConfig: data.schedule_config,
+      adminUserId: data.admin_user_id
     });
 
     return this.#toDomainEntity(created);
@@ -76,6 +91,13 @@ class ChannelRepository extends IChannelRepository {
     if (updates.member_count !== undefined) ormUpdates.memberCount = updates.member_count;
     if (updates.forward_enabled !== undefined) ormUpdates.forwardEnabled = Boolean(updates.forward_enabled);
     if (updates.admin_session_phone !== undefined) ormUpdates.adminSessionPhone = updates.admin_session_phone;
+    if (updates.throttle_delay_ms !== undefined) ormUpdates.throttleDelayMs = updates.throttle_delay_ms;
+    if (updates.throttle_per_member_ms !== undefined) ormUpdates.throttlePerMemberMs = updates.throttle_per_member_ms;
+    if (updates.min_delay_ms !== undefined) ormUpdates.minDelayMs = updates.min_delay_ms;
+    if (updates.max_delay_ms !== undefined) ormUpdates.maxDelayMs = updates.max_delay_ms;
+    if (updates.schedule_enabled !== undefined) ormUpdates.scheduleEnabled = Boolean(updates.schedule_enabled);
+    if (updates.schedule_config !== undefined) ormUpdates.scheduleConfig = updates.schedule_config;
+    if (updates.admin_user_id !== undefined) ormUpdates.adminUserId = updates.admin_user_id;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

@@ -20,6 +20,7 @@ class UserRepository extends IUserRepository {
     if (!ormEntity) return null;
     
     return User.fromDatabaseRow({
+      id: ormEntity.id,
       user_id: ormEntity.userId,
       first_name: ormEntity.firstName,
       last_name: ormEntity.lastName,
@@ -27,6 +28,7 @@ class UserRepository extends IUserRepository {
       phone: ormEntity.phone,
       is_bot: ormEntity.isBot,
       is_premium: ormEntity.isPremium,
+      is_active: ormEntity.isActive,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -64,7 +66,8 @@ class UserRepository extends IUserRepository {
       username: data.username,
       phone: data.phone,
       isBot: data.is_bot,
-      isPremium: data.is_premium
+      isPremium: data.is_premium,
+      isActive: data.is_active
     });
 
     return this.#toDomainEntity(created);
@@ -79,6 +82,7 @@ class UserRepository extends IUserRepository {
     if (updates.phone !== undefined) ormUpdates.phone = updates.phone;
     if (updates.is_bot !== undefined) ormUpdates.isBot = updates.is_bot;
     if (updates.is_premium !== undefined) ormUpdates.isPremium = updates.is_premium;
+    if (updates.is_active !== undefined) ormUpdates.isActive = updates.is_active;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);
