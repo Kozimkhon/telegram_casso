@@ -69,7 +69,7 @@ export function setupCallbacks(bot, handlers) {
   }));
 
   // === Session Authentication Callbacks ===
-  
+
   // Add session
   bot.action('add_session', asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
@@ -156,5 +156,53 @@ export function setupCallbacks(bot, handlers) {
     await handlers.handleCancelAuth(ctx, authId);
   }));
 
-  // Handle text messages for 2FA password (registered separately in commands.js)
+  bot.action('queue_status', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    setImmediate(async () => {
+      try {
+        await handlers.handleQueueStatus(ctx);//TODO implement
+      } catch (error) {
+        await ctx.editMessageText(
+          `❌ <b>Error</b>\n\nFailed to retrieve queue status: ${error.message}\n\nPlease try again.`,
+          {
+            parse_mode: 'HTML',
+            reply_markup: {
+              inline_keyboard: [
+                [{ text: '🏠 Main Menu', callback_data: 'main_menu' }]
+              ]
+            }
+          }
+        );
+      }
+    });
+  }));
+
+  bot.action( /^remove_channel_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const channelId = ctx.match[1];
+    await handlers.handleRemoveChannel(ctx, channelId);//TODO implement
+  }));
+
+  bot.action( /^confirm_remove_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const channelId = ctx.match[1];
+    await handlers.handleConfirmRemoveChannel(ctx, channelId);//TODO implement
+  }));
+
+  bot.action(
+      /^channels_page_(\d+)$/,
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery();
+        const page = parseInt(ctx.match[1]);
+        await handlers.handleChannelsList(ctx, page);
+      }, "Channels page callback")
+    );
+    bot.action(
+      "sync_channels",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery("⏳ Syncing channels...");
+        await handlers.syncChannels(ctx);//TODO implement
+      }, "Sync channels callback")
+    );
+
 }

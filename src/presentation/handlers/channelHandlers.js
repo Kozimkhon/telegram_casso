@@ -27,32 +27,85 @@ export function createChannelHandlers(dependencies) {
    * Handles channels list display
    * @param {Object} ctx - Telegraf context
    */
-  async function handleChannelsList(ctx) {
+  async function handleChannelsList(ctx, page = 1) {
     try {
       // Get channels from repository
+
       const channels = await channelRepository.findAll();
+      // Build keyboard
+      const itemsPerPage = 5;
+      const totalPages = Math.ceil(channels.length / itemsPerPage);
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const pageChannels = channels.slice(startIndex, endIndex);
+      const buttons = [];
+      let text = `📋 *Channels Management* (Page ${page}/${totalPages})\n\n`;
 
       if (channels.length === 0) {
-        await ctx.editMessageText('📋 No channels configured yet.');
-        return;
-      }
+        text += "❌ No channels found. UserBot needs to sync channels first.";
+      } else {
+        text += `Total channels: ${channels.length}\n\n`;
 
-      // Build keyboard
-      const buttons = channels.map(ch => [
-        Markup.button.callback(
-          `${ch.forwardEnabled ? '✅' : '❌'} ${ch.title}`,
-          `channel_details_${ch.channelId}`
-        )
+        pageChannels.forEach((channel, index) => {
+          const status = channel.forwardEnabled ? "✅ Enabled" : "❌ Disabled";
+          const number = startIndex + index + 1;
+          text += `${number}. *${channel.title}*\n`;
+          text += `   Status: ${status}\n`;
+          text += `   ID: \`${channel.channelId}\`\n\n`;
+        });
+
+      }
+      // Sync button at the top
+      buttons.push([
+        Markup.button.callback("🔄 Sync Channels", "sync_channels"),
       ]);
 
-      buttons.push([Markup.button.callback('🔙 Back', 'main_menu')]);
+      // Channel control buttons
+      pageChannels.forEach((channel, index) => {
+        const number = startIndex + index + 1;
+        const toggleText = channel.forward_enabled
+          ? `❌ Disable ${number}`
+          : `✅ Enable ${number}`;
+        buttons.push([
+          Markup.button.callback(
+            toggleText,
+            `toggle_channel_${channel.channel_id}`
+          ),
+          Markup.button.callback(
+            `🗑 Remove ${number}`,
+            `remove_channel_${channel.channel_id}`
+          ),
+        ]);
+      });
+
+      // Pagination buttons
+      if (totalPages > 1) {
+        const paginationButtons = [];
+        if (page > 1) {
+          paginationButtons.push(
+            Markup.button.callback("⬅️ Previous", `channels_page_${page - 1}`)
+          );
+        }
+        if (page < totalPages) {
+          paginationButtons.push(
+            Markup.button.callback("➡️ Next", `channels_page_${page + 1}`)
+          );
+        }
+        if (paginationButtons.length > 0) {
+          buttons.push(paginationButtons);
+        }
+      }
+
+      // Back to main menu
+      buttons.push([Markup.button.callback("🏠 Main Menu", "main_menu")]);
 
       const keyboard = Markup.inlineKeyboard(buttons);
 
-      await ctx.editMessageText(
-        `📋 *Channels* (${channels.length})\n\nClick to see details:`,
-        { parse_mode: 'Markdown', ...keyboard }
-      );
+      await ctx.editMessageText(text, {
+        parse_mode: "Markdown",
+        ...keyboard,
+      });
+
 
     } catch (error) {
       logger.error('Error showing channels', error);

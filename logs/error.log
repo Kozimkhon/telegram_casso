@@ -671,3 +671,183 @@ Error: findByAdminSession() must be implemented
 {
   "error": "findByAdminSession() must be implemented"
 }
+2025-11-11 23:34:42 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at UserBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:175:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:101:13)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:36:48 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:39:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:41:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:43:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:45:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:47:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:49:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:51:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:53:36 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:54:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at UserBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:175:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:101:13)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:56:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 23:58:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:00:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:02:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:04:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:06:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:08:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
