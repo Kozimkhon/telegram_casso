@@ -766,3 +766,198 @@ RPCError: 400: PHONE_NUMBER_INVALID (caused by auth.SendCode)
   "component": "SessionAuthHandlers",
   "phone": "+998999900979"
 }
+2025-11-11 20:04:35 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 20:06:16 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998999900979"
+}
+2025-11-11 20:06:33 [INFO]: 2FA required - requesting password
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998999900979"
+}
+2025-11-11 20:07:14 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998999900979"
+  }
+}
+2025-11-11 20:07:14 [ERROR]: Failed to update admin
+{
+  "userId": "5684628333",
+  "error": {}
+}
+2025-11-11 20:36:32 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 20:48:10 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681"
+}
+2025-11-11 20:48:37 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998930793681"
+  }
+}
+2025-11-11 20:48:37 [ERROR]: Failed to update admin
+{
+  "userId": "5684628333",
+  "error": {}
+}
+2025-11-11 20:48:37 [ERROR]: Sign in failed (not 2FA)
+DatabaseError: Failed to update admin: Admin not found: 5684628333
+    at UpdateAdminUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js:88:13)
+    at async Object.handleConfirmVerificationCode (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:303:9)
+    at async Immediate.<anonymous> (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": "Failed to update admin: Admin not found: 5684628333"
+}
+2025-11-11 20:51:39 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 20:51:40 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/AdminBotController.js:153:7)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:166:11)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-11 20:54:13 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 20:54:48 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 20:54:56 [INFO]: Admin auto-registration successful
+{
+  "component": "AdminHandlers",
+  "userId": "5684628333",
+  "username": "Ota_Jalol",
+  "firstName": "."
+}
+2025-11-11 20:55:41 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998999900979"
+}
+2025-11-11 20:56:33 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681"
+}
+2025-11-11 20:58:01 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998930793681"
+  }
+}
+2025-11-11 21:02:44 [ERROR]: Failed to update admin
+{
+  "userId": "5684628333",
+  "error": {}
+}
+2025-11-11 21:06:31 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 21:34:40 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681"
+}
+2025-11-11 21:35:11 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998930793681"
+  }
+}
+2025-11-11 21:47:20 [ERROR]: Failed to update admin
+{
+  "userId": "5684628333",
+  "error": {}
+}
+2025-11-11 21:47:20 [ERROR]: Sign in failed (not 2FA)
+DatabaseError: Failed to update admin: id is not defined
+    at UpdateAdminUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js:88:13)
+    at async Object.handleConfirmVerificationCode (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:303:9)
+    at async Immediate.<anonymous> (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": "Failed to update admin: id is not defined"
+}
+2025-11-11 21:47:30 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 21:48:13 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681"
+}
+2025-11-11 21:48:51 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998930793681"
+  }
+}
+2025-11-11 21:49:45 [ERROR]: Failed to update admin
+{
+  "userId": "5684628333",
+  "error": {}
+}
+2025-11-11 21:49:45 [ERROR]: Sign in failed (not 2FA)
+DatabaseError: Failed to update admin: id is not defined
+    at UpdateAdminUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js:88:13)
+    at async Object.handleConfirmVerificationCode (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:303:9)
+    at async Immediate.<anonymous> (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": "Failed to update admin: id is not defined"
+}
+2025-11-11 21:50:29 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681"
+}
+2025-11-11 21:51:17 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333",
+  "updates": {
+    "phone": "+998930793681"
+  }
+}
+2025-11-11 21:54:04 [INFO]: Admin updated successfully
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "5684628333"
+}
+2025-11-11 21:54:27 [INFO]: Session added successfully (no 2FA)
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998930793681",
+  "userId": "5684628333"
+}

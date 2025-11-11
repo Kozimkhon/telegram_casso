@@ -66,17 +66,10 @@ class AdminBotController {
   #isRunning = false;
 
   /**
-   * UserBot manager reference
-   * @private
-   */
-  #userBotManager;
-
-  /**
    * Creates AdminBot controller
    * @param {Object} dependencies - Injected dependencies
-   * @param {Object} userBotManager - UserBot manager
    */
-  constructor(dependencies, userBotManager = null) {
+  constructor(dependencies, ) {
     // Inject use cases
     this.#useCases = {
       // Channel use cases
@@ -103,6 +96,7 @@ class AdminBotController {
       checkAdminAccess: dependencies.checkAdminAccessUseCase,
       addAdmin: dependencies.addAdminUseCase,
       updateAdmin: dependencies.updateAdminUseCase,
+      getOrCreateAdmin: dependencies.getOrCreateAdminUseCase,
       getAdminStats: dependencies.getAdminStatsUseCase,
     };
 
@@ -118,8 +112,7 @@ class AdminBotController {
     this.channelRepository = dependencies.channelRepository;
     this.sessionRepository = dependencies.sessionRepository;
 
-    // UserBot manager
-    this.#userBotManager = userBotManager;
+
 
     // Logger
     this.#logger = createChildLogger({ component: "AdminBotController" });
@@ -127,7 +120,7 @@ class AdminBotController {
     // Create session auth handlers
     this.authHandlers = createSessionAuthHandlers({
       createSessionUseCase: this.#useCases.createSession,
-      updateAdminUseCase: this.#useCases.updateAdmin,
+      getOrCreateAdminUseCase: this.#useCases.getOrCreateAdmin,
     });
 
     // Create Telegraf bot

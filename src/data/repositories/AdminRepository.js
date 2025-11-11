@@ -42,6 +42,7 @@ class AdminRepository extends IAdminRepository {
     if (!ormEntity) return null;
     
     return Admin.fromDatabaseRow({
+      id: ormEntity.id,
       user_id: ormEntity.userId,
       first_name: ormEntity.firstName,
       last_name: ormEntity.lastName,
@@ -136,7 +137,35 @@ class AdminRepository extends IAdminRepository {
 
     return this.#toDomainEntity(updated);
   }
+/**
+   * Updates admin with userId
+   * @param {string} userId - User ID
+   * @param {Object} updates - Updates
+   * @returns {Promise<Admin>} Updated admin
+   */
+  async updateWithUserId(userId, updates) {
+    const admin = await this.findByUserId(userId);
+    if (!admin) {
+      throw new Error(`Admin not found: ${userId}`);
+    }
 
+    // Apply updates
+    if (updates.role) {
+      admin.changeRole(updates.role);
+    }
+    if (updates.is_active !== undefined) {
+      updates.is_active ? admin.activate() : admin.deactivate();
+    }
+
+    const data = admin.toObject();
+    
+    const updated = await this.#ormRepository.update(admin.id, {
+      role: data.role,
+      isActive: data.is_active
+    });
+
+    return this.#toDomainEntity(updated);
+  }
   /**
    * Deletes admin
    * @param {string} id - Admin ID

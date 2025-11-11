@@ -240,9 +240,9 @@ class Session extends BaseEntity {
       pause_reason: this.pauseReason,
       flood_wait_until: this.floodWaitUntil ? this.floodWaitUntil.toISOString() : null,
       last_error: this.lastError,
-      last_active: this.lastActive.toISOString(),
-      created_at: this.createdAt.toISOString(),
-      updated_at: this.updatedAt.toISOString()
+      last_active: this.lastActive,
+      created_at: this.createdAt,
+      updated_at: this.updatedAt
     };
   }
 

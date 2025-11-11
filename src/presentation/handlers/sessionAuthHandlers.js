@@ -23,14 +23,8 @@ const logger = createChildLogger({ component: 'SessionAuthHandlers' });
  */
 export function createSessionAuthHandlers(dependencies) {
   const { createSessionUseCase, updateAdminUseCase } = dependencies;
-  let userBotController = null;
 
-  /**
-   * Sets UserBot controller reference
-   */
-  const setUserBotController = (controller) => {
-    userBotController = controller;
-  };
+
 
   /**
    * Starts phone number input process
@@ -311,14 +305,6 @@ export function createSessionAuthHandlers(dependencies) {
           status: 'active'
         });
 
-        // Add to UserBot controller if available
-        if (userBotController) {
-          await userBotController.addSession({
-            admin_id: ctx.from.id.toString(),
-            session_string: sessionString,
-            status: 'active'
-          });
-        }
 
         await ctx.editMessageText(
           `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,
@@ -479,15 +465,6 @@ export function createSessionAuthHandlers(dependencies) {
         status: 'active'
       });
 
-      // Add to UserBot controller if available
-      if (userBotController) {
-        await userBotController.addSession({
-          admin_id: ctx.from.id.toString(),
-          session_string: sessionString,
-          status: 'active'
-        });
-      }
-
       await ctx.reply(
         `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,
         {
@@ -587,7 +564,6 @@ export function createSessionAuthHandlers(dependencies) {
     handlePasswordTextMessage,
     handleCancelAuth,
     cleanupExpiredSessions,
-    setUserBotController
   };
 }
 

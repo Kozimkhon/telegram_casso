@@ -75,7 +75,7 @@ class UpdateAdminUseCase {
       }
 
       // Update admin
-      const admin = await this.#adminRepository.update(userId, filteredUpdates);
+      const admin = await this.#adminRepository.updateWithUserId(userId, filteredUpdates);
 
       if (!admin) {
         throw new Error(`Admin not found: ${userId}`);

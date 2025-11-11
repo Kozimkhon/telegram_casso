@@ -15,6 +15,13 @@ import { AdminRole } from '../../shared/constants/index.js';
  * @extends BaseEntity
  */
 class Admin extends BaseEntity {
+
+
+  /**
+   * Unique
+   * @type {int}
+   */
+  id
   /**
    * User ID (Telegram user ID)
    * @type {string}
@@ -64,7 +71,7 @@ class Admin extends BaseEntity {
   constructor(data) {
     super();
     this.validate(data);
-    
+    this.id = data.id||null;
     this.userId = data.userId;
     this.firstName = data.firstName;
     this.lastName = data.lastName || null;
@@ -159,6 +166,7 @@ class Admin extends BaseEntity {
    */
   toObject() {
     return {
+      id: this.id,
       user_id: this.userId,
       first_name: this.firstName,
       last_name: this.lastName,
@@ -179,6 +187,7 @@ class Admin extends BaseEntity {
    */
   static fromDatabaseRow(row) {
     return new Admin({
+      id: row.id,
       userId: row.user_id,
       firstName: row.first_name,
       lastName: row.last_name,

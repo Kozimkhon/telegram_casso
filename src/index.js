@@ -149,6 +149,7 @@ class Application {
             checkAdminAccessUseCase: this.#container.resolve('checkAdminAccessUseCase'),
             addAdminUseCase: this.#container.resolve('addAdminUseCase'),
             updateAdminUseCase: this.#container.resolve('updateAdminUseCase'),
+            getOrCreateAdminUseCase: this.#container.resolve('getOrCreateAdminUseCase'),
             getAdminStatsUseCase: this.#container.resolve('getAdminStatsUseCase'),
             
             // Services

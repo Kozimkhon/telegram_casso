@@ -135,3 +135,100 @@ ReferenceError: Markup is not defined
     }
   ]
 }
+2025-11-11 21:02:44 [ERROR]: unhandledRejection: this.finfindByUserId is not a function
+TypeError: this.finfindByUserId is not a function
+    at eval (eval-fcc70083.repl:2:29)
+    at eval (eval-fcc70083.repl:3:3)
+    at AdminRepository.update (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/AdminRepository.js:118:5)
+    at async UpdateAdminUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js:78:21)
+    at async Object.handleConfirmVerificationCode (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:303:9)
+    at async Immediate.<anonymous> (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+TypeError: this.finfindByUserId is not a function
+    at eval (eval-fcc70083.repl:2:29)
+    at eval (eval-fcc70083.repl:3:3)
+    at AdminRepository.update (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/AdminRepository.js:118:5)
+    at async UpdateAdminUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js:78:21)
+    at async Object.handleConfirmVerificationCode (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:303:9)
+    at async Immediate.<anonymous> (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Tue Nov 11 2025 21:02:44 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 3736,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 103878656,
+      "heapTotal": 40103936,
+      "heapUsed": 37812648,
+      "external": 4270733,
+      "arrayBuffers": 640824
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 420172.765
+  },
+  "trace": [
+    {
+      "column": 29,
+      "file": "eval-fcc70083.repl",
+      "function": "eval",
+      "line": 2,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 3,
+      "file": "eval-fcc70083.repl",
+      "function": "eval",
+      "line": 3,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/AdminRepository.js",
+      "function": "AdminRepository.update",
+      "line": 118,
+      "method": "update",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/use-cases/admin/UpdateAdmin.useCase.js",
+      "function": "async UpdateAdminUseCase.execute",
+      "line": 78,
+      "method": "execute",
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js",
+      "function": "async Object.handleConfirmVerificationCode",
+      "line": 303,
+      "method": "handleConfirmVerificationCode",
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js",
+      "function": null,
+      "line": 134,
+      "method": null,
+      "native": false
+    }
+  ]
+}

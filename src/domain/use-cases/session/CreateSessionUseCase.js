@@ -41,32 +41,18 @@ class CreateSessionUseCase {
    * @returns {Promise<Object>} Result
    */
   async execute(data) {
-    // Validate input
-    if (!data.phone) {
-      throw new Error('Phone number is required');
-    }
-
-    // Validate phone format
-    const phoneRegex = new RegExp(ValidationRules.PHONE_REGEX);
-    if (!phoneRegex.test(data.phone)) {
-      throw new Error('Invalid phone number format');
-    }
-
-    // Check if session already exists
-    const existing = await this.#sessionRepository.findByPhone(data.phone);
-    if (existing) {
-      throw new Error(`Session already exists for phone: ${data.phone}`);
-    }
-
+    
     // Create session entity
     const session = new Session({
-      phone: data.phone,
+      adminId:data.adminId,
       sessionString: data.sessionString || null,
       status: data.status || 'active',
-      isActive: true,
       lastActive: new Date().toISOString(),
-      messagesSent: 0,
-      errorsCount: 0,
+      autoPaused: false,
+      pauseReason: null,
+      floodWaitUntil: null,
+      lastError: null,
+      lastActive: new Date().toISOString(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     });
