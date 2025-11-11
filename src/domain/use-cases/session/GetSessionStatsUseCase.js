@@ -39,30 +39,29 @@ class GetSessionStatsUseCase {
 
   /**
    * Gets session details
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID
    * @returns {Promise<Object>} Session details
    */
-  async getSessionDetails(phone) {
-    const session = await this.#sessionRepository.findByPhone(phone);
+  async getSessionDetails(adminId) {
+    const session = await this.#sessionRepository.findByAdminId(adminId);
     if (!session) {
-      throw new Error(`Session not found: ${phone}`);
+      throw new Error(`Session not found for admin: ${adminId}`);
     }
 
     return {
       success: true,
       session: {
-        phone: session.phone,
+        adminId: session.adminId,
         status: session.status,
-        isActive: session.isActive,
+        autoPaused: session.autoPaused,
         lastActive: session.lastActive,
-        messagesSent: session.messagesSent,
-        errorsCount: session.errorsCount,
-        pausedReason: session.pausedReason,
-        pausedUntil: session.pausedUntil,
+        pauseReason: session.pauseReason,
+        floodWaitUntil: session.floodWaitUntil,
+        lastError: session.lastError,
         createdAt: session.createdAt,
         updatedAt: session.updatedAt,
-        isPaused: session.isPaused(),
-        isReadyToResume: session.isReadyToResume()
+        isPaused: session.isPaused?.(),
+        isReadyToResume: session.isReadyToResume?.()
       }
     };
   }

@@ -34,18 +34,18 @@ class ResumeSessionUseCase {
 
   /**
    * Executes use case
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID
    * @returns {Promise<Object>} Result
    */
-  async execute(phone) {
-    // Find session
-    const session = await this.#sessionRepository.findByPhone(phone);
+  async execute(adminId) {
+    // Find session by admin ID
+    const session = await this.#sessionRepository.findByAdminId(adminId);
     if (!session) {
-      throw new Error(`Session not found: ${phone}`);
+      throw new Error(`Session not found for admin: ${adminId}`);
     }
 
     // Check if can resume
-    if (!session.isPaused()) {
+    if (!session.isPaused?.()) {
       return {
         success: false,
         message: 'Session is not paused',
@@ -53,9 +53,9 @@ class ResumeSessionUseCase {
       };
     }
 
-    if (!session.isReadyToResume()) {
+    if (!session.isReadyToResume?.()) {
       const remainingSeconds = Math.ceil(
-        (new Date(session.pausedUntil) - new Date()) / 1000
+        (new Date(session.floodWaitUntil) - new Date()) / 1000
       );
       return {
         success: false,
@@ -66,21 +66,21 @@ class ResumeSessionUseCase {
     }
 
     // Resume session
-    session.resume();
+    session.resume?.();
 
     // Update repository
-    const updated = await this.#sessionRepository.update(phone, {
+    const updated = await this.#sessionRepository.update(session.id, {
       status: session.status,
-      paused_reason: null,
-      paused_until: null,
-      updated_at: session.updatedAt
+      pauseReason: null,
+      floodWaitUntil: null,
+      updatedAt: session.updatedAt
     });
 
     // Update state
-    this.#stateManager.updateSession(phone, {
+    this.#stateManager.updateSession(adminId, {
       status: updated.status,
-      pausedReason: null,
-      pausedUntil: null
+      pauseReason: null,
+      floodWaitUntil: null
     });
 
     return {

@@ -63,13 +63,13 @@ class AddChannelUseCase {
     }
 
     // Validate session if provided
-    if (data.adminSessionPhone) {
-      const session = await this.#sessionRepository.findByPhone(data.adminSessionPhone);
+    if (data.adminId) {
+      const session = await this.#sessionRepository.findByAdminId(data.adminId);
       if (!session) {
-        throw new Error(`Session not found: ${data.adminSessionPhone}`);
+        throw new Error(`Session not found for admin: ${data.adminId}`);
       }
-      if (!session.isActive()) {
-        throw new Error(`Session is not active: ${data.adminSessionPhone}`);
+      if (session.status !== 'active') {
+        throw new Error(`Session is not active: ${data.adminId}`);
       }
     }
 
@@ -79,7 +79,7 @@ class AddChannelUseCase {
       title: data.title,
       memberCount: data.memberCount || 0,
       forwardEnabled: data.forwardEnabled !== false,
-      adminSessionPhone: data.adminSessionPhone || null,
+      adminId: data.adminId || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     });
@@ -93,7 +93,7 @@ class AddChannelUseCase {
       title: created.title,
       memberCount: created.memberCount,
       forwardEnabled: created.forwardEnabled,
-      adminSessionPhone: created.adminSessionPhone
+      adminId: created.adminId
     });
 
     return {

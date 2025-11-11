@@ -15,13 +15,13 @@ import IRepository from './IRepository.js';
  */
 class ISessionRepository extends IRepository {
   /**
-   * Finds session by phone
+   * Finds session by admin ID
    * @abstract
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID (from Admin entity)
    * @returns {Promise<Object|null>} Session or null
    */
-  async findByPhone(phone) {
-    throw new Error('findByPhone() must be implemented');
+  async findByAdminId(adminId) {
+    throw new Error('findByAdminId() must be implemented');
   }
 
   /**
@@ -46,10 +46,10 @@ class ISessionRepository extends IRepository {
   /**
    * Updates session activity
    * @abstract
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID
    * @returns {Promise<void>}
    */
-  async updateActivity(phone) {
+  async updateActivity(adminId) {
     throw new Error('updateActivity() must be implemented');
   }
 

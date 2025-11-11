@@ -34,21 +34,21 @@ class PauseSessionUseCase {
 
   /**
    * Executes use case
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID
    * @param {Object} options - Options
    * @returns {Promise<Object>} Result
    */
-  async execute(phone, options = {}) {
+  async execute(adminId, options = {}) {
     const { reason, autoPause = false, floodWaitSeconds = null } = options;
 
-    // Find session
-    const session = await this.#sessionRepository.findByPhone(phone);
+    // Find session by admin ID
+    const session = await this.#sessionRepository.findByAdminId(adminId);
     if (!session) {
-      throw new Error(`Session not found: ${phone}`);
+      throw new Error(`Session not found for admin: ${adminId}`);
     }
 
     // Check if already paused
-    if (session.isPaused()) {
+    if (session.isPaused?.()) {
       return {
         success: false,
         message: 'Session already paused',
@@ -64,18 +64,18 @@ class PauseSessionUseCase {
     }
 
     // Update repository
-    const updated = await this.#sessionRepository.update(phone, {
+    const updated = await this.#sessionRepository.update(session.id, {
       status: session.status,
-      pausedReason: session.pausedReason,
-      pausedUntil: session.pausedUntil,
-      updated_at: session.updatedAt
+      pauseReason: session.pauseReason,
+      floodWaitUntil: session.floodWaitUntil,
+      updatedAt: session.updatedAt
     });
 
     // Update state
-    this.#stateManager.updateSession(phone, {
+    this.#stateManager.updateSession(adminId, {
       status: updated.status,
-      pausedReason: updated.pausedReason,
-      pausedUntil: updated.pausedUntil
+      pauseReason: updated.pauseReason,
+      floodWaitUntil: updated.floodWaitUntil
     });
 
     return {

@@ -43,10 +43,10 @@ class LinkChannelToSessionUseCase {
   /**
    * Executes use case
    * @param {string} channelId - Channel ID
-   * @param {string|null} sessionPhone - Session phone (null to unlink)
+   * @param {string|null} sessionAdminId - Session admin ID (null to unlink)
    * @returns {Promise<Object>} Result
    */
-  async execute(channelId, sessionPhone) {
+  async execute(channelId, sessionAdminId) {
     // Find channel
     const channel = await this.#channelRepository.findById(channelId);
     if (!channel) {
@@ -54,36 +54,37 @@ class LinkChannelToSessionUseCase {
     }
 
     // Validate session if provided
-    if (sessionPhone) {
-      const session = await this.#sessionRepository.findByPhone(sessionPhone);
+    if (sessionAdminId) {
+      const session = await this.#sessionRepository.findByAdminId(sessionAdminId);
       if (!session) {
-        throw new Error(`Session not found: ${sessionPhone}`);
+        throw new Error(`Session not found for admin: ${sessionAdminId}`);
       }
-      if (!session.isActive()) {
-        throw new Error(`Session is not active: ${sessionPhone}`);
+      if (session.status !== 'active') {
+        throw new Error(`Session is not active: ${sessionAdminId}`);
       }
     }
 
-    // Update channel entity
-    channel.linkToSession(sessionPhone);
+    // Update channel entity - channel now links to admin (not session directly)
+    // Channel.adminId will be set to the admin that owns the session
+    channel.linkToAdmin(sessionAdminId);
 
     // Update repository
     const updated = await this.#channelRepository.update(channelId, {
-      admin_session_phone: channel.adminSessionPhone,
+      admin_id: sessionAdminId,
       updated_at: channel.updatedAt
     });
 
     // Update state
     this.#stateManager.updateChannel(channelId, {
-      adminSessionPhone: updated.adminSessionPhone
+      adminId: updated.adminId
     });
 
     return {
       success: true,
       channel: updated,
-      message: sessionPhone 
-        ? `Channel linked to session ${sessionPhone}` 
-        : 'Channel unlinked from session'
+      message: sessionAdminId 
+        ? `Channel linked to admin ${sessionAdminId}` 
+        : 'Channel unlinked from admin'
     };
   }
 }

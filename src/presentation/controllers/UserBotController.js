@@ -97,7 +97,7 @@ class UserBotController {
   /**
    * Creates UserBot controller
    * @param {Object} dependencies - Injected dependencies
-   * @param {Object} sessionData - Session data
+   * @param {Object} sessionData - Session data (adminId, sessionString)
    */
   constructor(dependencies, sessionData = null) {
     // Inject use cases
@@ -126,9 +126,9 @@ class UserBotController {
     this.channelRepository = dependencies.channelRepository;
     this.sessionRepository = dependencies.sessionRepository;
 
-    // Session data
+    // Session data - use adminId instead of phone
     this.#sessionData = {
-      phone: sessionData?.phone || null,
+      adminId: sessionData?.adminId || sessionData?.admin_id || null,
       sessionString: sessionData?.session_string || null,
       userId: sessionData?.user_id || null,
     };
@@ -136,7 +136,7 @@ class UserBotController {
     // Logger
     this.#logger = createChildLogger({ 
       component: 'UserBotController',
-      phone: this.#sessionData.phone 
+      adminId: this.#sessionData.adminId 
     });
   }
 
@@ -146,7 +146,7 @@ class UserBotController {
    */
   async start() {
     try {
-      this.#logger.info('Starting UserBot...', { phone: this.#sessionData.phone });
+      this.#logger.info('Starting UserBot...', { adminId: this.#sessionData.adminId });
 
       // Load session
       const session = this.#loadSession();
@@ -167,8 +167,8 @@ class UserBotController {
       await this.#connect();
 
       // Update session activity
-      if (this.#sessionData.phone) {
-        await this.sessionRepository.updateActivity(this.#sessionData.phone);
+      if (this.#sessionData.adminId) {
+        await this.sessionRepository.updateActivity(this.#sessionData.adminId);
       }
 
       // Sync channels
@@ -190,12 +190,12 @@ class UserBotController {
       if (error.code === 401 || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
         this.#logger.error('Authentication error detected - session needs re-authentication');
         try {
-          const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+          const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
           if (session) {
             await this.sessionRepository.update(session.id, {
               status: 'error',
               last_error: 'Authentication failed: Session key invalid. Delete and recreate session.',
-              is_paused: true
+              auto_paused: true
             });
           }
         } catch (dbError) {
@@ -254,11 +254,11 @@ class UserBotController {
    */
   async #saveSession() {
     try {
-      if (this.#client && this.#sessionData.phone) {
+      if (this.#client && this.#sessionData.adminId) {
         const sessionString = this.#client.session.save();
 
         await this.#useCases.createSession.execute({
-          phone: this.#sessionData.phone,
+          adminId: this.#sessionData.adminId,
           sessionString: sessionString,
           status: 'active',
         });
@@ -281,11 +281,10 @@ class UserBotController {
 
       await this.#client.start({
         phoneNumber: async () => {
-          if (this.#sessionData.phone) {
-            return this.#sessionData.phone;
-          }
+          // Get phone from admin record
+          // For now, we'll rely on stored session
           throw new AuthenticationError(
-            'No phone number available. Please authenticate via AdminBot.'
+            'Session authentication required. Please re-authenticate via AdminBot.'
           );
         },
         password: async () => {
@@ -314,26 +313,26 @@ class UserBotController {
 
         this.#logger.info('Connected to Telegram', {
           userId: this.#sessionData.userId,
-          phone: this.#sessionData.phone,
+          adminId: this.#sessionData.adminId,
         });
       } catch (authError) {
         // Handle AUTH_KEY_UNREGISTERED error
         if (authError.errorMessage === 'AUTH_KEY_UNREGISTERED' || authError.code === 401) {
           this.#logger.error('Session authentication failed - session is invalid or expired', {
-            phone: this.#sessionData.phone,
+            adminId: this.#sessionData.adminId,
             error: authError.message
           });
           
           // Mark session as invalid in database
           try {
-            const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+            const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
             if (session) {
               await this.sessionRepository.update(session.id, {
                 status: 'error',
                 last_error: 'AUTH_KEY_UNREGISTERED: Session expired or revoked. Re-authentication required.',
-                is_paused: true
+                auto_paused: true
               });
-              this.#logger.info('Session marked as error and paused', { phone: this.#sessionData.phone });
+              this.#logger.info('Session marked as error and paused', { adminId: this.#sessionData.adminId });
             }
           } catch (dbError) {
             this.#logger.error('Failed to update session status', dbError);
@@ -350,12 +349,12 @@ class UserBotController {
     } catch (error) {
       // Update session with error info
       try {
-        const session = await this.sessionRepository.findByPhone(this.#sessionData.phone);
+        const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
         if (session) {
           await this.sessionRepository.update(session.id, {
             status: 'error',
             last_error: error.message,
-            is_paused: true
+            auto_paused: true
           });
         }
       } catch (dbError) {
@@ -367,6 +366,7 @@ class UserBotController {
   }
 
   /**
+  /**
    * Syncs channels from database
    * @private
    * @returns {Promise<void>}
@@ -375,12 +375,15 @@ class UserBotController {
     try {
       this.#logger.info('Syncing channels...');
 
-      // Get channels from database
-      const channels = await this.channelRepository.findByAdminSession(
-        this.#sessionData.phone
-      );
-
-      this.#logger.info(`Found ${channels.length} channels to monitor`);
+      // Get channels from database - Session linked to admin via adminId
+      // Channels should be linked to session via admin's phone (from Admin entity)
+      // For now, get all channels - can be filtered by admin later
+      const channels = await this.channelRepository.findByAdminSession(this.#sessionData.adminId);
+      if(!channels || channels.length === 0){
+        this.#logger.warn('No channels found', { adminId: this.#sessionData.adminId });
+        return;
+      }
+      this.#logger.info(`Found ${channels?.length} channels to monitor`);
 
       // Process each channel
       for (const channel of channels) {
@@ -397,7 +400,6 @@ class UserBotController {
       this.#logger.error('Failed to sync channels', error);
     }
   }
-
   /**
    * Syncs channel members
    * @private
@@ -510,7 +512,6 @@ class UserBotController {
       this.#logger.error('Error handling new message', error);
     }
   }
-
   /**
    * Forwards message to single user
    * @private
@@ -529,7 +530,7 @@ class UserBotController {
 
       return {
         id: result[0]?.id,
-        sessionPhone: this.#sessionData.phone,
+        adminId: this.#sessionData.adminId,
       };
 
     } catch (error) {
@@ -538,10 +539,11 @@ class UserBotController {
         const seconds = parseInt(error.errorMessage.match(/(\d+)/)?.[1] || '60');
         error.isFloodWait = true;
         error.seconds = seconds;
-        error.sessionPhone = this.#sessionData.phone;
+        error.adminId = this.#sessionData.adminId;
       }
       throw error;
     }
+  } }
   }
 
   /**
@@ -629,7 +631,7 @@ class UserBotController {
     return {
       isRunning: this.#isRunning,
       isPaused: this.#isPaused,
-      phone: this.#sessionData.phone,
+      adminId: this.#sessionData.adminId,
       connectedChannels: this.#connectedChannels.size,
     };
   }
@@ -679,7 +681,6 @@ class UserBotController {
             await this.#useCases.addChannel.execute({
               ...channelInfo,
               memberCount: entity.participantsCount || 0,
-              adminSessionPhone: this.#sessionData.phone,
               forwardEnabled: false, // Disabled by default
             });
             addedCount++;

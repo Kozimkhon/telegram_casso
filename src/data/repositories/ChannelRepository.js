@@ -33,7 +33,7 @@ class ChannelRepository extends IChannelRepository {
       max_delay_ms: ormEntity.maxDelayMs,
       schedule_enabled: ormEntity.scheduleEnabled,
       schedule_config: ormEntity.scheduleConfig,
-      admin_user_id: ormEntity.adminUserId,
+      // REMOVED: admin_user_id (not part of domain entity)
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -76,8 +76,8 @@ class ChannelRepository extends IChannelRepository {
       minDelayMs: data.min_delay_ms,
       maxDelayMs: data.max_delay_ms,
       scheduleEnabled: Boolean(data.schedule_enabled),
-      scheduleConfig: data.schedule_config,
-      adminUserId: data.admin_user_id
+      scheduleConfig: data.schedule_config
+      // REMOVED: adminUserId (not part of domain)
     });
 
     return this.#toDomainEntity(created);
@@ -97,7 +97,7 @@ class ChannelRepository extends IChannelRepository {
     if (updates.max_delay_ms !== undefined) ormUpdates.maxDelayMs = updates.max_delay_ms;
     if (updates.schedule_enabled !== undefined) ormUpdates.scheduleEnabled = Boolean(updates.schedule_enabled);
     if (updates.schedule_config !== undefined) ormUpdates.scheduleConfig = updates.schedule_config;
-    if (updates.admin_user_id !== undefined) ormUpdates.adminUserId = updates.admin_user_id;
+    // REMOVED: admin_user_id field mapping (not part of domain)
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

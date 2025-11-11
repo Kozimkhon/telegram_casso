@@ -26,9 +26,7 @@ class UserRepository extends IUserRepository {
       last_name: ormEntity.lastName,
       username: ormEntity.username,
       phone: ormEntity.phone,
-      is_bot: ormEntity.isBot,
-      is_premium: ormEntity.isPremium,
-      is_active: ormEntity.isActive,
+      // REMOVED: is_bot, is_premium, is_active (not part of domain entity)
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -64,10 +62,8 @@ class UserRepository extends IUserRepository {
       firstName: data.first_name,
       lastName: data.last_name,
       username: data.username,
-      phone: data.phone,
-      isBot: data.is_bot,
-      isPremium: data.is_premium,
-      isActive: data.is_active
+      phone: data.phone
+      // REMOVED: isBot, isPremium, isActive (not part of domain)
     });
 
     return this.#toDomainEntity(created);
@@ -80,9 +76,7 @@ class UserRepository extends IUserRepository {
     if (updates.last_name !== undefined) ormUpdates.lastName = updates.last_name;
     if (updates.username !== undefined) ormUpdates.username = updates.username;
     if (updates.phone !== undefined) ormUpdates.phone = updates.phone;
-    if (updates.is_bot !== undefined) ormUpdates.isBot = updates.is_bot;
-    if (updates.is_premium !== undefined) ormUpdates.isPremium = updates.is_premium;
-    if (updates.is_active !== undefined) ormUpdates.isActive = updates.is_active;
+    // REMOVED: is_bot, is_premium, is_active field mappings (not part of domain)
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);
@@ -137,14 +131,11 @@ class UserRepository extends IUserRepository {
   async getStatistics() {
     const all = await this.findAll();
     const withUsername = all.filter(u => u.username);
-    const premium = all.filter(u => u.isPremium);
-    const bots = all.filter(u => u.isBot);
+    // REMOVED: premium and bots filters (not part of domain)
 
     return {
       total: all.length,
-      withUsername: withUsername.length,
-      premium: premium.length,
-      bots: bots.length
+      withUsername: withUsername.length
     };
   }
 

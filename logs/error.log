@@ -966,3 +966,60 @@ TypeError: Cannot read properties of undefined (reading 'length')
 {
   "error": "Cannot read properties of undefined (reading 'length')"
 }
+2025-11-12 00:47:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:101:13)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:49:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:51:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:55:24 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:55:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:57:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
+2025-11-12 00:59:27 [ERROR]: Failed to sync channels
+TypeError: channels is not iterable
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:386:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "channels is not iterable"
+}
