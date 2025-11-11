@@ -1,0 +1,70 @@
+/**
+ * @fileoverview Callback Query Handlers Middleware
+ * Registers all callback query handlers
+ * @module presentation/middleware/callbacks
+ */
+
+import { asyncErrorHandler } from '../../shared/errorHandler.js';
+
+/**
+ * Sets up all callback query handlers
+ * @param {Object} bot - Telegraf bot instance
+ * @param {Object} handlers - Handler functions object
+ */
+export function setupCallbacks(bot, handlers) {
+  // Main menu
+  bot.action('main_menu', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleStart(ctx);
+  }));
+
+  // Channels list
+  bot.action('channels_list', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleChannelsList(ctx);
+  }));
+
+  // Toggle channel forwarding
+  bot.action(/^toggle_channel_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const channelId = ctx.match[1];
+    await handlers.handleToggleChannel(ctx, channelId);
+  }));
+
+  // Channel details
+  bot.action(/^channel_details_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const channelId = ctx.match[1];
+    await handlers.handleChannelDetails(ctx, channelId);
+  }));
+
+  // Sessions list
+  bot.action('sessions_list', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleSessionsList(ctx);
+  }));
+
+  // Forwarding stats
+  bot.action('forwarding_stats', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleForwardingStats(ctx);
+  }));
+
+  // System stats
+  bot.action('system_stats', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleSystemStats(ctx);
+  }));
+
+  // Register admin
+  bot.action('register_admin', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleAdminRegistration(ctx);
+  }, 'Register admin callback'));
+
+  // Contact support
+  bot.action('contact_support', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleContactSupport(ctx);
+  }));
+}

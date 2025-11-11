@@ -8,6 +8,7 @@ import IAdminRepository from '../../core/interfaces/IAdminRepository.js';
 import Admin from '../../core/entities/Admin.entity.js';
 import { AdminRole } from '../../shared/constants/index.js';
 import RepositoryFactory from './RepositoryFactory.js';
+import AdminEntity from '../../core/entities/db/Admin.entity.js';
 
 /**
  * Admin Repository
@@ -86,12 +87,7 @@ class AdminRepository extends IAdminRepository {
    */
   async create(admin) {
     const data = admin.toObject();
-    
-    const created = await this.#ormRepository.create({
-      userId: data.telegram_user_id,
-      role: data.role,
-      isActive: data.is_active
-    });
+    const created = await this.#ormRepository.create(request);
 
     return this.#toDomainEntity(created);
   }

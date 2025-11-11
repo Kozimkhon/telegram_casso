@@ -1,0 +1,137 @@
+2025-11-11 14:52:22 [ERROR]: unhandledRejection: Markup is not defined
+ReferenceError: Markup is not defined
+    at handleAdminNotRegistered (file:///E:/Experiments/telegram_casso/src/presentation/services/admin-bot.js:7:20)
+    at file:///E:/Experiments/telegram_casso/src/presentation/controllers/AdminBotController.js:185:11
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+ReferenceError: Markup is not defined
+    at handleAdminNotRegistered (file:///E:/Experiments/telegram_casso/src/presentation/services/admin-bot.js:7:20)
+    at file:///E:/Experiments/telegram_casso/src/presentation/controllers/AdminBotController.js:185:11
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Tue Nov 11 2025 14:52:22 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 23732,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 78716928,
+      "heapTotal": 35950592,
+      "heapUsed": 23727792,
+      "external": 2428844,
+      "arrayBuffers": 25482
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 19051.578
+  },
+  "trace": [
+    {
+      "column": 20,
+      "file": "file:///E:/Experiments/telegram_casso/src/presentation/services/admin-bot.js",
+      "function": "handleAdminNotRegistered",
+      "line": 7,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 11,
+      "file": "file:///E:/Experiments/telegram_casso/src/presentation/controllers/AdminBotController.js",
+      "function": null,
+      "line": 185,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js",
+      "function": null,
+      "line": 83,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "async E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": null,
+      "line": 519,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegraf\\lib\\composer.js",
+      "function": "async execute",
+      "line": 518,
+      "method": null,
+      "native": false
+    }
+  ]
+}

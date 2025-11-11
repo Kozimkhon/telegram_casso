@@ -29,24 +29,28 @@ class AddAdminUseCase {
 
   /**
    * Executes use case
-   * @param {Object} data - Admin data
+   * @param {Admin} data - Admin data
    * @returns {Promise<Object>} Result
    */
   async execute(data) {
     // Validate input
-    if (!data.telegramUserId) {
+    if (!data.userId) {
       throw new Error('Telegram user ID is required');
     }
 
     // Check if admin already exists
-    const existing = await this.#adminRepository.findByUserId(data.telegramUserId);
+    const existing = await this.#adminRepository.findByUserId(data.userId);
     if (existing) {
-      throw new Error(`Admin already exists for user: ${data.telegramUserId}`);
+      throw new Error(`Admin already exists for user: ${data.userId}`);
     }
 
     // Create admin entity
     const admin = new Admin({
-      telegramUserId: data.telegramUserId,
+      userId: data.userId,
+      username: data.username || null,
+      firstName: data.firstName || '',
+      lastName: data.lastName || null,
+      phone: data.phone || null,
       role: data.role || AdminRole.ADMIN,
       isActive: data.isActive !== false,
       createdAt: new Date().toISOString(),

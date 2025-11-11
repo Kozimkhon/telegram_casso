@@ -166,8 +166,8 @@ class Admin extends BaseEntity {
       phone: this.phone,
       role: this.role,
       is_active: this.isActive ? 1 : 0,
-      created_at: this.createdAt.toISOString(),
-      updated_at: this.updatedAt.toISOString()
+      created_at: this.createdAt,
+      updated_at: this.updatedAt
     };
   }
 
