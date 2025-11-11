@@ -42,29 +42,29 @@ class DeleteSessionUseCase {
 
   /**
    * Executes use case
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin user ID
    * @returns {Promise<Object>} Result
    */
-  async execute(phone) {
+  async execute(adminId) {
     // Find session
-    const session = await this.#sessionRepository.findByPhone(phone);
+    const session = await this.#sessionRepository.findByAdminId(adminId);
     if (!session) {
-      throw new Error(`Session not found: ${phone}`);
+      throw new Error(`Session not found: ${adminId}`);
     }
 
     // Find associated channels
-    const channels = await this.#channelRepository.findByAdminSession(phone);
+    const channels = await this.#channelRepository.findByAdminSession(adminId);
 
     // Unlink channels
     for (const channel of channels) {
-      channel.linkToSession(null);
+      channel.linkToSession(adminId);
       await this.#channelRepository.update(channel.channelId, {
-        admin_session_phone: null
+        admin_id: adminId
       });
     }
 
     // Delete session
-    const deleted = await this.#sessionRepository.delete(phone);
+    const deleted = await this.#sessionRepository.delete(adminId);
     if (!deleted) {
       throw new Error('Failed to delete session');
     }

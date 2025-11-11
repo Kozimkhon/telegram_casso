@@ -1366,3 +1366,78 @@ Error: findByAdminSession() must be implemented
 {
   "error": "findByAdminSession() must be implemented"
 }
+2025-11-12 00:10:20 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-12 00:10:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:12:20 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-12 00:12:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:14:20 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-12 00:14:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:16:20 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-12 00:16:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-12 00:18:20 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-12 00:18:20 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:43)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findByAdminSession() must be implemented"
+}

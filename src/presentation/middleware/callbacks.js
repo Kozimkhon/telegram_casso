@@ -201,7 +201,7 @@ export function setupCallbacks(bot, handlers) {
       "sync_channels",
       asyncErrorHandler(async (ctx) => {
         await ctx.answerCbQuery("⏳ Syncing channels...");
-        await handlers.syncChannels(ctx);//TODO implement
+        await handlers.handleSyncChannels(ctx);//TODO implement
       }, "Sync channels callback")
     );
 

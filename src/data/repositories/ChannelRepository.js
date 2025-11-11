@@ -141,6 +141,9 @@ class ChannelRepository extends IChannelRepository {
       totalMembers
     };
   }
+  async findByAdminSession(adminId){
+    this.#ormRepository.findByAdmin(adminId);
+  }
 }
 
 export default ChannelRepository;
