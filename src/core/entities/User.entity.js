@@ -45,6 +45,18 @@ class User extends BaseEntity {
   phone;
 
   /**
+   * Is bot flag
+   * @type {boolean}
+   */
+  isBot;
+
+  /**
+   * Is premium flag
+   * @type {boolean}
+   */
+  isPremium;
+
+  /**
    * Creates a User entity
    * @param {Object} data - User data
    */
@@ -57,6 +69,8 @@ class User extends BaseEntity {
     this.lastName = data.lastName || null;
     this.username = data.username || null;
     this.phone = data.phone || null;
+    this.isBot = data.isBot || false;
+    this.isPremium = data.isPremium || false;
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -190,6 +204,8 @@ class User extends BaseEntity {
       last_name: this.lastName,
       username: this.username,
       phone: this.phone,
+      is_bot: this.isBot ? 1 : 0,
+      is_premium: this.isPremium ? 1 : 0,
       created_at: this.createdAt.toISOString(),
       updated_at: this.updatedAt.toISOString()
     };
@@ -208,6 +224,8 @@ class User extends BaseEntity {
       lastName: row.last_name,
       username: row.username,
       phone: row.phone,
+      isBot: Boolean(row.is_bot),
+      isPremium: Boolean(row.is_premium),
       createdAt: row.created_at ? new Date(row.created_at) : new Date(),
       updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
     });

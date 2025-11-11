@@ -106,6 +106,7 @@ class AdminBotController {
     // Inject domain services
     this.#services = {
       metrics: dependencies.metricsService,
+      sessionAuthenticationService: dependencies.sessionAuthenticationService,
     };
 
     // Inject state manager
@@ -232,7 +233,7 @@ class AdminBotController {
     const adminHandlers = createAdminHandlers({
       addAdminUseCase: this.#useCases.addAdmin,
     });
-
+    
     // Combine all handlers
     const handlers = {
       handleStart,
@@ -247,6 +248,7 @@ class AdminBotController {
     // Setup commands and callbacks using middleware
     setupCommands(this.#bot, handlers);
     setupCallbacks(this.#bot, handlers);
+    this.#services.sessionAuthenticationService.registerHandlers(this.#bot);
   }
 
   /**

@@ -42,8 +42,11 @@ class AdminRepository extends IAdminRepository {
     if (!ormEntity) return null;
     
     return Admin.fromDatabaseRow({
-      id: ormEntity.id,
-      telegram_user_id: ormEntity.userId,
+      user_id: ormEntity.userId,
+      first_name: ormEntity.firstName,
+      last_name: ormEntity.lastName,
+      username: ormEntity.username,
+      phone: ormEntity.phone,
       role: ormEntity.role,
       is_active: ormEntity.isActive,
       created_at: ormEntity.createdAt,
@@ -86,8 +89,20 @@ class AdminRepository extends IAdminRepository {
    * @returns {Promise<Admin>} Created admin
    */
   async create(admin) {
-    const data = admin.toObject();
-    const created = await this.#ormRepository.create(request);
+    const data = Admin.toDatabaseRow(admin);
+    
+    // Convert snake_case to camelCase for TypeORM
+    const ormData = {
+      userId: data.user_id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      username: data.username,
+      phone: data.phone,
+      role: data.role,
+      isActive: Boolean(data.is_active)
+    };
+    
+    const created = await this.#ormRepository.create(ormData);
 
     return this.#toDomainEntity(created);
   }

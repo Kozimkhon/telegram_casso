@@ -10,22 +10,17 @@ import { SessionStatus } from '../../shared/constants/index.js';
 /**
  * Session Entity
  * Represents a UserBot session with status tracking
+ * Phone number is stored in Admin entity, not here
  * 
  * @class Session
  * @extends BaseEntity
  */
 class Session extends BaseEntity {
   /**
-   * Phone number
+   * Admin ID (foreign key to Admin entity, unique one-to-one)
    * @type {string}
    */
-  phone;
-
-  /**
-   * Telegram user ID
-   * @type {string}
-   */
-  userId;
+  adminId;
 
   /**
    * Session string (encrypted)
@@ -38,24 +33,6 @@ class Session extends BaseEntity {
    * @type {string}
    */
   status;
-
-  /**
-   * First name
-   * @type {string|null}
-   */
-  firstName;
-
-  /**
-   * Last name
-   * @type {string|null}
-   */
-  lastName;
-
-  /**
-   * Username
-   * @type {string|null}
-   */
-  username;
 
   /**
    * Auto-paused flag
@@ -95,13 +72,9 @@ class Session extends BaseEntity {
     super();
     this.validate(data);
     
-    this.phone = data.phone;
-    this.userId = data.userId;
+    this.adminId = data.adminId;
     this.sessionString = data.sessionString || '';
     this.status = data.status || SessionStatus.ACTIVE;
-    this.firstName = data.firstName || null;
-    this.lastName = data.lastName || null;
-    this.username = data.username || null;
     this.autoPaused = data.autoPaused || false;
     this.pauseReason = data.pauseReason || null;
     this.floodWaitUntil = data.floodWaitUntil ? new Date(data.floodWaitUntil) : null;
@@ -117,12 +90,8 @@ class Session extends BaseEntity {
    * @throws {Error} If validation fails
    */
   validate(data) {
-    if (!data.phone || typeof data.phone !== 'string') {
-      throw new Error('Phone is required and must be a string');
-    }
-
-    if (data.phone.length < 10 || data.phone.length > 20) {
-      throw new Error('Phone must be between 10 and 20 characters');
+    if (!data.adminId || typeof data.adminId !== 'string') {
+      throw new Error('Admin ID is required and must be a string');
     }
 
     if (data.status && !Object.values(SessionStatus).includes(data.status)) {
@@ -259,26 +228,14 @@ class Session extends BaseEntity {
   }
 
   /**
-   * Gets full name
-   * @returns {string} Full name
-   */
-  getFullName() {
-    return [this.firstName, this.lastName].filter(Boolean).join(' ') || 'Unknown';
-  }
-
-  /**
    * Converts entity to plain object for database
    * @returns {Object} Plain object
    */
   toObject() {
     return {
-      phone: this.phone,
-      user_id: this.userId,
+      admin_id: this.adminId,
       session_string: this.sessionString,
       status: this.status,
-      first_name: this.firstName,
-      last_name: this.lastName,
-      username: this.username,
       auto_paused: this.autoPaused ? 1 : 0,
       pause_reason: this.pauseReason,
       flood_wait_until: this.floodWaitUntil ? this.floodWaitUntil.toISOString() : null,
@@ -297,13 +254,9 @@ class Session extends BaseEntity {
    */
   static fromDatabaseRow(row) {
     return new Session({
-      phone: row.phone,
-      userId: row.user_id,
+      adminId: row.admin_id,
       sessionString: row.session_string,
       status: row.status,
-      firstName: row.first_name,
-      lastName: row.last_name,
-      username: row.username,
       autoPaused: Boolean(row.auto_paused),
       pauseReason: row.pause_reason,
       floodWaitUntil: row.flood_wait_until,

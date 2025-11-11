@@ -21,6 +21,15 @@ class SessionRepository extends BaseRepository {
     super(repository, 'Session');
   }
   /**
+   * Finds session by admin ID
+   * @param {string} adminId - Admin user ID
+   * @returns {Promise<Object|null>} Session or null
+   */
+  async findByAdminId(adminId) {
+    return await this.findOne({ adminId });
+  }
+
+  /**
    * Finds all active sessions
    * @returns {Promise<Object[]>} Active sessions
    */
@@ -38,12 +47,12 @@ class SessionRepository extends BaseRepository {
   }
 
   /**
-   * Finds sessions by admin
+   * Finds sessions by admin (for backwards compatibility if needed)
    * @param {string} adminUserId - Admin user ID
-   * @returns {Promise<Object[]>} Admin's sessions
+   * @returns {Promise<Object[]>} Admin's sessions (typically just one)
    */
   async findByAdmin(adminUserId) {
-    return await this.findMany({ adminUserId });
+    return await this.findMany({ adminId: adminUserId });
   }
 
   /**
@@ -63,12 +72,12 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Updates session activity
-   * @param {string} admin_id - Session admin ID
+   * @param {string} adminId - Admin user ID
    * @returns {Promise<void>}
    */
-  async updateActivity(admin_id) {
+  async updateActivity(adminId) {
     await this.repository.update(
-      { admin_id },
+      { adminId },
       {
         lastActive: new Date(),
         updatedAt: new Date(),
@@ -78,14 +87,14 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Sets flood wait for session
-   * @param {string} admin_id - Session admin ID
+   * @param {string} adminId - Admin user ID
    * @param {number} seconds - Flood wait seconds
    * @returns {Promise<void>}
    */
-  async setFloodWait(admin_id, seconds) {
+  async setFloodWait(adminId, seconds) {
     const floodWaitUntil = new Date(Date.now() + seconds * 1000);
     await this.repository.update(
-      { admin_id },
+      { adminId },
       {
         status: 'paused',
         autoPaused: true,
@@ -99,13 +108,13 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Pauses session
-   * @param {string} admin_id - Session admin ID
+   * @param {string} adminId - Admin user ID
    * @param {string} reason - Pause reason
    * @returns {Promise<void>}
    */
-  async pause(admin_id, reason = 'Manual pause') {
+  async pause(adminId, reason = 'Manual pause') {
     await this.repository.update(
-      { admin_id },
+      { adminId },
       {
         status: 'paused',
         pauseReason: reason,
@@ -117,12 +126,12 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Resumes session
-   * @param {string} admin_id - Session admin ID
+   * @param {string} adminId - Admin user ID
    * @returns {Promise<void>}
    */
-  async resume(admin_id) {
+  async resume(adminId) {
     await this.repository.update(
-      { admin_id },
+      { adminId },
       {
         status: 'active',
         pauseReason: null,

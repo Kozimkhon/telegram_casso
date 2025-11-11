@@ -37,6 +37,17 @@ export const ChannelEntity = new EntitySchema({
       type: 'varchar',
       nullable: false,
     },
+    username: {
+      type: 'varchar',
+      nullable: true,
+      comment: 'Channel username',
+    },
+    memberCount: {
+      name: 'member_count',
+      type: 'integer',
+      default: 0,
+      comment: 'Number of channel members',
+    },
     forwardEnabled: {
       name: 'forward_enabled',
       type: 'boolean',
@@ -82,6 +93,12 @@ export const ChannelEntity = new EntitySchema({
       comment: 'JSON schedule configuration',
     },
     // Foreign keys
+    adminSessionPhone: {
+      name: 'admin_session_phone',
+      type: 'varchar',
+      nullable: true,
+      comment: 'Session phone that manages this channel',
+    },
     adminUserId: {
       name: 'admin_user_id',
       type: 'varchar',

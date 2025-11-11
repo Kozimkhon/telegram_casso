@@ -28,7 +28,14 @@ export function createSessionHandlers(dependencies) {
       const sessions = await sessionRepository.findAll();
 
       if (sessions.length === 0) {
-        await ctx.editMessageText('🔧 No sessions configured yet.');
+
+          const keyboard = Markup.inlineKeyboard([
+              [Markup.button.callback("📱 Add Session", "add_session")],
+              [Markup.button.callback("🏠 Main Menu", "main_menu")],
+            ]);
+        await ctx.editMessageText('🔧 No sessions configured yet.'
+        , { parse_mode: 'Markdown', ...keyboard }
+        );
         return;
       }
 

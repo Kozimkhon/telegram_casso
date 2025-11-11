@@ -20,7 +20,6 @@ class ChannelRepository extends IChannelRepository {
     if (!ormEntity) return null;
     
     return Channel.fromDatabaseRow({
-      id: ormEntity.id,
       channel_id: ormEntity.channelId,
       title: ormEntity.title,
       username: ormEntity.username,
@@ -62,7 +61,7 @@ class ChannelRepository extends IChannelRepository {
       title: data.title,
       username: data.username,
       memberCount: data.member_count,
-      forwardEnabled: data.forward_enabled,
+      forwardEnabled: Boolean(data.forward_enabled),
       adminSessionPhone: data.admin_session_phone
     });
 
@@ -73,10 +72,10 @@ class ChannelRepository extends IChannelRepository {
     const ormUpdates = {};
     
     if (updates.title) ormUpdates.title = updates.title;
-    if (updates.username) ormUpdates.username = updates.username;
+    if (updates.username !== undefined) ormUpdates.username = updates.username;
     if (updates.member_count !== undefined) ormUpdates.memberCount = updates.member_count;
-    if (updates.forward_enabled !== undefined) ormUpdates.forwardEnabled = updates.forward_enabled;
-    if (updates.admin_session_phone) ormUpdates.adminSessionPhone = updates.admin_session_phone;
+    if (updates.forward_enabled !== undefined) ormUpdates.forwardEnabled = Boolean(updates.forward_enabled);
+    if (updates.admin_session_phone !== undefined) ormUpdates.adminSessionPhone = updates.admin_session_phone;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

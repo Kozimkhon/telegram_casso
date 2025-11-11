@@ -20,14 +20,14 @@ class SessionRepository extends ISessionRepository {
     if (!ormEntity) return null;
     
     return Session.fromDatabaseRow({
-      id: ormEntity.id,
-      phone: ormEntity.phone,
-      session_string: ormEntity.sessionString,
-      is_paused: ormEntity.isPaused,
-      status: ormEntity.status,
-      flood_wait_until: ormEntity.floodWaitUntil,
-      last_activity: ormEntity.lastActivity,
       admin_id: ormEntity.adminId,
+      session_string: ormEntity.sessionString,
+      status: ormEntity.status,
+      auto_paused: ormEntity.autoPaused,
+      pause_reason: ormEntity.pauseReason,
+      flood_wait_until: ormEntity.floodWaitUntil,
+      last_error: ormEntity.lastError,
+      last_active: ormEntity.lastActive,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -38,8 +38,8 @@ class SessionRepository extends ISessionRepository {
     return this.#toDomainEntity(entity);
   }
 
-  async findByPhone(phone) {
-    const entity = await this.#ormRepository.findByPhone(phone);
+  async findByAdminId(adminId) {
+    const entity = await this.#ormRepository.findByAdminId(adminId);
     return this.#toDomainEntity(entity);
   }
 
@@ -61,11 +61,11 @@ class SessionRepository extends ISessionRepository {
     const data = session.toObject();
     
     const created = await this.#ormRepository.create({
-      phone: data.phone,
+      adminId: data.admin_id,
       sessionString: data.session_string,
-      isPaused: data.is_paused,
       status: data.status,
-      adminId: data.admin_id
+      autoPaused: Boolean(data.auto_paused),
+      pauseReason: data.pause_reason
     });
 
     return this.#toDomainEntity(created);
@@ -74,11 +74,14 @@ class SessionRepository extends ISessionRepository {
   async update(id, updates) {
     const ormUpdates = {};
     
+    if (updates.admin_id) ormUpdates.adminId = updates.admin_id;
     if (updates.session_string) ormUpdates.sessionString = updates.session_string;
-    if (updates.is_paused !== undefined) ormUpdates.isPaused = updates.is_paused;
     if (updates.status) ormUpdates.status = updates.status;
-    if (updates.flood_wait_until) ormUpdates.floodWaitUntil = updates.flood_wait_until;
-    if (updates.last_activity) ormUpdates.lastActivity = updates.last_activity;
+    if (updates.auto_paused !== undefined) ormUpdates.autoPaused = Boolean(updates.auto_paused);
+    if (updates.pause_reason !== undefined) ormUpdates.pauseReason = updates.pause_reason;
+    if (updates.flood_wait_until !== undefined) ormUpdates.floodWaitUntil = updates.flood_wait_until;
+    if (updates.last_error !== undefined) ormUpdates.lastError = updates.last_error;
+    if (updates.last_active) ormUpdates.lastActive = updates.last_active;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);
@@ -112,42 +115,48 @@ class SessionRepository extends ISessionRepository {
   }
 
   async pause(id) {
-    await this.#ormRepository.pause(id);
+    const session = await this.findById(id);
+    if (!session) throw new Error(`Session not found: ${id}`);
+    
+    await this.#ormRepository.pause(session.adminId);
     return await this.findById(id);
   }
 
   async resume(id) {
-    await this.#ormRepository.resume(id);
+    const session = await this.findById(id);
+    if (!session) throw new Error(`Session not found: ${id}`);
+    
+    await this.#ormRepository.resume(session.adminId);
     return await this.findById(id);
   }
 
-  async setFloodWait(phone, seconds) {
-    const session = await this.findByPhone(phone);
-    if (!session) throw new Error(`Session not found: ${phone}`);
+  async setFloodWait(adminId, seconds) {
+    const session = await this.findByAdminId(adminId);
+    if (!session) throw new Error(`Session not found for admin: ${adminId}`);
     
-    await this.#ormRepository.setFloodWait(phone, seconds);
-    return await this.findById(session.id);
+    await this.#ormRepository.setFloodWait(adminId, seconds);
+    return await this.findByAdminId(adminId);
   }
 
-  async updateActivity(phone) {
-    const session = await this.findByPhone(phone);
-    if (!session) throw new Error(`Session not found: ${phone}`);
+  async updateActivity(adminId) {
+    const session = await this.findByAdminId(adminId);
+    if (!session) throw new Error(`Session not found for admin: ${adminId}`);
     
-    await this.#ormRepository.updateActivity(phone);
-    return await this.findById(session.id);
+    await this.#ormRepository.updateActivity(adminId);
+    return await this.findByAdminId(adminId);
   }
 
   async getStatistics() {
     const all = await this.findAll();
     const active = await this.findActive();
-    const paused = all.filter(s => s.isPaused);
-    const floodWait = all.filter(s => s.isInFloodWait());
+    const paused = all.filter(s => s.isPaused());
+    const error = all.filter(s => s.hasError());
 
     return {
       total: all.length,
       active: active.length,
       paused: paused.length,
-      floodWait: floodWait.length
+      error: error.length
     };
   }
 }

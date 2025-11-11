@@ -54,6 +54,12 @@ export const UserEntity = new EntitySchema({
       type: 'boolean',
       default: false,
     },
+    isPremium: {
+      name: 'is_premium',
+      type: 'boolean',
+      default: false,
+      comment: 'Whether user has Telegram Premium',
+    },
     isActive: {
       name: 'is_active',
       type: 'boolean',

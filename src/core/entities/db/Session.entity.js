@@ -20,18 +20,18 @@ export const SessionEntity = new EntitySchema({
   name: 'Session',
   tableName: 'sessions',
   columns: {
-
     id: {
       type: 'integer',
       primary: true,
       generated: true,
     },
-    // Foreign key to Admin
+    // Foreign key to Admin (user info including phone stored in Admin table)
     adminId: {
       name: 'admin_id',
       type: 'varchar',
-      nullable: true,
-      comment: 'Admin ID who owns this session',
+      unique: true,
+      nullable: false,
+      comment: 'Admin user ID who owns this session (one-to-one)',
     },
     sessionString: {
       name: 'session_string',
@@ -44,7 +44,6 @@ export const SessionEntity = new EntitySchema({
       default: 'active',
       comment: 'Status: active, paused, error, deleted',
     },
-
     autoPaused: {
       name: 'auto_paused',
       type: 'boolean',
@@ -91,10 +90,10 @@ export const SessionEntity = new EntitySchema({
       target: 'Admin',
       joinColumn: {
         name: 'admin_id',
-        referencedColumnName: 'id',
+        referencedColumnName: 'userId',
       },
-      onDelete: 'SET NULL',
-      nullable: true,
+      onDelete: 'CASCADE',
+      nullable: false,
     },
     // Session has many Messages
     messages: {

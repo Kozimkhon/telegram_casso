@@ -20,7 +20,6 @@ class UserRepository extends IUserRepository {
     if (!ormEntity) return null;
     
     return User.fromDatabaseRow({
-      id: ormEntity.id,
       user_id: ormEntity.userId,
       first_name: ormEntity.firstName,
       last_name: ormEntity.lastName,
@@ -75,9 +74,10 @@ class UserRepository extends IUserRepository {
     const ormUpdates = {};
     
     if (updates.first_name) ormUpdates.firstName = updates.first_name;
-    if (updates.last_name) ormUpdates.lastName = updates.last_name;
-    if (updates.username) ormUpdates.username = updates.username;
-    if (updates.phone) ormUpdates.phone = updates.phone;
+    if (updates.last_name !== undefined) ormUpdates.lastName = updates.last_name;
+    if (updates.username !== undefined) ormUpdates.username = updates.username;
+    if (updates.phone !== undefined) ormUpdates.phone = updates.phone;
+    if (updates.is_bot !== undefined) ormUpdates.isBot = updates.is_bot;
     if (updates.is_premium !== undefined) ormUpdates.isPremium = updates.is_premium;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);

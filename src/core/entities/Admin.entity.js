@@ -190,6 +190,19 @@ class Admin extends BaseEntity {
       updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
     });
   }
+  static toDatabaseRow(admin) {
+    return {
+      user_id: admin.userId,
+      first_name: admin.firstName,
+      last_name: admin.lastName,
+      username: admin.username,
+      phone: admin.phone||"",
+      role: admin.role,
+      is_active: admin.isActive ? 1 : 0,
+      created_at: admin.createdAt,
+      updated_at: admin.updatedAt
+    };
+  }
 }
 
 export default Admin;

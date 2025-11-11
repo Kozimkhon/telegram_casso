@@ -426,3 +426,125 @@ TimeoutError: Promise timed out after 90000 milliseconds
 {
   "error": "Promise timed out after 90000 milliseconds"
 }
+2025-11-11 16:44:12 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 16:44:53 [ERROR]: Error during admin registration
+TypeError: this.createdAt.toISOString is not a function
+    at Admin.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Admin.entity.js:169:34)
+    at AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/AdminRepository.js:89:24)
+    at AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:49)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-11 16:44:59 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 16:45:08 [ERROR]: Error during admin registration
+ReferenceError: request is not defined
+    at AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/AdminRepository.js:90:54)
+    at AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:49)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "request is not defined"
+}
+2025-11-11 16:46:11 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 16:46:53 [ERROR]: Error during admin registration
+Error: Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id
+    at AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/typeorm/BaseRepository.js:111:13)
+    at async AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/AdminRepository.js:90:21)
+    at async AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:21)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id"
+}
+2025-11-11 16:50:45 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 16:51:14 [ERROR]: Error during admin registration
+Error: Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id
+    at AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/typeorm/BaseRepository.js:111:13)
+    at async AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/AdminRepository.js:91:21)
+    at async AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:21)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id"
+}
+2025-11-11 16:52:57 [ERROR]: Error during admin registration
+Error: Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id
+    at AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/typeorm/BaseRepository.js:111:13)
+    at async AdminRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/AdminRepository.js:91:21)
+    at async AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:21)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin: Failed to create - SQLITE_CONSTRAINT: NOT NULL constraint failed: admins.user_id"
+}
+2025-11-11 16:52:57 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-11 16:56:29 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 16:57:06 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 17:12:00 [ERROR]: Error during admin registration
+Error: Admin already exists for user: 566160086
+    at AddAdminUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:44:13)
+    at async Object.handleAdminRegistration (file:///E:/Experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:36:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin already exists for user: 566160086"
+}

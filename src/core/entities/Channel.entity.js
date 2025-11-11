@@ -27,6 +27,12 @@ class Channel extends BaseEntity {
   title;
 
   /**
+   * Channel username
+   * @type {string|null}
+   */
+  username;
+
+  /**
    * Forward enabled flag
    * @type {boolean}
    */
@@ -49,6 +55,7 @@ class Channel extends BaseEntity {
    * @param {Object} data - Channel data
    * @param {string} data.channelId - Channel ID
    * @param {string} data.title - Channel title
+   * @param {string} [data.username] - Channel username
    * @param {boolean} [data.forwardEnabled=true] - Forward enabled
    * @param {string} [data.adminSessionPhone] - Admin session phone
    * @param {number} [data.memberCount=0] - Member count
@@ -59,6 +66,7 @@ class Channel extends BaseEntity {
     
     this.channelId = data.channelId;
     this.title = data.title;
+    this.username = data.username || null;
     this.forwardEnabled = data.forwardEnabled !== undefined ? data.forwardEnabled : true;
     this.adminSessionPhone = data.adminSessionPhone || null;
     this.memberCount = data.memberCount || 0;
@@ -192,6 +200,7 @@ class Channel extends BaseEntity {
     return {
       channel_id: this.channelId,
       title: this.title,
+      username: this.username,
       forward_enabled: this.forwardEnabled ? 1 : 0,
       admin_session_phone: this.adminSessionPhone,
       member_count: this.memberCount,
@@ -210,6 +219,7 @@ class Channel extends BaseEntity {
     return new Channel({
       channelId: row.channel_id,
       title: row.title,
+      username: row.username || null,
       forwardEnabled: Boolean(row.forward_enabled),
       adminSessionPhone: row.admin_session_phone || null,
       memberCount: row.member_count || 0,
