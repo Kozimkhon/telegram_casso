@@ -40,15 +40,6 @@ class MessageRepository extends BaseRepository {
   }
 
   /**
-   * Finds messages by session
-   * @param {string} sessionPhone - Session phone
-   * @returns {Promise<Object[]>} Session messages
-   */
-  async findBySession(sessionPhone) {
-    return await this.findMany({ sessionPhone });
-  }
-
-  /**
    * Finds messages by status
    * @param {string} status - Message status
    * @returns {Promise<Object[]>} Messages with status

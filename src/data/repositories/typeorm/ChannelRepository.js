@@ -31,15 +31,6 @@ class ChannelRepository extends BaseRepository {
   }
 
   /**
-   * Finds channels by session
-   * @param {string} sessionPhone - Session phone
-   * @returns {Promise<Object[]>} Session's channels
-   */
-  async findBySession(sessionPhone) {
-    return await this.findMany({ sessionPhone });
-  }
-
-  /**
    * Finds channels by admin
    * @param {string} adminUserId - Admin user ID
    * @returns {Promise<Object[]>} Admin's channels
@@ -71,20 +62,6 @@ class ChannelRepository extends BaseRepository {
   }
 
   /**
-   * Finds channel with session
-   * @param {string} channelId - Channel ID
-   * @returns {Promise<Object|null>} Channel with session
-   */
-  async findWithSession(channelId) {
-    return await this.findOne(
-      { channelId },
-      {
-        relations: ['session'],
-      }
-    );
-  }
-
-  /**
    * Finds channel with admin
    * @param {string} channelId - Channel ID
    * @returns {Promise<Object|null>} Channel with admin
@@ -107,7 +84,7 @@ class ChannelRepository extends BaseRepository {
     return await this.findOne(
       { channelId },
       {
-        relations: ['admin', 'session', 'users', 'messages', 'metrics'],
+        relations: ['admin', 'users', 'messages', 'metrics'],
       }
     );
   }

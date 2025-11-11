@@ -22,15 +22,6 @@ class MetricRepository extends BaseRepository {
   }
 
   /**
-   * Finds metrics by session
-   * @param {string} sessionPhone - Session phone
-   * @returns {Promise<Object[]>} Session metrics
-   */
-  async findBySession(sessionPhone) {
-    return await this.findMany({ sessionPhone });
-  }
-
-  /**
    * Finds metrics by channel
    * @param {string} channelId - Channel ID
    * @returns {Promise<Object[]>} Channel metrics
@@ -50,33 +41,32 @@ class MetricRepository extends BaseRepository {
 
   /**
    * Finds metric for session/channel/user combination
-   * @param {string} sessionPhone - Session phone
+
    * @param {string} channelId - Channel ID
    * @param {string} userId - User ID
    * @returns {Promise<Object|null>} Metric or null
    */
-  async findByComposite(sessionPhone, channelId, userId) {
-    return await this.findOne({ sessionPhone, channelId, userId });
+  async findByComposite( channelId, userId) {
+    return await this.findOne({channelId, userId });
   }
 
   /**
    * Increments messages sent
-   * @param {string} sessionPhone - Session phone
    * @param {string} channelId - Channel ID
    * @param {string} userId - User ID
    * @returns {Promise<void>}
    */
-  async incrementMessagesSent(sessionPhone, channelId, userId) {
-    const metric = await this.findByComposite(sessionPhone, channelId, userId);
+  async incrementMessagesSent( channelId, userId) {
+    const metric = await this.findByComposite( channelId, userId);
     
     if (metric) {
       await this.repository.increment(
-        { sessionPhone, channelId, userId },
+        { channelId, userId },
         'messagesSent',
         1
       );
       await this.repository.update(
-        { sessionPhone, channelId, userId },
+        { channelId, userId },
         {
           lastMessageAt: new Date(),
           lastActivity: new Date(),
@@ -85,7 +75,7 @@ class MetricRepository extends BaseRepository {
       );
     } else {
       await this.create({
-        sessionPhone,
+       
         channelId,
         userId,
         messagesSent: 1,
@@ -97,22 +87,21 @@ class MetricRepository extends BaseRepository {
 
   /**
    * Increments messages failed
-   * @param {string} sessionPhone - Session phone
    * @param {string} channelId - Channel ID
    * @param {string} userId - User ID
    * @returns {Promise<void>}
    */
-  async incrementMessagesFailed(sessionPhone, channelId, userId) {
-    const metric = await this.findByComposite(sessionPhone, channelId, userId);
+  async incrementMessagesFailed( channelId, userId) {
+    const metric = await this.findByComposite( channelId, userId);
     
     if (metric) {
       await this.repository.increment(
-        { sessionPhone, channelId, userId },
+        { channelId, userId },
         'messagesFailed',
         1
       );
       await this.repository.update(
-        { sessionPhone, channelId, userId },
+        { channelId, userId },
         {
           lastActivity: new Date(),
           updatedAt: new Date(),
@@ -131,22 +120,21 @@ class MetricRepository extends BaseRepository {
 
   /**
    * Increments flood errors
-   * @param {string} sessionPhone - Session phone
    * @param {string} channelId - Channel ID
    * @param {string} userId - User ID
    * @returns {Promise<void>}
    */
-  async incrementFloodErrors(sessionPhone, channelId, userId) {
-    const metric = await this.findByComposite(sessionPhone, channelId, userId);
+  async incrementFloodErrors( channelId, userId) {
+    const metric = await this.findByComposite(channelId, userId);
     
     if (metric) {
       await this.repository.increment(
-        { sessionPhone, channelId, userId },
+        {  channelId, userId },
         'floodErrors',
         1
       );
       await this.repository.update(
-        { sessionPhone, channelId, userId },
+        { channelId, userId },
         {
           lastFloodAt: new Date(),
           lastActivity: new Date(),
@@ -155,7 +143,7 @@ class MetricRepository extends BaseRepository {
       );
     } else {
       await this.create({
-        sessionPhone,
+       
         channelId,
         userId,
         floodErrors: 1,
@@ -198,27 +186,6 @@ class MetricRepository extends BaseRepository {
       .addSelect('SUM(metric.messages_failed)', 'totalFailed')
       .addSelect('SUM(metric.flood_errors)', 'totalFloodErrors')
       .where('metric.channel_id = :channelId', { channelId })
-      .getRawOne();
-
-    return {
-      totalSent: parseInt(result.totalSent || 0),
-      totalFailed: parseInt(result.totalFailed || 0),
-      totalFloodErrors: parseInt(result.totalFloodErrors || 0),
-    };
-  }
-
-  /**
-   * Gets statistics by session
-   * @param {string} sessionPhone - Session phone
-   * @returns {Promise<Object>} Session statistics
-   */
-  async getSessionStatistics(sessionPhone) {
-    const result = await this.repository
-      .createQueryBuilder('metric')
-      .select('SUM(metric.messages_sent)', 'totalSent')
-      .addSelect('SUM(metric.messages_failed)', 'totalFailed')
-      .addSelect('SUM(metric.flood_errors)', 'totalFloodErrors')
-      .where('metric.session_phone = :sessionPhone', { sessionPhone })
       .getRawOne();
 
     return {

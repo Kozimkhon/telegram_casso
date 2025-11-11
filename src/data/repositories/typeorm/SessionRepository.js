@@ -20,16 +20,6 @@ class SessionRepository extends BaseRepository {
     const repository = AppDataSource.getRepository(SessionEntity);
     super(repository, 'Session');
   }
-
-  /**
-   * Finds session by phone
-   * @param {string} phone - Phone number
-   * @returns {Promise<Object|null>} Session or null
-   */
-  async findByPhone(phone) {
-    return await this.findOne({ phone });
-  }
-
   /**
    * Finds all active sessions
    * @returns {Promise<Object[]>} Active sessions
@@ -57,34 +47,6 @@ class SessionRepository extends BaseRepository {
   }
 
   /**
-   * Finds session with admin
-   * @param {string} phone - Session phone
-   * @returns {Promise<Object|null>} Session with admin
-   */
-  async findWithAdmin(phone) {
-    return await this.findOne(
-      { phone },
-      {
-        relations: ['admin'],
-      }
-    );
-  }
-
-  /**
-   * Finds session with channels
-   * @param {string} phone - Session phone
-   * @returns {Promise<Object|null>} Session with channels
-   */
-  async findWithChannels(phone) {
-    return await this.findOne(
-      { phone },
-      {
-        relations: ['channels'],
-      }
-    );
-  }
-
-  /**
    * Finds sessions ready to resume
    * @returns {Promise<Object[]>} Sessions ready to resume
    */
@@ -101,12 +63,12 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Updates session activity
-   * @param {string} phone - Session phone
+   * @param {string} admin_id - Session admin ID
    * @returns {Promise<void>}
    */
-  async updateActivity(phone) {
+  async updateActivity(admin_id) {
     await this.repository.update(
-      { phone },
+      { admin_id },
       {
         lastActive: new Date(),
         updatedAt: new Date(),
@@ -116,14 +78,14 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Sets flood wait for session
-   * @param {string} phone - Session phone
+   * @param {string} admin_id - Session admin ID
    * @param {number} seconds - Flood wait seconds
    * @returns {Promise<void>}
    */
-  async setFloodWait(phone, seconds) {
+  async setFloodWait(admin_id, seconds) {
     const floodWaitUntil = new Date(Date.now() + seconds * 1000);
     await this.repository.update(
-      { phone },
+      { admin_id },
       {
         status: 'paused',
         autoPaused: true,
@@ -137,13 +99,13 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Pauses session
-   * @param {string} phone - Session phone
+   * @param {string} admin_id - Session admin ID
    * @param {string} reason - Pause reason
    * @returns {Promise<void>}
    */
-  async pause(phone, reason = 'Manual pause') {
+  async pause(admin_id, reason = 'Manual pause') {
     await this.repository.update(
-      { phone },
+      { admin_id },
       {
         status: 'paused',
         pauseReason: reason,
@@ -155,12 +117,12 @@ class SessionRepository extends BaseRepository {
 
   /**
    * Resumes session
-   * @param {string} phone - Session phone
+   * @param {string} admin_id - Session admin ID
    * @returns {Promise<void>}
    */
-  async resume(phone) {
+  async resume(admin_id) {
     await this.repository.update(
-      { phone },
+      { admin_id },
       {
         status: 'active',
         pauseReason: null,

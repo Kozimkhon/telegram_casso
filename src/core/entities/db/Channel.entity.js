@@ -88,12 +88,6 @@ export const ChannelEntity = new EntitySchema({
       nullable: true,
       comment: 'Admin who manages this channel',
     },
-    sessionPhone: {
-      name: 'session_phone',
-      type: 'varchar',
-      nullable: true,
-      comment: 'Session used for this channel',
-    },
     createdAt: {
       name: 'created_at',
       type: 'datetime',
@@ -113,17 +107,6 @@ export const ChannelEntity = new EntitySchema({
       joinColumn: {
         name: 'admin_user_id',
         referencedColumnName: 'userId',
-      },
-      onDelete: 'SET NULL',
-      nullable: true,
-    },
-    // Channel belongs to Session
-    session: {
-      type: 'many-to-one',
-      target: 'Session',
-      joinColumn: {
-        name: 'session_phone',
-        referencedColumnName: 'phone',
       },
       onDelete: 'SET NULL',
       nullable: true,
@@ -168,10 +151,6 @@ export const ChannelEntity = new EntitySchema({
     {
       name: 'IDX_CHANNEL_ADMIN',
       columns: ['adminUserId'],
-    },
-    {
-      name: 'IDX_CHANNEL_SESSION',
-      columns: ['sessionPhone'],
     },
     {
       name: 'IDX_CHANNEL_FORWARD_ENABLED',

@@ -53,13 +53,6 @@ export const MessageEntity = new EntitySchema({
       type: 'integer',
       default: 0,
     },
-    // Foreign keys
-    sessionPhone: {
-      name: 'session_phone',
-      type: 'varchar',
-      nullable: true,
-      comment: 'Session used to send message',
-    },
     channelId: {
       name: 'channel_id',
       type: 'varchar',
@@ -84,17 +77,7 @@ export const MessageEntity = new EntitySchema({
     },
   },
   relations: {
-    // Message belongs to Session
-    session: {
-      type: 'many-to-one',
-      target: 'Session',
-      joinColumn: {
-        name: 'session_phone',
-        referencedColumnName: 'phone',
-      },
-      onDelete: 'SET NULL',
-      nullable: true,
-    },
+   
     // Message belongs to Channel
     channel: {
       type: 'many-to-one',
@@ -120,10 +103,6 @@ export const MessageEntity = new EntitySchema({
     {
       name: 'IDX_MESSAGE_STATUS',
       columns: ['status'],
-    },
-    {
-      name: 'IDX_MESSAGE_SESSION',
-      columns: ['sessionPhone'],
     },
     {
       name: 'IDX_MESSAGE_CHANNEL',

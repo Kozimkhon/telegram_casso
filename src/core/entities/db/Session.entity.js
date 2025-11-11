@@ -20,22 +20,18 @@ export const SessionEntity = new EntitySchema({
   name: 'Session',
   tableName: 'sessions',
   columns: {
+
     id: {
       type: 'integer',
       primary: true,
       generated: true,
     },
-    phone: {
-      type: 'varchar',
-      unique: true,
-      nullable: false,
-      comment: 'Phone number used for session',
-    },
-    userId: {
-      name: 'user_id',
+    // Foreign key to Admin
+    adminId: {
+      name: 'admin_id',
       type: 'varchar',
       nullable: true,
-      comment: 'Telegram user ID of the session',
+      comment: 'Admin ID who owns this session',
     },
     sessionString: {
       name: 'session_string',
@@ -48,20 +44,7 @@ export const SessionEntity = new EntitySchema({
       default: 'active',
       comment: 'Status: active, paused, error, deleted',
     },
-    firstName: {
-      name: 'first_name',
-      type: 'varchar',
-      nullable: true,
-    },
-    lastName: {
-      name: 'last_name',
-      type: 'varchar',
-      nullable: true,
-    },
-    username: {
-      type: 'varchar',
-      nullable: true,
-    },
+
     autoPaused: {
       name: 'auto_paused',
       type: 'boolean',
@@ -89,13 +72,7 @@ export const SessionEntity = new EntitySchema({
       type: 'datetime',
       nullable: true,
     },
-    // Foreign key to Admin
-    adminId: {
-      name: 'admin_id',
-      type: 'varchar',
-      nullable: true,
-      comment: 'Admin ID who owns this session',
-    },
+    
     createdAt: {
       name: 'created_at',
       type: 'datetime',
@@ -119,13 +96,6 @@ export const SessionEntity = new EntitySchema({
       onDelete: 'SET NULL',
       nullable: true,
     },
-    // Session has many Channels
-    channels: {
-      type: 'one-to-many',
-      target: 'Channel',
-      inverseSide: 'session',
-      cascade: true,
-    },
     // Session has many Messages
     messages: {
       type: 'one-to-many',
@@ -143,16 +113,12 @@ export const SessionEntity = new EntitySchema({
   },
   indices: [
     {
-      name: 'IDX_SESSION_PHONE',
-      columns: ['phone'],
+      name: 'IDX_SESSION_ADMIN',
+      columns: ['adminId'],
     },
     {
       name: 'IDX_SESSION_STATUS',
       columns: ['status'],
-    },
-    {
-      name: 'IDX_SESSION_ADMIN',
-      columns: ['adminId'],
     },
   ],
 });

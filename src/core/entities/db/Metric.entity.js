@@ -66,13 +66,6 @@ export const MetricEntity = new EntitySchema({
       nullable: true,
       comment: 'Timestamp of last activity',
     },
-    // Foreign keys
-    sessionPhone: {
-      name: 'session_phone',
-      type: 'varchar',
-      nullable: true,
-      comment: 'Session being tracked',
-    },
     channelId: {
       name: 'channel_id',
       type: 'varchar',
@@ -97,17 +90,7 @@ export const MetricEntity = new EntitySchema({
     },
   },
   relations: {
-    // Metric belongs to Session
-    session: {
-      type: 'many-to-one',
-      target: 'Session',
-      joinColumn: {
-        name: 'session_phone',
-        referencedColumnName: 'phone',
-      },
-      onDelete: 'SET NULL',
-      nullable: true,
-    },
+   
     // Metric belongs to Channel
     channel: {
       type: 'many-to-one',
@@ -130,10 +113,7 @@ export const MetricEntity = new EntitySchema({
     },
   },
   indices: [
-    {
-      name: 'IDX_METRIC_SESSION',
-      columns: ['sessionPhone'],
-    },
+   
     {
       name: 'IDX_METRIC_CHANNEL',
       columns: ['channelId'],
@@ -144,7 +124,7 @@ export const MetricEntity = new EntitySchema({
     },
     {
       name: 'IDX_METRIC_COMPOSITE',
-      columns: ['sessionPhone', 'channelId', 'userId'],
+      columns: ['channelId', 'userId'],
       unique: true,
     },
   ],
