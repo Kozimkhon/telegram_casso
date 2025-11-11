@@ -351,6 +351,11 @@ class Container {
         c.resolve('adminRepository')
       )
     );
+    this.registerTransient('updateAdminUseCase', (c) => 
+      new adminUseCases.UpdateAdminUseCase(
+        c.resolve('adminRepository')
+      )
+    );
     this.registerTransient('removeAdminUseCase', (c) => 
       new adminUseCases.RemoveAdminUseCase(
         c.resolve('adminRepository')

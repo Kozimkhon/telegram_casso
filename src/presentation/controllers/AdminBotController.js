@@ -20,6 +20,7 @@ import { createChannelHandlers } from "../handlers/channelHandlers.js";
 import { createSessionHandlers } from "../handlers/sessionHandlers.js";
 import { createStatsHandlers } from "../handlers/statsHandlers.js";
 import { createAdminHandlers } from "../handlers/adminHandlers.js";
+import { createSessionAuthHandlers } from "../handlers/sessionAuthHandlers.js";
 import { handleAdminNotRegistered } from "../services/admin-bot.js";
 /**
  * AdminBot Controller
@@ -85,6 +86,7 @@ class AdminBotController {
       getChannelStats: dependencies.getChannelStatsUseCase,
 
       // Session use cases
+      createSession: dependencies.createSessionUseCase,
       getSessionStats: dependencies.getSessionStatsUseCase,
       pauseSession: dependencies.pauseSessionUseCase,
       resumeSession: dependencies.resumeSessionUseCase,
@@ -100,13 +102,13 @@ class AdminBotController {
       // Admin use cases
       checkAdminAccess: dependencies.checkAdminAccessUseCase,
       addAdmin: dependencies.addAdminUseCase,
+      updateAdmin: dependencies.updateAdminUseCase,
       getAdminStats: dependencies.getAdminStatsUseCase,
     };
 
     // Inject domain services
     this.#services = {
       metrics: dependencies.metricsService,
-      sessionAuthenticationService: dependencies.sessionAuthenticationService,
     };
 
     // Inject state manager
@@ -121,6 +123,12 @@ class AdminBotController {
 
     // Logger
     this.#logger = createChildLogger({ component: "AdminBotController" });
+
+    // Create session auth handlers
+    this.authHandlers = createSessionAuthHandlers({
+      createSessionUseCase: this.#useCases.createSession,
+      updateAdminUseCase: this.#useCases.updateAdmin,
+    });
 
     // Create Telegraf bot
     this.#bot = new Telegraf(config.telegram.adminBotToken, {
@@ -142,6 +150,11 @@ class AdminBotController {
 
       await this.#bot.launch();
 
+      // Setup cleanup interval for expired auth sessions (every 5 minutes)
+      this.cleanupInterval = setInterval(() => {
+        this.authHandlers.cleanupExpiredSessions();
+      }, 5 * 60 * 1000);
+
       this.#isRunning = true;
       this.#logger.info("AdminBot started successfully");
     } catch (error) {
@@ -157,6 +170,11 @@ class AdminBotController {
   async stop() {
     try {
       this.#logger.info("Stopping AdminBot...");
+
+      // Clear cleanup interval
+      if (this.cleanupInterval) {
+        clearInterval(this.cleanupInterval);
+      }
 
       await this.#bot.stop();
 
@@ -234,7 +252,7 @@ class AdminBotController {
       addAdminUseCase: this.#useCases.addAdmin,
     });
     
-    // Combine all handlers
+    // Combine all handlers (including auth handlers from instance)
     const handlers = {
       handleStart,
       handleHelp,
@@ -243,12 +261,12 @@ class AdminBotController {
       ...sessionHandlers,
       ...statsHandlers,
       ...adminHandlers,
+      ...this.authHandlers, // Add session auth handlers
     };
 
     // Setup commands and callbacks using middleware
     setupCommands(this.#bot, handlers);
     setupCallbacks(this.#bot, handlers);
-    this.#services.sessionAuthenticationService.registerHandlers(this.#bot);
   }
 
   /**

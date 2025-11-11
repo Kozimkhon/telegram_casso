@@ -67,4 +67,94 @@ export function setupCallbacks(bot, handlers) {
     await ctx.answerCbQuery();
     await handlers.handleContactSupport(ctx);
   }));
+
+  // === Session Authentication Callbacks ===
+  
+  // Add session
+  bot.action('add_session', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleStartPhoneInput(ctx);
+  }));
+
+  // Phone numpad callbacks
+  bot.action(/^phone_(\d)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const digit = ctx.match[1];
+    await handlers.handlePhoneDigit(ctx, digit);
+  }));
+
+  bot.action('phone_plus', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handlePhoneDigit(ctx, '+');
+  }));
+
+  bot.action('phone_backspace', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handlePhoneBackspace(ctx);
+  }));
+
+  bot.action('phone_confirm', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    setImmediate(async () => {
+      try {
+        await handlers.handleConfirmPhoneNumber(ctx);
+      } catch (error) {
+        await ctx.editMessageText(
+          `❌ <b>Error</b>\n\nFailed to process phone confirmation: ${error.message}\n\nPlease try again.`,
+          {
+            parse_mode: 'HTML',
+            reply_markup: {
+              inline_keyboard: [[
+                { text: '🔄 Try Again', callback_data: 'add_session' },
+                { text: '🏠 Main Menu', callback_data: 'main_menu' }
+              ]]
+            }
+          }
+        );
+      }
+    });
+  }));
+
+  // Code numpad callbacks
+  bot.action(/^code_(\d)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const digit = ctx.match[1];
+    await handlers.handleCodeDigit(ctx, digit);
+  }));
+
+  bot.action('code_backspace', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleCodeBackspace(ctx);
+  }));
+
+  bot.action('code_confirm', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    setImmediate(async () => {
+      try {
+        await handlers.handleConfirmVerificationCode(ctx);
+      } catch (error) {
+        await ctx.editMessageText(
+          `❌ <b>Error</b>\n\nFailed to verify code: ${error.message}\n\nPlease try again.`,
+          {
+            parse_mode: 'HTML',
+            reply_markup: {
+              inline_keyboard: [[
+                { text: '🔄 Try Again', callback_data: 'add_session' },
+                { text: '🏠 Main Menu', callback_data: 'main_menu' }
+              ]]
+            }
+          }
+        );
+      }
+    });
+  }));
+
+  // Cancel authentication
+  bot.action(/^cancel_auth_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const authId = ctx.match[1];
+    await handlers.handleCancelAuth(ctx, authId);
+  }));
+
+  // Handle text messages for 2FA password (registered separately in commands.js)
 }

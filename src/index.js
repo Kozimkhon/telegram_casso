@@ -126,6 +126,7 @@ class Application {
             getChannelStatsUseCase: this.#container.resolve('getChannelStatsUseCase'),
             
             // Session use cases
+            createSessionUseCase: this.#container.resolve('createSessionUseCase'),
             getSessionStatsUseCase: this.#container.resolve('getSessionStatsUseCase'),
             pauseSessionUseCase: this.#container.resolve('pauseSessionUseCase'),
             resumeSessionUseCase: this.#container.resolve('resumeSessionUseCase'),
@@ -141,6 +142,7 @@ class Application {
             // Admin use cases
             checkAdminAccessUseCase: this.#container.resolve('checkAdminAccessUseCase'),
             addAdminUseCase: this.#container.resolve('addAdminUseCase'),
+            updateAdminUseCase: this.#container.resolve('updateAdminUseCase'),
             getAdminStatsUseCase: this.#container.resolve('getAdminStatsUseCase'),
             
             // Services

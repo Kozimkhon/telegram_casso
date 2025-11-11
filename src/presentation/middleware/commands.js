@@ -36,4 +36,12 @@ export function setupCommands(bot, handlers) {
   bot.command('help', asyncErrorHandler(async (ctx) => {
     await handlers.handleHelp(ctx);
   }));
+
+  // Text message handler for 2FA password during session authentication
+  bot.on('text', asyncErrorHandler(async (ctx) => {
+    // Only handle if handler exists (e.g., session auth handler)
+    if (handlers.handlePasswordTextMessage) {
+      await handlers.handlePasswordTextMessage(ctx);
+    }
+  }));
 }

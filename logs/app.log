@@ -548,3 +548,11 @@ Error: Admin already exists for user: 566160086
 {
   "error": "Admin already exists for user: 566160086"
 }
+2025-11-11 17:17:27 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-11 17:49:12 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
