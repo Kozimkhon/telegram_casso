@@ -15,6 +15,12 @@ import BaseEntity from '../base/BaseEntity.js';
  */
 class Channel extends BaseEntity {
   /**
+   * Database ID
+   * @type {number|null}
+   */
+  id;
+
+  /**
    * Channel ID (Telegram channel ID)
    * @type {string}
    */
@@ -33,10 +39,52 @@ class Channel extends BaseEntity {
   username;
 
   /**
+   * Member count
+   * @type {number}
+   */
+  memberCount;
+
+  /**
    * Forward enabled flag
    * @type {boolean}
    */
   forwardEnabled;
+
+  /**
+   * Throttle delay (ms)
+   * @type {number}
+   */
+  throttleDelayMs;
+
+  /**
+   * Throttle per member delay (ms)
+   * @type {number}
+   */
+  throttlePerMemberMs;
+
+  /**
+   * Minimum delay (ms)
+   * @type {number}
+   */
+  minDelayMs;
+
+  /**
+   * Maximum delay (ms)
+   * @type {number}
+   */
+  maxDelayMs;
+
+  /**
+   * Schedule enabled flag
+   * @type {boolean}
+   */
+  scheduleEnabled;
+
+  /**
+   * Schedule config (JSON string)
+   * @type {string|null}
+   */
+  scheduleConfig;
 
   /**
    * Admin session phone number
@@ -45,10 +93,10 @@ class Channel extends BaseEntity {
   adminSessionPhone;
 
   /**
-   * Member count
-   * @type {number}
+   * Admin user ID
+   * @type {string|null}
    */
-  memberCount;
+  adminUserId;
 
   /**
    * Creates a Channel entity
@@ -56,20 +104,35 @@ class Channel extends BaseEntity {
    * @param {string} data.channelId - Channel ID
    * @param {string} data.title - Channel title
    * @param {string} [data.username] - Channel username
-   * @param {boolean} [data.forwardEnabled=true] - Forward enabled
-   * @param {string} [data.adminSessionPhone] - Admin session phone
    * @param {number} [data.memberCount=0] - Member count
+   * @param {boolean} [data.forwardEnabled=true] - Forward enabled
+   * @param {number} [data.throttleDelayMs=1000] - Throttle delay
+   * @param {number} [data.throttlePerMemberMs=500] - Throttle per member
+   * @param {number} [data.minDelayMs=2000] - Min delay
+   * @param {number} [data.maxDelayMs=5000] - Max delay
+   * @param {boolean} [data.scheduleEnabled=false] - Schedule enabled
+   * @param {string} [data.scheduleConfig] - Schedule config
+   * @param {string} [data.adminSessionPhone] - Admin session phone
+   * @param {string} [data.adminUserId] - Admin user ID
    */
   constructor(data) {
     super();
     this.validate(data);
     
+    this.id = data.id || null;
     this.channelId = data.channelId;
     this.title = data.title;
     this.username = data.username || null;
-    this.forwardEnabled = data.forwardEnabled !== undefined ? data.forwardEnabled : true;
-    this.adminSessionPhone = data.adminSessionPhone || null;
     this.memberCount = data.memberCount || 0;
+    this.forwardEnabled = data.forwardEnabled !== undefined ? data.forwardEnabled : true;
+    this.throttleDelayMs = data.throttleDelayMs || 1000;
+    this.throttlePerMemberMs = data.throttlePerMemberMs || 500;
+    this.minDelayMs = data.minDelayMs || 2000;
+    this.maxDelayMs = data.maxDelayMs || 5000;
+    this.scheduleEnabled = data.scheduleEnabled || false;
+    this.scheduleConfig = data.scheduleConfig || null;
+    this.adminSessionPhone = data.adminSessionPhone || null;
+    this.adminUserId = data.adminUserId || null;
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -198,12 +261,20 @@ class Channel extends BaseEntity {
    */
   toObject() {
     return {
+      id: this.id,
       channel_id: this.channelId,
       title: this.title,
       username: this.username,
-      forward_enabled: this.forwardEnabled ? 1 : 0,
-      admin_session_phone: this.adminSessionPhone,
       member_count: this.memberCount,
+      forward_enabled: this.forwardEnabled ? 1 : 0,
+      throttle_delay_ms: this.throttleDelayMs,
+      throttle_per_member_ms: this.throttlePerMemberMs,
+      min_delay_ms: this.minDelayMs,
+      max_delay_ms: this.maxDelayMs,
+      schedule_enabled: this.scheduleEnabled ? 1 : 0,
+      schedule_config: this.scheduleConfig,
+      admin_session_phone: this.adminSessionPhone,
+      admin_user_id: this.adminUserId,
       created_at: this.createdAt.toISOString(),
       updated_at: this.updatedAt.toISOString()
     };
@@ -217,14 +288,22 @@ class Channel extends BaseEntity {
    */
   static fromDatabaseRow(row) {
     return new Channel({
-      channelId: row.channel_id,
+      id: row.id,
+      channelId: row.channel_id || row.channelId,
       title: row.title,
       username: row.username || null,
-      forwardEnabled: Boolean(row.forward_enabled),
-      adminSessionPhone: row.admin_session_phone || null,
-      memberCount: row.member_count || 0,
-      createdAt: row.created_at ? new Date(row.created_at) : new Date(),
-      updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
+      memberCount: row.member_count || row.memberCount || 0,
+      forwardEnabled: Boolean(row.forward_enabled || row.forwardEnabled),
+      throttleDelayMs: row.throttle_delay_ms || row.throttleDelayMs || 1000,
+      throttlePerMemberMs: row.throttle_per_member_ms || row.throttlePerMemberMs || 500,
+      minDelayMs: row.min_delay_ms || row.minDelayMs || 2000,
+      maxDelayMs: row.max_delay_ms || row.maxDelayMs || 5000,
+      scheduleEnabled: Boolean(row.schedule_enabled || row.scheduleEnabled),
+      scheduleConfig: row.schedule_config || row.scheduleConfig || null,
+      adminSessionPhone: row.admin_session_phone || row.adminSessionPhone || null,
+      adminUserId: row.admin_user_id || row.adminUserId || null,
+      createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
+      updatedAt: row.updated_at || row.updatedAt ? new Date(row.updated_at || row.updatedAt) : new Date()
     });
   }
 

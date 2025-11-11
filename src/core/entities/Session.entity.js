@@ -10,12 +10,17 @@ import { SessionStatus } from '../../shared/constants/index.js';
 /**
  * Session Entity
  * Represents a UserBot session with status tracking
- * Phone number is stored in Admin entity, not here
  * 
  * @class Session
  * @extends BaseEntity
  */
 class Session extends BaseEntity {
+  /**
+   * Database ID
+   * @type {number|null}
+   */
+  id;
+
   /**
    * Admin ID (foreign key to Admin entity, unique one-to-one)
    * @type {string}
@@ -72,6 +77,7 @@ class Session extends BaseEntity {
     super();
     this.validate(data);
     
+    this.id = data.id || null;
     this.adminId = data.adminId;
     this.sessionString = data.sessionString || '';
     this.status = data.status || SessionStatus.ACTIVE;
@@ -233,6 +239,7 @@ class Session extends BaseEntity {
    */
   toObject() {
     return {
+      id: this.id,
       admin_id: this.adminId,
       session_string: this.sessionString,
       status: this.status,
@@ -240,9 +247,9 @@ class Session extends BaseEntity {
       pause_reason: this.pauseReason,
       flood_wait_until: this.floodWaitUntil ? this.floodWaitUntil.toISOString() : null,
       last_error: this.lastError,
-      last_active: this.lastActive,
-      created_at: this.createdAt,
-      updated_at: this.updatedAt
+      last_active: this.lastActive.toISOString(),
+      created_at: this.createdAt.toISOString(),
+      updated_at: this.updatedAt.toISOString()
     };
   }
 
@@ -254,16 +261,17 @@ class Session extends BaseEntity {
    */
   static fromDatabaseRow(row) {
     return new Session({
-      adminId: row.admin_id,
-      sessionString: row.session_string,
+      id: row.id,
+      adminId: row.admin_id || row.adminId,
+      sessionString: row.session_string || row.sessionString,
       status: row.status,
-      autoPaused: Boolean(row.auto_paused),
-      pauseReason: row.pause_reason,
-      floodWaitUntil: row.flood_wait_until,
-      lastError: row.last_error,
-      lastActive: row.last_active,
-      createdAt: row.created_at,
-      updatedAt: row.updated_at
+      autoPaused: Boolean(row.auto_paused || row.autoPaused),
+      pauseReason: row.pause_reason || row.pauseReason,
+      floodWaitUntil: row.flood_wait_until || row.floodWaitUntil,
+      lastError: row.last_error || row.lastError,
+      lastActive: row.last_active || row.lastActive,
+      createdAt: row.created_at || row.createdAt,
+      updatedAt: row.updated_at || row.updatedAt
     });
   }
 }

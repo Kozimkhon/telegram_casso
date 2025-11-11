@@ -94,20 +94,19 @@ class Application {
               channelRepository: this.#container.resolve('channelRepository'),
               sessionRepository: this.#container.resolve('sessionRepository'),
             }, {
-              phone: session.phone,
               session_string: session.sessionString,
-              user_id: session.userId,
+              admin_id: session.adminId,
             });
             
             await userBot.start();
-            this.#bots[`userbot_${session.phone}`] = userBot;
-            console.log(`   ✅ UserBot started: ${session.phone}`);
+            this.#bots[`userbot_${session.adminId}`] = userBot;
+            console.log(`   ✅ UserBot started: ${session.adminId}`);
           } catch (error) {
-            console.error(`   ❌ Failed to start UserBot ${session.phone}:`, error.message);
-            
+            console.error(`   ❌ Failed to start UserBot ${session.adminId}:`, error.message);
+
             // Check if it's an AUTH error
             if (error.code === 401 || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
-              console.warn(`   ⚠️  Session ${session.phone} has invalid authentication.`);
+              console.warn(`   ⚠️  Session ${session.adminId} has invalid authentication.`);
               console.warn(`   💡 Please delete this session and create a new one via AdminBot.`);
             }
           }

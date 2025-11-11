@@ -174,8 +174,8 @@ class Admin extends BaseEntity {
       phone: this.phone,
       role: this.role,
       is_active: this.isActive ? 1 : 0,
-      created_at: this.createdAt,
-      updated_at: this.updatedAt
+      created_at: this.createdAt.toISOString(),
+      updated_at: this.updatedAt.toISOString()
     };
   }
 
@@ -188,15 +188,15 @@ class Admin extends BaseEntity {
   static fromDatabaseRow(row) {
     return new Admin({
       id: row.id,
-      userId: row.user_id,
-      firstName: row.first_name,
-      lastName: row.last_name,
+      userId: row.user_id || row.userId,
+      firstName: row.first_name || row.firstName,
+      lastName: row.last_name || row.lastName,
       username: row.username,
       phone: row.phone,
       role: row.role,
-      isActive: Boolean(row.is_active),
-      createdAt: row.created_at ? new Date(row.created_at) : new Date(),
-      updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
+      isActive: Boolean(row.is_active !== undefined ? row.is_active : (row.isActive !== undefined ? row.isActive : true)),
+      createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
+      updatedAt: row.updated_at || row.updatedAt ? new Date(row.updated_at || row.updatedAt) : new Date()
     });
   }
   static toDatabaseRow(admin) {
@@ -205,11 +205,11 @@ class Admin extends BaseEntity {
       first_name: admin.firstName,
       last_name: admin.lastName,
       username: admin.username,
-      phone: admin.phone||"",
+      phone: admin.phone || "",
       role: admin.role,
       is_active: admin.isActive ? 1 : 0,
-      created_at: admin.createdAt,
-      updated_at: admin.updatedAt
+      created_at: admin.createdAt.toISOString(),
+      updated_at: admin.updatedAt.toISOString()
     };
   }
 }

@@ -8,12 +8,18 @@ import BaseEntity from '../base/BaseEntity.js';
 
 /**
  * User Entity
- * Represents a Telegram user
+ * Represents a Telegram user (recipient)
  * 
  * @class User
  * @extends BaseEntity
  */
 class User extends BaseEntity {
+  /**
+   * Database ID
+   * @type {number|null}
+   */
+  id;
+
   /**
    * User ID (Telegram user ID)
    * @type {string}
@@ -57,6 +63,12 @@ class User extends BaseEntity {
   isPremium;
 
   /**
+   * Is active flag
+   * @type {boolean}
+   */
+  isActive;
+
+  /**
    * Creates a User entity
    * @param {Object} data - User data
    */
@@ -64,6 +76,7 @@ class User extends BaseEntity {
     super();
     this.validate(data);
     
+    this.id = data.id || null;
     this.userId = data.userId;
     this.firstName = data.firstName;
     this.lastName = data.lastName || null;
@@ -71,6 +84,7 @@ class User extends BaseEntity {
     this.phone = data.phone || null;
     this.isBot = data.isBot || false;
     this.isPremium = data.isPremium || false;
+    this.isActive = data.isActive !== undefined ? data.isActive : true;
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -199,6 +213,7 @@ class User extends BaseEntity {
    */
   toObject() {
     return {
+      id: this.id,
       user_id: this.userId,
       first_name: this.firstName,
       last_name: this.lastName,
@@ -206,6 +221,7 @@ class User extends BaseEntity {
       phone: this.phone,
       is_bot: this.isBot ? 1 : 0,
       is_premium: this.isPremium ? 1 : 0,
+      is_active: this.isActive ? 1 : 0,
       created_at: this.createdAt.toISOString(),
       updated_at: this.updatedAt.toISOString()
     };
@@ -219,15 +235,17 @@ class User extends BaseEntity {
    */
   static fromDatabaseRow(row) {
     return new User({
-      userId: row.user_id,
-      firstName: row.first_name,
-      lastName: row.last_name,
+      id: row.id,
+      userId: row.user_id || row.userId,
+      firstName: row.first_name || row.firstName,
+      lastName: row.last_name || row.lastName,
       username: row.username,
       phone: row.phone,
-      isBot: Boolean(row.is_bot),
-      isPremium: Boolean(row.is_premium),
-      createdAt: row.created_at ? new Date(row.created_at) : new Date(),
-      updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
+      isBot: Boolean(row.is_bot || row.isBot),
+      isPremium: Boolean(row.is_premium || row.isPremium),
+      isActive: row.is_active !== undefined ? Boolean(row.is_active) : (row.isActive !== undefined ? Boolean(row.isActive) : true),
+      createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
+      updatedAt: row.updated_at || row.updatedAt ? new Date(row.updated_at || row.updatedAt) : new Date()
     });
   }
 

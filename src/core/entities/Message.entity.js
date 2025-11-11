@@ -28,16 +28,10 @@ class Message extends BaseEntity {
   channelId;
 
   /**
-   * Original message ID
+   * Message ID (original from channel)
    * @type {string}
    */
   messageId;
-
-  /**
-   * User ID (recipient)
-   * @type {string}
-   */
-  userId;
 
   /**
    * Forwarded message ID
@@ -58,16 +52,22 @@ class Message extends BaseEntity {
   errorMessage;
 
   /**
-   * Session phone
-   * @type {string|null}
-   */
-  sessionPhone;
-
-  /**
    * Retry count
    * @type {number}
    */
   retryCount;
+
+  /**
+   * Channel ID (foreign key)
+   * @type {string}
+   */
+  channelId;
+
+  /**
+   * User ID (recipient, foreign key)
+   * @type {string}
+   */
+  userId;
 
   /**
    * Creates a Message entity
@@ -78,14 +78,13 @@ class Message extends BaseEntity {
     this.validate(data);
     
     this.id = data.id || null;
-    this.channelId = data.channelId;
     this.messageId = data.messageId;
-    this.userId = data.userId;
     this.forwardedMessageId = data.forwardedMessageId || null;
     this.status = data.status || ForwardingStatus.PENDING;
     this.errorMessage = data.errorMessage || null;
-    this.sessionPhone = data.sessionPhone || null;
     this.retryCount = data.retryCount || 0;
+    this.channelId = data.channelId;
+    this.userId = data.userId;
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -96,12 +95,12 @@ class Message extends BaseEntity {
    * @throws {Error} If validation fails
    */
   validate(data) {
-    if (!data.channelId) {
-      throw new Error('Channel ID is required');
-    }
-
     if (!data.messageId) {
       throw new Error('Message ID is required');
+    }
+
+    if (!data.channelId) {
+      throw new Error('Channel ID is required');
     }
 
     if (!data.userId) {
@@ -201,14 +200,13 @@ class Message extends BaseEntity {
   toObject() {
     return {
       id: this.id,
-      channel_id: this.channelId,
       message_id: this.messageId,
-      user_id: this.userId,
       forwarded_message_id: this.forwardedMessageId,
       status: this.status,
       error_message: this.errorMessage,
-      session_phone: this.sessionPhone,
       retry_count: this.retryCount,
+      channel_id: this.channelId,
+      user_id: this.userId,
       created_at: this.createdAt.toISOString(),
       updated_at: this.updatedAt.toISOString()
     };
@@ -223,16 +221,15 @@ class Message extends BaseEntity {
   static fromDatabaseRow(row) {
     return new Message({
       id: row.id,
-      channelId: row.channel_id,
-      messageId: row.message_id,
-      userId: row.user_id,
-      forwardedMessageId: row.forwarded_message_id,
+      messageId: row.message_id || row.messageId,
+      forwardedMessageId: row.forwarded_message_id || row.forwardedMessageId,
       status: row.status,
-      errorMessage: row.error_message,
-      sessionPhone: row.session_phone,
-      retryCount: row.retry_count || 0,
-      createdAt: row.created_at ? new Date(row.created_at) : new Date(),
-      updatedAt: row.updated_at ? new Date(row.updated_at) : new Date()
+      errorMessage: row.error_message || row.errorMessage,
+      retryCount: row.retry_count || row.retryCount || 0,
+      channelId: row.channel_id || row.channelId,
+      userId: row.user_id || row.userId,
+      createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
+      updatedAt: row.updated_at || row.updatedAt ? new Date(row.updated_at || row.updatedAt) : new Date()
     });
   }
 }

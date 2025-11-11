@@ -961,3 +961,58 @@ DatabaseError: Failed to update admin: id is not defined
   "phone": "+998930793681",
   "userId": "5684628333"
 }
+2025-11-11 22:40:59 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:40:59 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:40:59 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:41:00 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "phone": null,
+  "userId": "5684628333"
+}
+2025-11-11 22:41:00 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:41:00 [ERROR]: Failed to sync channels
+Error: findByAdminSession() must be implemented
+    at ChannelRepository.findByAdminSession (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IChannelRepository.js:24:11)
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:379:53)
+    at UserBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:175:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:102:13)
+{
+  "error": "findByAdminSession() must be implemented"
+}
+2025-11-11 22:41:00 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:41:00 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:41:00 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "phone": null
+}
+2025-11-11 22:41:00 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
