@@ -111,6 +111,7 @@ class AdminBotController {
     // Inject repositories (for direct queries)
     this.channelRepository = dependencies.channelRepository;
     this.sessionRepository = dependencies.sessionRepository;
+    this.stateManager = dependencies.stateManager;
 
 
 
@@ -227,9 +228,12 @@ class AdminBotController {
     // Create handler functions with dependencies
     const channelHandlers = createChannelHandlers({
       channelRepository: this.channelRepository,
+      sessionRepository: this.sessionRepository,
+      stateManager: this.stateManager,
       toggleChannelForwardingUseCase: this.#useCases.toggleChannelForwarding,
       getChannelStatsUseCase: this.#useCases.getChannelStats,
       getUsersByChannelUseCase: this.#useCases.getUsersByChannel,
+      removeChannelUseCase: this.#useCases.removeChannel,
     });
 
     const sessionHandlers = createSessionHandlers({
@@ -239,6 +243,7 @@ class AdminBotController {
     const statsHandlers = createStatsHandlers({
       getForwardingStatsUseCase: this.#useCases.getForwardingStats,
       metricsService: this.#services.metrics,
+      sessionRepository: this.sessionRepository,
     });
 
     const adminHandlers = createAdminHandlers({

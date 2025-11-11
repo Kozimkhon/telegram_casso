@@ -635,6 +635,80 @@ class UserBotController {
   }
 
   /**
+   * Manually syncs channels from Telegram
+   * @returns {Promise<Object>} Sync result
+   */
+  async syncChannelsManually() {
+    try {
+      if (!this.#client || !this.#isRunning) {
+        return {
+          success: false,
+          message: 'UserBot is not connected',
+        };
+      }
+
+      this.#logger.info('Manual channel sync started');
+
+      // Get all dialogs (channels, groups, etc.)
+      const dialogs = await this.#client.getDialogs({ limit: 100 });
+      
+      let addedCount = 0;
+      let updatedCount = 0;
+      
+      for (const dialog of dialogs) {
+        try {
+          // Only process channels
+          if (!dialog.isChannel) continue;
+
+          const entity = dialog.entity;
+          const channelInfo = extractChannelInfo(entity);
+          
+          // Check if channel exists
+          const existing = await this.channelRepository.findByChannelId(channelInfo.channelId);
+          
+          if (existing) {
+            // Update existing channel
+            await this.channelRepository.update(existing.id, {
+              title: channelInfo.title,
+              username: channelInfo.username,
+              member_count: entity.participantsCount || 0,
+            });
+            updatedCount++;
+          } else {
+            // Add new channel using use case
+            await this.#useCases.addChannel.execute({
+              ...channelInfo,
+              memberCount: entity.participantsCount || 0,
+              adminSessionPhone: this.#sessionData.phone,
+              forwardEnabled: false, // Disabled by default
+            });
+            addedCount++;
+          }
+          
+        } catch (error) {
+          this.#logger.error(`Failed to sync channel: ${dialog.title}`, error);
+        }
+      }
+
+      this.#logger.info(`Channel sync complete: ${addedCount} added, ${updatedCount} updated`);
+
+      return {
+        success: true,
+        message: `Synced successfully: ${addedCount} new channels added, ${updatedCount} updated`,
+        added: addedCount,
+        updated: updatedCount,
+      };
+
+    } catch (error) {
+      this.#logger.error('Manual channel sync failed', error);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+  }
+
+  /**
    * Pauses message forwarding
    * @param {string} reason - Pause reason
    */

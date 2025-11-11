@@ -901,3 +901,68 @@ Error: findByAdminSession() must be implemented
 {
   "error": "findByAdminSession() must be implemented"
 }
+2025-11-12 00:20:19 [ERROR]: Failed to sync channels
+TypeError: Cannot read properties of undefined (reading 'length')
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:383:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///E:/experiments/workspace/web-dev/telegram_casso/src/index.js:101:13)
+{
+  "error": "Cannot read properties of undefined (reading 'length')"
+}
+2025-11-12 00:20:48 [ERROR]: Unhandled error in Sync channels callback
+TypeError: handlers.handleSyncChannels is not a function
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:204:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "handlers.handleSyncChannels is not a function",
+  "code": "UNKNOWN",
+  "context": "Sync channels callback"
+}
+2025-11-12 00:20:48 [ERROR]: Middleware error
+TypeError: handlers.handleSyncChannels is not a function
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/middleware/callbacks.js:204:24
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "handlers.handleSyncChannels is not a function"
+}
+2025-11-12 00:22:19 [ERROR]: Failed to sync channels
+TypeError: Cannot read properties of undefined (reading 'length')
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:383:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "Cannot read properties of undefined (reading 'length')"
+}
+2025-11-12 00:24:19 [ERROR]: Failed to sync channels
+TypeError: Cannot read properties of undefined (reading 'length')
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:383:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "Cannot read properties of undefined (reading 'length')"
+}
+2025-11-12 00:26:19 [ERROR]: Failed to sync channels
+TypeError: Cannot read properties of undefined (reading 'length')
+    at #syncChannels (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:383:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:575:19)
+{
+  "error": "Cannot read properties of undefined (reading 'length')"
+}

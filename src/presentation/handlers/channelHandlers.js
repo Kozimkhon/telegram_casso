@@ -177,9 +177,151 @@ export function createChannelHandlers(dependencies) {
     }
   }
 
+  /**
+   * Handles channel removal confirmation
+   * @param {Object} ctx - Telegraf context
+   * @param {string} channelId - Channel ID
+   */
+  async function handleRemoveChannel(ctx, channelId) {
+    try {
+      // Get channel details
+      const channel = await channelRepository.findByChannelId(channelId);
+
+      if (!channel) {
+        await ctx.editMessageText('❌ Channel not found.');
+        return;
+      }
+
+      const text = `⚠️ *Confirm Channel Removal*\n\nAre you sure you want to remove this channel?\n\n*${channel.title}*\nID: \`${channel.channelId}\`\n\n*This action cannot be undone.*`;
+
+      const keyboard = Markup.inlineKeyboard([
+        [
+          Markup.button.callback('✅ Yes, Remove', `confirm_remove_${channelId}`),
+          Markup.button.callback('❌ Cancel', 'channels_list'),
+        ],
+      ]);
+
+      await ctx.editMessageText(text, {
+        parse_mode: 'Markdown',
+        ...keyboard,
+      });
+
+    } catch (error) {
+      logger.error('Error showing remove confirmation', { channelId, error });
+      await ctx.reply('❌ Error loading confirmation dialog.');
+    }
+  }
+
+  /**
+   * Handles channel removal confirmation
+   * @param {Object} ctx - Telegraf context
+   * @param {string} channelId - Channel ID
+   */
+  async function handleConfirmRemoveChannel(ctx, channelId) {
+    try {
+      // Use RemoveChannelUseCase if provided
+      if (dependencies.removeChannelUseCase) {
+        const result = await dependencies.removeChannelUseCase.execute(channelId);
+        
+        if (result.success) {
+          await ctx.editMessageText(
+            `✅ Channel removed successfully.\n\n${result.clearedMembers} members cleared.`
+          );
+        }
+      } else {
+        // Fallback to direct repository call
+        const deleted = await channelRepository.delete(channelId);
+        
+        if (deleted) {
+          await ctx.editMessageText('✅ Channel removed successfully.');
+        } else {
+          await ctx.editMessageText('❌ Channel not found or already removed.');
+        }
+      }
+
+      // Return to channels list after 2 seconds
+      setTimeout(async () => {
+        try {
+          await handleChannelsList(ctx, 1);
+        } catch (error) {
+          logger.error('Error returning to channels list', error);
+        }
+      }, 2000);
+
+    } catch (error) {
+      logger.error('Error removing channel', { channelId, error });
+      await ctx.editMessageText('❌ Error removing channel.');
+    }
+  }
+
+  /**
+   * Handles channel sync from UserBot
+   * @param {Object} ctx - Telegraf context
+   */
+  async function handleSyncChannels(ctx) {
+    try {
+      // Get StateManager instance
+      const stateManager = dependencies.stateManager;
+      
+      if (!stateManager) {
+        await ctx.editMessageText('❌ StateManager not available.');
+        return;
+      }
+
+      // Get active sessions
+      const sessions = await dependencies.sessionRepository.findActive();
+      
+      if (sessions.length === 0) {
+        await ctx.editMessageText('❌ No active UserBot sessions found. Please add a session first.');
+        return;
+      }
+
+      // Sync channels from first active session
+      const firstSession = sessions[0];
+      
+      // Get bot instance from StateManager
+      const botInstance = stateManager.getBot(firstSession.adminId);
+      
+      if (!botInstance || !botInstance.syncChannelsManually) {
+        await ctx.editMessageText('❌ UserBot is not connected. Cannot sync channels.');
+        return;
+      }
+
+      // Show processing message
+      await ctx.editMessageText('🔄 Syncing channels from Telegram...\n\nThis may take a few moments.');
+
+      // Perform sync
+      const result = await botInstance.syncChannelsManually();
+
+      if (result.success) {
+        await ctx.editMessageText(`✅ ${result.message}`);
+        
+        // Refresh channels list after 2 seconds
+        setTimeout(async () => {
+          try {
+            await handleChannelsList(ctx, 1);
+          } catch (error) {
+            logger.error('Error refreshing channels list', error);
+          }
+        }, 2000);
+      } else {
+        await ctx.editMessageText(`❌ Sync failed: ${result.message}`);
+      }
+
+      logger.info('Channels sync completed', result);
+
+    } catch (error) {
+      logger.error('Error syncing channels', error);
+      await ctx.editMessageText('❌ Error syncing channels. Please try again.');
+    }
+  }
+
   return {
     handleChannelsList,
     handleToggleChannel,
     handleChannelDetails,
+    handleRemoveChannel,
+    handleConfirmRemoveChannel,
+    handleSyncChannels,
   };
 }
