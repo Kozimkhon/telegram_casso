@@ -22,6 +22,7 @@ class ChannelRepository extends IChannelRepository {
     return Channel.fromDatabaseRow({
       id: ormEntity.id,
       channel_id: ormEntity.channelId,
+      access_hash: ormEntity.accessHash,
       title: ormEntity.title,
       username: ormEntity.username,
       member_count: ormEntity.memberCount,
@@ -75,7 +76,8 @@ class ChannelRepository extends IChannelRepository {
       maxDelayMs: data.max_delay_ms,
       scheduleEnabled: Boolean(data.schedule_enabled),
       scheduleConfig: data.schedule_config,
-      adminId: data.admin_id
+      adminId: data.admin_id,
+      accessHash: data.access_hash
     });
 
     return this.#toDomainEntity(created);
@@ -88,14 +90,14 @@ class ChannelRepository extends IChannelRepository {
     if (updates.username !== undefined) ormUpdates.username = updates.username;
     if (updates.member_count !== undefined) ormUpdates.memberCount = updates.member_count;
     if (updates.forward_enabled !== undefined) ormUpdates.forwardEnabled = Boolean(updates.forward_enabled);
-    if (updates.admin_session_phone !== undefined) ormUpdates.adminSessionPhone = updates.admin_session_phone;
     if (updates.throttle_delay_ms !== undefined) ormUpdates.throttleDelayMs = updates.throttle_delay_ms;
     if (updates.throttle_per_member_ms !== undefined) ormUpdates.throttlePerMemberMs = updates.throttle_per_member_ms;
     if (updates.min_delay_ms !== undefined) ormUpdates.minDelayMs = updates.min_delay_ms;
     if (updates.max_delay_ms !== undefined) ormUpdates.maxDelayMs = updates.max_delay_ms;
     if (updates.schedule_enabled !== undefined) ormUpdates.scheduleEnabled = Boolean(updates.schedule_enabled);
     if (updates.schedule_config !== undefined) ormUpdates.scheduleConfig = updates.schedule_config;
-    // REMOVED: admin_user_id field mapping (not part of domain)
+    if (updates.admin_id !== undefined) ormUpdates.adminId = updates.admin_id;
+    if (updates.access_hash !== undefined) ormUpdates.accessHash = updates.access_hash;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

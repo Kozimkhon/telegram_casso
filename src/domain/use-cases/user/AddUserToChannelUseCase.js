@@ -68,7 +68,7 @@ class AddUserToChannelUseCase {
    */
   async bulkExecute(channelId, userIds) {
     // Validate channel
-    const channel = await this.#channelRepository.findById(channelId);
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }

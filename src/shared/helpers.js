@@ -65,13 +65,34 @@ export function extractChannelInfo(channel) {
   // Handle BigInt ID from GramJS (Integer object with value property)
   let channelId = '';
   if (channel.id) {
+    let rawId = '';
     if (typeof channel.id === 'bigint') {
-      channelId = channel.id.toString();
+      rawId = channel.id.toString();
     } else if (channel.id.value !== undefined) {
       // GramJS Integer object
-      channelId = channel.id.value.toString();
+      rawId = channel.id.value.toString();
     } else {
-      channelId = channel.id.toString();
+      rawId = channel.id.toString();
+    }
+    
+    // For channels, add -100 prefix if not already present
+    // Telegram uses -100 prefix for channel/supergroup IDs
+    if (channel.className === 'Channel' && !rawId.startsWith('-100')) {
+      channelId = `-100${rawId}`;
+    } else {
+      channelId = rawId;
+    }
+  }
+  
+  // Extract access hash
+  let accessHash = null;
+  if (channel.accessHash) {
+    if (typeof channel.accessHash === 'bigint') {
+      accessHash = channel.accessHash.toString();
+    } else if (channel.accessHash.value !== undefined) {
+      accessHash = channel.accessHash.value.toString();
+    } else {
+      accessHash = channel.accessHash.toString();
     }
   }
   
@@ -79,6 +100,7 @@ export function extractChannelInfo(channel) {
   
   return {
     channelId,
+    accessHash,
     title,
     username: channel.username || null,
     participantsCount: channel.participantsCount || 0,

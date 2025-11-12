@@ -88,7 +88,7 @@ export const AdminEntity = new EntitySchema({
   },
   indices: [
     {
-      name: 'IDX_ADMIN_USER_ID',
+      name: 'IDX_ADMIN_ID',
       columns: ['userId'],
     },
     {

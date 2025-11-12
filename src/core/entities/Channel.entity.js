@@ -27,6 +27,12 @@ class Channel extends BaseEntity {
   channelId;
 
   /**
+   * Access hash (Telegram channel access hash)
+   * @type {string|null}
+   */
+  accessHash;
+
+  /**
    * Channel title
    * @type {string}
    */
@@ -95,6 +101,7 @@ class Channel extends BaseEntity {
    * Creates a Channel entity
    * @param {Object} data - Channel data
    * @param {string} data.channelId - Channel ID
+   * @param {string} [data.accessHash] - Channel access hash
    * @param {string} data.title - Channel title
    * @param {string} [data.username] - Channel username
    * @param {number} [data.memberCount=0] - Member count
@@ -113,6 +120,7 @@ class Channel extends BaseEntity {
     
     this.id = data.id || null;
     this.channelId = data.channelId;
+    this.accessHash = data.accessHash || null;
     this.title = data.title;
     this.username = data.username || null;
     this.memberCount = data.memberCount || 0;
@@ -250,6 +258,7 @@ class Channel extends BaseEntity {
     return {
       id: this.id,
       channel_id: this.channelId,
+      access_hash: this.accessHash,
       title: this.title,
       username: this.username,
       member_count: this.memberCount,
@@ -276,6 +285,7 @@ class Channel extends BaseEntity {
     return new Channel({
       id: row.id,
       channelId: row.channel_id || row.channelId,
+      accessHash: row.access_hash || row.accessHash || null,
       title: row.title,
       username: row.username || null,
       memberCount: row.member_count || row.memberCount || 0,
@@ -301,6 +311,7 @@ class Channel extends BaseEntity {
   static fromTelegramEntity(telegramEntity) {
     return new Channel({
       channelId: telegramEntity.id?.toString() || telegramEntity.channelId,
+      accessHash: telegramEntity.accessHash?.toString() || null,
       title: telegramEntity.title || 'Unknown Channel',
       forwardEnabled: true,
       memberCount: telegramEntity.participantsCount || 0

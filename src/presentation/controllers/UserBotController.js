@@ -421,9 +421,27 @@ class UserBotController {
   async #syncChannelMembers(channel) {
     try {
       // Get channel entity from Telegram
-      // Convert string ID to BigInt for proper entity resolution
-      const channelId = BigInt(channel.channelId);
-      const channelEntity = await this.#client.getEntity(channelId);
+      // Channel ID format: "-1001234567890"
+      // Remove "-100" prefix to get actual channel ID for API calls
+      const channelIdStr = channel.channelId.toString();
+      const actualChannelId = channelIdStr.startsWith('-100') 
+        ? channelIdStr.slice(4) // Remove "-100" prefix
+        : channelIdStr;
+      
+      // Use access hash if available for better reliability
+      let channelEntity;
+      if (channel.accessHash) {
+        // Create InputPeerChannel with access hash
+        channelEntity = new Api.InputPeerChannel({
+          channelId: BigInt(actualChannelId),
+          accessHash: BigInt(channel.accessHash)
+        });
+        // Get full entity
+        channelEntity = await this.#client.getEntity(channelEntity);
+      } else {
+        // Fallback: get entity by ID only
+        channelEntity = await this.#client.getEntity(BigInt(actualChannelId));
+      }
       
       // Store for event filtering
       this.#adminChannelEntities.push(channelEntity);
@@ -696,13 +714,15 @@ class UserBotController {
             await this.channelRepository.update(existing.id, {
               title: channelInfo.title,
               username: channelInfo.username,
+              access_hash: channelInfo.accessHash,
               member_count: entity.participantsCount || 0,
             });
             updatedCount++;
           } else {
             // Add new channel using use case
             await this.#useCases.addChannel.execute({
-              ...channelInfo,adminId: this.#sessionData.adminId,
+              ...channelInfo,
+              adminId: this.#sessionData.adminId,
               memberCount: entity.participantsCount || 0,
               forwardEnabled: true, // Disabled by default
             });

@@ -33,6 +33,12 @@ export const ChannelEntity = new EntitySchema({
       nullable: false,
       comment: 'Telegram channel ID',
     },
+    accessHash: {
+      name: 'access_hash',
+      type: 'varchar',
+      nullable: true,
+      comment: 'Telegram channel access hash for API calls',
+    },
     title: {
       type: 'varchar',
       nullable: false,

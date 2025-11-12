@@ -2,6 +2,8 @@
 
 SELECT * FROM admins;
 DELETE FROM channels;
+DELETE FROM users;
+DELETE FROM channel_members;
 
 
 

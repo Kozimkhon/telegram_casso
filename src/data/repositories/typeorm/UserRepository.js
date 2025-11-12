@@ -146,6 +146,86 @@ class UserRepository extends BaseRepository {
       .orWhere('user.username LIKE :term', { term: `%${searchTerm}%` })
       .getMany();
   }
+
+  /**
+   * Adds user to channel (creates channel_members association)
+   * @param {string} channelId - Channel ID
+   * @param {string} userId - User ID
+   * @returns {Promise<boolean>} Success status
+   */
+  async addToChannel(channelId, userId) {
+    try {
+      await this.repository
+        .createQueryBuilder()
+        .insert()
+        .into('channel_members')
+        .values({
+          channel_id: channelId,
+          user_id: userId,
+        })
+        .orIgnore() // Skip if already exists
+        .execute();
+      
+      return true;
+    } catch (error) {
+      console.error('Error adding user to channel:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Bulk adds users to channel
+   * @param {string} channelId - Channel ID
+   * @param {string[]} userIds - Array of user IDs
+   * @returns {Promise<Object[]>} Results for each user
+   */
+  async bulkAddToChannel(channelId, userIds) {
+    const results = [];
+    
+    for (const userId of userIds) {
+      const success = await this.addToChannel(channelId, userId);
+      results.push({
+        userId,
+        success,
+      });
+    }
+    
+    return results;
+  }
+
+  /**
+   * Removes all users from channel (clears channel_members)
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<number>} Number of associations removed
+   */
+  async clearChannelMembers(channelId) {
+    try {
+      const result = await this.repository
+        .createQueryBuilder()
+        .delete()
+        .from('channel_members')
+        .where('channel_id = :channelId', { channelId })
+        .execute();
+      
+      return result.affected || 0;
+    } catch (error) {
+      console.error('Error clearing channel members:', error);
+      return 0;
+    }
+  }
+
+  /**
+   * Gets users by channel
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<Object[]>} Users in channel
+   */
+  async findByChannel(channelId) {
+    return await this.repository
+      .createQueryBuilder('user')
+      .innerJoin('channel_members', 'cm', 'cm.user_id = user.user_id')
+      .where('cm.channel_id = :channelId', { channelId })
+      .getMany();
+  }
 }
 
 export default UserRepository;

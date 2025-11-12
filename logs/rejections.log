@@ -232,3 +232,688 @@ TypeError: this.finfindByUserId is not a function
     }
   ]
 }
+2025-11-12 14:50:54 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 14:50:54 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 16320,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 95334400,
+      "heapTotal": 42737664,
+      "heapUsed": 33751240,
+      "external": 2645465,
+      "arrayBuffers": 95266
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 19888.046
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_handleUpdate",
+      "line": 72,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_updateLoop",
+      "line": 196,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-11-12 14:51:21 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 14:51:21 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 21352,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 94789632,
+      "heapTotal": 42999808,
+      "heapUsed": 34100832,
+      "external": 2657801,
+      "arrayBuffers": 112715
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 19914.781
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 89,
+      "method": "_handleUpdate",
+      "native": false
+    }
+  ]
+}
+2025-11-12 15:22:03 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 15:22:03 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 18436,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 129372160,
+      "heapTotal": 50835456,
+      "heapUsed": 43392920,
+      "external": 2677413,
+      "arrayBuffers": 122625
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 21757.156
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 89,
+      "method": "_handleUpdate",
+      "native": false
+    }
+  ]
+}
+2025-11-12 15:22:18 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 15:22:18 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 6928,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 90632192,
+      "heapTotal": 35135488,
+      "heapUsed": 33644344,
+      "external": 2672219,
+      "arrayBuffers": 130333
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 21772.75
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 89,
+      "method": "_handleUpdate",
+      "native": false
+    }
+  ]
+}
+2025-11-12 15:47:03 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 15:47:03 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 8292,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 98529280,
+      "heapTotal": 44834816,
+      "heapUsed": 34207328,
+      "external": 2670321,
+      "arrayBuffers": 120122
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 23256.859
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_handleUpdate",
+      "line": 72,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_updateLoop",
+      "line": 196,
+      "method": null,
+      "native": false
+    }
+  ]
+}

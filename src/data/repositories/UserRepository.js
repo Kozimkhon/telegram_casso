@@ -97,7 +97,7 @@ class UserRepository extends IUserRepository {
   }
 
   async bulkCreate(usersData) {
-    const results = { added: 0, updated: 0, errors: [] };
+    const results = [];
 
     for (const userData of usersData) {
       try {
@@ -110,13 +110,35 @@ class UserRepository extends IUserRepository {
             username: userData.username,
             phone: userData.phone
           });
-          results.updated++;
+          results.push({
+            success: true,
+            updated: true,
+            data: {
+              userId: userData.userId,
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+              username: userData.username
+            }
+          });
         } else {
           await this.#ormRepository.create(userData);
-          results.added++;
+          results.push({
+            success: true,
+            updated: false,
+            data: {
+              userId: userData.userId,
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+              username: userData.username
+            }
+          });
         }
       } catch (error) {
-        results.errors.push({ userId: userData.userId, error: error.message });
+        results.push({
+          success: false,
+          error: error.message,
+          data: { userId: userData.userId }
+        });
       }
     }
 
@@ -140,24 +162,20 @@ class UserRepository extends IUserRepository {
   }
 
   async addToChannel(channelId, userId) {
-    // This would need a many-to-many relationship table
-    // For now, we'll just acknowledge the association
-    return true;
+    return await this.#ormRepository.addToChannel(channelId, userId);
   }
 
   async bulkAddToChannel(channelId, userIds) {
-    // Bulk association with channel
-    return userIds.map(userId => ({
-      userId,
-      success: true
-    }));
+    return await this.#ormRepository.bulkAddToChannel(channelId, userIds);
   }
 
   async clearChannelMembers(channelId) {
-    // Clear all user-channel associations for this channel
-    // This would need a many-to-many relationship table
-    // For now, return 0 (no associations cleared)
-    return 0;
+    return await this.#ormRepository.clearChannelMembers(channelId);
+  }
+
+  async findByChannel(channelId) {
+    const entities = await this.#ormRepository.findByChannel(channelId);
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 }
 

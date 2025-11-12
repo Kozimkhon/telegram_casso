@@ -76,6 +76,7 @@ class AddChannelUseCase {
       memberCount: data.memberCount || 0,
       forwardEnabled: data.forwardEnabled !== false,
       adminId: data.adminId || null,
+      accessHash: data.accessHash || null,
       createdAt: new Date(),
       updatedAt: new Date()
     });
@@ -87,6 +88,8 @@ class AddChannelUseCase {
     this.#stateManager.addChannel({
       channelId: created.channelId,
       title: created.title,
+      username: created.username,
+      accessHash: created.accessHash,
       memberCount: created.memberCount,
       forwardEnabled: created.forwardEnabled,
       adminId: created.adminId
