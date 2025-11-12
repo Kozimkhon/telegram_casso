@@ -17,10 +17,10 @@ class IChannelRepository extends IRepository {
   /**
    * Finds channels by admin session
    * @abstract
-   * @param {string} phone - Admin session phone
+   * @param {string} adminId - Admin session ID
    * @returns {Promise<Array>} Channels
    */
-  async findByAdminSession(phone) {
+  async findByAdminSession(adminId) {
     throw new Error('findByAdminSession() must be implemented');
   }
 

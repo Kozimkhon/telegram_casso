@@ -85,18 +85,11 @@ class Channel extends BaseEntity {
    * @type {string|null}
    */
   scheduleConfig;
-
-  /**
-   * Admin session phone number
-   * @type {string|null}
-   */
-  adminSessionPhone;
-
   /**
    * Admin user ID
    * @type {string|null}
    */
-  adminUserId;
+  adminId;
 
   /**
    * Creates a Channel entity
@@ -112,8 +105,7 @@ class Channel extends BaseEntity {
    * @param {number} [data.maxDelayMs=5000] - Max delay
    * @param {boolean} [data.scheduleEnabled=false] - Schedule enabled
    * @param {string} [data.scheduleConfig] - Schedule config
-   * @param {string} [data.adminSessionPhone] - Admin session phone
-   * @param {string} [data.adminUserId] - Admin user ID
+   * @param {string} [data.adminId] - Admin user ID
    */
   constructor(data) {
     super();
@@ -131,8 +123,7 @@ class Channel extends BaseEntity {
     this.maxDelayMs = data.maxDelayMs || 5000;
     this.scheduleEnabled = data.scheduleEnabled || false;
     this.scheduleConfig = data.scheduleConfig || null;
-    this.adminSessionPhone = data.adminSessionPhone || null;
-    this.adminUserId = data.adminUserId || null;
+    this.adminId = data.adminId || null;
     this.createdAt = data.createdAt || new Date();
     this.updatedAt = data.updatedAt || new Date();
   }
@@ -157,10 +148,6 @@ class Channel extends BaseEntity {
 
     if (data.forwardEnabled !== undefined && typeof data.forwardEnabled !== 'boolean') {
       throw new Error('forwardEnabled must be a boolean');
-    }
-
-    if (data.adminSessionPhone && typeof data.adminSessionPhone !== 'string') {
-      throw new Error('adminSessionPhone must be a string');
     }
   }
 
@@ -196,14 +183,14 @@ class Channel extends BaseEntity {
 
   /**
    * Links channel to admin session
-   * @param {string} phone - Phone number
+   * @param {string} adminId - Admin ID
    * @returns {Channel} This channel (for chaining)
    */
-  linkToSession(phone) {
-    if (!phone || typeof phone !== 'string') {
-      throw new Error('Phone number is required');
+  linkToAdmin(adminId) {
+    if (!adminId || typeof adminId !== 'string') {
+      throw new Error('Admin ID is required');
     }
-    this.adminSessionPhone = phone;
+    this.adminId = adminId;
     this.updatedAt = new Date();
     return this;
   }
@@ -252,7 +239,7 @@ class Channel extends BaseEntity {
    * @returns {boolean} True if has admin session
    */
   hasAdminSession() {
-    return this.adminSessionPhone !== null;
+    return this.adminId !== null;
   }
 
   /**
@@ -273,8 +260,7 @@ class Channel extends BaseEntity {
       max_delay_ms: this.maxDelayMs,
       schedule_enabled: this.scheduleEnabled ? 1 : 0,
       schedule_config: this.scheduleConfig,
-      admin_session_phone: this.adminSessionPhone,
-      admin_user_id: this.adminUserId,
+      admin_id: this.adminId,
       created_at: this.createdAt.toISOString(),
       updated_at: this.updatedAt.toISOString()
     };
@@ -300,8 +286,7 @@ class Channel extends BaseEntity {
       maxDelayMs: row.max_delay_ms || row.maxDelayMs || 5000,
       scheduleEnabled: Boolean(row.schedule_enabled || row.scheduleEnabled),
       scheduleConfig: row.schedule_config || row.scheduleConfig || null,
-      adminSessionPhone: row.admin_session_phone || row.adminSessionPhone || null,
-      adminUserId: row.admin_user_id || row.adminUserId || null,
+      adminId: row.admin_id || row.adminId || null,
       createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
       updatedAt: row.updated_at || row.updatedAt ? new Date(row.updated_at || row.updatedAt) : new Date()
     });

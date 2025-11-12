@@ -1,6 +1,7 @@
 -- database: ./telegram_typeorm.db
 
 SELECT * FROM admins;
-DELETE FROM admins;
+DELETE FROM channels;
+
 
 

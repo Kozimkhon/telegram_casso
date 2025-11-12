@@ -180,6 +180,12 @@ class UserBotController {
       // Start periodic tasks
       this.#startPeriodicTasks();
 
+      // Register bot instance in StateManager
+      if (this.#stateManager && this.#sessionData.adminId) {
+        this.#stateManager.registerBot(this.#sessionData.adminId, this);
+        this.#logger.info('Bot instance registered in StateManager', { adminId: this.#sessionData.adminId });
+      }
+
       this.#isRunning = true;
       this.#logger.info('UserBot started successfully');
 
@@ -218,6 +224,12 @@ class UserBotController {
       // Clear intervals
       if (this.#syncInterval) clearInterval(this.#syncInterval);
       if (this.#deleteInterval) clearInterval(this.#deleteInterval);
+
+      // Unregister bot instance from StateManager
+      if (this.#stateManager && this.#sessionData.adminId) {
+        this.#stateManager.unregisterBot(this.#sessionData.adminId);
+        this.#logger.info('Bot instance unregistered from StateManager', { adminId: this.#sessionData.adminId });
+      }
 
       // Disconnect client
       if (this.#client) {
@@ -543,7 +555,6 @@ class UserBotController {
       }
       throw error;
     }
-  } }
   }
 
   /**
@@ -637,6 +648,14 @@ class UserBotController {
   }
 
   /**
+   * Gets Telegram client instance
+   * @returns {TelegramClient|null} Client instance or null
+   */
+  getClient() {
+    return this.#client;
+  }
+
+  /**
    * Manually syncs channels from Telegram
    * @returns {Promise<Object>} Sync result
    */
@@ -651,8 +670,12 @@ class UserBotController {
 
       this.#logger.info('Manual channel sync started');
 
-      // Get all dialogs (channels, groups, etc.)
-      const dialogs = await this.#client.getDialogs({ limit: 100 });
+      const dialogs = [];
+  for await (const dialog of this.#client.iterDialogs()) {
+    if (dialog.isChannel&&dialog?.entity?.adminRights) {
+      dialogs.push(dialog);
+    }
+  }
       
       let addedCount = 0;
       let updatedCount = 0;
@@ -679,9 +702,9 @@ class UserBotController {
           } else {
             // Add new channel using use case
             await this.#useCases.addChannel.execute({
-              ...channelInfo,
+              ...channelInfo,adminId: this.#sessionData.adminId,
               memberCount: entity.participantsCount || 0,
-              forwardEnabled: false, // Disabled by default
+              forwardEnabled: true, // Disabled by default
             });
             addedCount++;
           }

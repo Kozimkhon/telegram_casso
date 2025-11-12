@@ -56,11 +56,6 @@ class AddChannelUseCase {
       throw new Error('Channel title is required');
     }
 
-    // Check if channel exists
-    const existing = await this.#channelRepository.findById(data.channelId);
-    if (existing) {
-      throw new Error(`Channel already exists: ${data.channelId}`);
-    }
 
     // Validate session if provided
     if (data.adminId) {
@@ -77,11 +72,12 @@ class AddChannelUseCase {
     const channel = new Channel({
       channelId: data.channelId,
       title: data.title,
+      username: data.username || null,
       memberCount: data.memberCount || 0,
       forwardEnabled: data.forwardEnabled !== false,
       adminId: data.adminId || null,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Persist channel

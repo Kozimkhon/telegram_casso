@@ -1023,3 +1023,709 @@ TypeError: channels is not iterable
 {
   "error": "channels is not iterable"
 }
+2025-11-12 09:28:53 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:260:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:312:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:29:04 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:260:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:312:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:34:59 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:36:50 [ERROR]: Manual channel sync failed
+ReferenceError: client is not defined
+    at UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:674:37)
+    at Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "client is not defined"
+}
+2025-11-12 09:36:50 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout.<anonymous> (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 09:37:18 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:39:35 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:39:36 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 09:39:36 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 09:41:26 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: test
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: ...ن
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Vazifalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Musiqalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Bu bz👩‍❤️‍💋‍👨
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Har xil taomlar tayyorlanishi
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:28:13 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:30:24 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:30:26 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 10:30:26 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 10:49:19 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:51:32 [ERROR]: Failed to sync channel: test
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:51:38 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 10:51:38 [ERROR]: Failed to sync channel: ...ن
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:51:48 [ERROR]: Failed to sync channel: Vazifalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:52:07 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:54:04 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 11:00:39 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:01:05 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:01:05 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:03:41 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 11:04:06 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:06:38 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:06:42 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:06:42 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:19:18 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:46:40 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:50:36 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:50:42 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:50:42 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:51:20 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 11:51:37 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:58:50 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:06:25 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:07:17 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:10:31 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:23:14 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:28:24 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:30:15 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:31:33 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:31:34 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:17:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 12:31:34 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:17:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 12:37:23 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}

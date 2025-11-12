@@ -31,7 +31,8 @@ export function createChannelHandlers(dependencies) {
     try {
       // Get channels from repository
 
-      const channels = await channelRepository.findAll();
+      const channels = await channelRepository.findByAdminSession(ctx.from.id.toString())||[];
+
       // Build keyboard
       const itemsPerPage = 5;
       const totalPages = Math.ceil(channels.length / itemsPerPage);
@@ -63,17 +64,17 @@ export function createChannelHandlers(dependencies) {
       // Channel control buttons
       pageChannels.forEach((channel, index) => {
         const number = startIndex + index + 1;
-        const toggleText = channel.forward_enabled
+        const toggleText = channel.forwardEnabled
           ? `❌ Disable ${number}`
           : `✅ Enable ${number}`;
         buttons.push([
           Markup.button.callback(
             toggleText,
-            `toggle_channel_${channel.channel_id}`
+            `toggle_channel_${channel.channelId}`
           ),
           Markup.button.callback(
             `🗑 Remove ${number}`,
-            `remove_channel_${channel.channel_id}`
+            `remove_channel_${channel.channelId}`
           ),
         ]);
       });
@@ -275,12 +276,9 @@ export function createChannelHandlers(dependencies) {
         await ctx.editMessageText('❌ No active UserBot sessions found. Please add a session first.');
         return;
       }
-
-      // Sync channels from first active session
-      const firstSession = sessions[0];
       
       // Get bot instance from StateManager
-      const botInstance = stateManager.getBot(firstSession.adminId);
+      const botInstance = stateManager.getBot(ctx.from.id.toString());
       
       if (!botInstance || !botInstance.syncChannelsManually) {
         await ctx.editMessageText('❌ UserBot is not connected. Cannot sync channels.');

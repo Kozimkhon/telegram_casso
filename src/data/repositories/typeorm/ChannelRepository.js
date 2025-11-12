@@ -32,11 +32,11 @@ class ChannelRepository extends BaseRepository {
 
   /**
    * Finds channels by admin
-   * @param {string} adminUserId - Admin user ID
+   * @param {string} adminId - Admin user ID
    * @returns {Promise<Object[]>} Admin's channels
    */
-  async findByAdmin(adminUserId) {
-    return await this.findMany({ adminUserId });
+  async findByAdmin(adminId) {
+    return await this.findMany({ adminId });
   }
 
   /**

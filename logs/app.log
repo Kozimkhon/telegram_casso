@@ -1738,3 +1738,2400 @@ TypeError: channels is not iterable
   "component": "UserBotController",
   "phone": null
 }
+2025-11-12 09:28:52 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:52 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:52 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:53 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:260:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:312:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:28:53 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 09:28:53 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:53 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:53 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:53 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:53 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:28:54 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 09:29:04 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:04 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:04 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:04 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:260:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:312:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:29:04 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 09:29:05 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:05 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:05 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:05 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:05 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:29:05 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 09:34:58 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:58 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:58 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:34:59 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 09:34:59 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:34:59 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:35:00 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 09:36:16 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:36:50 [ERROR]: Manual channel sync failed
+ReferenceError: client is not defined
+    at UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:674:37)
+    at Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "client is not defined"
+}
+2025-11-12 09:36:50 [INFO]: Channels sync completed client is not defined
+{
+  "component": "ChannelHandlers",
+  "success": false
+}
+2025-11-12 09:36:50 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout.<anonymous> (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 09:36:59 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:36:59 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:13 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:13 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:13 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:37:18 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:37:18 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 09:37:45 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:39:35 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:35 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:39:36 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 09:39:36 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 09:39:36 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 09:40:00 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:41:26 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 09:41:59 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:41:59 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: test
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:17 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: ...ن
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Vazifalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Musiqalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Bu bz👩‍❤️‍💋‍👨
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [ERROR]: Failed to sync channel: Har xil taomlar tayyorlanishi
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:88:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:294:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 09:44:17 [INFO]: Channel sync complete: 0 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:17 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 0
+}
+2025-11-12 09:44:20 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:20 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 09:44:20 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:12 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:12 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:12 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:28:13 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:28:13 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 10:30:23 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:23 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:23 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:30:24 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:30:24 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 10:30:26 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 10:30:26 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 10:31:07 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:48:57 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:48:57 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:48:57 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:49:19 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:49:19 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 10:49:40 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:32 [ERROR]: Failed to sync channel: test
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:51:35 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:35 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:38 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 10:51:38 [ERROR]: Failed to sync channel: ...ن
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:51:48 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:48 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:48 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:51:48 [ERROR]: Failed to sync channel: Vazifalarm
+TypeError: this.createdAt.toISOString is not a function
+    at Channel.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Channel.entity.js:278:34)
+    at ChannelRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/ChannelRepository.js:65:26)
+    at AddChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/AddChannelUseCase.js:83:51)
+    at async UserBotController.syncChannelsManually (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:704:13)
+    at async Object.handleSyncChannels (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:291:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:204:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:52:06 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:06 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:06 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 10:52:07 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:52:07 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 10:52:25 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:54:04 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 10:54:09 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:54:09 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:54:14 [INFO]: Channel sync complete: 6 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:54:14 [INFO]: Channels sync completed Synced successfully: 6 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 6,
+  "updated": 0
+}
+2025-11-12 10:56:09 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:56:09 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:58:09 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 10:58:09 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:09 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:09 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:33 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:33 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:33 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:38 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:38 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:38 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:00:39 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:00:39 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:01:05 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:01:05 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:03:41 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:03:41 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:03:41 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 11:04:02 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:02 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:02 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:05 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:05 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:05 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:04:06 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:04:06 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:06:37 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:37 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:37 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:06:38 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:06:38 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:06:42 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:06:42 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:08:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:08:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:10:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:10:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:12:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:12:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:14:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:14:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:16:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:16:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:18:38 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:18:38 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:17 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:17 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:17 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:19:18 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:19:18 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:46:40 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:40 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:40 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:40 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:46:40 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:46:41 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:48:41 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:48:41 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:35 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:35 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:35 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 11:50:36 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:50:36 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 11:50:42 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 11:50:42 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:23:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:51:20 [ERROR]: Unhandled error in Sync channels callback
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "Sync channels callback"
+}
+2025-11-12 11:51:37 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:203:9
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 11:52:07 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:52:44 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:52:44 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:58:43 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:58:43 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:58:50 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 11:58:58 [INFO]: Channel sync complete: 6 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 11:58:58 [INFO]: Channels sync completed Synced successfully: 6 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 6,
+  "updated": 0
+}
+2025-11-12 12:00:43 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:00:43 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:02:43 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:02:43 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:04:43 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:04:43 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:21 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:21 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:21 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:24 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:24 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:24 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:06:25 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:25 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 12:06:43 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:45 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:45 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 6 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 6
+}
+2025-11-12 12:06:53 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:54 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:06:55 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 6 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 6
+}
+2025-11-12 12:07:16 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:16 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:16 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:07:17 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:17 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 12:07:33 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:35 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:07:35 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 6 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 6
+}
+2025-11-12 12:08:06 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:10:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:10:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:10:31 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:11:34 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:11:35 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 6 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 6
+}
+2025-11-12 12:12:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:12:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:14:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:14:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:16:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:16:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:18:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:18:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:20:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:20:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:22:31 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:22:31 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:10 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:10 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:10 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:13 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:13 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:13 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:23:14 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:23:14 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 12:23:38 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:23 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:23 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:23 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:28:24 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:28:24 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 12:28:56 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:30:15 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:30:17 [INFO]: Channel sync complete: 5 added, 1 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:30:17 [INFO]: Channels sync completed Synced successfully: 5 new channels added, 1 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 5,
+  "updated": 1
+}
+2025-11-12 12:30:43 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:30:43 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:28 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:28 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:28 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:32 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:32 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:32 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 12:31:33 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:31:33 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 12:31:34 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:17:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-12 12:31:34 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:17:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-12 12:37:22 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:37:22 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:37:23 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (E:\Experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:614:17)
+    at process.processTimers (node:internal/timers:549:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-12 12:39:20 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:39:20 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 12:39:20 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}

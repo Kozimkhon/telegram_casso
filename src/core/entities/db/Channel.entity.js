@@ -92,15 +92,8 @@ export const ChannelEntity = new EntitySchema({
       nullable: true,
       comment: 'JSON schedule configuration',
     },
-    // Foreign keys
-    adminSessionPhone: {
-      name: 'admin_session_phone',
-      type: 'varchar',
-      nullable: true,
-      comment: 'Session phone that manages this channel',
-    },
-    adminUserId: {
-      name: 'admin_user_id',
+    adminId: {
+      name: 'admin_id',
       type: 'varchar',
       nullable: true,
       comment: 'Admin who manages this channel',
@@ -122,7 +115,7 @@ export const ChannelEntity = new EntitySchema({
       type: 'many-to-one',
       target: 'Admin',
       joinColumn: {
-        name: 'admin_user_id',
+        name: 'admin_id',
         referencedColumnName: 'userId',
       },
       onDelete: 'SET NULL',
@@ -167,7 +160,7 @@ export const ChannelEntity = new EntitySchema({
     },
     {
       name: 'IDX_CHANNEL_ADMIN',
-      columns: ['adminUserId'],
+      columns: ['adminId'],
     },
     {
       name: 'IDX_CHANNEL_FORWARD_ENABLED',

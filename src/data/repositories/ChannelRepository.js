@@ -26,14 +26,13 @@ class ChannelRepository extends IChannelRepository {
       username: ormEntity.username,
       member_count: ormEntity.memberCount,
       forward_enabled: ormEntity.forwardEnabled,
-      admin_session_phone: ormEntity.adminSessionPhone,
       throttle_delay_ms: ormEntity.throttleDelayMs,
       throttle_per_member_ms: ormEntity.throttlePerMemberMs,
       min_delay_ms: ormEntity.minDelayMs,
       max_delay_ms: ormEntity.maxDelayMs,
       schedule_enabled: ormEntity.scheduleEnabled,
       schedule_config: ormEntity.scheduleConfig,
-      // REMOVED: admin_user_id (not part of domain entity)
+      admin_id : ormEntity.adminId,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -70,14 +69,13 @@ class ChannelRepository extends IChannelRepository {
       username: data.username,
       memberCount: data.member_count,
       forwardEnabled: Boolean(data.forward_enabled),
-      adminSessionPhone: data.admin_session_phone,
       throttleDelayMs: data.throttle_delay_ms,
       throttlePerMemberMs: data.throttle_per_member_ms,
       minDelayMs: data.min_delay_ms,
       maxDelayMs: data.max_delay_ms,
       scheduleEnabled: Boolean(data.schedule_enabled),
-      scheduleConfig: data.schedule_config
-      // REMOVED: adminUserId (not part of domain)
+      scheduleConfig: data.schedule_config,
+      adminId: data.admin_id
     });
 
     return this.#toDomainEntity(created);
@@ -141,8 +139,9 @@ class ChannelRepository extends IChannelRepository {
       totalMembers
     };
   }
-  async findByAdminSession(adminId){
-    this.#ormRepository.findByAdmin(adminId);
+  async findByAdminSession(adminId) {
+    const entities = await this.#ormRepository.findByAdmin(adminId);
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 }
 
