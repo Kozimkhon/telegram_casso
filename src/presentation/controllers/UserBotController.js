@@ -387,6 +387,10 @@ class UserBotController {
     try {
       this.#logger.info('Syncing channels...');
 
+      // Clear previous channel data
+      this.#adminChannelEntities = [];
+      this.#connectedChannels.clear();
+
       // Get channels from database - Session linked to admin via adminId
       // Channels should be linked to session via admin's phone (from Admin entity)
       // For now, get all channels - can be filtered by admin later
@@ -404,6 +408,11 @@ class UserBotController {
         } catch (error) {
           this.#logger.error(`Failed to sync channel ${channel.channelId}`, error);
         }
+      }
+
+      // Re-setup event handlers with updated channel list
+      if (this.#isRunning) {
+        await this.#setupEventHandlers();
       }
 
       this.#logger.info('Channel sync complete');
@@ -489,6 +498,15 @@ class UserBotController {
    */
   async #setupEventHandlers() {
     try {
+      // Only setup handlers if we have channels to monitor
+      if (this.#adminChannelEntities.length === 0) {
+        this.#logger.warn('No channels to monitor, skipping event handlers setup');
+        return;
+      }
+
+      // Remove existing handlers if any
+      this.#client.removeEventHandlers();
+
       // Listen for new messages in admin channels
       this.#client.addEventHandler(
         async (event) => await this.#handleNewMessage(event),
@@ -500,7 +518,7 @@ class UserBotController {
         async (event) => await this.#handleMessageDeleted(event)
       );
 
-      this.#logger.info('Event handlers set up');
+      this.#logger.info(`Event handlers set up for ${this.#adminChannelEntities.length} channels`);
 
     } catch (error) {
       this.#logger.error('Failed to setup event handlers', error);

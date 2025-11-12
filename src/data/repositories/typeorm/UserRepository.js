@@ -155,17 +155,38 @@ class UserRepository extends BaseRepository {
    */
   async addToChannel(channelId, userId) {
     try {
-      await this.repository
-        .createQueryBuilder()
-        .insert()
-        .into('channel_members')
-        .values({
-          channel_id: channelId,
-          user_id: userId,
-        })
-        .orIgnore() // Skip if already exists
-        .execute();
+      // Get channel repository
+      const channelRepo = AppDataSource.getRepository('Channel');
+      const userRepo = this.repository;
       
+      // Find channel and user
+      const channel = await channelRepo.findOne({ 
+        where: { channelId },
+        relations: ['users']
+      });
+      
+      const user = await userRepo.findOne({ 
+        where: { userId } 
+      });
+      
+      if (!channel || !user) {
+        console.error('Channel or user not found:', { channelId, userId });
+        return false;
+      }
+      
+      // Check if user already in channel
+      const existingUser = channel.users?.find(u => u.userId === userId);
+      if (existingUser) {
+        return true; // Already added
+      }
+      
+      // Add user to channel
+      if (!channel.users) {
+        channel.users = [];
+      }
+      channel.users.push(user);
+      
+      await channelRepo.save(channel);
       return true;
     } catch (error) {
       console.error('Error adding user to channel:', error);
@@ -180,17 +201,57 @@ class UserRepository extends BaseRepository {
    * @returns {Promise<Object[]>} Results for each user
    */
   async bulkAddToChannel(channelId, userIds) {
-    const results = [];
-    
-    for (const userId of userIds) {
-      const success = await this.addToChannel(channelId, userId);
-      results.push({
-        userId,
-        success,
+    try {
+      // Get channel repository
+      const channelRepo = AppDataSource.getRepository('Channel');
+      const userRepo = this.repository;
+      
+      // Find channel with users
+      const channel = await channelRepo.findOne({ 
+        where: { channelId },
+        relations: ['users']
       });
+      
+      if (!channel) {
+        console.error('Channel not found:', channelId);
+        return userIds.map(userId => ({ userId, success: false }));
+      }
+      
+      // Find all users
+      const users = await userRepo
+        .createQueryBuilder('user')
+        .where('user.userId IN (:...userIds)', { userIds })
+        .getMany();
+      
+      const results = [];
+      
+      // Get existing user IDs
+      const existingUserIds = new Set(channel.users?.map(u => u.userId) || []);
+      
+      // Add new users
+      const newUsers = users.filter(u => !existingUserIds.has(u.userId));
+      if (newUsers.length > 0) {
+        if (!channel.users) {
+          channel.users = [];
+        }
+        channel.users.push(...newUsers);
+        await channelRepo.save(channel);
+      }
+      
+      // Build results
+      for (const userId of userIds) {
+        const userExists = users.find(u => u.userId === userId);
+        results.push({
+          userId,
+          success: !!userExists
+        });
+      }
+      
+      return results;
+    } catch (error) {
+      console.error('Error bulk adding users to channel:', error);
+      return userIds.map(userId => ({ userId, success: false }));
     }
-    
-    return results;
   }
 
   /**
@@ -200,14 +261,22 @@ class UserRepository extends BaseRepository {
    */
   async clearChannelMembers(channelId) {
     try {
-      const result = await this.repository
-        .createQueryBuilder()
-        .delete()
-        .from('channel_members')
-        .where('channel_id = :channelId', { channelId })
-        .execute();
+      const channelRepo = AppDataSource.getRepository('Channel');
       
-      return result.affected || 0;
+      const channel = await channelRepo.findOne({ 
+        where: { channelId },
+        relations: ['users']
+      });
+      
+      if (!channel) {
+        return 0;
+      }
+      
+      const count = channel.users?.length || 0;
+      channel.users = [];
+      await channelRepo.save(channel);
+      
+      return count;
     } catch (error) {
       console.error('Error clearing channel members:', error);
       return 0;
