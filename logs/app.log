@@ -9341,3 +9341,5629 @@ TypeError: this[#client].removeEventHandlers is not a function
   "component": "UserBotController",
   "adminId": "5684628333"
 }
+2025-11-12 18:35:20 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:20 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:20 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:24 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:24 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 18:35:24 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:24 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:25 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:26 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:27 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:30 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:39 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:52 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:52 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:52 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:54 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:35:54 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 18:35:54 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:27 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:28 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:36 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:39 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:40 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:43 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:36:44 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 18:51:52 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:52 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:52 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:53 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:53 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 18:51:53 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:53 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:54 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:54 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:55 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:58 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:59 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:51:59 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:00 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:00 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:01 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:01 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:02 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:52:03 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 18:53:30 [DEBUG]: Channel not in connected list
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1002117514789"
+}
+2025-11-12 18:53:40 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:40 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:40 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:41 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:41 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 18:53:41 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:41 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:42 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:43 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:43 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:47 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:47 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:48 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:49 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:49 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:50 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:51 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 18:53:52 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 19:09:51 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:51 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:51 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:52 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:52 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 19:09:52 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:52 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:53 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:53 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:55 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:58 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:58 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:58 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:09:59 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:00 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:00 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:01 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:10:02 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 19:10:48 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 21
+}
+2025-11-12 19:10:55 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 21,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:12:02 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:02 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:03 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:03 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:04 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:07 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:08 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:08 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:09 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:10 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:10 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:11 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:11 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:12 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:12 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:12:12 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:13:10 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 22
+}
+2025-11-12 19:13:10 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 22,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:13:10 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 22
+}
+2025-11-12 19:13:10 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 22,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:14:02 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:02 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:03 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:03 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:04 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:07 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:08 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:08 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:09 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:10 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:10 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:11 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:11 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:12 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:12 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:12 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:14:50 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 23
+}
+2025-11-12 19:15:33 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 23,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:15:50 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 23
+}
+2025-11-12 19:15:50 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 23
+}
+2025-11-12 19:22:11 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:11 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:11 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:12 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:12 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 19:22:13 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:13 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:13 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:14 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:14 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:17 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:18 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:18 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:19 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:19 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:20 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:20 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:22:21 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 19:24:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:31 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:31 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:24:31 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:26 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 19,
+  "views": 2
+}
+2025-11-12 19:26:26 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 19,
+  "views": 2
+}
+2025-11-12 19:26:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:31 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:31 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:26:31 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:27 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:30 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:28:30 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:31 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:31 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:30:31 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:31:07 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 24
+}
+2025-11-12 19:31:31 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 24,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:31:35 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 24
+}
+2025-11-12 19:31:35 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 24
+}
+2025-11-12 19:31:35 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 24
+}
+2025-11-12 19:31:35 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 24
+}
+2025-11-12 19:32:07 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:08 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 24,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:32:10 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:15 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 24,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:32:16 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:28 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 24,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:32:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:30 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:38 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 24,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:32:39 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:39 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:39 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:40 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:43 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:44 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:44 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:45 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:45 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:45 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:46 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:47 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:47 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:47 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:32:47 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:33:16 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:16 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:16 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:16 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:16 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:17 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:17 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 25
+}
+2025-11-12 19:33:17 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:17 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:18 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "views": 2
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 25,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 19:33:20 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:34:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:37 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:34:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:36:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:38:39 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:40:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:42:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:36 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:44:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:28 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:46:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:28 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:48:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:50:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:52:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:54:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:56:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 19:58:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:37 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:37 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:41 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:41 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:44 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:44 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:44 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:00:44 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:02:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:04:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:06:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:08:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:36 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:10:36 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:12:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:14:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:16:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:36 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:37 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:18:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:36 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:37 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:38 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:38 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:20:38 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:21 [INFO]: Starting old message deletion process...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:21 [ERROR]: Error deleting old messages
+Error: findOldMessages() must be implemented
+    at MessageRepository.findOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IMessageRepository.js:44:11)
+    at FindOldMessagesUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/use-cases/message/FindOldMessagesUseCase.js:37:52)
+    at #deleteOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:718:67)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:698:48)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findOldMessages() must be implemented"
+}
+2025-11-12 20:22:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:30 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:37 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:22:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:29 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:34 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:35 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:36 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:37 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:37 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:38 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:39 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:39 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:39 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:24:39 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:39 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-12 20:28:39 [DEBUG]: [ForwardingService] Initialized
+2025-11-12 20:28:39 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:39 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:39 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:40 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:40 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 20:28:40 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:40 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:41 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:41 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:42 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:45 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:46 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:46 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:46 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:47 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:48 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:48 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:49 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:28:50 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 20:30:50 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:50 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:50 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:51 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:51 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:54 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:55 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:55 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:56 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:56 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:57 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:57 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:58 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:58 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:58 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:30:58 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:12 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 26
+}
+2025-11-12 20:32:12 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 26,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 20:32:12 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 26
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:32:12 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 26
+}
+2025-11-12 20:32:12 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 26,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 20:32:12 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 26
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:32:50 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:50 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:50 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:51 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:51 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:54 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:55 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:55 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:56 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:56 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:57 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:57 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:58 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:58 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:58 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:32:58 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:02 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-12 20:43:02 [DEBUG]: [ForwardingService] Initialized
+2025-11-12 20:43:02 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:02 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:02 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:03 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:03 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 20:43:03 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:03 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:03 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:04 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:04 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:07 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:08 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:09 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:09 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:09 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:10 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:11 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:43:12 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 20:43:53 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 27
+}
+2025-11-12 20:43:53 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 27,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 20:43:53 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 27
+}
+2025-11-12 20:43:53 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "remaining": 2
+}
+2025-11-12 20:43:53 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:43:53 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:200:39)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 20:45:12 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:12 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:13 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:13 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:14 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:17 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:18 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:18 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:19 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:19 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:20 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:20 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:21 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:22 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:22 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:45:22 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:40 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-12 20:46:40 [DEBUG]: [ForwardingService] Initialized
+2025-11-12 20:46:40 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:40 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:40 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:41 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:41 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 20:46:42 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:42 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:42 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:42 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:43 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:46 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:47 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:47 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:48 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:48 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:49 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:50 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:50 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:46:51 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 20:47:01 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 28
+}
+2025-11-12 20:47:01 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 28,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 20:47:01 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 28
+}
+2025-11-12 20:47:01 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "remaining": 2
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:47:01 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "remaining": 1
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:47:02 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 0,
+  "failed": 2,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "170829174",
+      "status": "failed",
+      "error": "sleep is not defined"
+    },
+    {
+      "userId": "5684628333",
+      "status": "failed",
+      "error": "sleep is not defined"
+    }
+  ]
+}
+2025-11-12 20:48:51 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:51 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:52 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:52 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:53 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:55 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:56 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:56 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:57 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:57 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:58 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:48:59 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:49:00 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:49:00 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:49:00 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:49:00 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:51 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:51 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:52 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:52 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:53 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:56 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:57 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:57 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:58 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:58 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:59 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:50:59 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:00 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:01 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:01 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:01 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:10 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-12 20:51:10 [DEBUG]: [ForwardingService] Initialized
+2025-11-12 20:51:10 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:10 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:10 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:11 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:11 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 20:51:12 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:12 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:12 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:13 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:13 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:16 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:17 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:17 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:18 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:18 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:19 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:20 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:51:21 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 20:51:52 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 29
+}
+2025-11-12 20:51:52 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 29,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-12 20:51:52 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 29
+}
+2025-11-12 20:51:52 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "remaining": 2
+}
+2025-11-12 20:51:56 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-12 20:51:56 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174"
+}
+2025-11-12 20:51:56 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174"
+}
+2025-11-12 20:51:56 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "remaining": 1
+}
+2025-11-12 20:51:58 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "5684628333"
+}
+2025-11-12 20:51:58 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333"
+}
+2025-11-12 20:51:59 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333"
+}
+2025-11-12 20:51:59 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "170829174",
+      "status": "success"
+    },
+    {
+      "userId": "5684628333",
+      "status": "success"
+    }
+  ]
+}
+2025-11-12 20:52:58 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 30
+}
+2025-11-12 20:52:58 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "groupedId": "14103702226087346",
+  "messageId": 30,
+  "bufferSize": 1
+}
+2025-11-12 20:52:58 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 31
+}
+2025-11-12 20:52:58 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "groupedId": "14103702226087346",
+  "messageId": 31,
+  "bufferSize": 2
+}
+2025-11-12 20:52:58 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "maxId": 32
+}
+2025-11-12 20:52:58 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "groupedId": "14103702226087346",
+  "messageId": 32,
+  "bufferSize": 3
+}
+2025-11-12 20:52:59 [INFO]: Forwarding grouped messages
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageCount": 3,
+  "messageIds": [
+    30,
+    31,
+    32
+  ]
+}
+2025-11-12 20:52:59 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003288456214",
+  "messageId": 30
+}
+2025-11-12 20:52:59 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "remaining": 2
+}
+2025-11-12 20:53:02 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-12 20:53:02 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174"
+}
+2025-11-12 20:53:03 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174"
+}
+2025-11-12 20:53:03 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "remaining": 1
+}
+2025-11-12 20:53:04 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "5684628333"
+}
+2025-11-12 20:53:04 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333"
+}
+2025-11-12 20:53:04 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333"
+}
+2025-11-12 20:53:04 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "170829174",
+      "status": "success"
+    },
+    {
+      "userId": "5684628333",
+      "status": "success"
+    }
+  ]
+}
+2025-11-12 20:53:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:23 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 32,
+  "views": 2
+}
+2025-11-12 20:53:23 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "messageId": 32,
+  "views": 2
+}
+2025-11-12 20:53:25 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:26 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:26 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:27 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:28 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:28 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:29 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:29 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:53:29 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:30 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:55:30 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:26 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:27 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:28 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:29 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:30 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:57:30 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:31 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:31 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 20:59:31 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:21 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:22 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:31 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:31 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:01:31 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 21:02:31 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "5684628333",
+  "channelId": "-1003288456214",
+  "count": 3,
+  "messageIds": [
+    30,
+    31,
+    32
+  ]
+}

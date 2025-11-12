@@ -93,7 +93,7 @@ sleep(ms) {
     this.#refillTokens();
     
     while (this.#tokens <= 0) {
-      await sleep(100);
+      await this.sleep(100);
       this.#refillTokens();
     }
     
@@ -103,7 +103,7 @@ sleep(ms) {
     const delay = Math.floor(
       this.#minDelayMs + Math.random() * (this.#maxDelayMs - this.#minDelayMs)
     );
-    await sleep(delay);
+    await this.sleep(delay);
   }
 
   /**
@@ -158,7 +158,7 @@ class PerUserThrottleVO {
       const remaining = this.#delayMs - elapsed;
       
       if (remaining > 0) {
-        await sleep(remaining);
+        await this.sleep(remaining);
       }
     }
     
@@ -334,7 +334,7 @@ class ThrottleService {
             error: error.message
           });
           
-          await sleep(delay);
+          await this.sleep(delay);
         }
       }
     }

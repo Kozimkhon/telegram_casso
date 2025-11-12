@@ -4199,3 +4199,211 @@ TypeError: this[#client].removeEventHandlers is not a function
 {
   "error": "this[#client].removeEventHandlers is not a function"
 }
+2025-11-12 19:32:07 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:10 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:16 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:30 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:39 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:17 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:20 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 20:22:21 [ERROR]: Error deleting old messages
+Error: findOldMessages() must be implemented
+    at MessageRepository.findOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IMessageRepository.js:44:11)
+    at FindOldMessagesUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/use-cases/message/FindOldMessagesUseCase.js:37:52)
+    at #deleteOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:718:67)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:698:48)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findOldMessages() must be implemented"
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:43:53 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:43:53 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:200:39)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "error": "sleep is not defined"
+}

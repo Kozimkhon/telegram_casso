@@ -10,6 +10,7 @@
 
 import { ForwardingStatus } from '../../shared/constants/index.js';
 import { log } from '../../shared/logger.js';
+import Message from '../../core/entities/Message.entity.js';
 
 /**
  * Forwarding Service - Domain Service
@@ -145,16 +146,17 @@ class ForwardingService {
           // Grouped message (album) - multiple messages in one group
           // Log with grouped tracking for later batch deletion
           
-          await this.#messageRepository.create({
+          const messageEntity = new Message({
             channelId,
             messageId: message.id.toString(),
             userId: user.userId,
             forwardedMessageId: result.id?.toString(),
             groupedId: result.groupedId,
             isGrouped: true,
-            status: ForwardingStatus.SUCCESS,
-            sessionPhone: result.adminId
+            status: ForwardingStatus.SUCCESS
           });
+          
+          await this.#messageRepository.create(messageEntity);
 
           this.#logger.debug('[ForwardingService] Forwarded grouped message', {
             channelId,
@@ -164,16 +166,17 @@ class ForwardingService {
           });
         } else {
           // Single message (non-grouped)
-          await this.#messageRepository.create({
+          const messageEntity = new Message({
             channelId,
             messageId: message.id.toString(),
             userId: user.userId,
             forwardedMessageId: result.id?.toString(),
             groupedId: null,
             isGrouped: false,
-            status: ForwardingStatus.SUCCESS,
-            sessionPhone: result.adminId
+            status: ForwardingStatus.SUCCESS
           });
+          
+          await this.#messageRepository.create(messageEntity);
 
           this.#logger.debug('[ForwardingService] Forwarded single message', {
             channelId,
@@ -197,14 +200,15 @@ class ForwardingService {
         });
 
         // Log failure
-        await this.#messageRepository.create({
+        const failedMessageEntity = new Message({
           channelId,
           messageId: message.id.toString(),
           userId: user.userId,
           status: ForwardingStatus.FAILED,
-          errorMessage: error.message,
-          sessionPhone: error.adminId
+          errorMessage: error.message
         });
+        
+        await this.#messageRepository.create(failedMessageEntity);
 
         results.push({
           userId: user.userId,

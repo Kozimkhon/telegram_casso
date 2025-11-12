@@ -197,12 +197,12 @@ class Container {
     // Register domain services
     this.registerSingleton('throttleService', () => new ThrottleService({maxMessages:1000,timeWindow:75000}));
     this.registerSingleton('forwardingService', (c) => 
-      new ForwardingService(
-        c.resolve('userRepository'),
-        c.resolve('messageRepository'),
-        c.resolve('throttleService'),
-        c.resolve('stateManager')
-      )
+      new ForwardingService({
+        userRepository: c.resolve('userRepository'),
+        messageRepository: c.resolve('messageRepository'),
+        throttleService: c.resolve('throttleService'),
+        stateManager: c.resolve('stateManager')
+      })
     );
     this.registerSingleton('metricsService', (c) => 
       new MetricsService({

@@ -58,14 +58,7 @@ class QueueItemVO {
   getId() {
     return this.#id;
   }
-  /**
-   * Sleep utility
-   * @param {number} ms - Milliseconds to sleep
-   * @returns {Promise<void>}
-   */
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+ 
   /**
    * Gets task function
    * @returns {Function} Task function
@@ -247,7 +240,14 @@ class MessageQueueVO {
       this.#minDelay + Math.random() * (this.#maxDelay - this.#minDelay)
     );
   }
-
+ /**
+   * Sleep utility
+   * @param {number} ms - Milliseconds to sleep
+   * @returns {Promise<void>}
+   */
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   /**
    * Waits for delay between messages
    * @async
@@ -255,7 +255,7 @@ class MessageQueueVO {
    */
   async waitForDelay() {
     const delay = this.#getRandomDelay();
-    await sleep(delay);
+    await this.sleep(delay);
   }
 
   /**
