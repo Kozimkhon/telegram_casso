@@ -14,6 +14,7 @@ import { config } from "../../config/index.js";
 import { createChildLogger } from "../../shared/logger.js";
 import { handleTelegramError, AuthenticationError } from "../../shared/errorHandler.js";
 import { extractChannelInfo, extractUserInfo } from "../../shared/helpers.js";
+import ChannelEventHandlers from "../handlers/channelEventHandlers.js";
 
 /**
  * UserBot Controller
@@ -93,6 +94,12 @@ class UserBotController {
    * @private
    */
   #deleteInterval = null;
+
+  /**
+   * Channel event handlers instance
+   * @private
+   */
+  #channelEventHandlers = null;
 
   /**
    * Creates UserBot controller
@@ -507,110 +514,119 @@ class UserBotController {
       // Remove existing handlers if any
       this.#client.removeEventHandlers();
 
-      // Listen for new messages in admin channels
+      // Initialize channel event handlers with dependencies
+      this.#channelEventHandlers = new ChannelEventHandlers({
+        useCases: this.#useCases,
+        services: this.#services,
+        connectedChannels: this.#connectedChannels,
+        sessionData: this.#sessionData,
+        client: this.#client,
+      });
+
+      // Register all Telegram channel event handlers
+      
+      // 1. New channel message
       this.#client.addEventHandler(
-        async (event) => await this.#handleNewMessage(event),
-        new NewMessage({ chats: this.#adminChannelEntities })
+        async (event) => await this.#channelEventHandlers.handleNewChannelMessage(event),
+        new Api.UpdateNewChannelMessage({})
       );
 
-      // Listen for message deletions
+      // 2. Edit channel message
       this.#client.addEventHandler(
-        async (event) => await this.#handleMessageDeleted(event)
+        async (event) => await this.#channelEventHandlers.handleEditChannelMessage(event),
+        new Api.UpdateEditChannelMessage({})
       );
 
-      this.#logger.info(`Event handlers set up for ${this.#adminChannelEntities.length} channels`);
+      // 3. Delete channel messages
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleDeleteChannelMessages(event),
+        new Api.UpdateDeleteChannelMessages({})
+      );
+
+      // 4. Channel update (title, bio, settings)
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelUpdate(event),
+        new Api.UpdateChannel({})
+      );
+
+      // 5. Channel message views
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelMessageViews(event),
+        new Api.UpdateChannelMessageViews({})
+      );
+
+      // 6. Channel too long (message limit exceeded)
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelTooLong(event),
+        new Api.UpdateChannelTooLong({})
+      );
+
+      // 7. Channel pinned message
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelPinnedMessage(event),
+        new Api.UpdateChannelPinnedMessage({})
+      );
+
+      // 8. Channel participant (join/leave)
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelParticipant(event),
+        new Api.UpdateChannelParticipant({})
+      );
+
+      // 9. Channel user typing
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelUserTyping(event),
+        new Api.UpdateChannelUserTyping({})
+      );
+
+      // 10. Channel message forwards
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelMessageForwards(event),
+        new Api.UpdateChannelMessageForwards({})
+      );
+
+      // 11. Channel available messages
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelAvailableMessages(event),
+        new Api.UpdateChannelAvailableMessages({})
+      );
+
+      // 12. Channel read messages contents
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelReadMessagesContents(event),
+        new Api.UpdateChannelReadMessagesContents({})
+      );
+
+      // 13. Read channel inbox
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleReadChannelInbox(event),
+        new Api.UpdateReadChannelInbox({})
+      );
+
+      // 14. Read channel outbox
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleReadChannelOutbox(event),
+        new Api.UpdateReadChannelOutbox({})
+      );
+
+      // 15. Channel participant add (legacy)
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelParticipantAdd(event),
+        new Api.UpdateChannelParticipantAdd({})
+      );
+
+      // 16. Channel participant delete
+      this.#client.addEventHandler(
+        async (event) => await this.#channelEventHandlers.handleChannelParticipantDelete(event),
+        new Api.UpdateChannelParticipantDelete({})
+      );
+
+      this.#logger.info(`Event handlers set up for ${this.#adminChannelEntities.length} channels`, {
+        handlersRegistered: 16,
+      });
 
     } catch (error) {
       this.#logger.error('Failed to setup event handlers', error);
-    }
-  }
-
-  /**
-   * Handles new message event
-   * @private
-   * @param {Object} event - Telegram event
-   * @returns {Promise<void>}
-   */
-  async #handleNewMessage(event) {
-    try {
-      const message = event.message;
-      const channelId = message.peerId?.channelId?.toString();
-
-      if (!channelId) return;
-
-      // Check if channel forwarding is enabled
-      const channelInfo = this.#connectedChannels.get(`-100${channelId}`);
-      if (!channelInfo || !channelInfo.forwardEnabled) {
-        return;
-      }
-
-      this.#logger.info('New message received', {
-        channelId: `-100${channelId}`,
-        messageId: message.id,
-      });
-
-      // Forward to channel users using ForwardingService
-      await this.#services.forwarding.forwardToChannelUsers(
-        `-100${channelId}`,
-        message,
-        async (userId, msg) => await this.#forwardMessageToUser(userId, msg)
-      );
-
-    } catch (error) {
-      this.#logger.error('Error handling new message', error);
-    }
-  }
-  /**
-   * Forwards message to single user
-   * @private
-   * @param {string} userId - User ID
-   * @param {Object} message - Message to forward
-   * @returns {Promise<Object>} Forward result
-   */
-  async #forwardMessageToUser(userId, message) {
-    try {
-      const userEntity = await this.#client.getEntity(BigInt(userId));
-      
-      const result = await this.#client.forwardMessages(userEntity, {
-        messages: [message.id],
-        fromPeer: message.peerId,
-      });
-
-      return {
-        id: result[0]?.id,
-        adminId: this.#sessionData.adminId,
-      };
-
-    } catch (error) {
-      // Check for flood wait
-      if (error.errorMessage?.includes('FLOOD_WAIT')) {
-        const seconds = parseInt(error.errorMessage.match(/(\d+)/)?.[1] || '60');
-        error.isFloodWait = true;
-        error.seconds = seconds;
-        error.adminId = this.#sessionData.adminId;
-      }
-      throw error;
-    }
-  }
-
-  /**
-   * Handles message deleted event
-   * @private
-   * @param {Object} event - Telegram event
-   * @returns {Promise<void>}
-   */
-  async #handleMessageDeleted(event) {
-    try {
-      const messages = event.deletedIds || [];
-      
-      for (const messageId of messages) {
-        // Mark as deleted in database using use case
-        // Note: Need to get userId from message logs
-        this.#logger.debug('Message deleted', { messageId });
-      }
-
-    } catch (error) {
-      this.#logger.error('Error handling message deletion', error);
     }
   }
 
