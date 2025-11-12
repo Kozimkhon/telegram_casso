@@ -22574,3 +22574,1399 @@ Error: Forwarded message ID is required for deletion
   "messageId": 81,
   "views": 2
 }
+2025-11-13 00:11:21 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 00:11:21 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 00:11:21 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:21 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:21 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:21 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:21 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 00:11:22 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:22 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:22 [INFO]: Found 3 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:23 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:23 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:29 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:30 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:11:31 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 00:28:46 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 00:28:46 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 00:28:46 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:46 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:46 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:47 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:47 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 00:28:47 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:47 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:47 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:48 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:48 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:52 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:52 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:53 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:53 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:53 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:54 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:55 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:55 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:28:56 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 00:38:59 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 00:38:59 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 00:38:59 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:38:59 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:38:59 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:00 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:00 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 00:39:00 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:00 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:01 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:01 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:02 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:05 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:06 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:06 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:07 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:07 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:08 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:08 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:39:09 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 00:58:05 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 00:58:05 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 00:58:05 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:05 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:05 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:06 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:06 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 00:58:06 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:06 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:07 [INFO]: Found 3 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:08 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:09 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:11 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:12 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:12 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:13 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:13 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:14 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:14 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:15 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 00:58:24 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._handleContainer (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:589:13)
+    at async MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:9)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._handleContainer (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:589:13)
+    at async MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:9)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 00:58:24 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 3484,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99893248,
+      "heapTotal": 41648128,
+      "heapUsed": 34864104,
+      "external": 2631052,
+      "arrayBuffers": 93377
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 520711.359
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._handleContainer",
+      "line": 589,
+      "method": "_handleContainer",
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}
+2025-11-13 00:58:46 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 00:58:46 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 00:58:46 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:46 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:46 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:47 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:47 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 00:58:47 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:47 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:47 [INFO]: Found 3 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:48 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:49 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:52 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:53 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:53 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:54 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:54 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:55 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:55 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:56 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 00:58:57 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 00:59:01 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 00:59:01 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 21692,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99188736,
+      "heapTotal": 41385984,
+      "heapUsed": 34456880,
+      "external": 2638072,
+      "arrayBuffers": 100397
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 520748.109
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}
+2025-11-13 01:03:49 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 01:03:49 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 01:03:49 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:49 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:49 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:50 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:50 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 01:03:50 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:50 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:51 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:51 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:52 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:55 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:56 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:56 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:57 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:57 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:58 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:58 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:03:59 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:04:00 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 01:04:08 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 01:04:08 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 9856,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 131178496,
+      "heapTotal": 74416128,
+      "heapUsed": 50230832,
+      "external": 2747555,
+      "arrayBuffers": 200178
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 521055.171
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_handleUpdate",
+      "line": 72,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_updateLoop",
+      "line": 196,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    }
+  ]
+}
+2025-11-13 01:05:15 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 01:05:15 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 01:05:15 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:15 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:15 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:16 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:16 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 01:05:16 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:16 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:17 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:17 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:18 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:21 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:22 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:23 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:23 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:24 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:24 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Universal event handler set up for 6 channels
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 01:05:25 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 01:05:34 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 01:05:34 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 16892,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99221504,
+      "heapTotal": 41385984,
+      "heapUsed": 34229792,
+      "external": 2629784,
+      "arrayBuffers": 92109
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 521140.718
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}
