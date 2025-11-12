@@ -431,11 +431,6 @@ class UserBotController {
         }
       }
 
-      // Re-setup event handlers with updated channel list
-      if (this.#isRunning) {
-        await this.#setupEventHandlers();
-      }
-
       this.#logger.info('Channel sync complete');
 
     } catch (error) {
@@ -687,12 +682,6 @@ class UserBotController {
    * @private
    */
   #startPeriodicTasks() {
-    // Sync channels every 2 minutes
-    this.#syncInterval = setInterval(
-      async () => await this.#syncChannels(),
-      2 * 60 * 1000
-    );
-
     // Delete old messages every hour
     this.#deleteInterval = setInterval(
       async () => await this.#deleteOldMessages(),

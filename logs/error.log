@@ -4407,3 +4407,101 @@ TypeError: message.toObject is not a function
   "userId": "5684628333",
   "error": "sleep is not defined"
 }
+2025-11-12 22:00:02 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageId": 42,
+  "error": "Invalid status. Must be one of: success, failed, skipped, pending"
+}
+2025-11-12 22:00:02 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageId": 42,
+  "error": "Invalid status. Must be one of: success, failed, skipped, pending"
+}
+2025-11-12 22:02:59 [ERROR]: [ChannelEventHandlers] Failed to delete message
+Error: Forwarded message ID is required for deletion
+    at #deleteMessageFromUser (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:794:15)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:290:77
+    at ForwardingService.deleteForwardedMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:361:15)
+    at async ChannelEventHandlers.handleDeleteChannelMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:287:11)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "userId": "170829174",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:02:59 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "170829174",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:03:03 [ERROR]: [ChannelEventHandlers] Failed to delete message
+Error: Forwarded message ID is required for deletion
+    at #deleteMessageFromUser (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:794:15)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:290:77
+    at ForwardingService.deleteForwardedMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:361:15)
+    at async ChannelEventHandlers.handleDeleteChannelMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:287:11)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "userId": "5684628333",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:03:03 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "5684628333",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 23:41:00 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "this.sleep is not a function"
+}
+2025-11-12 23:52:58 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageIds": [
+    84,
+    85,
+    86
+  ],
+  "error": "Cannot read properties of undefined (reading 'forEach')"
+}
+2025-11-12 23:56:00 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageIds": [
+    87,
+    88,
+    89
+  ],
+  "error": "msg is not defined"
+}
+2025-11-12 23:58:40 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "170829174",
+  "forwardedIds": [
+    "4053",
+    "4054",
+    "4055"
+  ],
+  "error": "forwardedId is not defined"
+}
+2025-11-13 00:00:51 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "5684628333",
+  "forwardedIds": [
+    "4056",
+    "4057",
+    "4058"
+  ],
+  "error": "forwardedId is not defined"
+}

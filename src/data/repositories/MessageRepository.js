@@ -169,10 +169,10 @@ class MessageRepository extends IMessageRepository {
    * @param {string} messageId - Original message ID
    * @returns {Promise<Message[]>} Forwarded message copies
    */
-  async findByForwardedMessageId(channelId, messageId) {
+  async findByForwardedMessageId(channelId, messageIds) {
     // Find messages from this channel with this message ID
     const entities = await this.#ormRepository.findByChannel(channelId);
-    const filtered = entities.filter(e => e.messageId == messageId);
+    const filtered = entities.filter(e => messageIds.includes(Number.parseInt(e.messageId)));
     return filtered.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
 

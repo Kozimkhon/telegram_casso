@@ -140,13 +140,33 @@ class ForwardingService {
 
         // Forward message (now guaranteed by throttle)
         const result = await forwarder(user.userId, message);
-        
+
         // Log success - handle grouped messages (albums)
         if (result.count && result.count > 1 && result.groupedId) {
           // Grouped message (album) - multiple messages in one group
           // Log with grouped tracking for later batch deletion
-          
-          const messageEntity = new Message({
+          if(result.result){
+            for(const res of result.result){
+              const messageEntity = new Message({
+                channelId,
+                messageId: res.fwdFrom.channelPost.toString(),
+                userId: user.userId,
+                forwardedMessageId: res.id?.toString(),
+                groupedId: res.groupedId?.toString(),
+                isGrouped: true,
+                status: ForwardingStatus.SUCCESS
+              });
+              await this.#messageRepository.create(messageEntity);
+
+              this.#logger.debug('[ForwardingService] Forwarded grouped message item', {
+                channelId,
+                userId: user.userId,
+                forwardedId: res.id,
+                groupedId: result.groupedId
+              });
+            }
+          }else{
+             const messageEntity = new Message({
             channelId,
             messageId: message.id.toString(),
             userId: user.userId,
@@ -155,7 +175,7 @@ class ForwardingService {
             isGrouped: true,
             status: ForwardingStatus.SUCCESS
           });
-          
+
           await this.#messageRepository.create(messageEntity);
 
           this.#logger.debug('[ForwardingService] Forwarded grouped message', {
@@ -164,6 +184,8 @@ class ForwardingService {
             count: result.count,
             groupedId: result.groupedId
           });
+          }
+         
         } else {
           // Single message (non-grouped)
           const messageEntity = new Message({
@@ -175,7 +197,7 @@ class ForwardingService {
             isGrouped: false,
             status: ForwardingStatus.SUCCESS
           });
-          
+
           await this.#messageRepository.create(messageEntity);
 
           this.#logger.debug('[ForwardingService] Forwarded single message', {
@@ -207,7 +229,7 @@ class ForwardingService {
           status: ForwardingStatus.FAILED,
           errorMessage: error.message
         });
-        
+
         await this.#messageRepository.create(failedMessageEntity);
 
         results.push({
@@ -246,7 +268,7 @@ class ForwardingService {
    */
   async handleFloodWait(sessionPhone, seconds) {
     const pausedUntil = new Date(Date.now() + seconds * 1000).toISOString();
-    
+
     this.#logger.warn('[ForwardingService] Flood wait triggered', {
       sessionPhone,
       seconds,
@@ -311,21 +333,21 @@ class ForwardingService {
    * @param {Function} deleter - Deletion function (userId, forwardedId) -> void
    * @returns {Promise<Object>} Deletion results
    */
-  async deleteForwardedMessages(channelId, messageId, deleter) {
+  async deleteForwardedMessages(channelId, messageIds, deleter) {
     this.#logger.debug('[ForwardingService] Deleting forwarded messages', {
       channelId,
-      messageId
+      messageIds
     });
 
     // Find all forwarded copies
     const messages = await this.#messageRepository.findByForwardedMessageId(
       channelId,
-      messageId
-    );
+      messageIds
+    ) || [];
 
     this.#logger.info('[ForwardingService] Found forwarded message copies', {
       channelId,
-      messageId,
+      messageIds,
       count: messages.length,
       messages: messages.map(m => ({ userId: m.userId, forwardedId: m.forwardedMessageId }))
     });
@@ -333,7 +355,7 @@ class ForwardingService {
     if (messages.length === 0) {
       this.#logger.debug('[ForwardingService] No forwarded messages to delete', {
         channelId,
-        messageId
+        messageIds
       });
       return {
         total: 0,
@@ -347,46 +369,53 @@ class ForwardingService {
     let deleted = 0;
     let failed = 0;
 
-    for (const msg of messages) {
+
+    // Wait for throttle before deleting (per-user)
+    var Ids = {}
+    messages.forEach(element => {
+
+      if (!Ids[element.userId]) {
+        Ids[element.userId] = []
+      }
+      Ids[element.userId].push(element.forwardedMessageId);
+    });
+
+    // Delete the message
+    Object.keys(Ids).forEach(async (userId) => {
       try {
-        // Wait for throttle before deleting (per-user)
-        await this.#throttleService.waitForThrottle(msg.userId);
-
-        this.#logger.debug('[ForwardingService] Deleting message copy', {
-          userId: msg.userId,
-          forwardedId: msg.forwardedMessageId
-        });
-
-        // Delete the message
-        await deleter(msg.userId, msg.forwardedMessageId);
+        await this.#throttleService.waitForThrottle(userId);
+        await deleter(userId, Ids[userId]);
 
         // Mark as deleted in database
+        (Ids[userId] || []).forEach(async (forwardedId) => {
         await this.#messageRepository.markAsDeleted(
-          msg.userId,
-          msg.forwardedMessageId
-        );
-        
+          userId,
+          forwardedId
+        );})
+
         results.push({
-          userId: msg.userId,
+          userId: userId,
           success: true
         });
         deleted++;
-
       } catch (error) {
         this.#logger.error('[ForwardingService] Failed to delete message', {
-          userId: msg.userId,
-          forwardedId: msg.forwardedMessageId,
+          userId: userId,
+          forwardedIds: Ids[userId],
           error: error.message
         });
 
         results.push({
-          userId: msg.userId,
+          userId: userId,
           success: false,
           error: error.message
         });
         failed++;
       }
-    }
+    })
+
+
+
 
     const summary = { total: messages.length, deleted, failed, results };
     this.#logger.info('[ForwardingService] Deletion completed', summary);
