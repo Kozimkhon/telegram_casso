@@ -514,6 +514,7 @@ class UserBotController {
 
   /**
    * Universal event handler - routes events to appropriate handlers based on class name
+   * Only processes events from channels where admin has admin rights
    * @private
    * @param {Object} event - Telegram event object
    * @returns {Promise<void>}
@@ -521,11 +522,80 @@ class UserBotController {
   async #handleTelegramEvent(event) {
     try {
       // Get event class name
-      
       const eventClassName = event?.className || event?.constructor?.name;
       
       if (!eventClassName) {
         this.#logger.debug('Event without className', { event: typeof event });
+        return;
+      }
+
+      // Extract channel ID from event (different events have different structures)
+      let channelId = null;
+      
+      if (event.message?.peerId?.channelId) {
+        // UpdateNewChannelMessage, UpdateEditChannelMessage
+        channelId = `-100${event.message.peerId.channelId.toString()}`;
+      } else if (event.channelId) {
+        // UpdateDeleteChannelMessages, UpdateChannel, etc.
+        channelId = `-100${event.channelId.toString()}`;
+      }
+
+      // If we have a channel ID, check if it's an admin channel
+      if (channelId) {
+        // Check in memory first (no DB call)
+        const isAdminChannel = this.#connectedChannels.has(channelId);
+        
+        if (!isAdminChannel) {
+          // Channel not in our list - check if it's a new admin channel
+          try {
+            // Get channel entity from Telegram
+            const channelIdNum = channelId.startsWith('-100') ? channelId.slice(4) : channelId;
+            const channelEntity = await this.#client.getEntity(BigInt(channelIdNum));
+            
+            // Check if we have admin rights
+            if (channelEntity.adminRights || channelEntity.creator) {
+              this.#logger.info('New admin channel detected', {
+                channelId,
+                title: channelEntity.title,
+                isCreator: !!channelEntity.creator,
+              });
+
+              // Extract channel info
+              const channelInfo = extractChannelInfo(channelEntity);
+              
+              // Add to database
+              await this.#useCases.addChannel.execute({
+                ...channelInfo,
+                adminId: this.#sessionData.adminId,
+                memberCount: channelEntity.participantsCount || 0,
+                forwardEnabled: false, // Disabled by default for new channels
+              });
+
+              // Add to connected channels
+              this.#connectedChannels.set(channelId, {
+                entity: channelEntity,
+                title: channelEntity.title,
+                forwardEnabled: false,
+              });
+
+              this.#logger.info('New admin channel added to monitoring', { channelId });
+              
+              // Now process the event
+              // Continue to handler below
+            } else {
+              // Not an admin channel - skip silently
+              return;
+            }
+          } catch (error) {
+            // Error getting channel entity - skip this event
+            this.#logger.debug('Could not verify channel', {
+              channelId,
+              error: error.message,
+            });
+            return;
+          }
+        }
+      }else{
         return;
       }
       
