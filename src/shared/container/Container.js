@@ -195,7 +195,7 @@ class Container {
     this.registerSingleton('adminRepository', () => new AdminRepository());
 
     // Register domain services
-    this.registerSingleton('throttleService', () => new ThrottleService());
+    this.registerSingleton('throttleService', () => new ThrottleService({maxMessages:1000,timeWindow:75000}));
     this.registerSingleton('forwardingService', (c) => 
       new ForwardingService(
         c.resolve('userRepository'),
