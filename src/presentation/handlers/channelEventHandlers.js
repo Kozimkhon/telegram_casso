@@ -51,6 +51,19 @@ class ChannelEventHandlers {
   #client;
 
   /**
+   * Grouped messages buffer (for media groups/albums)
+   * Key: groupedId, Value: { messages: [], timeout: setTimeout }
+   * @private
+   */
+  #groupedMessagesBuffer = new Map();
+
+  /**
+   * Grouped message wait time (ms) - wait for all messages in group
+   * @private
+   */
+  #groupedMessageWaitTime = 1000;
+
+  /**
    * Creates channel event handlers
    * @param {Object} dependencies - Injected dependencies
    */
@@ -95,23 +108,129 @@ class ChannelEventHandlers {
         return;
       }
 
-      this.#logger.info('New channel message received', {
-        channelId: fullChannelId,
-        messageId: message.id,
-        hasText: !!message.message,
-        hasMedia: !!message.media,
-      });
-
-      // Forward to channel users using ForwardingService (Domain Service)
-      await this.#services.forwarding.forwardToChannelUsers(
-        fullChannelId,
-        message,
-        async (userId, msg) => await this.#forwardMessageToUser(userId, msg)
-      );
+      // Check if message is part of a grouped message (album/media group)
+      const groupedId = message.groupedId?.toString();
+      
+      if (groupedId) {
+        // Message is part of a group - buffer it
+        await this.#handleGroupedMessage(fullChannelId, message, groupedId);
+      } else {
+        // Single message - forward immediately
+        await this.#forwardSingleMessage(fullChannelId, message);
+      }
 
     } catch (error) {
       this.#logger.error('Error handling new channel message', error);
     }
+  }
+
+  /**
+   * Handles grouped message (media group/album)
+   * Buffers messages and forwards them together
+   * @private
+   * @param {string} channelId - Channel ID
+   * @param {Object} message - Message object
+   * @param {string} groupedId - Grouped message ID
+   * @returns {Promise<void>}
+   */
+  async #handleGroupedMessage(channelId, message, groupedId) {
+    const bufferKey = `${channelId}:${groupedId}`;
+
+    // Get or create buffer for this group
+    let groupBuffer = this.#groupedMessagesBuffer.get(bufferKey);
+
+    if (!groupBuffer) {
+      groupBuffer = {
+        channelId,
+        messages: [],
+        timeout: null,
+      };
+      this.#groupedMessagesBuffer.set(bufferKey, groupBuffer);
+    }
+
+    // Add message to buffer
+    groupBuffer.messages.push(message);
+
+    // Clear existing timeout
+    if (groupBuffer.timeout) {
+      clearTimeout(groupBuffer.timeout);
+    }
+
+    // Set new timeout - forward group after wait time
+    groupBuffer.timeout = setTimeout(async () => {
+      try {
+        await this.#forwardGroupedMessages(bufferKey, groupBuffer);
+      } catch (error) {
+        this.#logger.error('Error forwarding grouped messages', error);
+      } finally {
+        // Clean up buffer
+        this.#groupedMessagesBuffer.delete(bufferKey);
+      }
+    }, this.#groupedMessageWaitTime);
+
+    this.#logger.debug('Buffered grouped message', {
+      channelId,
+      groupedId,
+      messageId: message.id,
+      bufferSize: groupBuffer.messages.length,
+    });
+  }
+
+  /**
+   * Forwards grouped messages (album) to users
+   * @private
+   * @param {string} bufferKey - Buffer key
+   * @param {Object} groupBuffer - Group buffer object
+   * @returns {Promise<void>}
+   */
+  async #forwardGroupedMessages(bufferKey, groupBuffer) {
+    const { channelId, messages } = groupBuffer;
+
+    if (!messages || messages.length === 0) {
+      return;
+    }
+
+    // Sort messages by ID to maintain order
+    messages.sort((a, b) => a.id - b.id);
+
+    this.#logger.info('Forwarding grouped messages', {
+      channelId,
+      messageCount: messages.length,
+      messageIds: messages.map(m => m.id),
+    });
+
+    // Get all message IDs
+    const messageIds = messages.map(m => m.id);
+
+    // Forward group to channel users using ForwardingService
+    await this.#services.forwarding.forwardToChannelUsers(
+      channelId,
+      messages[0], // Pass first message for metadata (peerId, etc)
+      async (userId, msg) => await this.#forwardMessageGroupToUser(userId, msg, messageIds)
+    );
+  }
+
+  /**
+   * Forwards single message to users
+   * @private
+   * @param {string} channelId - Channel ID
+   * @param {Object} message - Message object
+   * @returns {Promise<void>}
+   */
+  async #forwardSingleMessage(channelId, message) {
+    this.#logger.info('New channel message received', {
+      channelId,
+      messageId: message.id,
+      hasText: !!message.message,
+      hasMedia: !!message.media,
+    });
+
+    // Forward to channel users using ForwardingService (Domain Service)
+    await this.#services.forwarding.forwardToChannelUsers(
+      channelId,
+      message,
+      async (userId, msg) => await this.#forwardMessageToUser(userId, msg)
+    );
   }
 
   /**
@@ -530,6 +649,42 @@ class ChannelEventHandlers {
 
       return {
         id: result[0]?.id,
+        adminId: this.#sessionData.adminId,
+      };
+
+    } catch (error) {
+      // Check for flood wait
+      if (error.errorMessage?.includes('FLOOD_WAIT')) {
+        const seconds = parseInt(error.errorMessage.match(/(\d+)/)?.[1] || '60');
+        error.isFloodWait = true;
+        error.seconds = seconds;
+        error.adminId = this.#sessionData.adminId;
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Forwards message group (album) to single user
+   * @private
+   * @param {string} userId - User ID
+   * @param {Object} message - First message in group (for metadata)
+   * @param {number[]} messageIds - All message IDs in group
+   * @returns {Promise<Object>} Forward result
+   */
+  async #forwardMessageGroupToUser(userId, message, messageIds) {
+    try {
+      const userEntity = await this.#client.getEntity(BigInt(userId));
+
+      // Forward all messages in group together
+      const result = await this.#client.forwardMessages(userEntity, {
+        messages: messageIds,
+        fromPeer: message.peerId,
+      });
+
+      return {
+        id: result[0]?.id,
+        count: result.length,
         adminId: this.#sessionData.adminId,
       };
 
