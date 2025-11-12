@@ -283,10 +283,23 @@ class ChannelEventHandlers {
       // Mark messages as deleted in database
       for (const messageId of messageIds) {
         try {
-          // TODO: Implement mark as deleted logic via use case
-          this.#logger.debug('Marking message as deleted', { messageId });
+          // Delete forwarded copies using ForwardingService
+          await this.#services.forwarding.deleteForwardedMessages(
+            fullChannelId,
+            messageId,
+            async (userId, forwardedId) => await this.#deleteMessageFromUser(userId, forwardedId)
+          );
+
+          this.#logger.debug('Marked channel message as deleted', {
+            channelId: fullChannelId,
+            messageId
+          });
         } catch (err) {
-          this.#logger.debug('Failed to mark message as deleted', { messageId, error: err.message });
+          this.#logger.error('Failed to delete forwarded messages', {
+            channelId: fullChannelId,
+            messageId,
+            error: err.message
+          });
         }
       }
 
@@ -642,9 +655,12 @@ class ChannelEventHandlers {
     try {
       const userEntity = await this.#client.getEntity(BigInt(userId));
 
+      // Extract channel ID from message peer (format: -100channelId)
+      const channelId = `-100${message.peerId.channelId}`;
+
       const result = await this.#client.forwardMessages(userEntity, {
         messages: [message.id],
-        fromPeer: message.peerId,
+        fromPeer: channelId,
       });
 
       return {
@@ -676,10 +692,13 @@ class ChannelEventHandlers {
     try {
       const userEntity = await this.#client.getEntity(BigInt(userId));
 
+      // Extract channel ID from message peer (format: -100channelId)
+      const channelId = `-100${message.peerId.channelId}`;
+
       // Forward all messages in group together
       const result = await this.#client.forwardMessages(userEntity, {
         messages: messageIds,
-        fromPeer: message.peerId,
+        fromPeer: channelId,
       });
 
       return {
@@ -697,6 +716,61 @@ class ChannelEventHandlers {
         error.seconds = seconds;
         error.adminId = this.#sessionData.adminId;
       }
+      throw error;
+    }
+  }
+
+  /**
+   * Deletes forwarded message from user's private chat
+   * Called by ForwardingService during batch deletion
+   * @private
+   * @param {string} userId - User ID
+   * @param {string|number} forwardedId - Forwarded message ID to delete
+   * @returns {Promise<void>}
+   */
+  async #deleteMessageFromUser(userId, forwardedId) {
+    try {
+      if (!forwardedId) {
+        throw new Error('Forwarded message ID is required for deletion');
+      }
+
+      const userEntity = await this.#client.getEntity(BigInt(userId));
+
+      this.#logger.debug('[ChannelEventHandlers] Deleting from user', {
+        userId,
+        forwardedId,
+        type: typeof forwardedId
+      });
+
+      // Delete message from user's chat
+      // Handle both string and number IDs
+      const messageIds = Array.isArray(forwardedId) 
+        ? forwardedId.map(id => typeof id === 'string' ? parseInt(id) : id)
+        : [typeof forwardedId === 'string' ? parseInt(forwardedId) : forwardedId];
+
+      await this.#client.deleteMessages(userEntity, messageIds, { revoke: true });
+
+      this.#logger.debug('[ChannelEventHandlers] Successfully deleted forwarded message', {
+        userId,
+        forwardedId,
+        messageCount: messageIds.length
+      });
+
+    } catch (error) {
+      this.#logger.error('[ChannelEventHandlers] Failed to delete message', {
+        userId,
+        forwardedId,
+        error: error.message,
+        stack: error.stack
+      });
+
+      // Check for flood wait
+      if (error.errorMessage?.includes('FLOOD_WAIT')) {
+        const seconds = parseInt(error.errorMessage.match(/(\d+)/)?.[1] || '60');
+        error.isFloodWait = true;
+        error.seconds = seconds;
+      }
+
       throw error;
     }
   }

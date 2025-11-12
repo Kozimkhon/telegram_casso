@@ -323,6 +323,13 @@ class ForwardingService {
       messageId
     );
 
+    this.#logger.info('[ForwardingService] Found forwarded message copies', {
+      channelId,
+      messageId,
+      count: messages.length,
+      messages: messages.map(m => ({ userId: m.userId, forwardedId: m.forwardedMessageId }))
+    });
+
     if (messages.length === 0) {
       this.#logger.debug('[ForwardingService] No forwarded messages to delete', {
         channelId,
