@@ -93,6 +93,7 @@ class Application {
               stateManager: this.#container.resolve('stateManager'),
               channelRepository: this.#container.resolve('channelRepository'),
               sessionRepository: this.#container.resolve('sessionRepository'),
+              messageRepository: this.#container.resolve('messageRepository'),
             }, {
               session_string: session.sessionString,
               admin_id: session.adminId,
@@ -160,6 +161,7 @@ class Application {
             // Repositories
             channelRepository: this.#container.resolve('channelRepository'),
             sessionRepository: this.#container.resolve('sessionRepository'),
+            messageRepository: this.#container.resolve('messageRepository'),
           });
           
           await adminBot.start();

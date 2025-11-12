@@ -12,10 +12,10 @@ import { MessageEntity } from '../../../core/entities/db/index.js';
  * Message Repository
  * Handles database operations for Message entity
  * 
- * @class MessageRepository
+ * @class TypeORMMessageRepository
  * @extends BaseRepository
  */
-class MessageRepository extends BaseRepository {
+class TypeORMMessageRepository extends BaseRepository {
   constructor() {
     const repository = AppDataSource.getRepository(MessageEntity);
     super(repository, 'Message');
@@ -185,6 +185,53 @@ class MessageRepository extends BaseRepository {
 
     return stats;
   }
+
+  /**
+   * Finds messages by grouped ID
+   * Used for deletion of grouped messages (albums)
+   * @param {string} groupedId - Grouped message ID
+   * @param {string} userId - User ID
+   * @returns {Promise<Object[]>} Grouped messages
+   */
+  async findByGroupedId(groupedId, userId) {
+    return await this.repository
+      .createQueryBuilder('message')
+      .where('message.grouped_id = :groupedId', { groupedId })
+      .andWhere('message.user_id = :userId', { userId })
+      .andWhere('message.status = :status', { status: 'sent' })
+      .getMany();
+  }
+
+  /**
+   * Finds all grouped messages that need deletion
+   * Groups messages by groupedId for batch deletion
+   * @param {number} daysOld - Days old threshold
+   * @returns {Promise<Map>} Map of groupedId -> messages array
+   */
+  async findOldGroupedMessages(daysOld = 7) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - daysOld);
+
+    const messages = await this.repository
+      .createQueryBuilder('message')
+      .where('message.status = :status', { status: 'sent' })
+      .andWhere('message.is_grouped = :isGrouped', { isGrouped: true })
+      .andWhere('message.created_at <= :cutoffDate', { cutoffDate })
+      .getMany();
+
+    // Group messages by groupedId and userId for batch deletion
+    const groupedMessages = new Map();
+    
+    for (const msg of messages) {
+      const key = `${msg.userId}:${msg.groupedId}`;
+      if (!groupedMessages.has(key)) {
+        groupedMessages.set(key, []);
+      }
+      groupedMessages.get(key).push(msg);
+    }
+
+    return groupedMessages;
+  }
 }
 
-export default MessageRepository;
+export default TypeORMMessageRepository;

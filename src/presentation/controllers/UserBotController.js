@@ -132,6 +132,7 @@ class UserBotController {
     // Inject repositories (for direct queries)
     this.channelRepository = dependencies.channelRepository;
     this.sessionRepository = dependencies.sessionRepository;
+    this.messageRepository = dependencies.messageRepository;
 
     // Session data - use adminId instead of phone
     this.#sessionData = {
@@ -276,13 +277,26 @@ class UserBotController {
       if (this.#client && this.#sessionData.adminId) {
         const sessionString = this.#client.session.save();
 
-        await this.#useCases.createSession.execute({
-          adminId: this.#sessionData.adminId,
-          sessionString: sessionString,
-          status: 'active',
-        });
-
-        this.#logger.debug('Session saved to database');
+        // Check if session exists, update instead of create to avoid UNIQUE constraint error
+        const existingSession = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
+        
+        if (existingSession) {
+          // Update existing session
+          await this.sessionRepository.update(existingSession.id, {
+            session_string: sessionString,
+            status: 'active',
+            last_active: new Date(),
+          });
+          this.#logger.debug('Session updated in database');
+        } else {
+          // Create new session
+          await this.#useCases.createSession.execute({
+            adminId: this.#sessionData.adminId,
+            sessionString: sessionString,
+            status: 'active',
+          });
+          this.#logger.debug('Session created in database');
+        }
       }
     } catch (error) {
       this.#logger.error('Failed to save session', error);
@@ -499,6 +513,63 @@ class UserBotController {
   }
 
   /**
+   * Universal event handler - routes events to appropriate handlers based on class name
+   * @private
+   * @param {Object} event - Telegram event object
+   * @returns {Promise<void>}
+   */
+  async #handleTelegramEvent(event) {
+    try {
+      // Get event class name
+      
+      const eventClassName = event?.className || event?.constructor?.name;
+      
+      if (!eventClassName) {
+        this.#logger.debug('Event without className', { event: typeof event });
+        return;
+      }
+      
+      // Map event class names to handler methods
+      const handlerMap = {
+        'UpdateNewChannelMessage': 'handleNewChannelMessage',
+        'UpdateEditChannelMessage': 'handleEditChannelMessage',
+        'UpdateDeleteChannelMessages': 'handleDeleteChannelMessages',
+        'UpdateChannel': 'handleChannelUpdate',
+        'UpdateChannelMessageViews': 'handleChannelMessageViews',
+        'UpdateChannelTooLong': 'handleChannelTooLong',
+        'UpdateChannelParticipant': 'handleChannelParticipant',
+        'UpdateChannelUserTyping': 'handleChannelUserTyping',
+        'UpdateChannelMessageForwards': 'handleChannelMessageForwards',
+        'UpdateChannelAvailableMessages': 'handleChannelAvailableMessages',
+        'UpdateChannelReadMessagesContents': 'handleChannelReadMessagesContents',
+        'UpdateReadChannelInbox': 'handleReadChannelInbox',
+        'UpdateReadChannelOutbox': 'handleReadChannelOutbox',
+      };
+
+      // Get handler method name
+      const handlerMethodName = handlerMap[eventClassName];
+
+      if (handlerMethodName && this.#channelEventHandlers[handlerMethodName]) {
+        // Call the appropriate handler
+        await this.#channelEventHandlers[handlerMethodName](event);
+      } else {
+        // Log unhandled event types (only once per type for debugging)
+        if (!this._loggedEventTypes) this._loggedEventTypes = new Set();
+        if (!this._loggedEventTypes.has(eventClassName)) {
+          this.#logger.debug('Unhandled event type', { eventClassName });
+          this._loggedEventTypes.add(eventClassName);
+        }
+      }
+
+    } catch (error) {
+      this.#logger.error('Error handling Telegram event', {
+        error: error.message,
+        eventType: event?.className || 'unknown'
+      });
+    }
+  }
+
+  /**
    * Sets up event handlers
    * @private
    * @returns {Promise<void>}
@@ -511,9 +582,6 @@ class UserBotController {
         return;
       }
 
-      // Remove existing handlers if any
-      this.#client.removeEventHandlers();
-
       // Initialize channel event handlers with dependencies
       this.#channelEventHandlers = new ChannelEventHandlers({
         useCases: this.#useCases,
@@ -523,107 +591,13 @@ class UserBotController {
         client: this.#client,
       });
 
-      // Register all Telegram channel event handlers
-      
-      // 1. New channel message
+      // Register a single universal event handler for all Telegram updates
+      // This avoids issues with non-constructor Update types
       this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleNewChannelMessage(event),
-        new Api.UpdateNewChannelMessage({})
+        async (event) => await this.#handleTelegramEvent(event)
       );
 
-      // 2. Edit channel message
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleEditChannelMessage(event),
-        new Api.UpdateEditChannelMessage({})
-      );
-
-      // 3. Delete channel messages
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleDeleteChannelMessages(event),
-        new Api.UpdateDeleteChannelMessages({})
-      );
-
-      // 4. Channel update (title, bio, settings)
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelUpdate(event),
-        new Api.UpdateChannel({})
-      );
-
-      // 5. Channel message views
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelMessageViews(event),
-        new Api.UpdateChannelMessageViews({})
-      );
-
-      // 6. Channel too long (message limit exceeded)
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelTooLong(event),
-        new Api.UpdateChannelTooLong({})
-      );
-
-      // 7. Channel pinned message
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelPinnedMessage(event),
-        new Api.UpdateChannelPinnedMessage({})
-      );
-
-      // 8. Channel participant (join/leave)
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelParticipant(event),
-        new Api.UpdateChannelParticipant({})
-      );
-
-      // 9. Channel user typing
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelUserTyping(event),
-        new Api.UpdateChannelUserTyping({})
-      );
-
-      // 10. Channel message forwards
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelMessageForwards(event),
-        new Api.UpdateChannelMessageForwards({})
-      );
-
-      // 11. Channel available messages
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelAvailableMessages(event),
-        new Api.UpdateChannelAvailableMessages({})
-      );
-
-      // 12. Channel read messages contents
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelReadMessagesContents(event),
-        new Api.UpdateChannelReadMessagesContents({})
-      );
-
-      // 13. Read channel inbox
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleReadChannelInbox(event),
-        new Api.UpdateReadChannelInbox({})
-      );
-
-      // 14. Read channel outbox
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleReadChannelOutbox(event),
-        new Api.UpdateReadChannelOutbox({})
-      );
-
-      // 15. Channel participant add (legacy)
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelParticipantAdd(event),
-        new Api.UpdateChannelParticipantAdd({})
-      );
-
-      // 16. Channel participant delete
-      this.#client.addEventHandler(
-        async (event) => await this.#channelEventHandlers.handleChannelParticipantDelete(event),
-        new Api.UpdateChannelParticipantDelete({})
-      );
-
-      this.#logger.info(`Event handlers set up for ${this.#adminChannelEntities.length} channels`, {
-        handlersRegistered: 16,
-      });
+      this.#logger.info(`Universal event handler set up for ${this.#adminChannelEntities.length} channels`);
 
     } catch (error) {
       this.#logger.error('Failed to setup event handlers', error);
@@ -652,34 +626,134 @@ class UserBotController {
 
   /**
    * Deletes old forwarded messages
+   * Handles both single and grouped messages (albums)
    * @private
    * @returns {Promise<void>}
    */
   async #deleteOldMessages() {
     try {
-      const result = await this.#useCases.findOldMessages.execute(24);
+      const hoursOld = 24; // Delete messages older than 24 hours
       
-      this.#logger.info(`Found ${result.total} old messages to delete`);
+      this.#logger.info('Starting old message deletion process...');
 
-      for (const msg of result.messages) {
-        try {
-          const userEntity = await this.#client.getEntity(BigInt(msg.userId));
-          await this.#client.deleteMessages(userEntity, [msg.forwardedMessageId], {
-            revoke: true,
-          });
+      // 1. Find old single messages
+      const singleMessages = await this.#useCases.findOldMessages.execute(hoursOld);
+      
+      // 2. Find old grouped messages (albums)
+      const groupedMessages = await this.messageRepository.findOldGroupedMessages(hoursOld / 24);
 
-          await this.#useCases.markMessageAsDeleted.execute(
-            msg.userId,
-            msg.forwardedMessageId
-          );
+      const singleCount = singleMessages?.messages?.length || 0;
+      const groupedCount = groupedMessages?.size || 0;
+      
+      this.#logger.info(`Found messages to delete`, {
+        singleMessages: singleCount,
+        groupedMessageGroups: groupedCount,
+      });
 
-        } catch (error) {
-          this.#logger.debug('Failed to delete message', {
-            messageId: msg.forwardedMessageId,
-            error: error.message,
-          });
+      // Process single messages
+      let deletedSingle = 0;
+      let failedSingle = 0;
+
+      if (singleMessages?.messages && singleMessages.messages.length > 0) {
+        for (const msg of singleMessages.messages) {
+          try {
+            // Skip if it's a grouped message (will be handled separately)
+            if (msg.isGrouped && msg.groupedId) {
+              continue;
+            }
+
+            const userEntity = await this.#client.getEntity(BigInt(msg.userId));
+            
+            await this.#client.deleteMessages(userEntity, [msg.forwardedMessageId], {
+              revoke: true,
+            });
+
+            await this.#useCases.markMessageAsDeleted.execute(
+              msg.userId,
+              msg.forwardedMessageId
+            );
+
+            deletedSingle++;
+
+          } catch (error) {
+            failedSingle++;
+            this.#logger.debug('Failed to delete single message', {
+              messageId: msg.forwardedMessageId,
+              userId: msg.userId,
+              error: error.message,
+            });
+          }
         }
       }
+
+      // Process grouped messages (albums)
+      let deletedGrouped = 0;
+      let failedGrouped = 0;
+
+      if (groupedMessages && groupedMessages.size > 0) {
+        for (const [key, messages] of groupedMessages.entries()) {
+          try {
+            if (!messages || messages.length === 0) continue;
+
+            const [userId, groupedId] = key.split(':');
+            const userEntity = await this.#client.getEntity(BigInt(userId));
+
+            // Extract all forwarded message IDs from the group
+            const forwardedMessageIds = messages
+              .map(m => m.forwardedMessageId)
+              .filter(Boolean);
+
+            if (forwardedMessageIds.length === 0) continue;
+
+            // Delete all messages in the group together
+            await this.#client.deleteMessages(userEntity, forwardedMessageIds, {
+              revoke: true,
+            });
+
+            // Mark all messages as deleted in database
+            for (const msg of messages) {
+              if (msg.forwardedMessageId) {
+                await this.#useCases.markMessageAsDeleted.execute(
+                  msg.userId,
+                  msg.forwardedMessageId
+                );
+              }
+            }
+
+            deletedGrouped += messages.length;
+
+            this.#logger.debug('Deleted grouped messages', {
+              groupedId,
+              userId,
+              count: messages.length,
+              messageIds: forwardedMessageIds,
+            });
+
+          } catch (error) {
+            failedGrouped += messages.length;
+            this.#logger.debug('Failed to delete grouped messages', {
+              key,
+              count: messages.length,
+              error: error.message,
+            });
+          }
+        }
+      }
+
+      this.#logger.info('Old message deletion complete', {
+        single: {
+          deleted: deletedSingle,
+          failed: failedSingle,
+        },
+        grouped: {
+          deleted: deletedGrouped,
+          failed: failedGrouped,
+        },
+        total: {
+          deleted: deletedSingle + deletedGrouped,
+          failed: failedSingle + failedGrouped,
+        },
+      });
 
     } catch (error) {
       this.#logger.error('Error deleting old messages', error);

@@ -685,6 +685,7 @@ class ChannelEventHandlers {
       return {
         id: result[0]?.id,
         count: result.length,
+        groupedId: message.groupedId?.toString(),
         adminId: this.#sessionData.adminId,
       };
 

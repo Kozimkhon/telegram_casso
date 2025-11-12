@@ -53,6 +53,18 @@ export const MessageEntity = new EntitySchema({
       type: 'integer',
       default: 0,
     },
+    groupedId: {
+      name: 'grouped_id',
+      type: 'varchar',
+      nullable: true,
+      comment: 'Telegram groupedId for albums/media groups',
+    },
+    isGrouped: {
+      name: 'is_grouped',
+      type: 'boolean',
+      default: false,
+      comment: 'Whether this message is part of a grouped message (album)',
+    },
     channelId: {
       name: 'channel_id',
       type: 'varchar',

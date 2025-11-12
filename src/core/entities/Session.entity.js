@@ -245,11 +245,11 @@ class Session extends BaseEntity {
       status: this.status,
       auto_paused: this.autoPaused ? 1 : 0,
       pause_reason: this.pauseReason,
-      flood_wait_until: this.floodWaitUntil ? this.floodWaitUntil.toISOString() : null,
+      flood_wait_until: this.floodWaitUntil ? (this.floodWaitUntil instanceof Date ? this.floodWaitUntil.toISOString() : this.floodWaitUntil) : null,
       last_error: this.lastError,
-      last_active: this.lastActive.toISOString(),
-      created_at: this.createdAt.toISOString(),
-      updated_at: this.updatedAt.toISOString()
+      last_active: this.lastActive instanceof Date ? this.lastActive.toISOString() : this.lastActive,
+      created_at: this.createdAt instanceof Date ? this.createdAt.toISOString() : this.createdAt,
+      updated_at: this.updatedAt instanceof Date ? this.updatedAt.toISOString() : this.updatedAt
     };
   }
 

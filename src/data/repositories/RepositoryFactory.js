@@ -9,7 +9,7 @@ import {
   SessionRepository,
   ChannelRepository,
   UserRepository,
-  MessageRepository,
+  MessageRepository as TypeORMMessageRepository,
   MetricRepository,
 } from './typeorm/index.js';
 
@@ -72,11 +72,11 @@ class RepositoryFactory {
 
   /**
    * Gets Message repository
-   * @returns {MessageRepository} Message repository instance
+   * @returns {TypeORMMessageRepository} Message repository instance
    */
   static getMessageRepository() {
     if (!this.#repositories.has('message')) {
-      this.#repositories.set('message', new MessageRepository());
+      this.#repositories.set('message', new TypeORMMessageRepository());
     }
     return this.#repositories.get('message');
   }

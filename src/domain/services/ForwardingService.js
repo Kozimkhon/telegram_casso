@@ -95,15 +95,37 @@ class ForwardingService {
         // Forward message
         const result = await forwarder(user.userId, message);
         
-        // Log success
-        await this.#messageRepository.create({
-          channelId,
-          messageId: message.id,
-          userId: user.userId,
-          forwardedMessageId: result.id,
-          status: ForwardingStatus.SUCCESS,
-          sessionPhone: result.sessionPhone
-        });
+        // Log success - handle grouped messages
+        if (result.count && result.count > 1 && result.groupedId) {
+          // Grouped message (album) - result contains array of forwarded messages
+          // We need to create a log entry for EACH forwarded message
+          // But Telegram API returns array of Message objects
+          // We'll use the first message ID and mark it as grouped
+          // During deletion, we'll query by groupedId to get all related messages
+          
+          await this.#messageRepository.create({
+            channelId,
+            messageId: message.id.toString(),
+            userId: user.userId,
+            forwardedMessageId: result.id?.toString(),
+            groupedId: result.groupedId,
+            isGrouped: true,
+            status: ForwardingStatus.SUCCESS,
+            sessionPhone: result.adminId
+          });
+        } else {
+          // Single message
+          await this.#messageRepository.create({
+            channelId,
+            messageId: message.id.toString(),
+            userId: user.userId,
+            forwardedMessageId: result.id?.toString(),
+            groupedId: null,
+            isGrouped: false,
+            status: ForwardingStatus.SUCCESS,
+            sessionPhone: result.adminId
+          });
+        }
 
         results.push({
           userId: user.userId,
@@ -119,11 +141,11 @@ class ForwardingService {
         // Log failure
         await this.#messageRepository.create({
           channelId,
-          messageId: message.id,
+          messageId: message.id.toString(),
           userId: user.userId,
           status: ForwardingStatus.FAILED,
           errorMessage: error.message,
-          sessionPhone: error.sessionPhone
+          sessionPhone: error.adminId
         });
 
         results.push({
@@ -135,7 +157,7 @@ class ForwardingService {
 
         // Handle flood wait
         if (error.isFloodWait) {
-          await this.handleFloodWait(error.sessionPhone, error.seconds);
+          await this.handleFloodWait(error.adminId, error.seconds);
         }
       }
     }

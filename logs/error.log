@@ -3935,3 +3935,267 @@ TypeError: this.createdAt.toISOString is not a function
 {
   "error": "this.createdAt.toISOString is not a function"
 }
+2025-11-12 16:01:06 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:05:53 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:06:11 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 16:06:11 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 22708,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 98619392,
+      "heapTotal": 43261952,
+      "heapUsed": 37415944,
+      "external": 2669620,
+      "arrayBuffers": 119421
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 24405.078
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 89,
+      "method": "_handleUpdate",
+      "native": false
+    }
+  ]
+}
+2025-11-12 16:15:22 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:15:29 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:178:37)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:17:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:19:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:21:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:23:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:25:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:27:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:29:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:31:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:33:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:35:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}

@@ -26,6 +26,8 @@ class MessageRepository extends IMessageRepository {
       status: ormEntity.status,
       error_message: ormEntity.errorMessage,
       retry_count: ormEntity.retryCount,
+      grouped_id: ormEntity.groupedId,
+      is_grouped: ormEntity.isGrouped,
       channel_id: ormEntity.channelId,
       user_id: ormEntity.userId,
       created_at: ormEntity.createdAt,
@@ -68,6 +70,8 @@ class MessageRepository extends IMessageRepository {
       status: data.status,
       errorMessage: data.error_message,
       retryCount: data.retry_count,
+      groupedId: data.grouped_id,
+      isGrouped: data.is_grouped,
       channelId: data.channel_id,
       userId: data.user_id
     });
@@ -127,6 +131,35 @@ class MessageRepository extends IMessageRepository {
         ? ((sent.length / messages.length) * 100).toFixed(2) + '%' 
         : '0%'
     };
+  }
+
+  /**
+   * Finds messages by grouped ID
+   * @param {string} groupedId - Grouped message ID
+   * @param {string} userId - User ID
+   * @returns {Promise<Message[]>} Domain message entities
+   */
+  async findByGroupedId(groupedId, userId) {
+    const entities = await this.#ormRepository.findByGroupedId(groupedId, userId);
+    return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
+  }
+
+  /**
+   * Finds old grouped messages for deletion
+   * @param {number} daysOld - Days old threshold
+   * @returns {Promise<Map>} Map of key -> domain message entities
+   */
+  async findOldGroupedMessages(daysOld = 7) {
+    const groupedMessages = await this.#ormRepository.findOldGroupedMessages(daysOld);
+    
+    // Convert ORM entities to domain entities
+    const domainGroupedMessages = new Map();
+    for (const [key, ormMessages] of groupedMessages.entries()) {
+      const domainMessages = ormMessages.map(e => this.#toDomainEntity(e)).filter(Boolean);
+      domainGroupedMessages.set(key, domainMessages);
+    }
+    
+    return domainGroupedMessages;
   }
 }
 

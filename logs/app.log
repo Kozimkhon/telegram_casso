@@ -7870,3 +7870,1474 @@ TypeError: this.createdAt.toISOString is not a function
   "component": "UserBotController",
   "adminId": "5684628333"
 }
+2025-11-12 16:01:06 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:01:06 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [WARN]: No channels found
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:06 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:01:07 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 16:02:32 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:02:34 [INFO]: Channel sync complete: 6 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:02:34 [INFO]: Channels sync completed Synced successfully: 6 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 6,
+  "updated": 0
+}
+2025-11-12 16:03:07 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:07 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:07 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:13 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:15 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:18 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:21 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:57 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:59 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:03:59 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:04:01 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:04:02 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:04:03 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:04:08 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:04:08 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:07 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:07 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:08 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:08 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:08 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:10 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:11 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:11 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:12 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:12 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:12 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:13 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:13 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:14 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:14 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:52 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:52 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:52 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:53 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:05:53 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 16:05:53 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:53 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:54 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:54 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:55 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:57 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:57 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:58 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:58 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:58 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:05:59 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:00 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:00 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Event handlers set up
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:06:01 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 16:06:11 [ERROR]: unhandledRejection: Cannot find any entity corresponding to "[object Object]"
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+Error: Cannot find any entity corresponding to "[object Object]"
+    at _getEntityFromString (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:414:11)
+    at Object.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\users.js:281:45)
+    at TelegramClient.getInputEntity (E:\Experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:1015:28)
+    at _intoIdSet (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:50:33)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:83:28)
+    at NewMessage._resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\NewMessage.js:64:21)
+    at NewMessage.resolve (E:\Experiments\telegram_casso\node_modules\telegram\events\common.js:79:20)
+    at _dispatchUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\Experiments\telegram_casso\node_modules\telegram\client\updates.js:89:13)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Wed Nov 12 2025 16:06:11 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 22708,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\Experiments\\telegram_casso",
+    "execPath": "C:\\nvm4w\\nodejs\\node.exe",
+    "version": "v23.7.0",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "E:\\Experiments\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 98619392,
+      "heapTotal": 43261952,
+      "heapUsed": 37415944,
+      "external": 2669620,
+      "arrayBuffers": 119421
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 24405.078
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "_getEntityFromString",
+      "line": 414,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 45,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\users.js",
+      "function": "Object.getInputEntity",
+      "line": 281,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\TelegramClient.js",
+      "function": "TelegramClient.getInputEntity",
+      "line": 1015,
+      "method": "getInputEntity",
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "_intoIdSet",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 28,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage._resolve",
+      "line": 83,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 21,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\NewMessage.js",
+      "function": "NewMessage._resolve",
+      "line": 64,
+      "method": "_resolve",
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\events\\common.js",
+      "function": "NewMessage.resolve",
+      "line": 79,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\Experiments\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 89,
+      "method": "_handleUpdate",
+      "native": false
+    }
+  ]
+}
+2025-11-12 16:15:21 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:21 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:21 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:22 [ERROR]: Failed to save session
+TypeError: this.createdAt.toISOString is not a function
+    at Session.toObject (file:///E:/Experiments/telegram_casso/src/core/entities/Session.entity.js:251:34)
+    at SessionRepository.create (file:///E:/Experiments/telegram_casso/src/data/repositories/SessionRepository.js:62:26)
+    at CreateSessionUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/session/CreateSessionUseCase.js:61:51)
+    at #saveSession (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:272:44)
+    at #connect (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:324:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:167:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this.createdAt.toISOString is not a function"
+}
+2025-11-12 16:15:22 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-12 16:15:22 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:22 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:23 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:23 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:24 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:26 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:27 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:28 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:28 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at UserBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:178:37)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:101:13)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:15:29 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:15:29 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-12 16:17:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:17:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:17:36 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:32 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:19:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:19:36 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:21:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:21:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:32 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:23:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:23:36 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:25:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:25:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:36 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:27:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:27:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:29:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:29:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:31:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:31:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:34 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:35 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:35 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:36 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:37 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:37 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:33:37 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:33:37 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:29 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:29 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:30 [INFO]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:30 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:31 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:33 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:33 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:34 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:34 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:35 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:35 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:36 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-12 16:35:36 [ERROR]: Failed to setup event handlers
+TypeError: this[#client].removeEventHandlers is not a function
+    at #setupEventHandlers (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:508:20)
+    at #syncChannels (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:415:39)
+    at async Timeout._onTimeout (file:///E:/Experiments/telegram_casso/src/presentation/controllers/UserBotController.js:624:19)
+{
+  "error": "this[#client].removeEventHandlers is not a function"
+}
+2025-11-12 16:35:36 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}

@@ -58,6 +58,18 @@ class Message extends BaseEntity {
   retryCount;
 
   /**
+   * Grouped ID (for albums/media groups)
+   * @type {string|null}
+   */
+  groupedId;
+
+  /**
+   * Is grouped message flag
+   * @type {boolean}
+   */
+  isGrouped;
+
+  /**
    * Channel ID (foreign key)
    * @type {string}
    */
@@ -83,6 +95,8 @@ class Message extends BaseEntity {
     this.status = data.status || ForwardingStatus.PENDING;
     this.errorMessage = data.errorMessage || null;
     this.retryCount = data.retryCount || 0;
+    this.groupedId = data.groupedId || null;
+    this.isGrouped = data.isGrouped || false;
     this.channelId = data.channelId;
     this.userId = data.userId;
     this.createdAt = data.createdAt || new Date();
@@ -194,6 +208,14 @@ class Message extends BaseEntity {
   }
 
   /**
+   * Checks if message is part of a group (album)
+   * @returns {boolean} True if grouped
+   */
+  isGroupedMessage() {
+    return this.isGrouped && this.groupedId !== null;
+  }
+
+  /**
    * Converts entity to plain object for database
    * @returns {Object} Plain object
    */
@@ -205,10 +227,12 @@ class Message extends BaseEntity {
       status: this.status,
       error_message: this.errorMessage,
       retry_count: this.retryCount,
+      grouped_id: this.groupedId,
+      is_grouped: this.isGrouped,
       channel_id: this.channelId,
       user_id: this.userId,
-      created_at: this.createdAt.toISOString(),
-      updated_at: this.updatedAt.toISOString()
+      created_at: this.createdAt instanceof Date ? this.createdAt.toISOString() : this.createdAt,
+      updated_at: this.updatedAt instanceof Date ? this.updatedAt.toISOString() : this.updatedAt
     };
   }
 
@@ -226,6 +250,8 @@ class Message extends BaseEntity {
       status: row.status,
       errorMessage: row.error_message || row.errorMessage,
       retryCount: row.retry_count || row.retryCount || 0,
+      groupedId: row.grouped_id || row.groupedId || null,
+      isGrouped: row.is_grouped || row.isGrouped || false,
       channelId: row.channel_id || row.channelId,
       userId: row.user_id || row.userId,
       createdAt: row.created_at || row.createdAt ? new Date(row.created_at || row.createdAt) : new Date(),
