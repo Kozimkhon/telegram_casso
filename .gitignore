@@ -169,4 +169,4 @@ logs/
 .DS_Store
 Thumbs.dbss
 data/telegram_casso.db
-logs/app.log
+logs/
