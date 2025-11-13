@@ -180,7 +180,7 @@ class UserBotController {
       }
 
       // Sync channels
-      await this.#syncChannels();
+      await this.syncChannelsManually();
 
       // Setup event handlers
       await this.#setupEventHandlers();
@@ -910,7 +910,7 @@ class UserBotController {
       }
 
       this.#logger.info(`Channel sync complete: ${addedCount} added, ${updatedCount} updated`);
-
+      this.#syncChannels();
       return {
         success: true,
         message: `Synced successfully: ${addedCount} new channels added, ${updatedCount} updated`,
