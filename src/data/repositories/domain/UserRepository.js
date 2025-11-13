@@ -4,8 +4,8 @@
  * @module data/repositories/UserRepository
  */
 
-import IUserRepository from '../../core/interfaces/IUserRepository.js';
-import User from '../../core/entities/User.entity.js';
+import { IUserRepository } from '../../../core/interfaces/index.js';
+import { User } from '../../../core/entities/index.js';
 import RepositoryFactory from './RepositoryFactory.js';
 
 class UserRepository extends IUserRepository {

@@ -161,6 +161,7 @@ class Application {
             // Repositories
             channelRepository: this.#container.resolve('channelRepository'),
             sessionRepository: this.#container.resolve('sessionRepository'),
+            adminRepository: this.#container.resolve('adminRepository'),
             messageRepository: this.#container.resolve('messageRepository'),
           });
           

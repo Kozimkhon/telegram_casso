@@ -6,7 +6,7 @@
 
 import BaseRepository from './BaseRepository.js';
 import { AppDataSource } from '../../../config/database.js';
-import { ChannelEntity } from '../../../core/entities/db/index.js';
+import { ChannelEntity } from '../../../core/entities/orm/index.js';
 
 /**
  * Channel Repository

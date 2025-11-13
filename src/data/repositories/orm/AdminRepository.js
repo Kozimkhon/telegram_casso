@@ -6,7 +6,7 @@
 
 import BaseRepository from './BaseRepository.js';
 import { AppDataSource } from '../../../config/database.js';
-import { AdminEntity } from '../../../core/entities/db/index.js';
+import { AdminEntity } from '../../../core/entities/orm/index.js';
 
 /**
  * Admin Repository

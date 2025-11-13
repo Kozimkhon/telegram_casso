@@ -34,13 +34,13 @@ class AddUserToChannelUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @param {string} userId - User ID
    * @returns {Promise<Object>} Result
    */
   async execute(channelId, userId) {
-    // Validate channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Validate channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
@@ -51,7 +51,7 @@ class AddUserToChannelUseCase {
       throw new Error(`User not found: ${userId}`);
     }
 
-    // Add to channel
+    // Add to channel (use Telegram channel ID)
     await this.#userRepository.addToChannel(channelId, userId);
 
     return {

@@ -10,7 +10,7 @@
 
 import { ForwardingStatus } from '../../shared/constants/index.js';
 import { log } from '../../shared/logger.js';
-import Message from '../../core/entities/Message.entity.js';
+import Message from '../../core/entities/domain/Message.entity.js';
 
 /**
  * Forwarding Service - Domain Service

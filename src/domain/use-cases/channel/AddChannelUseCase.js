@@ -4,7 +4,7 @@
  * @module domain/use-cases/channel/AddChannelUseCase
  */
 
-import Channel from '../../../core/entities/Channel.entity.js';
+import Channel from '../../../core/entities/domain/Channel.entity.js';
 
 /**
  * Add Channel Use Case

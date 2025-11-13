@@ -4,7 +4,7 @@
  * @module core/entities/Channel
  */
 
-import BaseEntity from '../base/BaseEntity.js';
+import BaseEntity from '../../base/BaseEntity.js';
 
 /**
  * Channel Entity

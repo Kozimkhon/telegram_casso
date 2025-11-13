@@ -4,7 +4,7 @@
  * @module domain/use-cases/user/AddUserUseCase
  */
 
-import User from '../../../core/entities/User.entity.js';
+import User from '../../../core/entities/domain/User.entity.js';
 
 /**
  * Add User Use Case

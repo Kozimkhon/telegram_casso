@@ -6,7 +6,7 @@
 
 import BaseRepository from './BaseRepository.js';
 import { AppDataSource } from '../../../config/database.js';
-import { MessageEntity } from '../../../core/entities/db/index.js';
+import { MessageEntity } from '../../../core/entities/orm/index.js';
 
 /**
  * Message Repository

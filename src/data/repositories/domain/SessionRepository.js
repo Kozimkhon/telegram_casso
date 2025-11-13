@@ -4,8 +4,8 @@
  * @module data/repositories/SessionRepository
  */
 
-import ISessionRepository from '../../core/interfaces/ISessionRepository.js';
-import Session from '../../core/entities/Session.entity.js';
+import { ISessionRepository } from '../../../core/interfaces/index.js';
+import { Session } from '../../../core/entities/index.js';
 import RepositoryFactory from './RepositoryFactory.js';
 
 class SessionRepository extends ISessionRepository {

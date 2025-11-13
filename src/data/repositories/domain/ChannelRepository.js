@@ -4,8 +4,8 @@
  * @module data/repositories/ChannelRepository
  */
 
-import IChannelRepository from '../../core/interfaces/IChannelRepository.js';
-import Channel from '../../core/entities/Channel.entity.js';
+import { Channel } from '../../../core/entities/index.js';
+import { IChannelRepository } from '../../../core/interfaces/index.js';
 import RepositoryFactory from './RepositoryFactory.js';
 
 class ChannelRepository extends IChannelRepository {
@@ -53,7 +53,7 @@ class ChannelRepository extends IChannelRepository {
     let entities;
     
     if (filters.enabled) {
-      entities = await this.#ormRepository.findByForwardingEnabled(true);
+      entities = await this.#ormRepository.findWithForwardingEnabled();
     } else {
       entities = await this.#ormRepository.findAll();
     }

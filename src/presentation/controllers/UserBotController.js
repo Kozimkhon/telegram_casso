@@ -525,25 +525,46 @@ class UserBotController {
         channelId = `-100${event.channelId.toString()}`;
       }
 
+      // Debug log for channel ID extraction
+      if (channelId && eventClassName !== 'UpdateChannelUserTyping') {
+        this.#logger.debug('Event channel ID extracted', { 
+          eventClassName, 
+          channelId,
+          hasMessage: !!event.message,
+          hasChannelId: !!event.channelId
+        });
+      }
+
       // If we have a channel ID, check if it's an admin channel
       if (channelId) {
         // Check in memory first (no DB call)
         const isAdminChannel = this.#connectedChannels.has(channelId);
         
-        var chanel_entity=event?._entities?.valueOf(channelId);
         if (!isAdminChannel) {
           // Channel not in our list - check if it's a new admin channel
-          if(!chanel_entity||!chanel_entity?.adminRights){
+          
+          // Get channel entity from event._entities if available
+          let channelEntity = null;
+          if (event._entities) {
+            channelEntity = event._entities.get(channelId) || event._entities.get(channelId.slice(4));
+          }
+          
+          // Debug log
+          this.#logger.debug('Checking new channel', {
+            channelId,
+            hasEntity: !!channelEntity,
+            hasAdminRights: !!channelEntity?.adminRights,
+            isCreator: !!channelEntity?.creator
+          });
+          
+          // If no entity in event or no admin rights, skip
+          if (!channelEntity || (!channelEntity.adminRights && !channelEntity.creator)) {
+            this.#logger.debug('Skipping non-admin channel', { channelId });
             return;
           }
+          
           try {
-            // Get channel entity from Telegram
-            const channelIdNum = channelId.startsWith('-100') ? channelId.slice(4) : channelId;
-            const inputChanel=Api.InputChannel({
-              channelId: BigInt(channelIdNum),
-              accessHash: BigInt(channelEntity.accessHash),
-            });
-            const channelEntity = await this.#client.getEntity(inputChanel);
+            // We already have channelEntity from event._entities, just verify it
             
             // Check if we have admin rights
             if (channelEntity.adminRights || channelEntity.creator) {
@@ -551,6 +572,7 @@ class UserBotController {
                 channelId,
                 title: channelEntity.title,
                 isCreator: !!channelEntity.creator,
+                hasAdminRights: !!channelEntity.adminRights
               });
 
               // Extract channel info
@@ -577,18 +599,22 @@ class UserBotController {
               // Continue to handler below
             } else {
               // Not an admin channel - skip silently
+              this.#logger.debug('No admin rights in channel entity check', { channelId });
               return;
             }
           } catch (error) {
-            // Error getting channel entity - skip this event
-            this.#logger.debug('Could not verify channel', {
+            // Error adding new channel - skip this event
+            this.#logger.error('Error adding new admin channel', {
               channelId,
               error: error.message,
+              stack: error.stack
             });
             return;
           }
         }
-      }else{
+      } else {
+        // No channel ID - skip this event
+        this.#logger.debug('Event without channel ID', { eventClassName });
         return;
       }
       

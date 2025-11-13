@@ -22,7 +22,7 @@ import {
   UserEntity,
   MessageEntity,
   MetricEntity,
-} from '../core/entities/db/index.js';
+} from '../core/entities/orm/index.js';
 
 /**
  * TypeORM DataSource Configuration

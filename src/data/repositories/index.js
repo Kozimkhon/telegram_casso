@@ -4,8 +4,8 @@
  * @module data/repositories
  */
 
-export { default as ChannelRepository } from './ChannelRepository.js';
-export { default as SessionRepository } from './SessionRepository.js';
-export { default as UserRepository } from './UserRepository.js';
-export { default as MessageRepository } from './MessageRepository.js';
-export { default as AdminRepository } from './AdminRepository.js';
+export { default as ChannelRepository } from './domain/ChannelRepository.js';
+export { default as SessionRepository } from './domain/SessionRepository.js';
+export { default as UserRepository } from './domain/UserRepository.js';
+export { default as MessageRepository } from './domain/MessageRepository.js';
+export { default as AdminRepository } from './domain/AdminRepository.js';

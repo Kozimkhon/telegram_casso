@@ -4,8 +4,8 @@
  * @module core/entities/Admin
  */
 
-import BaseEntity from '../base/BaseEntity.js';
-import { AdminRole } from '../../shared/constants/index.js';
+import BaseEntity from '../../base/BaseEntity.js';
+import { AdminRole } from '../../../shared/constants/index.js';
 
 /**
  * Admin Entity

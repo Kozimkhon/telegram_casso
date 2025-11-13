@@ -4,11 +4,10 @@
  * @module data/repositories/AdminRepository
  */
 
-import IAdminRepository from '../../core/interfaces/IAdminRepository.js';
-import Admin from '../../core/entities/Admin.entity.js';
-import { AdminRole } from '../../shared/constants/index.js';
+import { IAdminRepository } from '../../../core/interfaces/index.js';
+import { Admin } from '../../../core/entities/index.js';
+import { AdminRole } from '../../../shared/constants/index.js';
 import RepositoryFactory from './RepositoryFactory.js';
-import AdminEntity from '../../core/entities/db/Admin.entity.js';
 
 /**
  * Admin Repository
@@ -120,24 +119,49 @@ class AdminRepository extends IAdminRepository {
       throw new Error(`Admin not found: ${id}`);
     }
 
-    // Apply updates
+    // Build ORM updates object
+    const ormUpdates = {};
+    
+    // Handle domain entity methods
     if (updates.role) {
       admin.changeRole(updates.role);
+      ormUpdates.role = admin.role;
     }
     if (updates.is_active !== undefined) {
       updates.is_active ? admin.activate() : admin.deactivate();
+      ormUpdates.isActive = admin.isActive;
+    }
+    
+    // Handle direct field updates
+    if (updates.phone !== undefined) {
+      ormUpdates.phone = updates.phone;
+    }
+    if (updates.firstName !== undefined) {
+      ormUpdates.firstName = updates.firstName;
+    }
+    if (updates.first_name !== undefined) {
+      ormUpdates.firstName = updates.first_name;
+    }
+    if (updates.lastName !== undefined) {
+      ormUpdates.lastName = updates.lastName;
+    }
+    if (updates.last_name !== undefined) {
+      ormUpdates.lastName = updates.last_name;
+    }
+    if (updates.username !== undefined) {
+      ormUpdates.username = updates.username;
+    }
+    
+    // Only update if there are changes
+    if (Object.keys(ormUpdates).length === 0) {
+      return admin;
     }
 
-    const data = admin.toObject();
-    
-    const updated = await this.#ormRepository.update(id, {
-      role: data.role,
-      isActive: data.is_active
-    });
+    const updated = await this.#ormRepository.update(id, ormUpdates);
 
     return this.#toDomainEntity(updated);
   }
-/**
+  /**
    * Updates admin with userId
    * @param {string} userId - User ID
    * @param {Object} updates - Updates
@@ -149,20 +173,45 @@ class AdminRepository extends IAdminRepository {
       throw new Error(`Admin not found: ${userId}`);
     }
 
-    // Apply updates
+    // Build ORM updates object
+    const ormUpdates = {};
+    
+    // Handle domain entity methods
     if (updates.role) {
       admin.changeRole(updates.role);
+      ormUpdates.role = admin.role;
     }
     if (updates.is_active !== undefined) {
       updates.is_active ? admin.activate() : admin.deactivate();
+      ormUpdates.isActive = admin.isActive;
     }
-
-    const data = admin.toObject();
     
-    const updated = await this.#ormRepository.update(admin.id, {
-      role: data.role,
-      isActive: data.is_active
-    });
+    // Handle direct field updates
+    if (updates.phone !== undefined) {
+      ormUpdates.phone = updates.phone;
+    }
+    if (updates.firstName !== undefined) {
+      ormUpdates.firstName = updates.firstName;
+    }
+    if (updates.first_name !== undefined) {
+      ormUpdates.firstName = updates.first_name;
+    }
+    if (updates.lastName !== undefined) {
+      ormUpdates.lastName = updates.lastName;
+    }
+    if (updates.last_name !== undefined) {
+      ormUpdates.lastName = updates.last_name;
+    }
+    if (updates.username !== undefined) {
+      ormUpdates.username = updates.username;
+    }
+    
+    // Only update if there are changes
+    if (Object.keys(ormUpdates).length === 0) {
+      return admin;
+    }
+    
+    const updated = await this.#ormRepository.update(admin.id, ormUpdates);
 
     return this.#toDomainEntity(updated);
   }

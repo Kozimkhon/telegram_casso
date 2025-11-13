@@ -4,7 +4,7 @@
  * @module domain/use-cases/admin/AddAdminUseCase
  */
 
-import Admin from '../../../core/entities/Admin.entity.js';
+import Admin from '../../../core/entities/domain/Admin.entity.js';
 import { AdminRole } from '../../../shared/constants/index.js';
 
 /**

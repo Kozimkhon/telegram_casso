@@ -34,13 +34,13 @@ class ToggleChannelForwardingUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID, not database ID)
    * @param {boolean} enabled - Enable/disable
    * @returns {Promise<Object>} Result
    */
   async execute(channelId, enabled = null) {
-    // Find channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Find channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
@@ -55,13 +55,13 @@ class ToggleChannelForwardingUseCase {
       channel.disableForwarding();
     }
 
-    // Update repository
-    const updated = await this.#channelRepository.update(channelId, {
+    // Update repository (use database ID for update)
+    const updated = await this.#channelRepository.update(channel.id, {
       forward_enabled: channel.forwardEnabled,
       updated_at: channel.updatedAt
     });
 
-    // Update state
+    // Update state (use Telegram channel ID)
     this.#stateManager.toggleChannelForwarding(channelId, updated.forwardEnabled);
 
     return {

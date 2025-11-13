@@ -4,8 +4,8 @@
  * @module core/entities/Session
  */
 
-import BaseEntity from '../base/BaseEntity.js';
-import { SessionStatus } from '../../shared/constants/index.js';
+import BaseEntity from '../../base/BaseEntity.js';
+import { SessionStatus } from '../../../shared/constants/index.js';
 
 /**
  * Session Entity

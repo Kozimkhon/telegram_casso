@@ -4,8 +4,8 @@
  * @module core/entities
  */
 
-export { default as Channel } from './Channel.entity.js';
-export { default as Session } from './Session.entity.js';
-export { default as User } from './User.entity.js';
-export { default as Message } from './Message.entity.js';
-export { default as Admin } from './Admin.entity.js';
+export { default as Channel } from './domain/Channel.entity.js';
+export { default as Session } from './domain/Session.entity.js';
+export { default as User } from './domain/User.entity.js';
+export { default as Message } from './domain/Message.entity.js';
+export { default as Admin } from './domain/Admin.entity.js';
