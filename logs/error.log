@@ -1,0 +1,72 @@
+2025-11-13 17:17:06 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (E:\Experiments\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBotController.start (file:///E:/Experiments/telegram_casso/src/presentation/controllers/AdminBotController.js:145:7)
+    at async Application.start (file:///E:/Experiments/telegram_casso/src/index.js:167:11)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-13 17:28:05 [ERROR]: Error toggling channel
+Error: Channel not found: -1003288456214
+    at ToggleChannelForwardingUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/ToggleChannelForwardingUseCase.js:45:13)
+    at async Object.handleToggleChannel (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:125:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:31:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Channel not found: -1003288456214"
+}
+2025-11-13 17:28:41 [ERROR]: Error toggling channel
+Error: Channel not found: -1003288456214
+    at ToggleChannelForwardingUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/ToggleChannelForwardingUseCase.js:45:13)
+    at async Object.handleToggleChannel (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:125:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:31:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Channel not found: -1003288456214"
+}
+2025-11-13 17:28:51 [ERROR]: Error toggling channel
+Error: Channel not found: -1003288456214
+    at ToggleChannelForwardingUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/channel/ToggleChannelForwardingUseCase.js:45:13)
+    at async Object.handleToggleChannel (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:125:22)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:31:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Channel not found: -1003288456214"
+}
+2025-11-13 17:48:20 [ERROR]: Error showing channel details
+Error: Channel not found: -1002148669912
+    at GetUsersByChannelUseCase.execute (file:///E:/Experiments/telegram_casso/src/domain/use-cases/user/GetUsersByChannelUseCase.js:44:13)
+    at async handleChannelDetails (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:151:27)
+    at async Object.handleToggleChannel (file:///E:/Experiments/telegram_casso/src/presentation/handlers/channelHandlers.js:131:7)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:31:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "Channel not found: -1002148669912"
+}

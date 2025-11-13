@@ -39,11 +39,11 @@ class GetChannelStatsUseCase {
 
   /**
    * Gets channel details
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @returns {Promise<Object>} Channel details
    */
   async getChannelDetails(channelId) {
-    const channel = await this.#channelRepository.findById(channelId);
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }

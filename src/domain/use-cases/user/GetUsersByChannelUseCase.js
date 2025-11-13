@@ -34,17 +34,17 @@ class GetUsersByChannelUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @returns {Promise<Object>} Result
    */
   async execute(channelId) {
-    // Validate channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Validate channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
 
-    // Get users
+    // Get users (use Telegram channel ID)
     const users = await this.#userRepository.findByChannel(channelId);
 
     return {

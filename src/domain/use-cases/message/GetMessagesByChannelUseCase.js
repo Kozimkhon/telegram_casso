@@ -34,18 +34,18 @@ class GetMessagesByChannelUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @param {Object} options - Options
    * @returns {Promise<Object>} Result
    */
   async execute(channelId, options = {}) {
-    // Validate channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Validate channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
 
-    // Get messages
+    // Get messages (use Telegram channel ID)
     const messages = await this.#messageRepository.findByChannel(channelId);
 
     return {

@@ -42,13 +42,13 @@ class LinkChannelToSessionUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @param {string|null} sessionAdminId - Session admin ID (null to unlink)
    * @returns {Promise<Object>} Result
    */
   async execute(channelId, sessionAdminId) {
-    // Find channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Find channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
@@ -68,13 +68,13 @@ class LinkChannelToSessionUseCase {
     // Channel.adminId will be set to the admin that owns the session
     channel.linkToAdmin(sessionAdminId);
 
-    // Update repository
-    const updated = await this.#channelRepository.update(channelId, {
+    // Update repository (use database ID)
+    const updated = await this.#channelRepository.update(channel.id, {
       admin_id: sessionAdminId,
       updated_at: channel.updatedAt
     });
 
-    // Update state
+    // Update state (use Telegram channel ID)
     this.#stateManager.updateChannel(channelId, {
       adminId: updated.adminId
     });

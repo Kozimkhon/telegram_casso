@@ -34,18 +34,18 @@ class RemoveUserFromChannelUseCase {
 
   /**
    * Executes use case
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID)
    * @param {string} userId - User ID
    * @returns {Promise<Object>} Result
    */
   async execute(channelId, userId) {
-    // Validate channel
-    const channel = await this.#channelRepository.findById(channelId);
+    // Validate channel by Telegram channel ID
+    const channel = await this.#channelRepository.findByChannelId(channelId);
     if (!channel) {
       throw new Error(`Channel not found: ${channelId}`);
     }
 
-    // Remove from channel
+    // Remove from channel (use Telegram channel ID)
     const removed = await this.#userRepository.removeFromChannel(channelId, userId);
 
     if (!removed) {
