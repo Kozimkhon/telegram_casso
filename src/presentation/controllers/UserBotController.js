@@ -194,24 +194,101 @@ class UserBotController {
     } catch (error) {
       this.#logger.error('Failed to start UserBot', error);
       
-      // If AUTH error, mark session as invalid
+      // If AUTH error, mark session as invalid and notify admin
       if (error.code === 401 || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
         this.#logger.error('Authentication error detected - session needs re-authentication');
-        try {
-          const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
-          if (session) {
-            await this.sessionRepository.update(session.id, {
-              status: 'error',
-              last_error: 'Authentication failed: Session key invalid. Delete and recreate session.',
-              auto_paused: true
-            });
-          }
-        } catch (dbError) {
-          this.#logger.error('Failed to update session after auth error', dbError);
-        }
+        await this.#handleSessionError(
+          'AUTH_KEY_UNREGISTERED',
+          'Authentication failed: Session key invalid. Delete and recreate session.'
+        );
       }
       
       throw handleTelegramError(error, 'UserBot initialization');
+    }
+  }
+
+  /**
+   * Handles session connection error
+   * Updates session status and notifies admin
+   * @private
+   * @param {string} errorType - Type of error
+   * @param {string} errorMessage - Error message
+   * @returns {Promise<void>}
+   */
+  async #handleSessionError(errorType, errorMessage) {
+    try {
+      // Update session in database
+      const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
+      if (session) {
+        await this.sessionRepository.update(session.id, {
+          status: 'error',
+          last_error: errorMessage,
+          auto_paused: true
+        });
+        this.#logger.info('Session marked as error and auto-paused', { 
+          adminId: this.#sessionData.adminId 
+        });
+      }
+
+      // Notify admin via AdminBot
+      await this.#notifyAdminAboutSessionError(errorType, errorMessage);
+
+    } catch (error) {
+      this.#logger.error('Failed to handle session error', error);
+    }
+  }
+
+  /**
+   * Sends error notification to admin via AdminBot
+   * @private
+   * @param {string} errorType - Type of error
+   * @param {string} errorMessage - Error message
+   * @returns {Promise<void>}
+   */
+  async #notifyAdminAboutSessionError(errorType, errorMessage) {
+    try {
+      // Get AdminBot from StateManager
+      if (!this.#stateManager) {
+        this.#logger.warn('StateManager not available for sending notification');
+        return;
+      }
+
+      const adminBot = this.#stateManager.getBot('adminBot');
+      if (!adminBot || !adminBot.sendMessageToAdmin) {
+        this.#logger.warn('AdminBot not available for sending notification', {
+          adminId: this.#sessionData.adminId
+        });
+        return;
+      }
+
+      // Prepare notification message
+      const notificationMessage = `⚠️ <b>Session Error</b>\n\n` +
+        `🔴 Error Type: <code>${errorType}</code>\n` +
+        `📝 Details: ${errorMessage}\n\n` +
+        `💡 Action Required:\n` +
+        `1. Delete this session\n` +
+        `2. Create a new session via "Add Session"\n\n` +
+        `🔗 Use /sessions to manage your sessions.`;
+
+      // Send message to admin
+      const success = await adminBot.sendMessageToAdmin(
+        this.#sessionData.adminId,
+        notificationMessage
+      );
+
+      if (success) {
+        this.#logger.info('Admin notified about session error', {
+          adminId: this.#sessionData.adminId,
+          errorType
+        });
+      } else {
+        this.#logger.warn('Failed to notify admin about session error', {
+          adminId: this.#sessionData.adminId
+        });
+      }
+
+    } catch (error) {
+      this.#logger.error('Error notifying admin about session error', error);
     }
   }
 
@@ -350,20 +427,11 @@ class UserBotController {
             error: authError.message
           });
           
-          // Mark session as invalid in database
-          try {
-            const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
-            if (session) {
-              await this.sessionRepository.update(session.id, {
-                status: 'error',
-                last_error: 'AUTH_KEY_UNREGISTERED: Session expired or revoked. Re-authentication required.',
-                auto_paused: true
-              });
-              this.#logger.info('Session marked as error and paused', { adminId: this.#sessionData.adminId });
-            }
-          } catch (dbError) {
-            this.#logger.error('Failed to update session status', dbError);
-          }
+          // Mark session as invalid in database and notify admin
+          await this.#handleSessionError(
+            'AUTH_KEY_UNREGISTERED',
+            'AUTH_KEY_UNREGISTERED: Session expired or revoked. Re-authentication required.'
+          );
           
           throw new AuthenticationError(
             'Session authentication failed. The session key is no longer valid. ' +
@@ -374,7 +442,7 @@ class UserBotController {
       }
 
     } catch (error) {
-      // Update session with error info
+      // For other errors, still try to update and notify
       try {
         const session = await this.sessionRepository.findByAdminId(this.#sessionData.adminId);
         if (session) {
@@ -392,7 +460,6 @@ class UserBotController {
     }
   }
 
-  /**
   /**
    * Syncs channels from database
    * @private

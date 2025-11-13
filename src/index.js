@@ -167,6 +167,10 @@ class Application {
           
           await adminBot.start();
           this.#bots.adminBot = adminBot;
+          
+          // Register AdminBot in StateManager so UserBot can access it
+          stateManager.registerBot('adminBot', adminBot);
+          
           console.log('   ✅ AdminBot started successfully');
         } catch (error) {
           console.error('   ❌ Failed to start AdminBot:', error.message);

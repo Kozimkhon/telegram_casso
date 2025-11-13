@@ -92,6 +92,7 @@ class AdminRepository extends IAdminRepository {
     const data = Admin.toDatabaseRow(admin);
     
     // Convert snake_case to camelCase for TypeORM
+    // Ensure isActive defaults to true if not explicitly set to false
     const ormData = {
       userId: data.user_id,
       firstName: data.first_name,
@@ -99,7 +100,7 @@ class AdminRepository extends IAdminRepository {
       username: data.username,
       phone: data.phone,
       role: data.role,
-      isActive: Boolean(data.is_active)
+      isActive: data.is_active === 0 ? false : true
     };
     
     const created = await this.#ormRepository.create(ormData);

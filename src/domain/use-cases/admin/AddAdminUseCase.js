@@ -52,7 +52,7 @@ class AddAdminUseCase {
       lastName: data.lastName || null,
       phone: data.phone || null,
       role: data.role || AdminRole.ADMIN,
-      isActive: data.isActive !== false,
+      isActive: data.isActive === true || data.isActive === undefined ? true : false,
       createdAt: new Date(),
       updatedAt: new Date()
     });
