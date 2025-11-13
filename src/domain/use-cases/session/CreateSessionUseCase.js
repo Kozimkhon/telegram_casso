@@ -47,14 +47,14 @@ class CreateSessionUseCase {
       adminId:data.adminId,
       sessionString: data.sessionString || null,
       status: data.status || 'active',
-      lastActive: new Date().toISOString(),
+      lastActive: new Date(),
       autoPaused: false,
       pauseReason: null,
       floodWaitUntil: null,
       lastError: null,
-      lastActive: new Date().toISOString(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      lastActive: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Persist session

@@ -62,8 +62,8 @@ class AddUserUseCase {
       lastName: data.lastName || null,
       username: data.username || null,
       phone: data.phone || null,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Persist user

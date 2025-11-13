@@ -121,7 +121,7 @@ class AdminBotController {
     // Create session auth handlers
     this.authHandlers = createSessionAuthHandlers({
       createSessionUseCase: this.#useCases.createSession,
-      getOrCreateAdminUseCase: this.#useCases.getOrCreateAdmin,
+      updateAdminUseCase: this.#useCases.updateAdmin,
     });
 
     // Create Telegraf bot

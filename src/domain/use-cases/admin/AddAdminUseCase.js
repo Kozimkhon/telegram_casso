@@ -53,8 +53,8 @@ class AddAdminUseCase {
       phone: data.phone || null,
       role: data.role || AdminRole.ADMIN,
       isActive: data.isActive !== false,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Persist admin

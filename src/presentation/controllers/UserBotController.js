@@ -7,7 +7,6 @@
 
 import { TelegramClient } from "telegram";
 import { StringSession } from "telegram/sessions/index.js";
-import { NewMessage } from "telegram/events/index.js";
 import { Api } from "telegram/tl/index.js";
 
 import { config } from "../../config/index.js";
@@ -77,11 +76,6 @@ class UserBotController {
    */
   #connectedChannels = new Map();
 
-  /**
-   * Admin channel entities for filtering
-   * @private
-   */
-  #adminChannelEntities = [];
 
   /**
    * Sync interval timer
@@ -179,22 +173,22 @@ class UserBotController {
         await this.sessionRepository.updateActivity(this.#sessionData.adminId);
       }
 
+      
+      // Register bot instance in StateManager
+      if (this.#stateManager && this.#sessionData.adminId) {
+        this.#stateManager.registerBot(this.#sessionData.adminId, this);
+        this.#logger.info('Bot instance registered in StateManager', { adminId: this.#sessionData.adminId });
+      }
+      
+      this.#isRunning = true;
       // Sync channels
-      await this.#syncChannels();
+      await this.syncChannelsManually();
 
       // Setup event handlers
       await this.#setupEventHandlers();
 
       // Start periodic tasks
       this.#startPeriodicTasks();
-
-      // Register bot instance in StateManager
-      if (this.#stateManager && this.#sessionData.adminId) {
-        this.#stateManager.registerBot(this.#sessionData.adminId, this);
-        this.#logger.info('Bot instance registered in StateManager', { adminId: this.#sessionData.adminId });
-      }
-
-      this.#isRunning = true;
       this.#logger.info('UserBot started successfully');
 
     } catch (error) {
@@ -408,8 +402,6 @@ class UserBotController {
     try {
       this.#logger.info('Syncing channels...');
 
-      // Clear previous channel data
-      this.#adminChannelEntities = [];
       this.#connectedChannels.clear();
 
       // Get channels from database - Session linked to admin via adminId
@@ -467,9 +459,7 @@ class UserBotController {
         // Fallback: get entity by ID only
         channelEntity = await this.#client.getEntity(BigInt(actualChannelId));
       }
-      
-      // Store for event filtering
-      this.#adminChannelEntities.push(channelEntity);
+
       this.#connectedChannels.set(channel.channelId, {
         entity: channelEntity,
         title: channel.title,
@@ -649,11 +639,11 @@ class UserBotController {
    */
   async #setupEventHandlers() {
     try {
-      // Only setup handlers if we have channels to monitor
-      if (this.#adminChannelEntities.length === 0) {
-        this.#logger.warn('No channels to monitor, skipping event handlers setup');
-        return;
-      }
+      // // Only setup handlers if we have channels to monitor
+      // if (this.#adminChannelEntities.length === 0) {
+      //   this.#logger.warn('No channels to monitor, skipping event handlers setup');
+      //   return;
+      // }
 
       // Initialize channel event handlers with dependencies
       this.#channelEventHandlers = new ChannelEventHandlers({
@@ -669,9 +659,6 @@ class UserBotController {
       this.#client.addEventHandler(
         async (event) => await this.#handleTelegramEvent(event)
       );
-
-      this.#logger.info(`Universal event handler set up for ${this.#adminChannelEntities.length} channels`);
-
     } catch (error) {
       this.#logger.error('Failed to setup event handlers', error);
     }
@@ -865,7 +852,7 @@ class UserBotController {
 
       const dialogs = [];
   for await (const dialog of this.#client.iterDialogs()) {
-    if (dialog.isChannel&&dialog?.entity?.adminRights) {
+    if (dialog.isChannel&&!dialog.isGroup&&dialog?.entity?.adminRights) {
       dialogs.push(dialog);
     }
   }
@@ -910,7 +897,7 @@ class UserBotController {
       }
 
       this.#logger.info(`Channel sync complete: ${addedCount} added, ${updatedCount} updated`);
-
+      this.#syncChannels();
       return {
         success: true,
         message: `Synced successfully: ${addedCount} new channels added, ${updatedCount} updated`,
