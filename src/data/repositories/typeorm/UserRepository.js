@@ -202,11 +202,10 @@ class UserRepository extends BaseRepository {
    */
   async bulkAddToChannel(channelId, userIds) {
     try {
-      // Get channel repository
       const channelRepo = AppDataSource.getRepository('Channel');
       const userRepo = this.repository;
       
-      // Find channel with users
+      // Find channel
       const channel = await channelRepo.findOne({ 
         where: { channelId },
         relations: ['users']
@@ -214,43 +213,89 @@ class UserRepository extends BaseRepository {
       
       if (!channel) {
         console.error('Channel not found:', channelId);
-        return userIds.map(userId => ({ userId, success: false }));
+        return userIds.map(userId => ({ userId, success: false, error: 'Channel not found' }));
       }
       
-      // Find all users
+      // Find all users that exist in database
       const users = await userRepo
         .createQueryBuilder('user')
         .where('user.userId IN (:...userIds)', { userIds })
         .getMany();
       
-      const results = [];
-      
-      // Get existing user IDs
+      // Get set of existing user IDs from the loaded channel relations
+      // This is safe because we loaded the users in the findOne query
       const existingUserIds = new Set(channel.users?.map(u => u.userId) || []);
       
-      // Add new users
-      const newUsers = users.filter(u => !existingUserIds.has(u.userId));
-      if (newUsers.length > 0) {
-        if (!channel.users) {
-          channel.users = [];
+      const results = [];
+      const newUsers = [];
+      
+      // Separate new users from existing ones
+      for (const userId of userIds) {
+        const user = users.find(u => u.userId === userId);
+        
+        if (!user) {
+          // User doesn't exist in database
+          results.push({
+            userId,
+            success: false,
+            error: 'User not found'
+          });
+        } else if (existingUserIds.has(userId)) {
+          // User already in channel
+          results.push({
+            userId,
+            success: true,
+            status: 'already_member'
+          });
+        } else {
+          // New user to add
+          newUsers.push(user);
+          results.push({
+            userId,
+            success: true,
+            status: 'added'
+          });
         }
-        channel.users.push(...newUsers);
-        await channelRepo.save(channel);
       }
       
-      // Build results
-      for (const userId of userIds) {
-        const userExists = users.find(u => u.userId === userId);
-        results.push({
-          userId,
-          success: !!userExists
-        });
+      // Add new users to channel
+      if (newUsers.length > 0) {
+        try {
+          // Initialize users array if needed
+          if (!channel.users) {
+            channel.users = [];
+          }
+          
+          // Add the new users to the channel's users array
+          channel.users.push(...newUsers);
+          
+          // Save the channel with the new users
+          // TypeORM will handle updating the many-to-many join table
+          await channelRepo.save(channel);
+          
+          console.log(`Successfully added ${newUsers.length} users to channel ${channelId}`);
+        } catch (saveError) {
+          console.error('Error saving channel with new users:', saveError.message);
+          
+          // If saving fails, mark newly added users as failed
+          for (const user of newUsers) {
+            const result = results.find(r => r.userId === user.userId);
+            if (result) {
+              result.success = false;
+              result.error = saveError.message;
+            }
+          }
+        }
       }
       
       return results;
     } catch (error) {
       console.error('Error bulk adding users to channel:', error);
-      return userIds.map(userId => ({ userId, success: false }));
+      return userIds.map(userId => ({ 
+        userId, 
+        success: false,
+        error: error.message 
+      }));
     }
   }
 

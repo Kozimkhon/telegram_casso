@@ -4199,3 +4199,767 @@ TypeError: this[#client].removeEventHandlers is not a function
 {
   "error": "this[#client].removeEventHandlers is not a function"
 }
+2025-11-12 19:32:07 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:10 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:16 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:30 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:32:39 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:17 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:18 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:19 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 19:33:20 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:142:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 20:22:21 [ERROR]: Error deleting old messages
+Error: findOldMessages() must be implemented
+    at MessageRepository.findOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/core/interfaces/IMessageRepository.js:44:11)
+    at FindOldMessagesUseCase.execute (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/use-cases/message/FindOldMessagesUseCase.js:37:52)
+    at #deleteOldMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:718:67)
+    at Timeout._onTimeout (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:698:48)
+    at listOnTimeout (node:internal/timers:611:17)
+    at process.processTimers (node:internal/timers:546:7)
+{
+  "error": "findOldMessages() must be implemented"
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:32:12 [ERROR]: Error handling new channel message
+TypeError: Cannot read properties of undefined (reading 'findByChannel')
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:104:46)
+    at #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:37)
+    at ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:41)
+    at #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:60)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:57
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": "Cannot read properties of undefined (reading 'findByChannel')"
+}
+2025-11-12 20:43:53 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:43:53 [ERROR]: Error handling new channel message
+TypeError: message.toObject is not a function
+    at MessageRepository.create (file:///E:/experiments/workspace/web-dev/telegram_casso/src/data/repositories/MessageRepository.js:65:26)
+    at ForwardingService.forwardToChannelUsers (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:200:39)
+    at async #forwardSingleMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:229:5)
+    at async ChannelEventHandlers.handleNewChannelMessage (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:119:9)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "error": "message.toObject is not a function"
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "sleep is not defined"
+}
+2025-11-12 20:47:01 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "5684628333",
+  "error": "sleep is not defined"
+}
+2025-11-12 22:00:02 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageId": 42,
+  "error": "Invalid status. Must be one of: success, failed, skipped, pending"
+}
+2025-11-12 22:00:02 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageId": 42,
+  "error": "Invalid status. Must be one of: success, failed, skipped, pending"
+}
+2025-11-12 22:02:59 [ERROR]: [ChannelEventHandlers] Failed to delete message
+Error: Forwarded message ID is required for deletion
+    at #deleteMessageFromUser (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:794:15)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:290:77
+    at ForwardingService.deleteForwardedMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:361:15)
+    at async ChannelEventHandlers.handleDeleteChannelMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:287:11)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "userId": "170829174",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:02:59 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "170829174",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:03:03 [ERROR]: [ChannelEventHandlers] Failed to delete message
+Error: Forwarded message ID is required for deletion
+    at #deleteMessageFromUser (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:794:15)
+    at file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:290:77
+    at ForwardingService.deleteForwardedMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/domain/services/ForwardingService.js:361:15)
+    at async ChannelEventHandlers.handleDeleteChannelMessages (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/handlers/channelEventHandlers.js:287:11)
+    at async #handleTelegramEvent (file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:632:9)
+    at async file:///E:/experiments/workspace/web-dev/telegram_casso/src/presentation/controllers/UserBotController.js:675:26
+    at async _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:146:21)
+{
+  "userId": "5684628333",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 22:03:03 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "5684628333",
+  "forwardedId": null,
+  "error": "Forwarded message ID is required for deletion"
+}
+2025-11-12 23:41:00 [ERROR]: [ForwardingService] Forwarding failed
+{
+  "channelId": "-1003288456214",
+  "userId": "170829174",
+  "error": "this.sleep is not a function"
+}
+2025-11-12 23:52:58 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageIds": [
+    84,
+    85,
+    86
+  ],
+  "error": "Cannot read properties of undefined (reading 'forEach')"
+}
+2025-11-12 23:56:00 [ERROR]: Failed to delete forwarded messages
+{
+  "channelId": "-1003288456214",
+  "messageIds": [
+    87,
+    88,
+    89
+  ],
+  "error": "msg is not defined"
+}
+2025-11-12 23:58:40 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "170829174",
+  "forwardedIds": [
+    "4053",
+    "4054",
+    "4055"
+  ],
+  "error": "forwardedId is not defined"
+}
+2025-11-13 00:00:51 [ERROR]: [ForwardingService] Failed to delete message
+{
+  "userId": "5684628333",
+  "forwardedIds": [
+    "4056",
+    "4057",
+    "4058"
+  ],
+  "error": "forwardedId is not defined"
+}
+2025-11-13 00:58:24 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._handleContainer (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:589:13)
+    at async MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:9)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._handleContainer (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:589:13)
+    at async MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:9)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 00:58:24 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 3484,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99893248,
+      "heapTotal": 41648128,
+      "heapUsed": 34864104,
+      "external": 2631052,
+      "arrayBuffers": 93377
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 520711.359
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._handleContainer",
+      "line": 589,
+      "method": "_handleContainer",
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}
+2025-11-13 00:59:01 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 00:59:01 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 21692,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99188736,
+      "heapTotal": 41385984,
+      "heapUsed": 34456880,
+      "external": 2638072,
+      "arrayBuffers": 100397
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 520748.109
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}
+2025-11-13 01:04:08 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:72:13)
+    at _updateLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:196:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 01:04:08 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 9856,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 131178496,
+      "heapTotal": 74416128,
+      "heapUsed": 50230832,
+      "external": 2747555,
+      "arrayBuffers": 200178
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 521055.171
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_handleUpdate",
+      "line": 72,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_updateLoop",
+      "line": 196,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    }
+  ]
+}
+2025-11-13 01:05:34 [ERROR]: unhandledRejection: `resolve()` called for non-request instance
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+Error: `resolve()` called for non-request instance
+    at VirtualClass.resolve (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\tl\api.js:456:27)
+    at _dispatchUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:115:27)
+    at _processUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:106:5)
+    at TelegramClient._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\client\updates.js:93:9)
+    at MTProtoSender._handleUpdate (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:613:18)
+    at MTProtoSender._processMessage (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:492:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MTProtoSender._recvLoop (E:\experiments\workspace\web-dev\telegram_casso\node_modules\telegram\network\MTProtoSender.js:439:17)
+{
+  "error": {},
+  "rejection": true,
+  "date": "Thu Nov 13 2025 01:05:34 GMT+0500 (O‘zbekiston standart vaqti)",
+  "process": {
+    "pid": 16892,
+    "uid": null,
+    "gid": null,
+    "cwd": "E:\\experiments\\workspace\\web-dev\\telegram_casso",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v23.10.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "E:\\experiments\\workspace\\web-dev\\telegram_casso\\src\\index.js"
+    ],
+    "memoryUsage": {
+      "rss": 99221504,
+      "heapTotal": 41385984,
+      "heapUsed": 34229792,
+      "external": 2629784,
+      "arrayBuffers": 92109
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 521140.718
+  },
+  "trace": [
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\tl\\api.js",
+      "function": "VirtualClass.resolve",
+      "line": 456,
+      "method": "resolve",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_dispatchUpdate",
+      "line": 115,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "_processUpdate",
+      "line": 106,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\client\\updates.js",
+      "function": "TelegramClient._handleUpdate",
+      "line": 93,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 18,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._handleUpdate",
+      "line": 613,
+      "method": "_handleUpdate",
+      "native": false
+    },
+    {
+      "column": 15,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "MTProtoSender._processMessage",
+      "line": 492,
+      "method": "_processMessage",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "node:internal/process/task_queues",
+      "function": "process.processTicksAndRejections",
+      "line": 105,
+      "method": "processTicksAndRejections",
+      "native": false
+    },
+    {
+      "column": 17,
+      "file": "E:\\experiments\\workspace\\web-dev\\telegram_casso\\node_modules\\telegram\\network\\MTProtoSender.js",
+      "function": "async MTProtoSender._recvLoop",
+      "line": 439,
+      "method": "_recvLoop",
+      "native": false
+    }
+  ]
+}

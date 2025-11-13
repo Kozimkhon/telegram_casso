@@ -135,11 +135,11 @@ export const ChannelEntity = new EntitySchema({
         name: 'channel_members',
         joinColumn: {
           name: 'channel_id',
-          referencedColumnName: 'channelId',
+          referencedColumnName: 'id',
         },
         inverseJoinColumn: {
           name: 'user_id',
-          referencedColumnName: 'userId',
+          referencedColumnName: 'id',
         },
       },
       cascade: true,

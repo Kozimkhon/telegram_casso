@@ -1,14 +1,33 @@
 /**
- * @fileoverview Message Forwarding Service
- * Handles complex message forwarding business logic
+ * @fileoverview Message Forwarding Service - Domain Service
+ * 
+ * Orchestrates message forwarding business logic with rate limiting.
+ * Coordinates repositories, throttle service, and state management
+ * for reliable message distribution.
+ * 
  * @module domain/services/ForwardingService
  */
 
-import { TelegramLimits, ForwardingStatus } from '../../shared/constants/index.js';
+import { ForwardingStatus } from '../../shared/constants/index.js';
+import { log } from '../../shared/logger.js';
+import Message from '../../core/entities/Message.entity.js';
 
 /**
- * Forwarding Service
- * Orchestrates message forwarding logic
+ * Forwarding Service - Domain Service
+ * 
+ * Handles message forwarding orchestration with:
+ * - Rate limiting per user
+ * - Grouped message handling
+ * - Error recovery
+ * - Flood wait management
+ * - Comprehensive logging
+ * 
+ * Responsibilities:
+ * - Forward messages to channel users
+ * - Forward messages to individual users
+ * - Delete forwarded messages
+ * - Handle rate limit errors
+ * - Manage flood wait situations
  * 
  * @class ForwardingService
  */
@@ -26,7 +45,7 @@ class ForwardingService {
   #messageRepository;
 
   /**
-   * Throttle service
+   * Throttle service (NEW: token bucket with per-user throttling)
    * @private
    */
   #throttleService;
@@ -38,31 +57,55 @@ class ForwardingService {
   #stateManager;
 
   /**
-   * Creates forwarding service
-   * @param {UserRepository} userRepository - User repository
-   * @param {MessageRepository} messageRepository - Message repository
-   * @param {ThrottleService} throttleService - Throttle service
-   * @param {StateManager} stateManager - State manager
+   * Logger instance
+   * @private
    */
-  constructor(userRepository, messageRepository, throttleService, stateManager) {
-    this.#userRepository = userRepository;
-    this.#messageRepository = messageRepository;
-    this.#throttleService = throttleService;
-    this.#stateManager = stateManager;
+  #logger;
+
+  /**
+   * Creates forwarding service instance
+   * 
+   * @param {Object} config - Configuration object
+   * @param {UserRepository} config.userRepository - User data access
+   * @param {MessageRepository} config.messageRepository - Message data access
+   * @param {ThrottleService} config.throttleService - Rate limiting (NEW API)
+   * @param {StateManager} config.stateManager - State management
+   * @param {Object} config.logger - Logger instance (default: log)
+   */
+  constructor(config = {}) {
+    this.#userRepository = config.userRepository;
+    this.#messageRepository = config.messageRepository;
+    this.#throttleService = config.throttleService;
+    this.#stateManager = config.stateManager;
+    this.#logger = config.logger || log;
+
+    this.#logger.debug('[ForwardingService] Initialized');
   }
 
   /**
    * Forwards message to channel users
-   * @param {string} channelId - Channel ID
+   * 
+   * Applies rate limiting per user and handles grouped messages.
+   * Blocks until rate limit allows forwarding to each user.
+   * 
+   * @async
+   * @param {string} channelId - Channel identifier
    * @param {Object} message - Message to forward
-   * @param {Function} forwarder - Forwarding function
+   * @param {Function} forwarder - Forwarding function (userId, message) -> result
    * @returns {Promise<Object>} Forward results
+   * @throws {Error} If repository operation fails
    */
   async forwardToChannelUsers(channelId, message, forwarder) {
+    this.#logger.debug('[ForwardingService] Starting batch forwarding', {
+      channelId,
+      messageId: message.id
+    });
+
     // Get channel users
     const users = await this.#userRepository.findByChannel(channelId);
 
     if (users.length === 0) {
+      this.#logger.info('[ForwardingService] No users for channel', { channelId });
       return {
         total: 0,
         successful: 0,
@@ -79,51 +122,88 @@ class ForwardingService {
     let skipped = 0;
 
     for (const user of users) {
-      // Check throttle
-      const canForward = await this.#throttleService.canForward();
-      if (!canForward) {
-        results.push({
-          userId: user.userId,
-          status: ForwardingStatus.SKIPPED,
-          error: 'Rate limit exceeded'
-        });
-        skipped++;
-        continue;
-      }
-
       try {
-        // Forward message
+        this.#logger.debug('[ForwardingService] Waiting for throttle', {
+          channelId,
+          userId: user.userId,
+          remaining: users.length - users.indexOf(user)
+        });
+
+        // Wait for throttle permission (blocks until allowed)
+        // NEW: Uses token bucket + per-user throttling
+        await this.#throttleService.waitForThrottle(user.userId);
+
+        this.#logger.debug('[ForwardingService] Throttle granted, forwarding', {
+          channelId,
+          userId: user.userId
+        });
+
+        // Forward message (now guaranteed by throttle)
         const result = await forwarder(user.userId, message);
-        
-        // Log success - handle grouped messages
+
+        // Log success - handle grouped messages (albums)
         if (result.count && result.count > 1 && result.groupedId) {
-          // Grouped message (album) - result contains array of forwarded messages
-          // We need to create a log entry for EACH forwarded message
-          // But Telegram API returns array of Message objects
-          // We'll use the first message ID and mark it as grouped
-          // During deletion, we'll query by groupedId to get all related messages
-          
-          await this.#messageRepository.create({
+          // Grouped message (album) - multiple messages in one group
+          // Log with grouped tracking for later batch deletion
+          if(result.result){
+            for(const res of result.result){
+              const messageEntity = new Message({
+                channelId,
+                messageId: res.fwdFrom.channelPost.toString(),
+                userId: user.userId,
+                forwardedMessageId: res.id?.toString(),
+                groupedId: res.groupedId?.toString(),
+                isGrouped: true,
+                status: ForwardingStatus.SUCCESS
+              });
+              await this.#messageRepository.create(messageEntity);
+
+              this.#logger.debug('[ForwardingService] Forwarded grouped message item', {
+                channelId,
+                userId: user.userId,
+                forwardedId: res.id,
+                groupedId: result.groupedId
+              });
+            }
+          }else{
+             const messageEntity = new Message({
             channelId,
             messageId: message.id.toString(),
             userId: user.userId,
             forwardedMessageId: result.id?.toString(),
             groupedId: result.groupedId,
             isGrouped: true,
-            status: ForwardingStatus.SUCCESS,
-            sessionPhone: result.adminId
+            status: ForwardingStatus.SUCCESS
           });
+
+          await this.#messageRepository.create(messageEntity);
+
+          this.#logger.debug('[ForwardingService] Forwarded grouped message', {
+            channelId,
+            userId: user.userId,
+            count: result.count,
+            groupedId: result.groupedId
+          });
+          }
+         
         } else {
-          // Single message
-          await this.#messageRepository.create({
+          // Single message (non-grouped)
+          const messageEntity = new Message({
             channelId,
             messageId: message.id.toString(),
             userId: user.userId,
             forwardedMessageId: result.id?.toString(),
             groupedId: null,
             isGrouped: false,
-            status: ForwardingStatus.SUCCESS,
-            sessionPhone: result.adminId
+            status: ForwardingStatus.SUCCESS
+          });
+
+          await this.#messageRepository.create(messageEntity);
+
+          this.#logger.debug('[ForwardingService] Forwarded single message', {
+            channelId,
+            userId: user.userId,
+            forwardedId: result.id
           });
         }
 
@@ -134,19 +214,23 @@ class ForwardingService {
         });
         successful++;
 
-        // Update throttle
-        await this.#throttleService.recordForwarding();
-
       } catch (error) {
+        this.#logger.error('[ForwardingService] Forwarding failed', {
+          channelId,
+          userId: user.userId,
+          error: error.message
+        });
+
         // Log failure
-        await this.#messageRepository.create({
+        const failedMessageEntity = new Message({
           channelId,
           messageId: message.id.toString(),
           userId: user.userId,
           status: ForwardingStatus.FAILED,
-          errorMessage: error.message,
-          sessionPhone: error.adminId
+          errorMessage: error.message
         });
+
+        await this.#messageRepository.create(failedMessageEntity);
 
         results.push({
           userId: user.userId,
@@ -155,99 +239,214 @@ class ForwardingService {
         });
         failed++;
 
-        // Handle flood wait
+        // Handle flood wait (Telegram rate limit)
         if (error.isFloodWait) {
+          this.#logger.warn('[ForwardingService] Flood wait encountered', {
+            sessionPhone: error.adminId,
+            seconds: error.seconds
+          });
           await this.handleFloodWait(error.adminId, error.seconds);
         }
       }
     }
 
-    return {
-      total: users.length,
-      successful,
-      failed,
-      skipped,
-      results
-    };
+    const summary = { total: users.length, successful, failed, skipped, results };
+    this.#logger.info('[ForwardingService] Batch forwarding completed', summary);
+
+    return summary;
   }
 
   /**
-   * Handles flood wait error
-   * @param {string} sessionPhone - Session phone
-   * @param {number} seconds - Seconds to wait
+   * Handles Telegram flood wait error
+   * 
+   * Emits event to pause session and triggers exponential backoff retry.
+   * 
+   * @async
+   * @param {string} sessionPhone - Session phone number
+   * @param {number} seconds - Seconds to wait before retry
    * @returns {Promise<void>}
    */
   async handleFloodWait(sessionPhone, seconds) {
+    const pausedUntil = new Date(Date.now() + seconds * 1000).toISOString();
+
+    this.#logger.warn('[ForwardingService] Flood wait triggered', {
+      sessionPhone,
+      seconds,
+      pausedUntil
+    });
+
+    // Emit event to pause this session
     this.#stateManager.emit('session:flood-wait', {
       phone: sessionPhone,
       seconds,
-      pausedUntil: new Date(Date.now() + seconds * 1000).toISOString()
+      pausedUntil
     });
   }
 
   /**
    * Forwards message to single user
-   * @param {string} userId - User ID
+   * 
+   * Applies per-user rate limiting and retries with exponential backoff.
+   * 
+   * @async
+   * @param {string} userId - User identifier
    * @param {Object} message - Message to forward
-   * @param {Function} forwarder - Forwarding function
+   * @param {Function} forwarder - Forwarding function (userId, message) -> result
    * @returns {Promise<Object>} Forward result
+   * @throws {Error} If forwarding fails after retries
    */
   async forwardToUser(userId, message, forwarder) {
-    const canForward = await this.#throttleService.canForward();
-    if (!canForward) {
-      throw new Error('Rate limit exceeded');
-    }
+    this.#logger.debug('[ForwardingService] Forwarding to single user', {
+      userId,
+      messageId: message.id
+    });
 
-    const result = await forwarder(userId, message);
-    await this.#throttleService.recordForwarding();
+    // Wait for rate limit permission (NEW: blocks until allowed, per-user throttling)
+    await this.#throttleService.waitForThrottle(userId);
+
+    // Retry with exponential backoff if forwarding fails
+    const result = await this.#throttleService.retryWithBackoff(
+      async () => forwarder(userId, message),
+      {
+        maxRetries: 3,
+        baseDelay: 1000,
+        maxDelay: 30000
+      }
+    );
+
+    this.#logger.debug('[ForwardingService] Single user forwarding succeeded', {
+      userId,
+      forwardedId: result.id
+    });
 
     return result;
   }
 
   /**
    * Deletes forwarded messages
-   * @param {string} channelId - Channel ID
+   * 
+   * Batch deletes all forwarded copies of a message with per-user throttling.
+   * 
+   * @async
+   * @param {string} channelId - Channel identifier
    * @param {string} messageId - Original message ID
-   * @param {Function} deleter - Deletion function
+   * @param {Function} deleter - Deletion function (userId, forwardedId) -> void
    * @returns {Promise<Object>} Deletion results
    */
-  async deleteForwardedMessages(channelId, messageId, deleter) {
-    // Find forwarded messages
+  async deleteForwardedMessages(channelId, messageIds, deleter) {
+    this.#logger.debug('[ForwardingService] Deleting forwarded messages', {
+      channelId,
+      messageIds
+    });
+
+    // Find all forwarded copies
     const messages = await this.#messageRepository.findByForwardedMessageId(
       channelId,
-      messageId
-    );
+      messageIds
+    ) || [];
+
+    this.#logger.info('[ForwardingService] Found forwarded message copies', {
+      channelId,
+      messageIds,
+      count: messages.length,
+      messages: messages.map(m => ({ userId: m.userId, forwardedId: m.forwardedMessageId }))
+    });
+
+    if (messages.length === 0) {
+      this.#logger.debug('[ForwardingService] No forwarded messages to delete', {
+        channelId,
+        messageIds
+      });
+      return {
+        total: 0,
+        deleted: 0,
+        failed: 0,
+        results: []
+      };
+    }
 
     const results = [];
     let deleted = 0;
     let failed = 0;
 
-    for (const msg of messages) {
+
+    // Wait for throttle before deleting (per-user)
+    var Ids = {}
+    messages.forEach(element => {
+
+      if (!Ids[element.userId]) {
+        Ids[element.userId] = []
+      }
+      Ids[element.userId].push(element.forwardedMessageId);
+    });
+
+    // Delete the message
+    Object.keys(Ids).forEach(async (userId) => {
       try {
-        await deleter(msg.userId, msg.forwardedMessageId);
-        await this.#messageRepository.markAsDeleted(msg.userId, msg.forwardedMessageId);
-        
+        await this.#throttleService.waitForThrottle(userId);
+        await deleter(userId, Ids[userId]);
+
+        // Mark as deleted in database
+        (Ids[userId] || []).forEach(async (forwardedId) => {
+        await this.#messageRepository.markAsDeleted(
+          userId,
+          forwardedId
+        );})
+
         results.push({
-          userId: msg.userId,
+          userId: userId,
           success: true
         });
         deleted++;
       } catch (error) {
+        this.#logger.error('[ForwardingService] Failed to delete message', {
+          userId: userId,
+          forwardedIds: Ids[userId],
+          error: error.message
+        });
+
         results.push({
-          userId: msg.userId,
+          userId: userId,
           success: false,
           error: error.message
         });
         failed++;
       }
-    }
+    })
 
-    return {
-      total: messages.length,
-      deleted,
-      failed,
-      results
-    };
+
+
+
+    const summary = { total: messages.length, deleted, failed, results };
+    this.#logger.info('[ForwardingService] Deletion completed', summary);
+
+    return summary;
+  }
+
+  /**
+   * Gets throttle statistics for monitoring
+   * @returns {Object} Throttle statistics
+   */
+  getThrottleStatus() {
+    return this.#throttleService.getStatistics();
+  }
+
+  /**
+   * Clears per-user throttle (e.g., when user changes preferences)
+   * @param {string} userId - User identifier
+   */
+  clearUserThrottle(userId) {
+    this.#logger.info('[ForwardingService] Clearing user throttle', { userId });
+    this.#throttleService.clearUserThrottle(userId);
+  }
+
+  /**
+   * Resets all throttle state
+   * @param {boolean} [resetUsers=true] - Also reset per-user throttling
+   */
+  resetThrottle(resetUsers = true) {
+    this.#logger.info('[ForwardingService] Resetting throttle', { resetUsers });
+    this.#throttleService.reset(resetUsers);
   }
 }
 

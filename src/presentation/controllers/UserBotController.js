@@ -431,11 +431,6 @@ class UserBotController {
         }
       }
 
-      // Re-setup event handlers with updated channel list
-      if (this.#isRunning) {
-        await this.#setupEventHandlers();
-      }
-
       this.#logger.info('Channel sync complete');
 
     } catch (error) {
@@ -545,12 +540,20 @@ class UserBotController {
         // Check in memory first (no DB call)
         const isAdminChannel = this.#connectedChannels.has(channelId);
         
+        var chanel_entity=event?._entities?.valueOf(channelId);
         if (!isAdminChannel) {
           // Channel not in our list - check if it's a new admin channel
+          if(!chanel_entity||!chanel_entity?.adminRights){
+            return;
+          }
           try {
             // Get channel entity from Telegram
             const channelIdNum = channelId.startsWith('-100') ? channelId.slice(4) : channelId;
-            const channelEntity = await this.#client.getEntity(BigInt(channelIdNum));
+            const inputChanel=Api.InputChannel({
+              channelId: BigInt(channelIdNum),
+              accessHash: BigInt(channelEntity.accessHash),
+            });
+            const channelEntity = await this.#client.getEntity(inputChanel);
             
             // Check if we have admin rights
             if (channelEntity.adminRights || channelEntity.creator) {
@@ -679,12 +682,6 @@ class UserBotController {
    * @private
    */
   #startPeriodicTasks() {
-    // Sync channels every 2 minutes
-    this.#syncInterval = setInterval(
-      async () => await this.#syncChannels(),
-      2 * 60 * 1000
-    );
-
     // Delete old messages every hour
     this.#deleteInterval = setInterval(
       async () => await this.#deleteOldMessages(),

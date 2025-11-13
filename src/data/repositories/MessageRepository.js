@@ -161,6 +161,31 @@ class MessageRepository extends IMessageRepository {
     
     return domainGroupedMessages;
   }
+
+  /**
+   * Finds all forwarded message copies for a channel message
+   * Used to delete forwarded copies when original is deleted
+   * @param {string} channelId - Channel ID
+   * @param {string} messageId - Original message ID
+   * @returns {Promise<Message[]>} Forwarded message copies
+   */
+  async findByForwardedMessageId(channelId, messageIds) {
+    // Find messages from this channel with this message ID
+    const entities = await this.#ormRepository.findByChannel(channelId);
+    const filtered = entities.filter(e => messageIds.includes(Number.parseInt(e.messageId)));
+    return filtered.map(e => this.#toDomainEntity(e)).filter(Boolean);
+  }
+
+  /**
+   * Marks message as deleted in database
+   * Updates status to 'deleted' and clears forwarded message ID
+   * @param {string} userId - User ID
+   * @param {string} forwardedMessageId - Forwarded message ID to delete
+   * @returns {Promise<void>}
+   */
+  async markAsDeleted(userId, forwardedMessageId) {
+    await this.#ormRepository.markAsDeleted(userId, forwardedMessageId);
+  }
 }
 
 export default MessageRepository;
