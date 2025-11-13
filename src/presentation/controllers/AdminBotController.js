@@ -111,6 +111,7 @@ class AdminBotController {
     // Inject repositories (for direct queries)
     this.channelRepository = dependencies.channelRepository;
     this.sessionRepository = dependencies.sessionRepository;
+    this.adminRepository = dependencies.adminRepository;
     this.stateManager = dependencies.stateManager;
 
 
@@ -238,6 +239,7 @@ class AdminBotController {
 
     const sessionHandlers = createSessionHandlers({
       sessionRepository: this.sessionRepository,
+      adminRepository: this.adminRepository,
     });
 
     const statsHandlers = createStatsHandlers({

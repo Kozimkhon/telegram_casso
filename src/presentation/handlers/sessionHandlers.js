@@ -16,7 +16,7 @@ const logger = createChildLogger({ component: 'SessionHandlers' });
  * @returns {Object} Session handler functions
  */
 export function createSessionHandlers(dependencies) {
-  const { sessionRepository } = dependencies;
+  const { sessionRepository, adminRepository } = dependencies;
 
   /**
    * Handles sessions list display
@@ -41,13 +41,35 @@ export function createSessionHandlers(dependencies) {
 
       let message = `🔧 *Active Sessions* (${sessions.length})\n\n`;
 
-      sessions.forEach((session, idx) => {
+      // Helper function to escape markdown special characters
+      const escapeMarkdown = (text) => {
+        if (!text) return text;
+        return text.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&');
+      };
+
+      // Get admin details for each session
+      for (let idx = 0; idx < sessions.length; idx++) {
+        const session = sessions[idx];
+        const admin = await adminRepository.findByUserId(session.adminId);
+        
         const statusIcon = session.isActive() ? '✅' : '❌';
-        message += `${idx + 1}. ${statusIcon} ${session.phone}\n`;
+        const phone = escapeMarkdown(admin?.phone || 'No phone');
+        const username = admin?.username ? escapeMarkdown(`@${admin.username}`) : 'No username';
+        
+        message += `${idx + 1}. ${statusIcon} ${phone}\n`;
+        message += `   Username: ${username}\n`;
         message += `   Status: ${session.status}\n`;
-        message += `   Messages: ${session.messagesSent}\n`;
-        message += `   Last Active: ${formatTimestamp(session.lastActive)}\n\n`;
-      });
+        message += `   Last Active: ${formatTimestamp(session.lastActive)}\n`;
+        
+        if (session.lastError) {
+          message += `   ⚠️ Error: ${escapeMarkdown(session.lastError)}\n`;
+        }
+        if (session.floodWaitUntil && new Date() < session.floodWaitUntil) {
+          message += `   🕐 Flood wait until: ${formatTimestamp(session.floodWaitUntil)}\n`;
+        }
+        
+        message += `\n`;
+      }
 
       const keyboard = Markup.inlineKeyboard([
         [Markup.button.callback('🔙 Back', 'main_menu')],

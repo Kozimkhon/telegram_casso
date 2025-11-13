@@ -174,7 +174,26 @@ export function createChannelHandlers(dependencies) {
 
     } catch (error) {
       logger.error('Error showing channel details', error);
-      await ctx.reply('❌ Error loading channel details');
+      
+      // Send more detailed error
+      const errorMessage = `❌ Error loading channel details\n\nError: ${error.message}`;
+      
+      const keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback('🔙 Back to Channels', 'channels_list')],
+        [Markup.button.callback('🏠 Main Menu', 'main_menu')],
+      ]);
+      
+      try {
+        await ctx.editMessageText(errorMessage, { 
+          parse_mode: 'Markdown',
+          ...keyboard 
+        });
+      } catch (editError) {
+        await ctx.reply(errorMessage, { 
+          parse_mode: 'Markdown',
+          ...keyboard 
+        });
+      }
     }
   }
 

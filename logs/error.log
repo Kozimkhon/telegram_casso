@@ -70,3 +70,48 @@ Error: Channel not found: -1002148669912
 {
   "error": "Channel not found: -1002148669912"
 }
+2025-11-13 17:55:18 [ERROR]: Error showing sessions
+TypeError: Cannot read properties of undefined (reading 'findByUserId')
+    at Object.handleSessionsList (file:///E:/Experiments/telegram_casso/src/presentation/handlers/sessionHandlers.js:47:45)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:44:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "Cannot read properties of undefined (reading 'findByUserId')"
+}
+2025-11-13 17:58:13 [ERROR]: Error showing sessions
+Error: 400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 61
+    at Telegram.callApi (E:\Experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Object.handleSessionsList (file:///E:/Experiments/telegram_casso/src/presentation/handlers/sessionHandlers.js:72:7)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:44:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+{
+  "error": "400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 61"
+}
+2025-11-13 17:59:47 [ERROR]: Error showing system stats
+Error: Invalid status. Must be one of: success, failed, skipped, pending
+    at Message.validate (file:///E:/Experiments/telegram_casso/src/core/entities/domain/Message.entity.js:125:13)
+    at new Message (file:///E:/Experiments/telegram_casso/src/core/entities/domain/Message.entity.js:90:10)
+    at Message.fromDatabaseRow (file:///E:/Experiments/telegram_casso/src/core/entities/domain/Message.entity.js:246:12)
+    at #toDomainEntity (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/MessageRepository.js:22:20)
+    at file:///E:/Experiments/telegram_casso/src/data/repositories/domain/MessageRepository.js:56:50
+    at Array.map (<anonymous>)
+    at MessageRepository.findAll (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/MessageRepository.js:56:21)
+    at async MessageRepository.getForwardingStatistics (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/MessageRepository.js:119:22)
+    at async Promise.all (index 3)
+    at async MetricsService.getOverallMetrics (file:///E:/Experiments/telegram_casso/src/domain/services/MetricsService.js:62:7)
+{
+  "error": "Invalid status. Must be one of: success, failed, skipped, pending"
+}
