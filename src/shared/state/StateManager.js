@@ -24,7 +24,7 @@ import { EventEmitter } from 'events';
  * @property {string} channelId - Channel ID
  * @property {string} title - Channel title
  * @property {boolean} forwardEnabled - Forwarding enabled
- * @property {string|null} adminSessionPhone - Admin session phone
+ * @property {string|null} adminId - Admin user ID
  * @property {number} memberCount - Number of members
  */
 
@@ -277,7 +277,7 @@ class StateManager extends EventEmitter {
    * Gets all channels
    * @param {Object} filters - Optional filters
    * @param {boolean} filters.forwardEnabled - Filter by forward enabled
-   * @param {string} filters.adminSessionPhone - Filter by admin session
+   * @param {string} filters.adminId - Filter by admin ID
    * @returns {Array<ChannelState>} Array of channels
    */
   getAllChannels(filters = {}) {
@@ -287,8 +287,8 @@ class StateManager extends EventEmitter {
       channels = channels.filter(c => c.forwardEnabled === filters.forwardEnabled);
     }
 
-    if (filters.adminSessionPhone) {
-      channels = channels.filter(c => c.adminSessionPhone === filters.adminSessionPhone);
+    if (filters.adminId) {
+      channels = channels.filter(c => c.adminId === filters.adminId);
     }
 
     return channels;

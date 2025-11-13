@@ -157,7 +157,7 @@ export function createChannelHandlers(dependencies) {
 *ID:* \`${channel.channelId}\`
 *Members:* ${usersResult.total}
 *Forwarding:* ${channel.forwardEnabled ? '✅ Enabled' : '❌ Disabled'}
-*Session:* ${channel.adminSessionPhone || 'Not linked'}
+*Session Admin:* ${channel.adminId || 'Not linked'}
 *Added:* ${formatTimestamp(channel.createdAt)}
       `.trim();
 

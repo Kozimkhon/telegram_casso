@@ -52,7 +52,6 @@ class LogMessageUseCase {
       forwardedMessageId: data.forwardedMessageId || null,
       status: data.status || ForwardingStatus.SUCCESS,
       errorMessage: data.errorMessage || null,
-      sessionPhone: data.sessionPhone || null,
       retryCount: 0,
       createdAt: new Date(),
       updatedAt: new Date()
