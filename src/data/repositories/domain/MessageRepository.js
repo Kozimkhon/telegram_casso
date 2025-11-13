@@ -4,9 +4,9 @@
  * @module data/repositories/MessageRepository
  */
 
-import IMessageRepository from '../../core/interfaces/IMessageRepository.js';
-import Message from '../../../core/entities/domain/Message.entity.js';
-import RepositoryFactory from '../RepositoryFactory.js';
+import { IMessageRepository } from '../../../core/interfaces/index.js';
+import { Message } from '../../../core/entities/index.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
 class MessageRepository extends IMessageRepository {
   #ormRepository;

@@ -4,9 +4,9 @@
  * @module data/repositories/ChannelRepository
  */
 
-import IChannelRepository from '../../core/interfaces/IChannelRepository.js';
-import Channel from '../../../core/entities/domain/Channel.entity.js';
-import RepositoryFactory from '../RepositoryFactory.js';
+import { Channel } from '../../../core/entities/index.js';
+import { IChannelRepository } from '../../../core/interfaces/index.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
 class ChannelRepository extends IChannelRepository {
   #ormRepository;

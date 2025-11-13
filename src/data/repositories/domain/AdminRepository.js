@@ -4,11 +4,10 @@
  * @module data/repositories/AdminRepository
  */
 
-import IAdminRepository from '../../core/interfaces/IAdminRepository.js';
-import Admin from '../../../core/entities/domain/Admin.entity.js';
+import { IAdminRepository } from '../../../core/interfaces/index.js';
+import { Admin } from '../../../core/entities/index.js';
 import { AdminRole } from '../../../shared/constants/index.js';
-import RepositoryFactory from '../RepositoryFactory.js';
-import AdminEntity from '../../../core/entities/orm/Admin.entity.js';
+import RepositoryFactory from './RepositoryFactory.js';
 
 /**
  * Admin Repository
