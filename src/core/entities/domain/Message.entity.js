@@ -4,8 +4,8 @@
  * @module core/entities/Message
  */
 
-import BaseEntity from '../base/BaseEntity.js';
-import { ForwardingStatus } from '../../shared/constants/index.js';
+import BaseEntity from '../../base/BaseEntity.js';
+import { ForwardingStatus } from '../../../shared/constants/index.js';
 
 /**
  * Message Entity

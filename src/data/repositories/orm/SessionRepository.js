@@ -6,7 +6,7 @@
 
 import BaseRepository from './BaseRepository.js';
 import { AppDataSource } from '../../../config/database.js';
-import { SessionEntity } from '../../../core/entities/db/index.js';
+import { SessionEntity } from '../../../core/entities/orm/index.js';
 
 /**
  * Session Repository

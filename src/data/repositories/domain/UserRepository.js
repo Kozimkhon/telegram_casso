@@ -5,7 +5,7 @@
  */
 
 import IUserRepository from '../../core/interfaces/IUserRepository.js';
-import User from '../../core/entities/User.entity.js';
+import User from '../../../core/entities/domain/User.entity.js';
 import RepositoryFactory from './RepositoryFactory.js';
 
 class UserRepository extends IUserRepository {

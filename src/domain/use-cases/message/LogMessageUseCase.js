@@ -4,7 +4,7 @@
  * @module domain/use-cases/message/LogMessageUseCase
  */
 
-import Message from '../../../core/entities/Message.entity.js';
+import Message from '../../../core/entities/domain/Message.entity.js';
 import { ForwardingStatus } from '../../../shared/constants/index.js';
 
 /**

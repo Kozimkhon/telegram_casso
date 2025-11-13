@@ -5,7 +5,7 @@
  */
 
 import { ValidationRules } from '../../../shared/constants/index.js';
-import Session from '../../../core/entities/Session.entity.js';
+import Session from '../../../core/entities/domain/Session.entity.js';
 
 /**
  * Create Session Use Case

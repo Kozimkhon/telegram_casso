@@ -5,7 +5,7 @@
  */
 
 import ISessionRepository from '../../core/interfaces/ISessionRepository.js';
-import Session from '../../core/entities/Session.entity.js';
+import Session from '../../../core/entities/domain/Session.entity.js';
 import RepositoryFactory from './RepositoryFactory.js';
 
 class SessionRepository extends ISessionRepository {

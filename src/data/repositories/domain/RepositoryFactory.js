@@ -11,7 +11,7 @@ import {
   UserRepository,
   MessageRepository as TypeORMMessageRepository,
   MetricRepository,
-} from './typeorm/index.js';
+} from '../orm/index.js';
 
 /**
  * Repository Factory
