@@ -3,4 +3,4 @@
 -- Use the ▷ button in the top right corner to run the entire file.
 
 SELECT * FROM admins;
-DELETE FROM admins WHERE id = 2;
+ DELETE FROM admins WHERE id = 5;
