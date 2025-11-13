@@ -23970,3 +23970,3931 @@ Error: `resolve()` called for non-request instance
     }
   ]
 }
+2025-11-13 11:58:30 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 11:59:06 [ERROR]: Error during admin registration
+TypeError: admin.createdAt.toISOString is not a function
+    at Admin.toDatabaseRow (file:///D:/experiments/telegram_casso/src/core/entities/Admin.entity.js:211:35)
+    at AdminRepository.create (file:///D:/experiments/telegram_casso/src/data/repositories/AdminRepository.js:93:24)
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:49)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "admin.createdAt.toISOString is not a function"
+}
+2025-11-13 12:01:17 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:01:24 [INFO]: Admin auto-registration successful
+{
+  "component": "AdminHandlers",
+  "userId": "170829174",
+  "username": "nk_0202",
+  "firstName": "😉😉"
+}
+2025-11-13 12:09:11 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (D:\experiments\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/AdminBotController.js:145:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:167:11)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-13 12:25:41 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838"
+}
+2025-11-13 12:28:38 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:154:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:154:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:126:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:126:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:29:46 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838"
+}
+2025-11-13 12:29:58 [ERROR]: Sign in failed (not 2FA)
+TypeError: Cannot read properties of undefined (reading 'execute')
+    at Object.handleConfirmVerificationCode (file:///D:/experiments/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:297:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Immediate.<anonymous> (file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": "Cannot read properties of undefined (reading 'execute')"
+}
+2025-11-13 12:38:35 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:39:19 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838"
+}
+2025-11-13 12:39:32 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "170829174",
+  "updates": {
+    "phone": "+998998386838"
+  }
+}
+2025-11-13 12:39:32 [INFO]: Admin updated successfully
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "170829174"
+}
+2025-11-13 12:39:32 [INFO]: Session added successfully (no 2FA)
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838",
+  "userId": "170829174"
+}
+2025-11-13 12:39:41 [ERROR]: Error during admin registration
+Error: Admin already exists for user: 170829174
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:44:13)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin already exists for user: 170829174"
+}
+2025-11-13 12:41:15 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 12:41:15 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 12:41:15 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:15 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:15 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 12:41:16 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:41:16 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:41:29 [ERROR]: Error during admin registration
+Error: Admin already exists for user: 170829174
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:44:13)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin already exists for user: 170829174"
+}
+2025-11-13 12:42:46 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 12:42:46 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 12:42:51 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 12:42:51 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:51 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:42:55 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:44:36 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 12:44:36 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 12:44:36 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:36 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:36 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:38 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:38 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 12:44:38 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:38 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:38 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:44:38 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:45:03 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:48:18 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:22 [INFO]: Channel sync complete: 6 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:22 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:22 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:22 [INFO]: Channels sync completed Synced successfully: 6 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 6,
+  "updated": 0
+}
+2025-11-13 12:48:23 [INFO]: Found 26 members in ASBT choyxona
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:25 [INFO]: Added 26 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:26 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:26 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:27 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:27 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:28 [INFO]: Found 6 members in ASBT Developers
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:29 [INFO]: Added 6 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:30 [INFO]: Found 15 members in Òzimizdi jaydari ballar
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:31 [INFO]: Added 15 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:32 [INFO]: Found 4 members in MYOPTO Стол услуг
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:32 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:48:32 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:49:49 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:51:35 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (D:\experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-13 12:52:07 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:07 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:07 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:07 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 6 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 6
+}
+2025-11-13 12:52:08 [INFO]: Found 26 members in ASBT choyxona
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:10 [INFO]: Added 26 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:11 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:11 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:12 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:13 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:13 [INFO]: Found 6 members in ASBT Developers
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:14 [INFO]: Added 6 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:15 [INFO]: Found 15 members in Òzimizdi jaydari ballar
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:16 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:16 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:16 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:25 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 12:52:25 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 12:52:25 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:25 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:25 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:26 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:26 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 12:52:26 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:26 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:26 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:26 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:28 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 12:52:34 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:48 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:48 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:48 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:48 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 2 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 2
+}
+2025-11-13 12:52:48 [INFO]: Found 26 members in ASBT choyxona
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:51 [INFO]: Added 26 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:52 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:52 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:53 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:53 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:54 [INFO]: Found 6 members in ASBT Developers
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:55 [INFO]: Added 6 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:56 [INFO]: Found 15 members in Òzimizdi jaydari ballar
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:57 [INFO]: Added 15 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:58 [INFO]: Found 4 members in MYOPTO Стол услуг
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:58 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:52:58 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:48 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:55 [INFO]: Channel sync complete: 2 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:55 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:55 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:55 [INFO]: Channels sync completed Synced successfully: 2 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 2,
+  "updated": 0
+}
+2025-11-13 12:53:55 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:55 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:56 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:57 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:53:57 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:56:40 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:56:50 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:56:50 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:56:50 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:57:31 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 2 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 2
+}
+2025-11-13 12:59:46 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:59:46 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:59:48 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:59:49 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 12:59:49 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:26:13 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:27:42 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (D:\experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-13 13:52:26 [INFO]: Starting old message deletion process...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:52:26 [ERROR]: Error deleting old messages
+Error: findOldMessages() must be implemented
+    at MessageRepository.findOldMessages (file:///D:/experiments/telegram_casso/src/core/interfaces/IMessageRepository.js:44:11)
+    at FindOldMessagesUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/message/FindOldMessagesUseCase.js:37:52)
+    at #deleteOldMessages (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:707:67)
+    at Timeout._onTimeout (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:687:48)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "findOldMessages() must be implemented"
+}
+2025-11-13 13:56:59 [INFO]: Stopping UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:56:59 [INFO]: Bot instance unregistered from StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:56:59 [INFO]: UserBot stopped
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:09 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 13:57:09 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 13:57:09 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:09 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:09 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:10 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:10 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 13:57:10 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:10 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:10 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:10 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:57:18 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 13:59:12 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:15 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:15 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:15 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:19 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 2 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 2
+}
+2025-11-13 13:59:20 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:21 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:24 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:25 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 13:59:25 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:47 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:51 [INFO]: Channel sync complete: 2 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:51 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:51 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:53 [INFO]: Channels sync completed Synced successfully: 2 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 2,
+  "updated": 0
+}
+2025-11-13 14:00:54 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:00:55 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:01:04 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:01:05 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:01:05 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:04 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:06:04 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:06:04 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:04 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:04 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:05 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:05 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:06:05 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:05 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:05 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:05 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:06:10 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:08:22 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:08:22 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:08:22 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:08:22 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:08:22 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:08:23 [ERROR]: Authentication error
+AuthenticationError: Session authentication required. Please re-authenticate via AdminBot.
+    at Object.phoneNumber (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:319:17)
+    at Object.signInUser (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:73:52)
+    at TelegramClient.signInUser (D:\experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:150:28)
+    at _authFlow (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:363:24)
+    at Object.start (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:52:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #connect (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:315:7)
+    at async UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "Session authentication required. Please re-authenticate via AdminBot."
+}
+2025-11-13 14:08:23 [ERROR]: Telegram API error during Telegram connection
+{
+  "operation": "Telegram connection",
+  "originalError": "Authentication failed: Session authentication required. Please re-authenticate via AdminBot.",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-13 14:08:23 [ERROR]: Failed to start UserBot
+TelegramError: Telegram API error during Telegram connection
+    at handleTelegramError (file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:130:25)
+    at #connect (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:397:13)
+    at async UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "Telegram API error during Telegram connection"
+}
+2025-11-13 14:08:23 [ERROR]: Telegram API error during UserBot initialization
+{
+  "operation": "UserBot initialization",
+  "originalError": "Telegram API error during Telegram connection",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-13 14:08:23 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:09:39 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:09:53 [INFO]: Admin auto-registration successful
+{
+  "component": "AdminHandlers",
+  "userId": "170829174",
+  "username": "nk_0202",
+  "firstName": "😉😉"
+}
+2025-11-13 14:10:17 [INFO]: SMS verification code sent successfully
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838"
+}
+2025-11-13 14:10:37 [DEBUG]: Updating admin
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "170829174",
+  "updates": {
+    "phone": "+998998386838"
+  }
+}
+2025-11-13 14:10:37 [INFO]: Admin updated successfully
+{
+  "component": "UpdateAdminUseCase",
+  "userId": "170829174"
+}
+2025-11-13 14:10:37 [INFO]: Session added successfully (no 2FA)
+{
+  "component": "SessionAuthHandlers",
+  "phone": "+998998386838",
+  "userId": "170829174"
+}
+2025-11-13 14:12:12 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:12:12 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:12:12 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:12 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:12 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:12:13 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:13 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:12:18 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:21 [INFO]: Channel sync complete: 2 added, 0 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:22 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:22 [INFO]: Channels sync completed Synced successfully: 2 new channels added, 0 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 2,
+  "updated": 0
+}
+2025-11-13 14:12:22 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:22 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:23 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:23 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:12:24 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:21 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:13:21 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:13:21 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:21 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:21 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:22 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:22 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:13:28 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:28 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:28 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:28 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:13:28 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:14:15 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:14:15 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:14:15 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:15 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:15 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:16 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:16 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:14:20 [WARN]: No channels to monitor, skipping event handlers setup
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:25 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:28 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:29 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:14:43 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:15:23 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:15:23 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:15:26 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:15:27 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:15:36 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:15:37 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:15:37 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:18:58 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:18:58 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:19:01 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:01 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:01 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:02 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:02 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:19:17 [INFO]: Universal event handler set up for 0 channels
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:17 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:17 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:17 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:19:17 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:26:43 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:26:43 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:26:43 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:26:43 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:26:48 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:26:49 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:26:49 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:27:00 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:27:00 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:27:00 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:27:00 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:27:02 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:27:03 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:27:03 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:28:24 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:28:24 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:28:24 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:24 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:28 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:29 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:29 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:28:34 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:38 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:48 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:28:48 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:29:07 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:29:07 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:29:07 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:29:07 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:29:30 [ERROR]: Failed to sync members for -1003269369967
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:30 [ERROR]: Failed to sync channel -1003269369967
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:32 [ERROR]: Failed to sync members for -1002929375693
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:32 [ERROR]: Failed to sync channel -1002929375693
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:32 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:13 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:30:13 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:30:13 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:13 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:16 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:17 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:17 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:30:17 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:17 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:21 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:21 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:33 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:33 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:33 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:30:33 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:41 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:41 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:44 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:45 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:30:45 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:31:04 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 32
+}
+2025-11-13 14:31:06 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 32,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:31:06 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 32
+}
+2025-11-13 14:31:06 [INFO]: [ForwardingService] No users for channel
+{
+  "channelId": "-1003269369967"
+}
+2025-11-13 14:32:13 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 33
+}
+2025-11-13 14:33:15 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 33,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:33:21 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 33
+}
+2025-11-13 14:33:48 [INFO]: [ForwardingService] No users for channel
+{
+  "channelId": "-1003269369967"
+}
+2025-11-13 14:34:26 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 34
+}
+2025-11-13 14:35:57 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:35:57 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:35:57 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:35:57 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:01 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:02 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:02 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:36:02 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:04 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:08 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:08 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:14 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:14 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:14 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:36:14 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:17 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:17 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:19 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:20 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:20 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:36:27 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 35
+}
+2025-11-13 14:36:31 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 35,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:36:31 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 35
+}
+2025-11-13 14:36:53 [INFO]: [ForwardingService] No users for channel
+{
+  "channelId": "-1003269369967"
+}
+2025-11-13 14:37:05 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 36
+}
+2025-11-13 14:38:42 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:38:42 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:38:42 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:42 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:46 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:47 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:47 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:38:47 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:47 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:51 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:51 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:59 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:59 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:38:59 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:38:59 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:08 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:08 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:09 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:09 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:09 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:39:14 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 37
+}
+2025-11-13 14:39:16 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 37,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:39:16 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 37
+}
+2025-11-13 14:43:19 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 14:43:19 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 14:43:19 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:19 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:19 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:20 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:20 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "170829174",
+  "userId": "170829174"
+}
+2025-11-13 14:43:20 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:20 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:25 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:25 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:25 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:25 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:25 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 14:43:25 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:27 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:27 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:28 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:28 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:28 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:43:38 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 38,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:43:38 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 38
+}
+2025-11-13 14:43:41 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 38
+}
+2025-11-13 14:43:52 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:43:53 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:43:53 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:43:54 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 1286,\n      \"out\": true,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356644,\n      \"fromId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"566160086\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": null,\n      \"fwdFrom\": {\n        \"flags\": 5,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027016,\n        \"channelPost\": 38,\n        \"postAuthor\": null,\n        \"savedFromPeer\": null,\n        \"savedFromMsgId\": null,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027034,\n      \"message\": \"45645656656566\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 1,\n      \"forwards\": 0,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:43:54 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356644
+}
+2025-11-13 14:43:54 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:43:56 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:43:56 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:43:56 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 268436484,\n      \"out\": false,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356645,\n      \"fromId\": null,\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": {\n        \"channelId\": \"3269369967\",\n        \"className\": \"PeerChannel\"\n      },\n      \"fwdFrom\": {\n        \"flags\": 21,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027016,\n        \"channelPost\": 38,\n        \"postAuthor\": null,\n        \"savedFromPeer\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"savedFromMsgId\": 38,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027036,\n      \"message\": \"45645656656566\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 1,\n      \"forwards\": 1,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:43:57 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356645
+}
+2025-11-13 14:43:57 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356644
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356645
+    }
+  ]
+}
+2025-11-13 14:44:03 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 1,
+  "messageIds": [
+    38
+  ]
+}
+2025-11-13 14:44:03 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    38
+  ]
+}
+2025-11-13 14:44:03 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    38
+  ],
+  "count": 2,
+  "messages": [
+    {
+      "userId": "566160086",
+      "forwardedId": "356644"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356645"
+    }
+  ]
+}
+2025-11-13 14:44:03 [INFO]: [ForwardingService] Deletion completed
+{
+  "total": 2,
+  "deleted": 0,
+  "failed": 0,
+  "results": []
+}
+2025-11-13 14:44:03 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    38
+  ]
+}
+2025-11-13 14:44:06 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:44:07 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356644"
+  ],
+  "type": "object"
+}
+2025-11-13 14:44:07 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356644"
+  ],
+  "messageCount": 1
+}
+2025-11-13 14:44:07 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:44:07 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356645"
+  ],
+  "type": "object"
+}
+2025-11-13 14:44:07 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356645"
+  ],
+  "messageCount": 1
+}
+2025-11-13 14:48:29 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:32 [INFO]: Channel sync complete: 0 added, 2 updated
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:32 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:32 [INFO]: Found 2 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:32 [INFO]: Channels sync completed Synced successfully: 0 new channels added, 2 updated
+{
+  "component": "ChannelHandlers",
+  "success": true,
+  "added": 0,
+  "updated": 2
+}
+2025-11-13 14:48:33 [INFO]: Found 2 members in Chaelfottest
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:33 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:34 [INFO]: Found 5 members in Test chanel
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:34 [INFO]: Added 4 users to database
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:34 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "170829174"
+}
+2025-11-13 14:48:45 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 39
+}
+2025-11-13 14:48:51 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 39,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:48:51 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 39
+}
+2025-11-13 14:48:51 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:48:54 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:48:54 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:48:54 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 1286,\n      \"out\": true,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356646,\n      \"fromId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"566160086\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": null,\n      \"fwdFrom\": {\n        \"flags\": 5,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027325,\n        \"channelPost\": 39,\n        \"postAuthor\": null,\n        \"savedFromPeer\": null,\n        \"savedFromMsgId\": null,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027334,\n      \"message\": \"123\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 1,\n      \"forwards\": 0,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:48:54 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356646
+}
+2025-11-13 14:48:54 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:48:58 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:48:58 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:48:58 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 268436484,\n      \"out\": false,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356647,\n      \"fromId\": null,\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": {\n        \"channelId\": \"3269369967\",\n        \"className\": \"PeerChannel\"\n      },\n      \"fwdFrom\": {\n        \"flags\": 21,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027325,\n        \"channelPost\": 39,\n        \"postAuthor\": null,\n        \"savedFromPeer\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"savedFromMsgId\": 39,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027338,\n      \"message\": \"123\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 2,\n      \"forwards\": 1,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:48:58 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356647
+}
+2025-11-13 14:48:58 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356646
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356647
+    }
+  ]
+}
+2025-11-13 14:49:03 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 1,
+  "messageIds": [
+    39
+  ]
+}
+2025-11-13 14:49:03 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    39
+  ]
+}
+2025-11-13 14:49:03 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    39
+  ],
+  "count": 2,
+  "messages": [
+    {
+      "userId": "566160086",
+      "forwardedId": "356646"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356647"
+    }
+  ]
+}
+2025-11-13 14:49:03 [INFO]: [ForwardingService] Deletion completed
+{
+  "total": 2,
+  "deleted": 0,
+  "failed": 0,
+  "results": []
+}
+2025-11-13 14:49:03 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    39
+  ]
+}
+2025-11-13 14:49:04 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:49:04 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356646"
+  ],
+  "type": "object"
+}
+2025-11-13 14:49:04 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356646"
+  ],
+  "messageCount": 1
+}
+2025-11-13 14:49:06 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:49:06 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356647"
+  ],
+  "type": "object"
+}
+2025-11-13 14:49:06 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356647"
+  ],
+  "messageCount": 1
+}
+2025-11-13 14:49:30 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 40
+}
+2025-11-13 14:49:30 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104218962358754",
+  "messageId": 40,
+  "bufferSize": 1
+}
+2025-11-13 14:49:30 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 41
+}
+2025-11-13 14:49:30 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104218962358754",
+  "messageId": 41,
+  "bufferSize": 2
+}
+2025-11-13 14:49:30 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 42
+}
+2025-11-13 14:49:30 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104218962358754",
+  "messageId": 42,
+  "bufferSize": 3
+}
+2025-11-13 14:49:31 [INFO]: Forwarding grouped messages
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageCount": 3,
+  "messageIds": [
+    40,
+    41,
+    42
+  ]
+}
+2025-11-13 14:49:31 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 40
+}
+2025-11-13 14:49:31 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:49:35 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:49:35 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:49:36 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:49:36 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356648,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:36 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356649,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:36 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356650,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:36 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:49:40 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:49:40 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:49:41 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:49:41 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356651,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:41 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356652,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:41 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356653,
+  "groupedId": "14104218962358754"
+}
+2025-11-13 14:49:41 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356648
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356651
+    }
+  ]
+}
+2025-11-13 14:49:49 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 3,
+  "messageIds": [
+    40,
+    41,
+    42
+  ]
+}
+2025-11-13 14:49:49 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    40,
+    41,
+    42
+  ]
+}
+2025-11-13 14:49:49 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    40,
+    41,
+    42
+  ],
+  "count": 6,
+  "messages": [
+    {
+      "userId": "566160086",
+      "forwardedId": "356648"
+    },
+    {
+      "userId": "566160086",
+      "forwardedId": "356649"
+    },
+    {
+      "userId": "566160086",
+      "forwardedId": "356650"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356651"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356652"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356653"
+    }
+  ]
+}
+2025-11-13 14:49:49 [INFO]: [ForwardingService] Deletion completed
+{
+  "total": 6,
+  "deleted": 0,
+  "failed": 0,
+  "results": []
+}
+2025-11-13 14:49:49 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    40,
+    41,
+    42
+  ]
+}
+2025-11-13 14:49:50 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:49:50 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:49:51 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356651",
+    "356652",
+    "356653"
+  ],
+  "type": "object"
+}
+2025-11-13 14:49:51 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356648",
+    "356649",
+    "356650"
+  ],
+  "type": "object"
+}
+2025-11-13 14:49:51 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356651",
+    "356652",
+    "356653"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:49:51 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356648",
+    "356649",
+    "356650"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:50:04 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 4,
+  "messageIds": [
+    34,
+    35,
+    36,
+    37
+  ]
+}
+2025-11-13 14:50:04 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    34,
+    35,
+    36,
+    37
+  ]
+}
+2025-11-13 14:50:04 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    34,
+    35,
+    36,
+    37
+  ],
+  "count": 0,
+  "messages": []
+}
+2025-11-13 14:50:04 [DEBUG]: [ForwardingService] No forwarded messages to delete
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    34,
+    35,
+    36,
+    37
+  ]
+}
+2025-11-13 14:50:04 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    34,
+    35,
+    36,
+    37
+  ]
+}
+2025-11-13 14:50:20 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 7,
+  "messageIds": [
+    27,
+    28,
+    29,
+    30,
+    31
+  ]
+}
+2025-11-13 14:50:20 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ]
+}
+2025-11-13 14:50:20 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ],
+  "count": 0,
+  "messages": []
+}
+2025-11-13 14:50:20 [DEBUG]: [ForwardingService] No forwarded messages to delete
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ]
+}
+2025-11-13 14:50:20 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ]
+}
+2025-11-13 14:50:24 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 8,
+  "messageIds": [
+    19,
+    20,
+    21,
+    22,
+    23
+  ]
+}
+2025-11-13 14:50:24 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ]
+}
+2025-11-13 14:50:24 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "count": 0,
+  "messages": []
+}
+2025-11-13 14:50:24 [DEBUG]: [ForwardingService] No forwarded messages to delete
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ]
+}
+2025-11-13 14:50:24 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ]
+}
+2025-11-13 14:50:25 [DEBUG]: Channel message views updated
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 14,
+  "views": 4
+}
+2025-11-13 14:51:27 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 43
+}
+2025-11-13 14:51:27 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104219899967106",
+  "messageId": 43,
+  "bufferSize": 1
+}
+2025-11-13 14:51:27 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 44
+}
+2025-11-13 14:51:27 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104219899967106",
+  "messageId": 44,
+  "bufferSize": 2
+}
+2025-11-13 14:51:27 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 45
+}
+2025-11-13 14:51:27 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104219899967106",
+  "messageId": 45,
+  "bufferSize": 3
+}
+2025-11-13 14:51:28 [INFO]: Forwarding grouped messages
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageCount": 3,
+  "messageIds": [
+    43,
+    44,
+    45
+  ]
+}
+2025-11-13 14:51:28 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 43
+}
+2025-11-13 14:51:28 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:51:30 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:51:30 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:51:49 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:51:50 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356654,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:50 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356655,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:50 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356656,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:50 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:51:54 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:51:54 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:51:54 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:51:54 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356657,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:54 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356658,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:55 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356659,
+  "groupedId": "14104219899967106"
+}
+2025-11-13 14:51:55 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356654
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356657
+    }
+  ]
+}
+2025-11-13 14:52:03 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 3,
+  "messageIds": [
+    43,
+    44,
+    45
+  ]
+}
+2025-11-13 14:52:03 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    43,
+    44,
+    45
+  ]
+}
+2025-11-13 14:52:03 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    43,
+    44,
+    45
+  ],
+  "count": 0,
+  "messages": []
+}
+2025-11-13 14:52:03 [DEBUG]: [ForwardingService] No forwarded messages to delete
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    43,
+    44,
+    45
+  ]
+}
+2025-11-13 14:52:03 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    43,
+    44,
+    45
+  ]
+}
+2025-11-13 14:52:52 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 46
+}
+2025-11-13 14:52:52 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104220575973914",
+  "messageId": 46,
+  "bufferSize": 1
+}
+2025-11-13 14:52:52 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 47
+}
+2025-11-13 14:52:52 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104220575973914",
+  "messageId": 47,
+  "bufferSize": 2
+}
+2025-11-13 14:52:52 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 48
+}
+2025-11-13 14:52:52 [DEBUG]: Buffered grouped message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "groupedId": "14104220575973914",
+  "messageId": 48,
+  "bufferSize": 3
+}
+2025-11-13 14:52:53 [INFO]: Forwarding grouped messages
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageCount": 3,
+  "messageIds": [
+    46,
+    47,
+    48
+  ]
+}
+2025-11-13 14:52:53 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 46
+}
+2025-11-13 14:52:53 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:52:54 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:52:54 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:52:55 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:52:55 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356660,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:52:56 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356661,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:52:56 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356662,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:52:56 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:53:00 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:53:00 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:53:00 [DEBUG]: [ChannelEventHandlers] ForwardMessages group result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "messageCount": 3
+}
+2025-11-13 14:53:00 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356663,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:53:01 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356664,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:53:01 [DEBUG]: [ForwardingService] Forwarded grouped message item
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356665,
+  "groupedId": "14104220575973914"
+}
+2025-11-13 14:53:01 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356660
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356663
+    }
+  ]
+}
+2025-11-13 14:53:07 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 3,
+  "messageIds": [
+    46,
+    47,
+    48
+  ]
+}
+2025-11-13 14:53:07 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    46,
+    47,
+    48
+  ]
+}
+2025-11-13 14:53:07 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    46,
+    47,
+    48
+  ],
+  "count": 0,
+  "messages": []
+}
+2025-11-13 14:53:07 [DEBUG]: [ForwardingService] No forwarded messages to delete
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    46,
+    47,
+    48
+  ]
+}
+2025-11-13 14:53:07 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    46,
+    47,
+    48
+  ]
+}
+2025-11-13 14:53:46 [DEBUG]: Channel inbox read
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "maxId": 49
+}
+2025-11-13 14:53:46 [INFO]: New channel message received
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageId": 49,
+  "hasText": true,
+  "hasMedia": false
+}
+2025-11-13 14:53:46 [DEBUG]: [ForwardingService] Starting batch forwarding
+{
+  "channelId": "-1003269369967",
+  "messageId": 49
+}
+2025-11-13 14:53:46 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "remaining": 2
+}
+2025-11-13 14:53:50 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:53:50 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086"
+}
+2025-11-13 14:53:50 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 1286,\n      \"out\": true,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356666,\n      \"fromId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"566160086\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": null,\n      \"fwdFrom\": {\n        \"flags\": 5,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027626,\n        \"channelPost\": 49,\n        \"postAuthor\": null,\n        \"savedFromPeer\": null,\n        \"savedFromMsgId\": null,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027630,\n      \"message\": \"qurre\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 1,\n      \"forwards\": 0,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:53:50 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "566160086",
+  "forwardedId": 356666
+}
+2025-11-13 14:53:50 [DEBUG]: [ForwardingService] Waiting for throttle
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "remaining": 1
+}
+2025-11-13 14:53:52 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:53:52 [DEBUG]: [ForwardingService] Throttle granted, forwarding
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174"
+}
+2025-11-13 14:53:52 [DEBUG]: [ChannelEventHandlers] ForwardMessages result
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "resultType": "object",
+  "isArray": true,
+  "resultLength": 1,
+  "resultKeys": [
+    "0"
+  ],
+  "result": "[\n  [\n    {\n      \"flags\": 268436484,\n      \"out\": false,\n      \"mentioned\": false,\n      \"mediaUnread\": false,\n      \"silent\": false,\n      \"post\": false,\n      \"fromScheduled\": false,\n      \"legacy\": false,\n      \"editHide\": false,\n      \"pinned\": false,\n      \"noforwards\": false,\n      \"invertMedia\": false,\n      \"flags2\": 0,\n      \"offline\": false,\n      \"videoProcessingPending\": false,\n      \"id\": 356667,\n      \"fromId\": null,\n      \"fromBoostsApplied\": null,\n      \"peerId\": {\n        \"userId\": \"170829174\",\n        \"className\": \"PeerUser\"\n      },\n      \"savedPeerId\": {\n        \"channelId\": \"3269369967\",\n        \"className\": \"PeerChannel\"\n      },\n      \"fwdFrom\": {\n        \"flags\": 21,\n        \"imported\": false,\n        \"savedOut\": false,\n        \"fromId\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"fromName\": null,\n        \"date\": 1763027626,\n        \"channelPost\": 49,\n        \"postAuthor\": null,\n        \"savedFromPeer\": {\n          \"channelId\": \"3269369967\",\n          \"className\": \"PeerChannel\"\n        },\n        \"savedFromMsgId\": 49,\n        \"savedFromId\": null,\n        \"savedFromName\": null,\n        \"savedDate\": null,\n        \"psaType\": null,\n        \"className\": \"MessageFwdHeader\"\n      },\n      \"viaBotId\": null,\n      \"viaBusinessBotId\": null,\n      \"replyTo\": null,\n      \"date\": 1763027632,\n      \"message\": \"qurre\",\n      \"media\": null,\n      \"replyMarkup\": null,\n      \"entities\": null,\n      \"views\": 1,\n      \"forwards\": 1,\n      \"replies\": null,\n      \"editDate\": null,\n      \"postAuthor\": null,\n      \"groupedId\": null,\n      \"reactions\": null,\n      \"restrictionReason\": null,\n      \"ttlPeriod\": null,\n      \"quickReplyShortcutId\": null,\n      \"effect\": null,\n      \"factcheck\": null,\n      \"reportDeliveryUntilDate\": null,\n      \"className\": \"Message\"\n    }\n  ]\n]"
+}
+2025-11-13 14:53:52 [DEBUG]: [ForwardingService] Forwarded single message
+{
+  "channelId": "-1003269369967",
+  "userId": "170829174",
+  "forwardedId": 356667
+}
+2025-11-13 14:53:52 [INFO]: [ForwardingService] Batch forwarding completed
+{
+  "total": 2,
+  "successful": 2,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "userId": "566160086",
+      "status": "success",
+      "forwardedMessageId": 356666
+    },
+    {
+      "userId": "170829174",
+      "status": "success",
+      "forwardedMessageId": 356667
+    }
+  ]
+}
+2025-11-13 14:53:57 [INFO]: Channel messages deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "count": 1,
+  "messageIds": [
+    49
+  ]
+}
+2025-11-13 14:53:57 [DEBUG]: [ForwardingService] Deleting forwarded messages
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    49
+  ]
+}
+2025-11-13 14:53:57 [INFO]: [ForwardingService] Found forwarded message copies
+{
+  "channelId": "-1003269369967",
+  "messageIds": [
+    49
+  ],
+  "count": 2,
+  "messages": [
+    {
+      "userId": "566160086",
+      "forwardedId": "356666"
+    },
+    {
+      "userId": "170829174",
+      "forwardedId": "356667"
+    }
+  ]
+}
+2025-11-13 14:53:57 [INFO]: [ForwardingService] Deletion completed
+{
+  "total": 2,
+  "deleted": 0,
+  "failed": 0,
+  "results": []
+}
+2025-11-13 14:53:57 [DEBUG]: Marked channel message as deleted
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "channelId": "-1003269369967",
+  "messageIds": [
+    49
+  ]
+}
+2025-11-13 14:53:58 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "170829174"
+}
+2025-11-13 14:53:59 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356667"
+  ],
+  "type": "object"
+}
+2025-11-13 14:53:59 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "170829174",
+  "forwardedIds": [
+    "356667"
+  ],
+  "messageCount": 1
+}
+2025-11-13 14:54:01 [DEBUG]: [ThrottleService] Throttle granted
+{
+  "userId": "566160086"
+}
+2025-11-13 14:54:02 [DEBUG]: [ChannelEventHandlers] Deleting from user
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356666"
+  ],
+  "type": "object"
+}
+2025-11-13 14:54:02 [DEBUG]: [ChannelEventHandlers] Successfully deleted forwarded message
+{
+  "component": "ChannelEventHandlers",
+  "adminId": "170829174",
+  "userId": "566160086",
+  "forwardedIds": [
+    "356666"
+  ],
+  "messageCount": 1
+}

@@ -4963,3 +4963,324 @@ Error: `resolve()` called for non-request instance
     }
   ]
 }
+2025-11-13 11:59:06 [ERROR]: Error during admin registration
+TypeError: admin.createdAt.toISOString is not a function
+    at Admin.toDatabaseRow (file:///D:/experiments/telegram_casso/src/core/entities/Admin.entity.js:211:35)
+    at AdminRepository.create (file:///D:/experiments/telegram_casso/src/data/repositories/AdminRepository.js:93:24)
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:61:49)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "admin.createdAt.toISOString is not a function"
+}
+2025-11-13 12:09:11 [ERROR]: Failed to start AdminBot
+Error: 409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async [Symbol.asyncIterator] (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:30:33)
+    at async Polling.loop (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\polling.js:73:30)
+    at async Telegraf.launch (D:\experiments\telegram_casso\node_modules\telegraf\lib\telegraf.js:194:13)
+    at async AdminBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/AdminBotController.js:145:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:167:11)
+{
+  "error": "409: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:154:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:154:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:126:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:126:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:28:39 [ERROR]: Unhandled error in AsyncFunction
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid",
+  "code": 400,
+  "context": "AsyncFunction"
+}
+2025-11-13 12:28:39 [ERROR]: Middleware error
+Error: 400: Bad Request: query is too old and response timeout expired or query ID is invalid
+    at Telegram.callApi (D:\experiments\telegram_casso\node_modules\telegraf\lib\core\network\client.js:315:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:120:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "400: Bad Request: query is too old and response timeout expired or query ID is invalid"
+}
+2025-11-13 12:29:58 [ERROR]: Sign in failed (not 2FA)
+TypeError: Cannot read properties of undefined (reading 'execute')
+    at Object.handleConfirmVerificationCode (file:///D:/experiments/telegram_casso/src/presentation/handlers/sessionAuthHandlers.js:297:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Immediate.<anonymous> (file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:134:9)
+{
+  "error": "Cannot read properties of undefined (reading 'execute')"
+}
+2025-11-13 12:39:41 [ERROR]: Error during admin registration
+Error: Admin already exists for user: 170829174
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:44:13)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin already exists for user: 170829174"
+}
+2025-11-13 12:41:29 [ERROR]: Error during admin registration
+Error: Admin already exists for user: 170829174
+    at AddAdminUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/admin/AddAdminUseCase.js:44:13)
+    at async Object.handleAdminRegistration (file:///D:/experiments/telegram_casso/src/presentation/handlers/adminHandlers.js:37:22)
+    at async file:///D:/experiments/telegram_casso/src/presentation/middleware/callbacks.js:62:5
+    at async file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+    at async execute (D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async D:\experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "Admin already exists for user: 170829174"
+}
+2025-11-13 12:51:35 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (D:\experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-13 13:27:42 [ERROR]: Failed to start AdminBot
+TimeoutError: Promise timed out after 90000 milliseconds
+    at Timeout._onTimeout (D:\experiments\telegram_casso\node_modules\p-timeout\index.js:39:64)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "Promise timed out after 90000 milliseconds"
+}
+2025-11-13 13:52:26 [ERROR]: Error deleting old messages
+Error: findOldMessages() must be implemented
+    at MessageRepository.findOldMessages (file:///D:/experiments/telegram_casso/src/core/interfaces/IMessageRepository.js:44:11)
+    at FindOldMessagesUseCase.execute (file:///D:/experiments/telegram_casso/src/domain/use-cases/message/FindOldMessagesUseCase.js:37:52)
+    at #deleteOldMessages (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:707:67)
+    at Timeout._onTimeout (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:687:48)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+{
+  "error": "findOldMessages() must be implemented"
+}
+2025-11-13 14:08:23 [ERROR]: Authentication error
+AuthenticationError: Session authentication required. Please re-authenticate via AdminBot.
+    at Object.phoneNumber (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:319:17)
+    at Object.signInUser (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:73:52)
+    at TelegramClient.signInUser (D:\experiments\telegram_casso\node_modules\telegram\client\TelegramClient.js:150:28)
+    at _authFlow (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:363:24)
+    at Object.start (D:\experiments\telegram_casso\node_modules\telegram\client\auth.js:52:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #connect (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:315:7)
+    at async UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "Session authentication required. Please re-authenticate via AdminBot."
+}
+2025-11-13 14:08:23 [ERROR]: Telegram API error during Telegram connection
+{
+  "operation": "Telegram connection",
+  "originalError": "Authentication failed: Session authentication required. Please re-authenticate via AdminBot.",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-13 14:08:23 [ERROR]: Failed to start UserBot
+TelegramError: Telegram API error during Telegram connection
+    at handleTelegramError (file:///D:/experiments/telegram_casso/src/shared/errorHandler.js:130:25)
+    at #connect (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:397:13)
+    at async UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:175:7)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "Telegram API error during Telegram connection"
+}
+2025-11-13 14:08:23 [ERROR]: Telegram API error during UserBot initialization
+{
+  "operation": "UserBot initialization",
+  "originalError": "Telegram API error during Telegram connection",
+  "code": "TELEGRAM_API_ERROR",
+  "waitSeconds": null
+}
+2025-11-13 14:29:30 [ERROR]: Failed to sync members for -1003269369967
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:30 [ERROR]: Failed to sync channel -1003269369967
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:32 [ERROR]: Failed to sync members for -1002929375693
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}
+2025-11-13 14:29:32 [ERROR]: Failed to sync channel -1002929375693
+TypeError: this[#connectedChannels].set is not a function
+    at #syncChannelMembers (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:463:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async #syncChannels (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:420:11)
+{
+  "error": "this[#connectedChannels].set is not a function"
+}

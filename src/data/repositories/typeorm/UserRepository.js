@@ -330,15 +330,28 @@ class UserRepository extends BaseRepository {
 
   /**
    * Gets users by channel
-   * @param {string} channelId - Channel ID
+   * @param {string} channelId - Channel ID (Telegram channel ID, not database ID)
    * @returns {Promise<Object[]>} Users in channel
    */
   async findByChannel(channelId) {
-    return await this.repository
-      .createQueryBuilder('user')
-      .innerJoin('channel_members', 'cm', 'cm.user_id = user.user_id')
-      .where('cm.channel_id = :channelId', { channelId })
-      .getMany();
+    try {
+      const channelRepo = AppDataSource.getRepository('Channel');
+      
+      // Find channel by channelId (Telegram ID)
+      const channel = await channelRepo.findOne({
+        where: { channelId },
+        relations: ['users'],
+      });
+      
+      if (!channel || !channel.users) {
+        return [];
+      }
+      
+      return channel.users;
+    } catch (error) {
+      console.error('Error finding users by channel:', error);
+      return [];
+    }
   }
 }
 

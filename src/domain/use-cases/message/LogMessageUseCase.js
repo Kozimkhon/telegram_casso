@@ -54,8 +54,8 @@ class LogMessageUseCase {
       errorMessage: data.errorMessage || null,
       sessionPhone: data.sessionPhone || null,
       retryCount: 0,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Persist message

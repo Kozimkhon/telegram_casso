@@ -179,7 +179,7 @@ class MetricsService {
       activeSessions: sessions.length,
       enabledChannels: channels.length,
       recentActivity: recentMessages.length > 0,
-      timestamp: new Date().toISOString()
+      timestamp: new Date()
     };
   }
 }
