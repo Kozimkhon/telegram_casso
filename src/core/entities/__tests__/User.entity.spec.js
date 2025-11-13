@@ -3,7 +3,7 @@
  * Tests user domain entity validation and state management
  */
 
-import User from '../User.entity.js';
+import User from '../domain/User.entity.js';
 
 describe('User.entity', () => {
   

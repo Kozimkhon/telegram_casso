@@ -3,7 +3,7 @@
  * Central test runner configuration with coverage thresholds
  */
 
-module.exports = {
+export default {
   // Test environment
   testEnvironment: 'node',
   
@@ -60,8 +60,10 @@ module.exports = {
     '^.+\\.js$': 'babel-jest'
   },
 
-  // Setup files
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // Transform ignore patterns - ensure babel-jest is applied
+  transformIgnorePatterns: [
+    'node_modules/(?!(telegram)/)'
+  ],
 
   // Test timeout
   testTimeout: 10000,
@@ -74,21 +76,7 @@ module.exports = {
 
   // Reporter configuration
   reporters: [
-    'default',
-    [
-      'jest-html-reporters',
-      {
-        publicPath: '<rootDir>/coverage',
-        filename: 'report.html',
-        pageTitle: 'Test Report'
-      }
-    ]
-  ],
-
-  // Watch plugins
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname'
+    'default'
   ],
 
   // Max workers for parallel testing
@@ -105,9 +93,6 @@ module.exports = {
 
   // Force exit (use cautiously)
   forceExit: false,
-
-  // Test sequence
-  testSequencer: '<rootDir>/jest.sequencer.js',
 
   // Global setup/teardown
   globalSetup: undefined,

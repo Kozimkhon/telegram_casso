@@ -20,8 +20,18 @@ async function ensureLogDirectory() {
   }
 }
 
-// Ensure log directory exists
-await ensureLogDirectory();
+// Initialize logger with deferred directory setup
+let loggerInitialized = false;
+
+/**
+ * Initializes logger (call once at application startup)
+ */
+export async function initializeLogger() {
+  if (!loggerInitialized) {
+    await ensureLogDirectory();
+    loggerInitialized = true;
+  }
+}
 
 /**
  * Custom log format for better readability

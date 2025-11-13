@@ -3,7 +3,7 @@
  * Tests admin session state management and lifecycle
  */
 
-import Session from '../Session.entity.js';
+import Session from '../domain/Session.entity.js';
 
 describe('Session.entity', () => {
   

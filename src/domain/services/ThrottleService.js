@@ -63,27 +63,27 @@ class RateLimiterVO {
   }
 
   /**
- * Exponential backoff calculator
- * @param {number} retryCount - Current retry attempt
- * @param {number} baseDelay - Base delay in milliseconds (default: 1000)
- * @param {number} maxDelay - Maximum delay in milliseconds (default: 60000)
- * @returns {number} Delay in milliseconds
- */
- calculateExponentialBackoff(retryCount, baseDelay = 1000, maxDelay = 60000) {
-  const delay = Math.min(baseDelay * Math.pow(2, retryCount), maxDelay);
-  // Add jitter (random ±20%)
-  const jitter = delay * 0.2 * (Math.random() * 2 - 1);
-  return Math.floor(delay + jitter);
-}
+   * Sleep utility
+   * @param {number} ms - Milliseconds to sleep
+   * @returns {Promise<void>}
+   */
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-/**
- * Sleep utility
- * @param {number} ms - Milliseconds to sleep
- * @returns {Promise<void>}
- */
-sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+  /**
+   * Exponential backoff calculator
+   * @param {number} retryCount - Current retry attempt
+   * @param {number} baseDelay - Base delay in milliseconds (default: 1000)
+   * @param {number} maxDelay - Maximum delay in milliseconds (default: 60000)
+   * @returns {number} Delay in milliseconds
+   */
+  calculateExponentialBackoff(retryCount, baseDelay = 1000, maxDelay = 60000) {
+    const delay = Math.min(baseDelay * Math.pow(2, retryCount), maxDelay);
+    // Add jitter (random ±20%)
+    const jitter = delay * 0.2 * (Math.random() * 2 - 1);
+    return Math.floor(delay + jitter);
+  }
   /**
    * Waits for a token to become available
    * @async
@@ -142,6 +142,15 @@ class PerUserThrottleVO {
   constructor(delayMs = 500) {
     this.#userDelayMap = new Map();
     this.#delayMs = delayMs;
+  }
+
+  /**
+   * Sleep utility
+   * @param {number} ms - Milliseconds to sleep
+   * @returns {Promise<void>}
+   */
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   /**
@@ -294,6 +303,78 @@ class ThrottleService {
   }
 
   /**
+   * Gets global throttle status
+   * @returns {Object} Global status
+   */
+  getGlobalStatus() {
+    return {
+      tokensAvailable: this.#rateLimiter.getTokensCount(),
+      tokensPerInterval: this.#config.tokensPerInterval,
+      interval: this.#config.interval
+    };
+  }
+
+  /**
+   * Gets per-user throttle status
+   * @param {string} userId - User identifier
+   * @returns {Object} User status
+   */
+  getPerUserStatus(userId) {
+    return {
+      userId,
+      tokensAvailable: this.#rateLimiter.getTokensCount(), // Simplified - same as global for now
+      tokensPerInterval: this.#config.tokensPerInterval,
+      interval: this.#config.interval
+    };
+  }
+
+  /**
+   * Handles flood wait error from Telegram
+   * @param {string} adminId - Admin identifier
+   * @param {number} waitSeconds - Seconds to wait
+   */
+  handleFloodWait(adminId, waitSeconds) {
+    this.#logger.warn('[ThrottleService] Flood wait detected', {
+      adminId,
+      waitSeconds
+    });
+    // Could implement additional logic here if needed
+  }
+
+  /**
+   * Shutdown service and cleanup resources
+   * @async
+   * @returns {Promise<void>}
+   */
+  async shutdown() {
+    this.stop();
+    this.#logger.info('[ThrottleService] Service shutdown complete');
+  }
+
+  /**
+   * Sleep utility
+   * @param {number} ms - Milliseconds to sleep
+   * @returns {Promise<void>}
+   */
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  /**
+   * Exponential backoff calculator
+   * @param {number} retryCount - Current retry attempt
+   * @param {number} baseDelay - Base delay in milliseconds (default: 1000)
+   * @param {number} maxDelay - Maximum delay in milliseconds (default: 60000)
+   * @returns {number} Delay in milliseconds
+   */
+  calculateExponentialBackoff(retryCount, baseDelay = 1000, maxDelay = 60000) {
+    const delay = Math.min(baseDelay * Math.pow(2, retryCount), maxDelay);
+    // Add jitter (random ±20%)
+    const jitter = delay * 0.2 * (Math.random() * 2 - 1);
+    return Math.floor(delay + jitter);
+  }
+
+  /**
    * Stops the service and cleanup resources
    */
   stop() {
@@ -326,7 +407,7 @@ class ThrottleService {
         lastError = error;
         
         if (attempt < maxRetries) {
-          const delay = calculateExponentialBackoff(attempt, baseDelay, maxDelay);
+          const delay = this.calculateExponentialBackoff(attempt, baseDelay, maxDelay);
           this.#logger.debug('[ThrottleService] Retrying with backoff', {
             attempt: attempt + 1,
             maxRetries,

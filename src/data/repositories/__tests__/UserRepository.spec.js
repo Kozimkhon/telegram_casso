@@ -3,7 +3,7 @@
  * Tests user data access and retrieval operations
  */
 
-import UserRepository from '../UserRepository.js';
+import UserRepository from '../domain/UserRepository.js';
 
 describe('UserRepository', () => {
   let repository;

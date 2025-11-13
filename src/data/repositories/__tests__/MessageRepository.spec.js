@@ -3,7 +3,7 @@
  * Tests message data access and tracking operations
  */
 
-import MessageRepository from '../MessageRepository.js';
+import MessageRepository from '../domain/MessageRepository.js';
 
 describe('MessageRepository', () => {
   let repository;

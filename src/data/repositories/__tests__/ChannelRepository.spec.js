@@ -3,7 +3,7 @@
  * Tests channel data access and management operations
  */
 
-import ChannelRepository from '../ChannelRepository.js';
+import ChannelRepository from '../domain/ChannelRepository.js';
 
 describe('ChannelRepository', () => {
   let repository;

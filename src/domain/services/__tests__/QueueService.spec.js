@@ -3,7 +3,7 @@
  * Tests message queue management and processing
  */
 
-import QueueService from '../../QueueService.js';
+import QueueService from '../QueueService.js';
 
 describe('QueueService', () => {
   let queueService;

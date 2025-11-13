@@ -3,7 +3,7 @@
  * Tests session data access and lifecycle management
  */
 
-import SessionRepository from '../SessionRepository.js';
+import SessionRepository from '../domain/SessionRepository.js';
 
 describe('SessionRepository', () => {
   let repository;

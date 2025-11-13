@@ -3,7 +3,7 @@
  * Tests message tracking and state management
  */
 
-import Message from '../Message.entity.js';
+import Message from '../domain/Message.entity.js';
 
 describe('Message.entity', () => {
   

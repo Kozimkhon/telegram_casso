@@ -3,7 +3,7 @@
  * Tests channel configuration and management
  */
 
-import Channel from '../Channel.entity.js';
+import Channel from '../domain/Channel.entity.js';
 
 describe('Channel.entity', () => {
   

@@ -3,7 +3,7 @@
  * Tests performance and event metrics collection and reporting
  */
 
-import MetricsService from '../../MetricsService.js';
+import MetricsService from '../MetricsService.js';
 
 describe('MetricsService', () => {
   let metricsService;
