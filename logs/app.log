@@ -50632,3 +50632,2725 @@ Error: Invalid status. Must be one of: success, failed, skipped, pending
   "adminId": "5684628333",
   "eventClassName": "UpdateConnectionState"
 }
+2025-11-13 18:02:20 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 18:02:20 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 18:02:20 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:20 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:20 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:21 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:21 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 18:02:21 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:21 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:23 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 18:02:23 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateUserStatus"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:23 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:23 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:23 [INFO]: Found 3 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:24 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:24 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:24 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:24 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:25 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:25 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:25 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:26 [ERROR]: Error showing system stats
+TypeError: this[#ormRepository].findByForwardingEnabled is not a function
+    at ChannelRepository.findAll (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:56:44)
+    at ChannelRepository.findEnabled (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:121:23)
+    at ChannelRepository.getStatistics (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:134:32)
+    at async Promise.all (index 1)
+    at async MetricsService.getOverallMetrics (file:///E:/Experiments/telegram_casso/src/domain/services/MetricsService.js:62:7)
+    at async Object.handleSystemStats (file:///E:/Experiments/telegram_casso/src/presentation/handlers/statsHandlers.js:62:23)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:56:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "this[#ormRepository].findByForwardingEnabled is not a function"
+}
+2025-11-13 18:02:26 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateShortMessage"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:02:26 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:02:26 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-13 18:02:26 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateReadHistoryInbox"
+}
+2025-11-13 18:02:27 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:27 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:28 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:28 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateUserStatus"
+}
+2025-11-13 18:02:28 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:02:29 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:31 [DEBUG]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-13 18:04:31 [DEBUG]: [ForwardingService] Initialized
+2025-11-13 18:04:31 [INFO]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:31 [INFO]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:31 [INFO]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:32 [DEBUG]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:32 [INFO]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-13 18:04:32 [INFO]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:32 [INFO]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:34 [INFO]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-13 18:04:34 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002216953123",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:34 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:34 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123"
+}
+2025-11-13 18:04:34 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002216953123",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:34 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:34 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123"
+}
+2025-11-13 18:04:34 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002216953123",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-13 18:04:34 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:34 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123"
+}
+2025-11-13 18:04:35 [INFO]: Found 3 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:35 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002038672186",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:35 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002038672186",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:35 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002038672186"
+}
+2025-11-13 18:04:35 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:36 [INFO]: Found 23 members in ...ن
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:38 [INFO]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:39 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001805495036",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:39 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:39 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036"
+}
+2025-11-13 18:04:39 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001805495036",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:39 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:39 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036"
+}
+2025-11-13 18:04:39 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001805495036",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:39 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:39 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036"
+}
+2025-11-13 18:04:39 [INFO]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:39 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:40 [INFO]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:40 [INFO]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:41 [INFO]: Found 3 members in Bu bz👩‍❤️‍💋‍👨
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:41 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:42 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002216953123",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:42 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:42 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123"
+}
+2025-11-13 18:04:42 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateUserStatus"
+}
+2025-11-13 18:04:42 [INFO]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:42 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateEditMessage"
+}
+2025-11-13 18:04:42 [INFO]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:42 [INFO]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-13 18:04:50 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001805495036",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:50 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:50 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001805495036"
+}
+2025-11-13 18:04:50 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-13 18:04:50 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001670214225",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-13 18:04:50 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:50 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225"
+}
+2025-11-13 18:04:50 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001351875256",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:50 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001351875256",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:50 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001351875256"
+}
+2025-11-13 18:04:53 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateEditMessage"
+}
+2025-11-13 18:04:55 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateEditMessage"
+}
+2025-11-13 18:04:59 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:59 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:59 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-13 18:04:59 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-13 18:04:59 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101986624",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:59 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:59 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624"
+}
+2025-11-13 18:04:59 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101986624",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:59 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:59 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624"
+}
+2025-11-13 18:04:59 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101986624",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:59 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:59 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624"
+}
+2025-11-13 18:04:59 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101986624",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:04:59 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:04:59 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101986624"
+}
+2025-11-13 18:05:08 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002059742212",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:05:08 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:05:08 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212"
+}
+2025-11-13 18:05:08 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002204232029",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:05:08 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:05:08 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029"
+}
+2025-11-13 18:05:08 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-13 18:05:08 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002216953123",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:05:08 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:05:08 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002216953123"
+}
+2025-11-13 18:05:14 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateUserStatus"
+}
+2025-11-13 18:05:14 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:05:14 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:05:14 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-13 18:05:14 [DEBUG]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002088846572",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-13 18:05:14 [DEBUG]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002088846572",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-13 18:05:14 [DEBUG]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002088846572"
+}
+2025-11-13 18:05:17 [DEBUG]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}

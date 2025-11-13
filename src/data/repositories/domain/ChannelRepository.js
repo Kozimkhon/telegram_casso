@@ -53,7 +53,7 @@ class ChannelRepository extends IChannelRepository {
     let entities;
     
     if (filters.enabled) {
-      entities = await this.#ormRepository.findByForwardingEnabled(true);
+      entities = await this.#ormRepository.findWithForwardingEnabled();
     } else {
       entities = await this.#ormRepository.findAll();
     }

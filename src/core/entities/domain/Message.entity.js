@@ -243,11 +243,17 @@ class Message extends BaseEntity {
    * @returns {Message} Message entity
    */
   static fromDatabaseRow(row) {
+    // Ensure valid status or use default
+    const validStatuses = Object.values(ForwardingStatus);
+    const status = validStatuses.includes(row.status) 
+      ? row.status 
+      : ForwardingStatus.PENDING;
+    
     return new Message({
       id: row.id,
       messageId: row.message_id || row.messageId,
       forwardedMessageId: row.forwarded_message_id || row.forwardedMessageId,
-      status: row.status,
+      status: status,
       errorMessage: row.error_message || row.errorMessage,
       retryCount: row.retry_count || row.retryCount || 0,
       groupedId: row.grouped_id || row.groupedId || null,

@@ -118,17 +118,19 @@ class MessageRepository extends IMessageRepository {
   async getForwardingStatistics(filters = {}) {
     const messages = await this.findAll(filters);
     
-    const sent = messages.filter(m => m.status === 'sent');
+    const success = messages.filter(m => m.status === 'success');
     const failed = messages.filter(m => m.status === 'failed');
+    const skipped = messages.filter(m => m.status === 'skipped');
     const pending = messages.filter(m => m.status === 'pending');
 
     return {
       total: messages.length,
-      sent: sent.length,
+      success: success.length,
       failed: failed.length,
+      skipped: skipped.length,
       pending: pending.length,
       successRate: messages.length > 0 
-        ? ((sent.length / messages.length) * 100).toFixed(2) + '%' 
+        ? ((success.length / messages.length) * 100).toFixed(2) + '%' 
         : '0%'
     };
   }

@@ -34,10 +34,11 @@ export function createStatsHandlers(dependencies) {
 📈 *Forwarding Statistics*
 
 *Total Messages:* ${stats.total}
-*Successful:* ${stats.successful} ✅
+*Successful:* ${stats.success} ✅
 *Failed:* ${stats.failed} ❌
 *Skipped:* ${stats.skipped} ⏭️
-*Success Rate:* ${stats.successRate}%
+*Pending:* ${stats.pending} ⏳
+*Success Rate:* ${stats.successRate}
       `.trim();
 
       const keyboard = Markup.inlineKeyboard([

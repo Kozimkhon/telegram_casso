@@ -115,3 +115,18 @@ Error: Invalid status. Must be one of: success, failed, skipped, pending
 {
   "error": "Invalid status. Must be one of: success, failed, skipped, pending"
 }
+2025-11-13 18:02:26 [ERROR]: Error showing system stats
+TypeError: this[#ormRepository].findByForwardingEnabled is not a function
+    at ChannelRepository.findAll (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:56:44)
+    at ChannelRepository.findEnabled (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:121:23)
+    at ChannelRepository.getStatistics (file:///E:/Experiments/telegram_casso/src/data/repositories/domain/ChannelRepository.js:134:32)
+    at async Promise.all (index 1)
+    at async MetricsService.getOverallMetrics (file:///E:/Experiments/telegram_casso/src/domain/services/MetricsService.js:62:7)
+    at async Object.handleSystemStats (file:///E:/Experiments/telegram_casso/src/presentation/handlers/statsHandlers.js:62:23)
+    at async file:///E:/Experiments/telegram_casso/src/presentation/middleware/callbacks.js:56:5
+    at async file:///E:/Experiments/telegram_casso/src/shared/errorHandler.js:83:14
+    at async execute (E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:518:17)
+    at async E:\Experiments\telegram_casso\node_modules\telegraf\lib\composer.js:519:21
+{
+  "error": "this[#ormRepository].findByForwardingEnabled is not a function"
+}
