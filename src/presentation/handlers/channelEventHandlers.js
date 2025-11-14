@@ -110,7 +110,7 @@ class ChannelEventHandlers {
 
       // Check if message is part of a grouped message (album/media group)
       const groupedId = message.groupedId?.toString();
-      
+
       if (groupedId) {
         // Message is part of a group - buffer it
         await this.#handleGroupedMessage(fullChannelId, message, groupedId);
@@ -280,365 +280,29 @@ class ChannelEventHandlers {
         messageIds: messageIds.slice(0, 5), // Log first 5 IDs
       });
 
-       try {
-          // Delete forwarded copies using ForwardingService
-          await this.#services.forwarding.deleteForwardedMessages(
-            fullChannelId,
-            messageIds,
-            async (userId, forwardedIds) => await this.#deleteMessageFromUser(userId, forwardedIds)
-          );
+      try {
+        // Delete forwarded copies using ForwardingService
+        await this.#services.forwarding.deleteForwardedMessages(
+          fullChannelId,
+          messageIds,
+          async (userId, forwardedIds) => await this.#deleteMessageFromUser(userId, forwardedIds)
+        );
 
-          this.#logger.debug('Marked channel message as deleted', {
-            channelId: fullChannelId,
-            messageIds
-          });
-        } catch (err) {
-          this.#logger.error('Failed to delete forwarded messages', {
-            channelId: fullChannelId,
-            messageIds,
-            error: err.message
-          });
-        }
-      
+        this.#logger.debug('Marked channel message as deleted', {
+          channelId: fullChannelId,
+          messageIds
+        });
+      } catch (err) {
+        this.#logger.error('Failed to delete forwarded messages', {
+          channelId: fullChannelId,
+          messageIds,
+          error: err.message
+        });
+      }
+
 
     } catch (error) {
       this.#logger.error('Error handling channel message deletion', error);
-    }
-  }
-
-  /**
-   * Handles channel update event (title, bio, settings changes)
-   * @param {Object} event - UpdateChannel event
-   * @returns {Promise<void>}
-   */
-  async handleChannelUpdate(event) {
-    try {
-      const channelId = event.channelId?.toString();
-
-      if (!channelId) return;
-
-      const fullChannelId = `-100${channelId}`;
-
-      this.#logger.info('Channel updated', {
-        channelId: fullChannelId,
-      });
-
-      // Fetch updated channel info and sync
-      const channelInfo = this.#connectedChannels.get(fullChannelId);
-      if (channelInfo && channelInfo.entity) {
-        try {
-          const updatedEntity = await this.#client.getEntity(channelInfo.entity);
-          
-          // Update in database via repository
-          // TODO: Implement channel update logic
-          this.#logger.debug('Channel entity updated', {
-            title: updatedEntity.title,
-            username: updatedEntity.username,
-          });
-
-        } catch (err) {
-          this.#logger.debug('Failed to fetch updated channel entity', err);
-        }
-      }
-
-    } catch (error) {
-      this.#logger.error('Error handling channel update', error);
-    }
-  }
-
-  /**
-   * Handles channel message views update
-   * @param {Object} event - UpdateChannelMessageViews event
-   * @returns {Promise<void>}
-   */
-  async handleChannelMessageViews(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const messageId = event.id;
-      const views = event.views;
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel message views updated', {
-        channelId: `-100${channelId}`,
-        messageId,
-        views,
-      });
-
-      // Optional: Store view counts in metrics
-      // TODO: Implement metrics use case
-
-    } catch (error) {
-      this.#logger.error('Error handling channel message views', error);
-    }
-  }
-
-  /**
-   * Handles channel too long event (message limit exceeded)
-   * @param {Object} event - UpdateChannelTooLong event
-   * @returns {Promise<void>}
-   */
-  async handleChannelTooLong(event) {
-    try {
-      const channelId = event.channelId?.toString();
-
-      if (!channelId) return;
-
-      this.#logger.warn('Channel message limit exceeded', {
-        channelId: `-100${channelId}`,
-      });
-
-      // May need to resync channel messages
-      // TODO: Implement resync logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel too long', error);
-    }
-  }
-
-  /**
-   * Handles channel pinned message update
-   * @param {Object} event - UpdateChannelPinnedMessage event
-   * @returns {Promise<void>}
-   */
-  async handleChannelPinnedMessage(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const messageId = event.id;
-
-      if (!channelId) return;
-
-      this.#logger.info('Channel pinned message updated', {
-        channelId: `-100${channelId}`,
-        messageId,
-      });
-
-      // Optional: Forward pinned message announcement
-      // TODO: Implement pinned message logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel pinned message', error);
-    }
-  }
-
-  /**
-   * Handles channel participant update (join/leave)
-   * @param {Object} event - UpdateChannelParticipant event
-   * @returns {Promise<void>}
-   */
-  async handleChannelParticipant(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const userId = event.userId?.toString();
-
-      if (!channelId || !userId) return;
-
-      this.#logger.info('Channel participant updated', {
-        channelId: `-100${channelId}`,
-        userId,
-      });
-
-      // Update user-channel association in database
-      // TODO: Implement participant sync logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel participant', error);
-    }
-  }
-
-  /**
-   * Handles channel user typing event
-   * @param {Object} event - UpdateChannelUserTyping event
-   * @returns {Promise<void>}
-   */
-  async handleChannelUserTyping(event) {
-    try {
-      // This event is typically not needed for forwarding bot
-      // Can be used for analytics or monitoring
-      this.#logger.debug('User typing in channel', {
-        channelId: event.channelId?.toString(),
-        userId: event.userId?.toString(),
-      });
-
-    } catch (error) {
-      this.#logger.error('Error handling channel user typing', error);
-    }
-  }
-
-  /**
-   * Handles channel message forwards count update
-   * @param {Object} event - UpdateChannelMessageForwards event
-   * @returns {Promise<void>}
-   */
-  async handleChannelMessageForwards(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const messageId = event.id;
-      const forwards = event.forwards;
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel message forwards updated', {
-        channelId: `-100${channelId}`,
-        messageId,
-        forwards,
-      });
-
-      // Optional: Store forward counts in metrics
-      // TODO: Implement metrics use case
-
-    } catch (error) {
-      this.#logger.error('Error handling channel message forwards', error);
-    }
-  }
-
-  /**
-   * Handles channel available messages update
-   * @param {Object} event - UpdateChannelAvailableMessages event
-   * @returns {Promise<void>}
-   */
-  async handleChannelAvailableMessages(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const availableMinId = event.availableMinId;
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel available messages updated', {
-        channelId: `-100${channelId}`,
-        availableMinId,
-      });
-
-      // May indicate old messages were deleted
-      // TODO: Implement cleanup logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel available messages', error);
-    }
-  }
-
-  /**
-   * Handles read channel messages contents event
-   * @param {Object} event - UpdateChannelReadMessagesContents event
-   * @returns {Promise<void>}
-   */
-  async handleChannelReadMessagesContents(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const messageIds = event.messages || [];
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel messages contents read', {
-        channelId: `-100${channelId}`,
-        count: messageIds.length,
-      });
-
-      // Optional: Track read status
-      // TODO: Implement read tracking
-
-    } catch (error) {
-      this.#logger.error('Error handling channel read messages contents', error);
-    }
-  }
-
-  /**
-   * Handles read channel inbox event
-   * @param {Object} event - UpdateReadChannelInbox event
-   * @returns {Promise<void>}
-   */
-  async handleReadChannelInbox(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const maxId = event.maxId;
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel inbox read', {
-        channelId: `-100${channelId}`,
-        maxId,
-      });
-
-      // Optional: Track read status
-      // TODO: Implement read tracking
-
-    } catch (error) {
-      this.#logger.error('Error handling read channel inbox', error);
-    }
-  }
-
-  /**
-   * Handles read channel outbox event (your messages read)
-   * @param {Object} event - UpdateReadChannelOutbox event
-   * @returns {Promise<void>}
-   */
-  async handleReadChannelOutbox(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const maxId = event.maxId;
-
-      if (!channelId) return;
-
-      this.#logger.debug('Channel outbox read', {
-        channelId: `-100${channelId}`,
-        maxId,
-      });
-
-      // Optional: Track delivery status
-      // TODO: Implement delivery tracking
-
-    } catch (error) {
-      this.#logger.error('Error handling read channel outbox', error);
-    }
-  }
-
-  /**
-   * Handles channel participant add event (legacy)
-   * @param {Object} event - UpdateChannelParticipantAdd event
-   * @returns {Promise<void>}
-   */
-  async handleChannelParticipantAdd(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const userId = event.userId?.toString();
-
-      if (!channelId || !userId) return;
-
-      this.#logger.info('User added to channel', {
-        channelId: `-100${channelId}`,
-        userId,
-      });
-
-      // Add user to channel members in database
-      // TODO: Implement add member logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel participant add', error);
-    }
-  }
-
-  /**
-   * Handles channel participant delete event
-   * @param {Object} event - UpdateChannelParticipantDelete event
-   * @returns {Promise<void>}
-   */
-  async handleChannelParticipantDelete(event) {
-    try {
-      const channelId = event.channelId?.toString();
-      const userId = event.userId?.toString();
-
-      if (!channelId || !userId) return;
-
-      this.#logger.info('User left channel', {
-        channelId: `-100${channelId}`,
-        userId,
-      });
-
-      // Remove user from channel members in database
-      // TODO: Implement remove member logic
-
-    } catch (error) {
-      this.#logger.error('Error handling channel participant delete', error);
     }
   }
 
@@ -673,9 +337,9 @@ class ChannelEventHandlers {
       // Extract ID from result (handle both array and object formats)
       let forwardedId;
       if (Array.isArray(result)) {
-        if(Array.isArray(result[0])){
+        if (Array.isArray(result[0])) {
           forwardedId = result[0][0]?.id;
-        }else{
+        } else {
           forwardedId = result[0]?.id;
         }
       } else if (result?.id) {
@@ -742,11 +406,11 @@ class ChannelEventHandlers {
 
       // Extract first message ID from result
       let firstId;
-      var filtered=result.filter(item => item);
+      var filtered = result.filter(item => item);
       if (Array.isArray(filtered)) {
-        if(Array.isArray(filtered[0])){
+        if (Array.isArray(filtered[0])) {
           firstId = filtered[0][0]?.id;
-        }else{
+        } else {
           firstId = filtered[0]?.id;
         }
       } else if (result?.id) {
@@ -767,7 +431,7 @@ class ChannelEventHandlers {
         count: Array.isArray(filtered) ? (Array.isArray(filtered[0]) ? filtered[0].length : filtered.length) : messageIds.length,
         groupedId: message.groupedId?.toString(),
         adminId: this.#sessionData.adminId,
-        result: Array.isArray(filtered) ? Array.isArray(filtered[0]) ? filtered[0] : filtered : [] 
+        result: Array.isArray(filtered) ? Array.isArray(filtered[0]) ? filtered[0] : filtered : []
       };
 
     } catch (error) {

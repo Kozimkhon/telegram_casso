@@ -9,3 +9,4 @@ export { default as Session } from './domain/Session.entity.js';
 export { default as User } from './domain/User.entity.js';
 export { default as Message } from './domain/Message.entity.js';
 export { default as Admin } from './domain/Admin.entity.js';
+export { default as ChannelLog } from './domain/ChannelLog.entity.js';

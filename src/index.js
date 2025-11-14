@@ -183,6 +183,18 @@ class Application {
       // Setup graceful shutdown
       this.#setupShutdownHandlers();
 
+      // Start Daily Channel Logs Fetch Job
+      console.log('⏰ Starting Daily Channel Logs Fetch Job...');
+      try {
+        const dailyJob = this.#container.resolve('dailyChannelLogsFetchJob');
+        dailyJob.start();
+        this.#bots.dailyChannelLogsFetchJob = dailyJob;
+        console.log('   ✅ Daily job started successfully');
+      } catch (error) {
+        console.error('   ❌ Failed to start daily job:', error.message);
+      }
+      console.log('');
+
       this.#running = true;
       console.log('✨ Application started successfully!\n');
       console.log('═══════════════════════════════════════════');
@@ -223,6 +235,11 @@ class Application {
         if (bot.stop) {
           await bot.stop();
         }
+      }
+
+      // Stop daily job
+      if (this.#bots.dailyChannelLogsFetchJob) {
+        this.#bots.dailyChannelLogsFetchJob.stop();
       }
 
       // Close TypeORM database

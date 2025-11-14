@@ -10,3 +10,4 @@ export { ChannelEntity } from './Channel.entity.js';
 export { UserEntity } from './User.entity.js';
 export { MessageEntity } from './Message.entity.js';
 export { MetricEntity } from './Metric.entity.js';
+export { ChannelLogEntity } from './ChannelLog.entity.js';

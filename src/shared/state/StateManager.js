@@ -62,6 +62,13 @@ class StateManager extends EventEmitter {
   static #instance = null;
 
   /**
+   * Container instance
+   * @private
+   * @type {Object|null}
+   */
+  #container = null;
+
+  /**
    * Private constructor (Singleton pattern)
    * @private
    */
@@ -110,6 +117,13 @@ class StateManager extends EventEmitter {
      * @type {Map<string, Object>}
      */
     this.botInstances = new Map();
+
+    /**
+     * Container reference for service access
+     * @private
+     * @type {Object|null}
+     */
+    this.#container = null;
 
     this.setMaxListeners(50); // Increase for multiple subscribers
   }
@@ -414,6 +428,32 @@ class StateManager extends EventEmitter {
    */
   getBot(identifier) {
     return this.botInstances.get(identifier) || null;
+  }
+
+  /**
+   * Sets the container reference
+   * @param {Object} container - Container instance
+   */
+  setContainer(container) {
+    this.#container = container;
+  }
+
+  /**
+   * Gets a service from the container
+   * @param {string} serviceName - Service name
+   * @returns {Object|null} Service instance or null
+   */
+  getService(serviceName) {
+    if (!this.#container) {
+      return null;
+    }
+    
+    try {
+      return this.#container.resolve(serviceName);
+    } catch (error) {
+      console.error(`Failed to resolve service: ${serviceName}`, error);
+      return null;
+    }
   }
 
   // ==================== STATE QUERIES ====================

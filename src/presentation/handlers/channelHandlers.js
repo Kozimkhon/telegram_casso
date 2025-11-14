@@ -56,9 +56,10 @@ export function createChannelHandlers(dependencies) {
         });
 
       }
-      // Sync button at the top
+      // Sync buttons at the top
       buttons.push([
         Markup.button.callback("🔄 Sync Channels", "sync_channels"),
+        Markup.button.callback("📊 Sync Actions", "sync_actions"),
       ]);
 
       // Channel control buttons
@@ -333,6 +334,87 @@ export function createChannelHandlers(dependencies) {
     }
   }
 
+  /**
+   * Handles manual actions (logs) sync from channels
+   * @param {Object} ctx - Telegraf context
+   */
+  async function handleSyncActions(ctx) {
+    try {
+      // Get StateManager instance
+      const stateManager = dependencies.stateManager;
+      
+      if (!stateManager) {
+        await ctx.editMessageText('❌ StateManager not available.');
+        return;
+      }
+
+      const adminId = ctx.from.id.toString();
+
+      // Get bot instance from StateManager
+      const botInstance = stateManager.getBot(adminId);
+      
+      if (!botInstance) {
+        await ctx.editMessageText('❌ UserBot is not connected. Cannot fetch logs.');
+        return;
+      }
+
+      // Get ChannelLogFetcherService from StateManager
+      const channelLogFetcherService = stateManager.getService('channelLogFetcherService');
+      
+      if (!channelLogFetcherService) {
+        await ctx.editMessageText('❌ Channel log fetcher service not available.');
+        return;
+      }
+
+      // Show processing message
+      await ctx.editMessageText('🔄 Fetching admin logs from channels...\n\nThis may take a few moments.');
+
+      // Fetch logs using the service
+      const client = botInstance.getClient();
+      const result = await channelLogFetcherService.fetchAllAdminChannelLogs(client, adminId);
+
+      // Format result message
+      let message = '✅ <b>Admin Logs Sync Complete</b>\n\n';
+      message += `📊 <b>Summary:</b>\n`;
+      message += `• Total Channels: ${result.totalChannels}\n`;
+      message += `• Total Logs Fetched: ${result.totalLogs}\n\n`;
+
+      if (result.channelResults && result.channelResults.length > 0) {
+        message += '<b>Channel Results:</b>\n';
+        result.channelResults.forEach((ch, idx) => {
+          const icon = ch.logsCount > 0 ? '✅' : '⚪️';
+          message += `${icon} ${idx + 1}. <b>${ch.channelTitle}</b>: ${ch.logsCount} logs\n`;
+        });
+      }
+
+      if (result.errors && result.errors.length > 0) {
+        message += '\n❌ <b>Errors:</b>\n';
+        result.errors.forEach((err, idx) => {
+          message += `${idx + 1}. ${err.channelId}: ${err.error}\n`;
+        });
+      }
+
+      await ctx.editMessageText(message, { parse_mode: 'HTML' });
+
+      // Return to channels list after 3 seconds
+      setTimeout(async () => {
+        try {
+          await handleChannelsList(ctx, 1);
+        } catch (error) {
+          logger.error('Error returning to channels list', error);
+        }
+      }, 3000);
+
+      logger.info('Manual actions sync completed', { adminId, result });
+
+    } catch (error) {
+      logger.error('Error syncing actions', error);
+      await ctx.editMessageText(`❌ Error fetching admin logs: ${error.message}\n\nPlease try again.`, {
+        parse_mode: 'HTML'
+      });
+    }
+  }
+
   return {
     handleChannelsList,
     handleToggleChannel,
@@ -340,5 +422,6 @@ export function createChannelHandlers(dependencies) {
     handleRemoveChannel,
     handleConfirmRemoveChannel,
     handleSyncChannels,
+    handleSyncActions,
   };
 }

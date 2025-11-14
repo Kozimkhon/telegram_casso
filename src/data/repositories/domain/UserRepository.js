@@ -183,6 +183,10 @@ class UserRepository extends IUserRepository {
     const entities = await this.#ormRepository.findByChannel(channelId);
     return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
+
+  async removeFromChannel(channelId, userId) {
+    return await this.#ormRepository.removeFromChannel(channelId, userId);
+  }
 }
 
 export default UserRepository;

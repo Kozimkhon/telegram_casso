@@ -205,4 +205,12 @@ export function setupCallbacks(bot, handlers) {
       }, "Sync channels callback")
     );
 
+    bot.action(
+      "sync_actions",
+      asyncErrorHandler(async (ctx) => {
+        await ctx.answerCbQuery("⏳ Fetching admin logs...");
+        await handlers.handleSyncActions(ctx);
+      }, "Sync actions callback")
+    );
+
 }

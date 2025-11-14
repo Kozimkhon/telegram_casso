@@ -1,0 +1,1968 @@
+
+> telegram_casso@1.0.0 start
+> node src/index.js
+
+[dotenv@17.2.3] injecting env (6) from .env -- tip: ЁЯФР prevent building .env in docker: https://dotenvx.com/prebuild
+ЁЯЪА Starting Telegram Casso (Clean Architecture)...
+
+ЁЯУж Initializing TypeORM database...
+[4mNo migrations are pending[24m
+тЬУ TypeORM DataSource initialized successfully
+тЬУ Database: ./data/telegram_casso.db
+тЬУ Entities loaded: 8
+тЬЕ TypeORM initialized
+
+ЁЯФз Initializing dependency injection container...
+тЬЕ Container initialized
+   Registered services: 40
+
+ЁЯУК State manager ready
+
+ЁЯдЦ Starting UserBot system...
+   Found 1 active session(s)
+2025-11-14 23:29:51 [[34MDEBUG[39M]: [ThrottleService] Initialized
+{
+  "tokensPerInterval": 10,
+  "interval": 60000,
+  "minDelayMs": 1000,
+  "maxDelayMs": 5000,
+  "userDelayMs": 500
+}
+2025-11-14 23:29:51 [[34MDEBUG[39M]: [ForwardingService] Initialized
+2025-11-14 23:29:51 [[32MINFO[39M]: Starting UserBot...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:51 [[32MINFO[39M]: Loading session from database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+[33m[2025-11-14T23:29:51.721] [INFO] - [Running gramJS version 2.26.21][0m
+2025-11-14 23:29:51 [[32MINFO[39M]: Connecting to Telegram...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+[33m[2025-11-14T23:29:51.728] [INFO] - [Connecting to 149.154.167.51:80/TCPFull...][0m
+[33m[2025-11-14T23:29:51.862] [INFO] - [Connection to 149.154.167.51:80/TCPFull complete!][0m
+[33m[2025-11-14T23:29:51.863] [INFO] - [Using LAYER 198 for initial connect][0m
+2025-11-14 23:29:52 [[34MDEBUG[39M]: Session updated in database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:52 [[32MINFO[39M]: Connected to Telegram
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "userId": "5684628333"
+}
+2025-11-14 23:29:52 [[32MINFO[39M]: Bot instance registered in StateManager
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:52 [[32MINFO[39M]: Manual channel sync started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: Channel sync complete: 0 added, 6 updated
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: Syncing channels...
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: Periodic tasks started
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: UserBot started successfully
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+   тЬЕ UserBot started: 5684628333
+
+ЁЯСд Starting AdminBot...
+2025-11-14 23:29:55 [[32MINFO[39M]: Found 6 channels to monitor
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: Starting AdminBot...
+{
+  "component": "AdminBotController"
+}
+2025-11-14 23:29:55 [[32MINFO[39M]: Found 2 members in test
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:56 [[32MINFO[39M]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:29:58 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002278685076",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:29:58 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:29:58 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002278685076"
+}
+2025-11-14 23:29:58 [[32MINFO[39M]: Found 23 members in ...┘Ж
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:02 [[32MINFO[39M]: Added 21 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:02 [[32MINFO[39M]: Found 2 members in Vazifalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:03 [[32MINFO[39M]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:03 [[32MINFO[39M]: Found 2 members in Musiqalarm
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:04 [[32MINFO[39M]: Added 2 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:04 [[32MINFO[39M]: Found 3 members in Bu bzЁЯСйтАНтЭдя╕ПтАНЁЯТЛтАНЁЯСи
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:05 [[32MINFO[39M]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:05 [[32MINFO[39M]: Found 3 members in Har xil taomlar tayyorlanishi
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:06 [[32MINFO[39M]: Added 3 users to database
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:06 [[32MINFO[39M]: Channel sync complete
+{
+  "component": "UserBotController",
+  "adminId": "5684628333"
+}
+2025-11-14 23:30:10 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:19 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002059742212",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001670214225",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002204232029",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029"
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:37 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002101430710",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002685939479",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479"
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002101430710",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:47 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002101430710"
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002685939479",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479"
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002685939479",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:30:56 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002685939479"
+}
+2025-11-14 23:31:05 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:31:05 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002059742212",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:31:05 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:31:05 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212"
+}
+2025-11-14 23:31:14 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001351875256",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:31:14 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001351875256",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:31:14 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001351875256"
+}
+2025-11-14 23:31:14 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:31:23 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:31:32 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:31:41 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:31:41 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:31:41 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:31:41 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:31:51 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001670214225",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:31:51 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:31:51 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001670214225"
+}
+2025-11-14 23:31:51 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:00 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateUserStatus"
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001927774447",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001927774447",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001927774447"
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001927774447",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001927774447",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001927774447"
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002204232029",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:08 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002204232029"
+}
+2025-11-14 23:32:09 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:18 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002059742212",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002059742212"
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001398272634",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001398272634",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:27 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001398272634"
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1002133873719",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719"
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001726625488",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:32:36 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:45 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:32:55 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:01 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:02 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:02 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:02 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:04 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:07 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:13 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateNewChannelMessage",
+  "channelId": "-1001307838878",
+  "hasMessage": true,
+  "hasChannelId": false
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878",
+  "hasEntity": true,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:16 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001307838878"
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002133873719",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719"
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002133873719",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:20 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719"
+}
+2025-11-14 23:33:22 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002133873719",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:28 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:29 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:31 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1001726625488",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:31 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:31 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1001726625488"
+}
+2025-11-14 23:33:31 [[34MDEBUG[39M]: Event without channel ID
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateConnectionState"
+}
+2025-11-14 23:33:32 [[34MDEBUG[39M]: Event channel ID extracted
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "eventClassName": "UpdateDeleteChannelMessages",
+  "channelId": "-1002133873719",
+  "hasMessage": false,
+  "hasChannelId": true
+}
+2025-11-14 23:33:32 [[34MDEBUG[39M]: Checking new channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719",
+  "hasEntity": false,
+  "hasAdminRights": false,
+  "isCreator": false
+}
+2025-11-14 23:33:32 [[34MDEBUG[39M]: Skipping non-admin channel
+{
+  "component": "UserBotController",
+  "adminId": "5684628333",
+  "channelId": "-1002133873719"
+}

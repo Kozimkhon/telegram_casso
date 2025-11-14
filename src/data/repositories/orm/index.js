@@ -10,4 +10,5 @@ export { default as ChannelRepository } from './ChannelRepository.js';
 export { default as UserRepository } from './UserRepository.js';
 export { default as MessageRepository } from './MessageRepository.js';
 export { default as MetricRepository } from './MetricRepository.js';
+export { default as ChannelLogRepository } from './ChannelLogRepository.js';
 export { default as BaseRepository } from './BaseRepository.js';

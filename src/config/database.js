@@ -22,6 +22,7 @@ import {
   UserEntity,
   MessageEntity,
   MetricEntity,
+  ChannelLogEntity,
 } from '../core/entities/orm/index.js';
 
 /**
@@ -46,6 +47,7 @@ export const AppDataSource = new DataSource({
     UserEntity,
     MessageEntity,
     MetricEntity,
+    ChannelLogEntity,
   ],
   
   // Migrations
