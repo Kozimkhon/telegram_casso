@@ -43,6 +43,6 @@ export default {
   detectOpenHandles: false,
   forceExit: false,
 
-  // Setup fayli (agar kerak bo‘lsa)
+  // Setup fayli (agar kerak bo'lsa)
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
 };
