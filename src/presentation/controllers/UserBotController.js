@@ -720,15 +720,18 @@ class UserBotController {
       // Get difference from Telegram
       var channelEntityLike=new Api.InputPeerChannel({
         channelId: BigInt(this.#connectedChannels.keys().next().value.replace('-100','')),
-        accessHash: BigInt(this.#connectedChannels.values().next().value.accessHash)
+        accessHash: this.#connectedChannels.values().next().value.entity.accessHash
       });
       const difference = await this.#client.invoke(
-        new Api.updates.GetChannelDifference({
+        new Api.channels.GetAdminLog({
           channel: channelEntityLike,
-          filter: new Api.ChannelMessagesFilterEmpty(),
-          pts: this.#updateState.pts,
-          date: this.#updateState.date,
-          qts: this.#updateState.qts,
+          limit:100,
+          q:"",
+          admins:null,
+          eventsFilter: new Api.ChannelAdminLogEventsFilter(),
+          maxId:0,
+          minId:0,
+
         })
       );
       this.#updateState.date = difference.date;
