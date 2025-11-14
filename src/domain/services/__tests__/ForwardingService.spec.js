@@ -2,6 +2,7 @@
  * @fileoverview ForwardingService tests with flow tracing
  */
 
+import { jest } from '@jest/globals';
 import ForwardingService from '../ForwardingService.js';
 import { ForwardingStatus } from '../../../shared/constants/index.js';
 import Message from '../../../core/entities/domain/Message.entity.js';

@@ -3,6 +3,7 @@
  * Tests message queue management and processing
  */
 
+import { jest } from '@jest/globals';
 import QueueService from '../QueueService.js';
 
 describe('QueueService', () => {

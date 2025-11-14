@@ -2,6 +2,7 @@
  * @fileoverview Tests for AddAdminUseCase
  */
 
+import { jest } from '@jest/globals';
 import AddAdminUseCase from '../AddAdminUseCase.js';
 import { AdminRole } from '../../../../shared/constants/index.js';
 import Admin from '../../../../core/entities/domain/Admin.entity.js';

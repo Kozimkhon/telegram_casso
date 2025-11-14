@@ -2,6 +2,7 @@
  * @fileoverview Tests for RemoveAdminUseCase
  */
 
+import { jest } from '@jest/globals';
 import RemoveAdminUseCase from '../RemoveAdminUseCase.js';
 
 describe('RemoveAdminUseCase', () => {

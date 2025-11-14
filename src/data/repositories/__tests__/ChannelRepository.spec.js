@@ -2,6 +2,7 @@
  * @fileoverview Unit tests for ChannelRepository facade
  */
 
+import { jest } from '@jest/globals';
 import ChannelRepository from '../domain/ChannelRepository.js';
 import { Channel } from '../../../core/entities/index.js';
 import RepositoryFactory from '../domain/RepositoryFactory.js';

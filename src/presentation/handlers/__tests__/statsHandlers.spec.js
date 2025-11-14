@@ -2,6 +2,7 @@
  * @fileoverview Tests for stats handlers
  */
 
+import { jest } from '@jest/globals';
 import { Markup } from 'telegraf';
 import { createStatsHandlers } from '../statsHandlers.js';
 

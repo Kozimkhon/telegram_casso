@@ -2,6 +2,7 @@
  * @fileoverview Unit tests for MessageRepository facade
  */
 
+import { jest } from '@jest/globals';
 import MessageRepository from '../domain/MessageRepository.js';
 import { Message } from '../../../core/entities/index.js';
 import RepositoryFactory from '../domain/RepositoryFactory.js';

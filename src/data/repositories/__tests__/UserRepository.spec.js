@@ -3,6 +3,7 @@
  * Tests user data access and retrieval operations
  */
 
+import { jest } from '@jest/globals';
 import UserRepository from '../domain/UserRepository.js';
 
 describe('UserRepository', () => {

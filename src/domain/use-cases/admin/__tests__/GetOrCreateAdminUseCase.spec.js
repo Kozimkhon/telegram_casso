@@ -3,6 +3,7 @@
  * Tests admin retrieval with auto-creation on first access
  */
 
+import { jest } from '@jest/globals';
 import GetOrCreateAdminUseCase from '../GetOrCreateAdminUseCase.js';
 import Admin from '../../../core/entities/domain/Admin.js';
 

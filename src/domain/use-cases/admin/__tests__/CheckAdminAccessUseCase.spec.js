@@ -2,6 +2,7 @@
  * @fileoverview Tests for CheckAdminAccessUseCase
  */
 
+import { jest } from '@jest/globals';
 import CheckAdminAccessUseCase from '../CheckAdminAccessUseCase.js';
 
 describe('CheckAdminAccessUseCase', () => {

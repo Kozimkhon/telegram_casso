@@ -2,6 +2,7 @@
  * @fileoverview Tests for MetricsService
  */
 
+import { jest } from '@jest/globals';
 import MetricsService from '../MetricsService.js';
 
 describe('MetricsService', () => {

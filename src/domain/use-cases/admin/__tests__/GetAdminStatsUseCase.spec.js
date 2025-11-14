@@ -2,6 +2,7 @@
  * @fileoverview Tests for GetAdminStatsUseCase
  */
 
+import { jest } from '@jest/globals';
 import GetAdminStatsUseCase from '../GetAdminStatsUseCase.js';
 
 describe('GetAdminStatsUseCase', () => {
