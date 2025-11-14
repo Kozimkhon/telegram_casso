@@ -323,6 +323,121 @@ class ForwardingService {
   }
 
   /**
+   * Edits forwarded messages for users
+   * 
+   * When a channel message is edited, this method finds all forwarded copies
+   * and edits them in users' private chats.
+   * 
+   * @async
+   * @param {string} channelId - Channel identifier
+   * @param {number} messageId - Original message ID from channel
+   * @param {Function} editor - Edit function (userId, forwardedId) -> void
+   * @returns {Promise<Object>} Edit results
+   */
+  async editForwardedMessages(channelId, messageId, editor) {
+    try {
+      this.#logger.debug('[ForwardingService] Starting edit forwarded messages', {
+        channelId,
+        messageId
+      });
+
+      // Find all forwarded messages for this channel message
+      const forwardedMessages = await this.#messageRepository.findByChannelAndOriginalId(
+        channelId,
+        messageId
+      );
+
+      if (!forwardedMessages || forwardedMessages.length === 0) {
+        this.#logger.debug('[ForwardingService] No forwarded messages found to edit', {
+          channelId,
+          messageId
+        });
+        return {
+          success: true,
+          editedCount: 0,
+          errorCount: 0,
+          errors: []
+        };
+      }
+
+      this.#logger.info('[ForwardingService] Editing forwarded messages', {
+        channelId,
+        messageId,
+        forwardedCount: forwardedMessages.length
+      });
+
+      const results = {
+        editedCount: 0,
+        errorCount: 0,
+        errors: []
+      };
+
+      // Edit each forwarded message
+      for (const fwdMsg of forwardedMessages) {
+        try {
+          // Apply rate limiting
+          await this.#throttleService.acquireToken();
+
+          // Add per-user delay
+          await this.#throttleService.delayForUser();
+
+          // Edit message via provided editor function
+          await editor(fwdMsg.userId, fwdMsg.forwardedMessageId);
+
+          results.editedCount++;
+
+          this.#logger.debug('[ForwardingService] Edited forwarded message', {
+            userId: fwdMsg.userId,
+            forwardedMessageId: fwdMsg.forwardedMessageId
+          });
+
+        } catch (error) {
+          results.errorCount++;
+          results.errors.push({
+            userId: fwdMsg.userId,
+            forwardedMessageId: fwdMsg.forwardedMessageId,
+            error: error.message
+          });
+
+          this.#logger.error('[ForwardingService] Failed to edit forwarded message', {
+            userId: fwdMsg.userId,
+            forwardedMessageId: fwdMsg.forwardedMessageId,
+            error: error.message
+          });
+
+          // Handle flood wait
+          if (error.isFloodWait) {
+            this.#logger.warn('[ForwardingService] Flood wait during edit', {
+              seconds: error.seconds,
+              userId: fwdMsg.userId
+            });
+            // Continue with other users
+          }
+        }
+      }
+
+      this.#logger.info('[ForwardingService] Completed editing forwarded messages', {
+        channelId,
+        messageId,
+        ...results
+      });
+
+      return {
+        success: results.errorCount === 0,
+        ...results
+      };
+
+    } catch (error) {
+      this.#logger.error('[ForwardingService] Error in editForwardedMessages', {
+        channelId,
+        messageId,
+        error: error.message
+      });
+      throw error;
+    }
+  }
+
+  /**
    * Deletes forwarded messages
    * 
    * Batch deletes all forwarded copies of a message with per-user throttling.

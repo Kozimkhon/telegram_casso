@@ -246,14 +246,44 @@ class ChannelEventHandlers {
       if (!channelId) return;
 
       const fullChannelId = `-100${channelId}`;
+      const channelInfo = this.#connectedChannels.get(fullChannelId);
+
+      if (!channelInfo) {
+        this.#logger.debug('Channel not in connected list', { channelId: fullChannelId });
+        return;
+      }
+
+      if (!channelInfo.forwardEnabled) {
+        this.#logger.debug('Forwarding disabled for channel', { channelId: fullChannelId });
+        return;
+      }
 
       this.#logger.info('Channel message edited', {
         channelId: fullChannelId,
         messageId: message.id,
+        hasText: !!message.message,
+        hasMedia: !!message.media,
       });
 
-      // TODO: Implement message edit forwarding logic
-      // For now, we just log the event
+      try {
+        // Edit forwarded copies using ForwardingService
+        await this.#services.forwarding.editForwardedMessages(
+          fullChannelId,
+          message.id,
+          async (userId, forwardedId) => await this.#editMessageForUser(userId, forwardedId, message)
+        );
+
+        this.#logger.debug('Successfully edited forwarded messages', {
+          channelId: fullChannelId,
+          messageId: message.id
+        });
+      } catch (err) {
+        this.#logger.error('Failed to edit forwarded messages', {
+          channelId: fullChannelId,
+          messageId: message.id,
+          error: err.message
+        });
+      }
 
     } catch (error) {
       this.#logger.error('Error handling channel message edit', error);
@@ -442,6 +472,73 @@ class ChannelEventHandlers {
         error.seconds = seconds;
         error.adminId = this.#sessionData.adminId;
       }
+      throw error;
+    }
+  }
+
+  /**
+   * Edits forwarded message in user's private chat
+   * Called by ForwardingService during batch edit
+   * @private
+   * @param {string} userId - User ID
+   * @param {string|number} forwardedId - Forwarded message ID to edit
+   * @param {Object} newMessage - New message content
+   * @returns {Promise<void>}
+   */
+  async #editMessageForUser(userId, forwardedId, newMessage) {
+    try {
+      if (!forwardedId) {
+        throw new Error('Forwarded message ID is required for editing');
+      }
+
+      const userEntity = await this.#client.getEntity(BigInt(userId));
+
+      this.#logger.debug('[ChannelEventHandlers] Editing message for user', {
+        userId,
+        forwardedId,
+        hasText: !!newMessage.message,
+        hasMedia: !!newMessage.media
+      });
+
+      // Convert ID to number if string
+      const messageId = typeof forwardedId === 'string' ? parseInt(forwardedId) : forwardedId;
+
+      // Edit message text if present
+      if (newMessage.message) {
+        await this.#client.editMessage(userEntity, {
+          message: messageId,
+          text: newMessage.message,
+        });
+
+        this.#logger.debug('[ChannelEventHandlers] Successfully edited forwarded message', {
+          userId,
+          forwardedId,
+          newText: newMessage.message.substring(0, 50) + (newMessage.message.length > 50 ? '...' : '')
+        });
+      } else if (newMessage.media) {
+        // If only media changed (rare case), log it
+        // Telegram doesn't support editing media via API easily
+        this.#logger.debug('[ChannelEventHandlers] Media-only edit detected (not supported)', {
+          userId,
+          forwardedId
+        });
+      }
+
+    } catch (error) {
+      this.#logger.error('[ChannelEventHandlers] Failed to edit message', {
+        userId,
+        forwardedId,
+        error: error.message,
+        stack: error.stack
+      });
+
+      // Check for flood wait
+      if (error.errorMessage?.includes('FLOOD_WAIT')) {
+        const seconds = parseInt(error.errorMessage.match(/(\d+)/)?.[1] || '60');
+        error.isFloodWait = true;
+        error.seconds = seconds;
+      }
+
       throw error;
     }
   }
