@@ -1,215 +1,107 @@
 /**
- * @fileoverview Unit Tests for Channel Domain Entity
- * Tests channel configuration and management
+ * @fileoverview Tests for Channel entity
  */
 
 import Channel from '../domain/Channel.entity.js';
 
 describe('Channel.entity', () => {
-  
-  const validChannelData = {
-    channelId: 'test_channel_123',
+  const baseData = {
+    channelId: '-100',
     title: 'Test Channel',
-    username: '@test_channel',
-    membersCount: 100,
-    description: 'A test channel'
+    username: 'test',
+    memberCount: 50,
+    forwardEnabled: true,
   };
 
-  describe('Constructor & Initialization', () => {
-    test('should create channel with valid data', () => {
-      // Act
-      const channel = new Channel(validChannelData);
+  describe('constructor & validation', () => {
+    test('sets defaults when optional fields missing', () => {
+      const channel = new Channel({ channelId: '-1', title: 'Title' });
 
-      // Assert
-      expect(channel).toBeDefined();
-      expect(channel.channelId).toBe('test_channel_123');
-      expect(channel.title).toBe('Test Channel');
+      expect(channel.memberCount).toBe(0);
+      expect(channel.forwardEnabled).toBe(true);
+      expect(channel.scheduleEnabled).toBe(false);
+      expect(channel.createdAt).toBeInstanceOf(Date);
     });
 
-    test('should throw error when channelId is missing', () => {
-      // Arrange
-      const invalidData = { ...validChannelData };
-      delete invalidData.channelId;
-
-      // Act & Assert
-      expect(() => new Channel(invalidData)).toThrow();
-    });
-
-    test('should throw error when title is missing', () => {
-      // Arrange
-      const invalidData = { ...validChannelData };
-      delete invalidData.title;
-
-      // Act & Assert
-      expect(() => new Channel(invalidData)).toThrow();
-    });
-
-    test('should set membersCount to 0 by default', () => {
-      // Arrange
-      const data = { ...validChannelData };
-      delete data.membersCount;
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.membersCount).toBe(0);
+    test.each([
+      [{ channelId: null }, 'Channel ID is required'],
+      [{ title: null }, 'Channel title is required'],
+      [{ title: 'a'.repeat(201) }, 'Channel title must not exceed 200 characters'],
+      [{ forwardEnabled: 'yes' }, 'forwardEnabled must be a boolean'],
+    ])('throws validation error %s', (override, message) => {
+      expect(() => new Channel({ ...baseData, ...override })).toThrow(message);
     });
   });
 
-  describe('Channel Properties', () => {
-    test('should store all channel data', () => {
-      // Act
-      const channel = new Channel(validChannelData);
+  describe('state changes', () => {
+    test('toggleForwarding flips flag and updates timestamp', () => {
+      const channel = new Channel(baseData);
+      const prev = channel.updatedAt;
 
-      // Assert
-      expect(channel.channelId).toBe('test_channel_123');
-      expect(channel.title).toBe('Test Channel');
-      expect(channel.username).toBe('@test_channel');
-      expect(channel.membersCount).toBe(100);
+      channel.toggleForwarding();
+
+      expect(channel.forwardEnabled).toBe(false);
+      expect(channel.updatedAt.getTime()).toBeGreaterThanOrEqual(prev.getTime());
     });
 
-    test('should allow null optional fields', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        username: null,
-        description: null
-      };
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.username).toBeNull();
-      expect(channel.description).toBeNull();
+    test('linkToAdmin stores admin and updates timestamp', () => {
+      const channel = new Channel(baseData);
+      channel.linkToAdmin('admin-1');
+      expect(channel.adminId).toBe('admin-1');
+      expect(channel.hasAdminSession()).toBe(true);
     });
 
-    test('should handle unicode in title', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        title: 'Канали тест'
-      };
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.title).toBe('Канали тест');
+    test('updateMemberCount enforces numeric values', () => {
+      const channel = new Channel(baseData);
+      channel.updateMemberCount(123);
+      expect(channel.memberCount).toBe(123);
+      expect(() => channel.updateMemberCount(-1)).toThrow('Member count must be a positive number');
     });
   });
 
-  describe('Validation', () => {
-    test('should validate required fields', () => {
-      // Arrange
-      const invalidData = { title: 'Test' };
+  describe('conversion helpers', () => {
+    test('toObject maps fields to snake_case', () => {
+      const now = new Date();
+      const channel = new Channel({ ...baseData, createdAt: now, updatedAt: now, adminId: 'admin' });
 
-      // Act & Assert
-      expect(() => new Channel(invalidData)).toThrow();
-    });
-
-    test('should validate membersCount is number', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        membersCount: 'invalid'
-      };
-
-      // Act & Assert
-      expect(() => new Channel(data)).toThrow();
-    });
-
-    test('should accept zero members', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        membersCount: 0
-      };
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.membersCount).toBe(0);
-    });
-  });
-
-  describe('Database Conversion', () => {
-    test('should convert to database row', () => {
-      // Arrange
-      const channel = new Channel(validChannelData);
-
-      // Act
-      const dbRow = channel.toDatabaseRow();
-
-      // Assert
-      expect(dbRow).toBeDefined();
-      expect(dbRow.channelId).toBe('test_channel_123');
-    });
-
-    test('should convert from database row', () => {
-      // Arrange
-      const dbRow = {
-        channelId: 'test_channel_123',
+      const obj = channel.toObject();
+      expect(obj).toMatchObject({
+        channel_id: '-100',
         title: 'Test Channel',
-        username: '@test_channel',
-        membersCount: 100,
-        description: 'A test channel',
-        created_at: new Date(),
-        updated_at: new Date()
-      };
-
-      // Act
-      const channel = Channel.fromDatabaseRow(dbRow);
-
-      // Assert
-      expect(channel.channelId).toBe('test_channel_123');
-      expect(channel.title).toBe('Test Channel');
-    });
-  });
-
-  describe('Edge Cases', () => {
-    test('should handle very long title', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        title: 'A'.repeat(255)
-      };
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.title.length).toBe(255);
+        username: 'test',
+        member_count: 50,
+        forward_enabled: 1,
+        admin_id: 'admin',
+        created_at: now.toISOString(),
+      });
     });
 
-    test('should handle very large member count', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        membersCount: 1000000
+    test('fromDatabaseRow restores entity', () => {
+      const row = {
+        id: 10,
+        channel_id: '-200',
+        access_hash: 'hash',
+        title: 'Channel',
+        username: null,
+        member_count: 5,
+        forward_enabled: 0,
+        throttle_delay_ms: 2000,
+        throttle_per_member_ms: 100,
+        min_delay_ms: 500,
+        max_delay_ms: 1000,
+        schedule_enabled: 1,
+        schedule_config: '{}',
+        admin_id: 'admin',
+        created_at: '2024-01-01T00:00:00.000Z',
+        updated_at: '2024-01-02T00:00:00.000Z',
       };
 
-      // Act
-      const channel = new Channel(data);
+      const entity = Channel.fromDatabaseRow(row);
 
-      // Assert
-      expect(channel.membersCount).toBe(1000000);
-    });
-
-    test('should handle special characters in channel ID', () => {
-      // Arrange
-      const data = {
-        ...validChannelData,
-        channelId: 'test-channel_123'
-      };
-
-      // Act
-      const channel = new Channel(data);
-
-      // Assert
-      expect(channel.channelId).toBe('test-channel_123');
+      expect(entity.channelId).toBe('-200');
+      expect(entity.forwardEnabled).toBe(false);
+      expect(entity.scheduleEnabled).toBe(true);
+      expect(entity.createdAt).toBeInstanceOf(Date);
     });
   });
 });

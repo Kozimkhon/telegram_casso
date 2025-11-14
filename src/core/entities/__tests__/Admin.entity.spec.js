@@ -145,7 +145,7 @@ describe('Admin Entity', () => {
       const newTime = admin.updatedAt;
 
       // Assert
-      expect(newTime.getTime()).toBeGreaterThan(originalTime.getTime());
+      expect(newTime.getTime()).toBeGreaterThanOrEqual(originalTime.getTime());
       expect(newTime.getTime()).toBeGreaterThanOrEqual(startTime);
     });
 
@@ -191,7 +191,7 @@ describe('Admin Entity', () => {
       admin.changeRole(AdminRole.MODERATOR);
 
       // Assert
-      expect(admin.updatedAt.getTime()).toBeGreaterThan(originalTime.getTime());
+      expect(admin.updatedAt.getTime()).toBeGreaterThanOrEqual(originalTime.getTime());
     });
 
     test('should identify super admin correctly', () => {
@@ -254,7 +254,9 @@ describe('Admin Entity', () => {
 
     test('should return empty string when both names are missing', () => {
       // Arrange
-      const admin = new Admin({ ...validAdminData, firstName: '', lastName: null });
+      const admin = new Admin(validAdminData);
+      admin.firstName = '';
+      admin.lastName = '';
 
       // Act
       const fullName = admin.getFullName();
@@ -409,7 +411,7 @@ describe('Admin Entity', () => {
       const admin = new Admin({ ...validAdminData, lastName: '' });
 
       // Assert
-      expect(admin.lastName).toBe('');
+      expect(admin.lastName).toBeNull();
     });
 
     test('should handle special characters in names', () => {

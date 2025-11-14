@@ -13,8 +13,7 @@ export default {
     '!src/**/*.spec.js',
     '!src/index.js',
     '!src/**/index.js',
-    '!src/config/**',
-    '!src/presentation/handlers/**'
+    '!src/config/**'
   ],
   
   // Coverage thresholds

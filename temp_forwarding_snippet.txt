@@ -1,0 +1,80 @@
+   * @param {string} channelId - Channel identifier
+   * @param {string} messageId - Original message ID
+   * @param {Function} deleter - Deletion function (userId, forwardedId) -> void
+   * @returns {Promise<Object>} Deletion results
+   */
+  async deleteForwardedMessages(channelId, messageIds, deleter) {
+    this.#logger.debug('[ForwardingService] Deleting forwarded messages', {
+      channelId,
+      messageIds
+    });
+
+    // Find all forwarded copies
+    const messages = await this.#messageRepository.findByForwardedMessageId(
+      channelId,
+      messageIds
+    ) || [];
+
+    this.#logger.info('[ForwardingService] Found forwarded message copies', {
+      channelId,
+      messageIds,
+      count: messages.length,
+      messages: messages.map(m => ({ userId: m.userId, forwardedId: m.forwardedMessageId }))
+    });
+
+    if (messages.length === 0) {
+      this.#logger.debug('[ForwardingService] No forwarded messages to delete', {
+        channelId,
+        messageIds
+      });
+      return {
+        total: 0,
+        deleted: 0,
+        failed: 0,
+        results: []
+      };
+    }
+
+    const results = [];
+    let deleted = 0;
+    let failed = 0;
+
+    // Group forwarded IDs per user for throttle-respectful deletion
+    const groupedIds = messages.reduce((acc, msg) => {
+      if (!acc[msg.userId]) {
+        acc[msg.userId] = [];
+      }
+      acc[msg.userId].push(msg.forwardedMessageId);
+      return acc;
+    }, {});
+
+    for (const userId of Object.keys(groupedIds)) {
+      const forwardedIds = groupedIds[userId];
+
+      try {
+        await this.#throttleService.waitForThrottle(userId);
+        await deleter(userId, forwardedIds);
+
+        for (const forwardedId of forwardedIds) {
+          await this.#messageRepository.markAsDeleted(userId, forwardedId);
+        }
+
+        results.push({
+          userId,
+          success: true
+        });
+        deleted += forwardedIds.length;
+      } catch (error) {
+        this.#logger.error('[ForwardingService] Failed to delete message', {
+          userId,
+          forwardedIds,
+          error: error.message
+        });
+
+        results.push({
+          userId,
+          success: false,
+          error: error.message
+        });
+        failed += forwardedIds.length;
+      }

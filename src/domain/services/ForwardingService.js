@@ -369,50 +369,46 @@ class ForwardingService {
     let deleted = 0;
     let failed = 0;
 
-
-    // Wait for throttle before deleting (per-user)
-    var Ids = {}
-    messages.forEach(element => {
-
-      if (!Ids[element.userId]) {
-        Ids[element.userId] = []
+    // Group forwarded IDs per user for throttle-respectful deletion
+    const groupedIds = messages.reduce((acc, msg) => {
+      if (!acc[msg.userId]) {
+        acc[msg.userId] = [];
       }
-      Ids[element.userId].push(element.forwardedMessageId);
-    });
+      acc[msg.userId].push(msg.forwardedMessageId);
+      return acc;
+    }, {});
 
-    // Delete the message
-    Object.keys(Ids).forEach(async (userId) => {
+    for (const userId of Object.keys(groupedIds)) {
+      const forwardedIds = groupedIds[userId];
+
       try {
         await this.#throttleService.waitForThrottle(userId);
-        await deleter(userId, Ids[userId]);
+        await deleter(userId, forwardedIds);
 
-        // Mark as deleted in database
-        (Ids[userId] || []).forEach(async (forwardedId) => {
-        await this.#messageRepository.markAsDeleted(
-          userId,
-          forwardedId
-        );})
+        for (const forwardedId of forwardedIds) {
+          await this.#messageRepository.markAsDeleted(userId, forwardedId);
+        }
 
         results.push({
-          userId: userId,
+          userId,
           success: true
         });
-        deleted++;
+        deleted += forwardedIds.length;
       } catch (error) {
         this.#logger.error('[ForwardingService] Failed to delete message', {
-          userId: userId,
-          forwardedIds: Ids[userId],
+          userId,
+          forwardedIds,
           error: error.message
         });
 
         results.push({
-          userId: userId,
+          userId,
           success: false,
           error: error.message
         });
-        failed++;
+        failed += forwardedIds.length;
       }
-    })
+    }
 
 
 
