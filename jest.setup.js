@@ -3,6 +3,8 @@
  * Initializes test environment with global utilities and mocks
  */
 
+import { jest } from '@jest/globals';
+
 // Set test environment variables
 process.env.NODE_ENV = 'test';
 process.env.LOG_LEVEL = 'error';

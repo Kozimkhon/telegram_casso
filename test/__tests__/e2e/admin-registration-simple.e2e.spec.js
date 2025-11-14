@@ -3,7 +3,7 @@
  * Tests complete admin registration and session creation flow
  */
 
-const { setupTestDatabase, teardownTestDatabase, clearAllTables, getDatabase } = require('../../setup/testDatabaseSetup');
+import { setupTestDatabase, teardownTestDatabase, clearAllTables, getDatabase } from '../../setup/testDatabaseSetup.js';
 
 describe('E2E: Admin Registration Workflow', () => {
   let database;
