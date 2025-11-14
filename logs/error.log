@@ -8295,3 +8295,307 @@ Error: Bot is not running!
 {
   "error": "Bot is not running!"
 }
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "New Name"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:06 [ERROR]: Failed to start AdminBot
+FetchError: request to https://api.telegram.org/bot8484094074:[REDACTED]/getMe failed, reason: getaddrinfo ENOTFOUND api.telegram.org
+    at ClientRequest.<anonymous> (/home/runner/work/telegram_casso/telegram_casso/node_modules/node-fetch/lib/index.js:1501:11)
+    at ClientRequest.emit (node:events:524:28)
+    at emitErrorEvent (node:_http_client:101:11)
+    at TLSSocket.socketErrorListener (node:_http_client:504:5)
+    at TLSSocket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+{
+  "error": "request to https://api.telegram.org/bot8484094074:[REDACTED]/getMe failed, reason: getaddrinfo ENOTFOUND api.telegram.org"
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane",
+      "email": "new@example.com",
+      "phone": "9876543210"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "invalid",
+    "updates": {}
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": ""
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "email": "invalid-email"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "phone": "123"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "isActive": false
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "role": "ADMIN"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "role": "INVALID_ROLE"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "settings": {
+        "notifications": false
+      }
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "settings": {
+        "b": 20
+      }
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane",
+      "email": "jane@test.com"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    },
+    "expectedVersion": 2
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {}
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {}
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Иван Петров"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "phone": null
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:05 [ERROR]: Failed to update admin
+{
+  "userId": {
+    "adminId": "admin_123",
+    "updates": {
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "role": "ADMIN"
+    }
+  },
+  "error": {}
+}
+2025-11-14 07:53:11 [ERROR]: Error showing forwarding stats
+Error: boom
+    at Object.<anonymous> (/home/runner/work/telegram_casso/telegram_casso/src/presentation/handlers/__tests__/statsHandlers.spec.js:90:7)
+    at Promise.then.completed (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/testWorker.js:106:12)
+{
+  "error": "boom"
+}
+2025-11-14 07:53:11 [ERROR]: Error showing system stats
+Error: no metrics
+    at Object.<anonymous> (/home/runner/work/telegram_casso/telegram_casso/src/presentation/handlers/__tests__/statsHandlers.spec.js:111:7)
+    at Promise.then.completed (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:121:9)
+    at run (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/runTest.js:444:34)
+    at Object.worker (/home/runner/work/telegram_casso/telegram_casso/node_modules/jest-runner/build/testWorker.js:106:12)
+{
+  "error": "no metrics"
+}
+2025-11-14 07:53:11 [ERROR]: Error showing queue status
+Error: db down
+    at Object.<anonymous> (/home/runner/work/telegram_casso/telegram_casso/src/presentation/handlers/__tests__/statsHandlers.spec.js:148:7)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+{
+  "error": "db down"
+}
