@@ -31,8 +31,9 @@ export default {
     "^@shared/(.*)$": "<rootDir>/src/shared/$1"
   },
 
-  resolver: 'jest-node-exports-resolver',
-  transform: {}, // ESM fayllar Node tomonidan transform qilinadi, Babel kerak emas
+  transform: {
+    '^.+\\.js$': 'babel-jest',
+  },
   transformIgnorePatterns: ["node_modules/(?!(telegram)/)"],
 
   // Test opsiyalari
