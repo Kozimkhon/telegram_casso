@@ -763,6 +763,7 @@ class UserBotController {
    */
   #startPeriodicTasks() {
     // Delete old messages every hour
+     this.#deleteOldMessages();
     this.#deleteInterval = setInterval(
       async () => await this.#deleteOldMessages(),
       60 * 60 * 1000
@@ -773,6 +774,7 @@ class UserBotController {
 
   /**
    * Deletes old forwarded messages
+   * Uses ForwardingService for centralized deletion logic
    * Handles both single and grouped messages (albums)
    * @private
    * @returns {Promise<void>}
@@ -781,129 +783,119 @@ class UserBotController {
     try {
       const hoursOld = 24; // Delete messages older than 24 hours
       
-      this.#logger.info('Starting old message deletion process...');
+      this.#logger.info('Starting old message deletion process...', { hoursOld });
 
-      // 1. Find old single messages
-      const singleMessages = await this.#useCases.findOldMessages.execute(hoursOld);
-      
-      // 2. Find old grouped messages (albums)
-      const groupedMessages = await this.messageRepository.findOldGroupedMessages(hoursOld / 24);
+      // Get old messages grouped by channel
+      const oldMessagesByChannel = await this.messageRepository.findOldMessagesByChannel(hoursOld / 24);
 
-      const singleCount = singleMessages?.messages?.length || 0;
-      const groupedCount = groupedMessages?.size || 0;
-      
-      this.#logger.info(`Found messages to delete`, {
-        singleMessages: singleCount,
-        groupedMessageGroups: groupedCount,
+      if (!oldMessagesByChannel || oldMessagesByChannel.size === 0) {
+        this.#logger.info('No old messages to delete');
+        return;
+      }
+
+      this.#logger.info(`Found old messages in ${oldMessagesByChannel.size} channels`);
+
+      // Process each channel's old messages
+      for (const [channelId, messages] of oldMessagesByChannel.entries()) {
+        try {
+          if (!messages || messages.length === 0) continue;
+
+          this.#logger.debug(`Processing ${messages.length} old messages from channel ${channelId}`);
+
+          // Extract original message IDs from the old messages
+          const originalMessageIds = [...new Set(messages.map(m =>Number.parseInt(m.messageId)).filter(Boolean))];
+
+          if (originalMessageIds.length === 0) {
+            this.#logger.debug('No original message IDs found', { channelId });
+            continue;
+          }
+
+          // Use ForwardingService to delete forwarded copies
+          // This will handle deletion + database updates centrally
+          await this.#services.forwarding.deleteForwardedMessages(
+            channelId,
+            originalMessageIds,
+            async (userId, forwardedIds) => await this.#deleteMessageFromUser(userId, forwardedIds)
+          );
+
+          this.#logger.debug(`Deleted old messages from channel ${channelId}`, {
+            originalMessages: originalMessageIds.length,
+            totalForwards: messages.length,
+          });
+
+        } catch (error) {
+          this.#logger.error('Failed to delete old messages from channel', {
+            channelId,
+            error: error.message,
+          });
+        }
+      }
+
+      this.#logger.info('Old message deletion process complete');
+
+    } catch (error) {
+      this.#logger.error('Error in old message deletion process', error);
+    }
+  }
+
+  /**
+   * Deletes forwarded messages from user's private chat
+   * Helper method for ForwardingService deletion callback
+   * @private
+   * @param {string} userId - User ID
+   * @param {string[]|number[]} forwardedIds - Forwarded message IDs to delete
+   * @returns {Promise<void>}
+   */
+  async #deleteMessageFromUser(userId, forwardedIds) {
+    try {
+      if (!forwardedIds || forwardedIds.length === 0) {
+        return;
+      }
+
+      this.#logger.debug('Deleting messages from user', {
+        userId,
+        count: forwardedIds.length,
+        messageIds: forwardedIds.slice(0, 5), // Log first 5
       });
 
-      // Process single messages
-      let deletedSingle = 0;
-      let failedSingle = 0;
+      // Get user entity
+      const userEntity = await this.#client.getEntity(BigInt(userId));
 
-      if (singleMessages?.messages && singleMessages.messages.length > 0) {
-        for (const msg of singleMessages.messages) {
-          try {
-            // Skip if it's a grouped message (will be handled separately)
-            if (msg.isGrouped && msg.groupedId) {
-              continue;
-            }
+      // Convert IDs to numbers
+      const messageIds = forwardedIds.map(id => parseInt(id));
 
-            const userEntity = await this.#client.getEntity(BigInt(msg.userId));
-            
-            await this.#client.deleteMessages(userEntity, [msg.forwardedMessageId], {
-              revoke: true,
-            });
+      // Delete messages from user's chat
+      await this.#client.deleteMessages(userEntity, messageIds, {
+        revoke: true,
+      });
 
-            await this.#useCases.markMessageAsDeleted.execute(
-              msg.userId,
-              msg.forwardedMessageId
-            );
-
-            deletedSingle++;
-
-          } catch (error) {
-            failedSingle++;
-            this.#logger.debug('Failed to delete single message', {
-              messageId: msg.forwardedMessageId,
-              userId: msg.userId,
-              error: error.message,
-            });
-          }
-        }
-      }
-
-      // Process grouped messages (albums)
-      let deletedGrouped = 0;
-      let failedGrouped = 0;
-
-      if (groupedMessages && groupedMessages.size > 0) {
-        for (const [key, messages] of groupedMessages.entries()) {
-          try {
-            if (!messages || messages.length === 0) continue;
-
-            const [userId, groupedId] = key.split(':');
-            const userEntity = await this.#client.getEntity(BigInt(userId));
-
-            // Extract all forwarded message IDs from the group
-            const forwardedMessageIds = messages
-              .map(m => m.forwardedMessageId)
-              .filter(Boolean);
-
-            if (forwardedMessageIds.length === 0) continue;
-
-            // Delete all messages in the group together
-            await this.#client.deleteMessages(userEntity, forwardedMessageIds, {
-              revoke: true,
-            });
-
-            // Mark all messages as deleted in database
-            for (const msg of messages) {
-              if (msg.forwardedMessageId) {
-                await this.#useCases.markMessageAsDeleted.execute(
-                  msg.userId,
-                  msg.forwardedMessageId
-                );
-              }
-            }
-
-            deletedGrouped += messages.length;
-
-            this.#logger.debug('Deleted grouped messages', {
-              groupedId,
-              userId,
-              count: messages.length,
-              messageIds: forwardedMessageIds,
-            });
-
-          } catch (error) {
-            failedGrouped += messages.length;
-            this.#logger.debug('Failed to delete grouped messages', {
-              key,
-              count: messages.length,
-              error: error.message,
-            });
-          }
-        }
-      }
-
-      this.#logger.info('Old message deletion complete', {
-        single: {
-          deleted: deletedSingle,
-          failed: failedSingle,
-        },
-        grouped: {
-          deleted: deletedGrouped,
-          failed: failedGrouped,
-        },
-        total: {
-          deleted: deletedSingle + deletedGrouped,
-          failed: failedSingle + failedGrouped,
-        },
+      this.#logger.debug('Successfully deleted messages from user', {
+        userId,
+        count: messageIds.length,
       });
 
     } catch (error) {
-      this.#logger.error('Error deleting old messages', error);
+      // Handle specific Telegram errors
+      if (error.message?.includes('USER_DEACTIVATED') || 
+          error.message?.includes('CHAT_WRITE_FORBIDDEN') ||
+          error.message?.includes('USER_BLOCKED')) {
+        this.#logger.debug('Cannot delete messages - user unavailable', {
+          userId,
+          reason: error.message,
+        });
+      } else if (error.message?.includes('MESSAGE_DELETE_FORBIDDEN')) {
+        this.#logger.debug('Cannot delete messages - permission denied', {
+          userId,
+        });
+      } else {
+        this.#logger.warn('Failed to delete messages from user', {
+          userId,
+          messageCount: forwardedIds.length,
+          error: error.message,
+        });
+      }
+      
+      // Don't throw - let ForwardingService handle marking as deleted in DB
     }
   }
 

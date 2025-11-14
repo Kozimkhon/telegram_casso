@@ -191,6 +191,25 @@ class MessageRepository extends IMessageRepository {
   async markAsDeleted(userId, forwardedMessageId) {
     await this.#ormRepository.markAsDeleted(userId, forwardedMessageId);
   }
+
+  /**
+   * Finds old messages grouped by channel
+   * Used for periodic deletion of old forwarded messages
+   * @param {number} daysOld - Days old threshold
+   * @returns {Promise<Map>} Map of channelId -> domain message entities
+   */
+  async findOldMessagesByChannel(daysOld = 7) {
+    const messagesByChannel = await this.#ormRepository.findOldMessagesByChannel(daysOld);
+    
+    // Convert ORM entities to domain entities
+    const domainMessagesByChannel = new Map();
+    for (const [channelId, ormMessages] of messagesByChannel.entries()) {
+      const domainMessages = ormMessages.map(e => this.#toDomainEntity(e)).filter(Boolean);
+      domainMessagesByChannel.set(channelId, domainMessages);
+    }
+    
+    return domainMessagesByChannel;
+  }
 }
 
 export default MessageRepository;

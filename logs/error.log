@@ -4690,3 +4690,46 @@ Error: Bot is not running!
 {
   "error": "Bot is not running!"
 }
+2025-11-14 10:36:00 [ERROR]: Error in old message deletion process
+TypeError: this.messageRepository.findOldMessagesByChannel is not a function
+    at #deleteOldMessages (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:789:65)
+    at #startPeriodicTasks (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:766:29)
+    at UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:191:31)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "this.messageRepository.findOldMessagesByChannel is not a function"
+}
+2025-11-14 10:41:31 [ERROR]: Error in old message deletion process
+TypeError: this.messageRepository.findOldMessagesByChannel is not a function
+    at #deleteOldMessages (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:789:65)
+    at #startPeriodicTasks (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:766:29)
+    at UserBotController.start (file:///D:/experiments/telegram_casso/src/presentation/controllers/UserBotController.js:191:31)
+    at async Application.start (file:///D:/experiments/telegram_casso/src/index.js:102:13)
+{
+  "error": "this.messageRepository.findOldMessagesByChannel is not a function"
+}
+2025-11-14 10:55:01 [ERROR]: Failed to start AdminBot
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: socket hang up
+    at ClientRequest.<anonymous> (D:\experiments\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:519:28)
+    at emitErrorEvent (node:_http_client:107:11)
+    at TLSSocket.socketOnEnd (node:_http_client:598:5)
+    at TLSSocket.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: socket hang up"
+}
+2025-11-14 11:06:43 [ERROR]: Failed to start AdminBot
+FetchError: request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (D:\experiments\telegram_casso\node_modules\node-fetch\lib\index.js:1501:11)
+    at ClientRequest.emit (node:events:519:28)
+    at emitErrorEvent (node:_http_client:107:11)
+    at TLSSocket.socketErrorListener (node:_http_client:574:5)
+    at TLSSocket.emit (node:events:519:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+{
+  "error": "request to https://api.telegram.org/bot8214218173:[REDACTED]/getMe failed, reason: Client network socket disconnected before secure TLS connection was established"
+}

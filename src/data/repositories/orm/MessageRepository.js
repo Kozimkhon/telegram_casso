@@ -232,6 +232,38 @@ class TypeORMMessageRepository extends BaseRepository {
 
     return groupedMessages;
   }
+
+  /**
+   * Finds old messages grouped by channel
+   * Used for periodic deletion of old forwarded messages
+   * @param {number} daysOld - Days old threshold
+   * @returns {Promise<Map>} Map of channelId -> messages array
+   */
+  async findOldMessagesByChannel(daysOld = 7) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - daysOld);
+
+    const messages = await this.repository
+      .createQueryBuilder('message')
+      .where('message.status != :status', { status: 'deleted' })
+      .andWhere('message.created_at <= :cutoffDate', { cutoffDate })
+      .andWhere('message.forwarded_message_id IS NOT NULL')
+      .getMany();
+
+    // Group messages by channel ID
+    const messagesByChannel = new Map();
+    
+    for (const msg of messages) {
+      if (!msg.channelId) continue;
+      
+      if (!messagesByChannel.has(msg.channelId)) {
+        messagesByChannel.set(msg.channelId, []);
+      }
+      messagesByChannel.get(msg.channelId).push(msg);
+    }
+
+    return messagesByChannel;
+  }
 }
 
 export default TypeORMMessageRepository;
