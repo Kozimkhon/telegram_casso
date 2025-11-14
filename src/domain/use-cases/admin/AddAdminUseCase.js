@@ -20,11 +20,20 @@ class AddAdminUseCase {
   #adminRepository;
 
   /**
-   * Creates use case
-   * @param {AdminRepository} adminRepository - Admin repository
+   * Logger instance
+   * @private
    */
-  constructor(adminRepository) {
+  #logger;
+
+  /**
+   * Creates use case
+   * @param {Object} dependencies - Dependencies
+   * @param {AdminRepository} dependencies.adminRepository - Admin repository
+   * @param {Object} dependencies.logger - Logger instance
+   */
+  constructor({ adminRepository, logger = console }) {
     this.#adminRepository = adminRepository;
+    this.#logger = logger;
   }
 
   /**
@@ -52,7 +61,7 @@ class AddAdminUseCase {
       lastName: data.lastName || null,
       phone: data.phone || null,
       role: data.role || AdminRole.ADMIN,
-      isActive: data.isActive !== false,
+      isActive: data.isActive === true || data.isActive === undefined ? true : false,
       createdAt: new Date(),
       updatedAt: new Date()
     });

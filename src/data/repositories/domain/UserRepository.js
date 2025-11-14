@@ -26,7 +26,9 @@ class UserRepository extends IUserRepository {
       last_name: ormEntity.lastName,
       username: ormEntity.username,
       phone: ormEntity.phone,
-      // REMOVED: is_bot, is_premium, is_active (not part of domain entity)
+      is_bot: ormEntity.isBot,
+      is_premium: ormEntity.isPremium,
+      is_active: ormEntity.isActive,
       created_at: ormEntity.createdAt,
       updated_at: ormEntity.updatedAt
     });
@@ -62,8 +64,10 @@ class UserRepository extends IUserRepository {
       firstName: data.first_name,
       lastName: data.last_name,
       username: data.username,
-      phone: data.phone
-      // REMOVED: isBot, isPremium, isActive (not part of domain)
+      phone: data.phone,
+      isBot: data.is_bot,
+      isPremium: data.is_premium,
+      isActive: data.is_active
     });
 
     return this.#toDomainEntity(created);
@@ -76,7 +80,9 @@ class UserRepository extends IUserRepository {
     if (updates.last_name !== undefined) ormUpdates.lastName = updates.last_name;
     if (updates.username !== undefined) ormUpdates.username = updates.username;
     if (updates.phone !== undefined) ormUpdates.phone = updates.phone;
-    // REMOVED: is_bot, is_premium, is_active field mappings (not part of domain)
+    if (updates.is_bot !== undefined) ormUpdates.isBot = updates.is_bot;
+    if (updates.is_premium !== undefined) ormUpdates.isPremium = updates.is_premium;
+    if (updates.is_active !== undefined) ormUpdates.isActive = updates.is_active;
 
     const updated = await this.#ormRepository.update(id, ormUpdates);
     return this.#toDomainEntity(updated);

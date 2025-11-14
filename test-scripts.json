@@ -1,0 +1,41 @@
+{
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coverage:report": "jest --coverage --coverageReporters=html && open coverage/index.html",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:domain": "jest src/core/entities/__tests__/ src/domain/",
+    "test:application": "jest src/domain/use-cases/__tests__/",
+    "test:infrastructure": "jest src/data/repositories/__tests__/",
+    "test:presentation": "jest src/presentation/controllers/__tests__/",
+    "test:unit": "jest --testPathIgnore=/__e2e__/",
+    "test:e2e": "jest --testPathPattern=/__e2e__/",
+    "test:ci": "jest --coverage --ci --reporters=default --reporters=jest-junit",
+    "test:profile": "jest --logHeapUsage",
+    "test:verbose": "jest --verbose",
+    "test:update-snapshots": "jest --updateSnapshot",
+    "test:clear-cache": "jest --clearCache",
+    "test:pattern": "jest --testNamePattern",
+    "test:file": "jest --testPathPattern",
+    "lint:tests": "eslint 'src/**/__tests__/**/*.js' --fix",
+    "test:all": "npm run test:coverage && npm run lint:tests"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.spec.js",
+      "!src/index.js",
+      "!src/**/index.js",
+      "!src/config/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
+      }
+    }
+  }
+}

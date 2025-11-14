@@ -55,7 +55,7 @@ class GetChannelStatsUseCase {
         title: channel.title,
         memberCount: channel.memberCount,
         forwardEnabled: channel.forwardEnabled,
-        adminSessionPhone: channel.adminSessionPhone,
+        adminId: channel.adminId,
         createdAt: channel.createdAt,
         updatedAt: channel.updatedAt
       }

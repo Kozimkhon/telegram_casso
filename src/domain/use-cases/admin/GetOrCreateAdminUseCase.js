@@ -12,7 +12,7 @@ const logger = createChildLogger({ component: 'GetOrCreateAdminUseCase' });
  * Get or Create Admin Use Case
  * Ensures admin exists in database
  */
-export class GetOrCreateAdminUseCase {
+export default class GetOrCreateAdminUseCase {
   #adminRepository;
 
   /**

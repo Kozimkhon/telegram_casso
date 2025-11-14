@@ -108,7 +108,7 @@ class MetricsService {
           title: channel.title,
           memberCount: channel.memberCount,
           forwardEnabled: channel.forwardEnabled,
-          adminSession: channel.adminSessionPhone
+          adminId: channel.adminId
         },
         metrics: {
           totalUsers: users.length,

@@ -278,6 +278,50 @@ class AdminBotController {
       isRunning: this.#isRunning,
     };
   }
+
+  /**
+   * Sends message to admin
+   * @param {string} adminId - Admin user ID
+   * @param {string} message - Message text
+   * @param {Object} options - Optional parameters (parse_mode, reply_markup, etc.)
+   * @returns {Promise<boolean>} Success status
+   */
+  async sendMessageToAdmin(adminId, message, options = {}) {
+    try {
+      if (!this.#isRunning || !this.#bot) {
+        this.#logger.warn('Cannot send message: bot not running', { adminId });
+        return false;
+      }
+
+      const defaultOptions = {
+        parse_mode: 'HTML',
+        ...options
+      };
+
+      await this.#bot.telegram.sendMessage(adminId, message, defaultOptions);
+      
+      this.#logger.debug('Message sent to admin', { 
+        adminId, 
+        messageLength: message.length 
+      });
+      
+      return true;
+    } catch (error) {
+      this.#logger.error('Failed to send message to admin', {
+        adminId,
+        error: error.message
+      });
+      return false;
+    }
+  }
+
+  /**
+   * Gets Telegraf bot instance
+   * @returns {Telegraf} Bot instance
+   */
+  getBot() {
+    return this.#bot;
+  }
 }
 
 export default AdminBotController;
