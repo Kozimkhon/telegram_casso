@@ -79,7 +79,33 @@
 
 #### `#processUpdates(newMessages, otherUpdates)`
 - Yangi xabarlar va boshqa yangilanishlarni qayta ishlaydi
+- **Deduplication**: Bir xil message ID larni filtrlab oladi
 - Har bir yangilanishni `#handleTelegramEvent()` ga yuboradi
+- Avtomatik cleanup: 10000 dan oshsa, oxirgi 5000 tasini saqlaydi
+
+### Message Deduplication
+
+```javascript
+#processedMessageIds = new Set(); // Qayta ishlanmagan messagelarni saqlaydi
+
+// Message key format: "channelId_messageId"
+const messageKey = `${channelId}_${messageId}`;
+
+// Duplicate check
+if (this.#processedMessageIds.has(messageKey)) {
+  // Skip duplicate
+  continue;
+}
+
+// Mark as processed
+this.#processedMessageIds.add(messageKey);
+```
+
+**Features:**
+- ✅ Memory-efficient Set structure
+- ✅ Automatic cleanup (10000 → 5000)
+- ✅ Per-batch deduplication
+- ✅ Works for both newMessages and otherUpdates
 
 ### State Management
 
@@ -131,6 +157,9 @@ await userBot.stop(); // Polling to'xtatiladi
 - [x] State management qo'shildi
 - [x] Error handling yangilandi
 - [x] `stop()` metodida polling to'xtatish qo'shildi
+- [x] **Message deduplication** qo'shildi
+- [x] **Processed message IDs tracking** qo'shildi
+- [x] **Automatic cleanup** qo'shildi (10000 → 5000)
 
 ### Performance
 

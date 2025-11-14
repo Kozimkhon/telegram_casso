@@ -119,6 +119,18 @@ class UserBotController {
   #isPolling = false;
 
   /**
+   * Processed message IDs to prevent duplicates (global state)
+   * @private
+   */
+  #processedMessageIds = new Set();
+
+  /**
+   * Currently processing message IDs in this batch (global state)
+   * @private
+   */
+  #processedInThisBatch = new Set();
+
+  /**
    * Creates UserBot controller
    * @param {Object} dependencies - Injected dependencies
    * @param {Object} sessionData - Session data (adminId, sessionString)
@@ -325,6 +337,10 @@ class UserBotController {
 
       // Stop polling
       this.#stopPolling();
+
+      // Clear processed message IDs
+      this.#processedMessageIds.clear();
+      this.#processedInThisBatch.clear();
 
       // Clear intervals
       if (this.#syncInterval) clearInterval(this.#syncInterval);
@@ -665,7 +681,7 @@ class UserBotController {
     // Poll every 1 second
     this.#pollingInterval = setInterval(
       async () => await this.#pollUpdates(),
-      1000
+      5000
     );
 
     this.#logger.info('Polling loop started');
@@ -702,8 +718,14 @@ class UserBotController {
 
     try {
       // Get difference from Telegram
+      var channelEntityLike=new Api.InputPeerChannel({
+        channelId: BigInt(this.#connectedChannels.keys().next().value.replace('-100','')),
+        accessHash: BigInt(this.#connectedChannels.values().next().value.accessHash)
+      });
       const difference = await this.#client.invoke(
-        new Api.updates.GetDifference({
+        new Api.updates.GetChannelDifference({
+          channel: channelEntityLike,
+          filter: new Api.ChannelMessagesFilterEmpty(),
           pts: this.#updateState.pts,
           date: this.#updateState.date,
           qts: this.#updateState.qts,
@@ -716,9 +738,10 @@ class UserBotController {
       }
       // Process based on difference type
       if (difference.className === 'updates.DifferenceEmpty') {
-        // No new updates
+        // No new updates - but update all state fields
         this.#updateState.date = difference.date;
         this.#updateState.seq = difference.seq;
+        // pts and qts remain unchanged for DifferenceEmpty
       } else if (difference.className === 'updates.Difference') {
         // Process all updates
         await this.#processUpdates(difference.newMessages, difference.otherUpdates);
@@ -777,18 +800,38 @@ class UserBotController {
    */
   async #processUpdates(newMessages, otherUpdates) {
     try {
+      // Use global batch tracker instead of local
+      // Clear it at the start of each getDifference cycle
+      this.#processedInThisBatch.clear();
+
       // Process new messages
       if (newMessages && newMessages.length > 0) {
         this.#logger.debug(`Processing ${newMessages.length} new messages`);
         
         for (const message of newMessages) {
-          // Convert message to UpdateNewChannelMessage format
-          if (message.peerId?.channelId) {
-            await this.#handleTelegramEvent({
-              className: 'UpdateNewChannelMessage',
-              message: message,
-            });
+          // Skip if not a channel message
+          if (!message.peerId?.channelId) {
+            continue;
           }
+
+          // Create unique message identifier
+          const messageKey = `${message.peerId.channelId}_${message.id}`;
+          
+          // Skip if already processed
+          if (this.#processedMessageIds.has(messageKey) || this.#processedInThisBatch.has(messageKey)) {
+            this.#logger.debug('Skipping duplicate message', { messageKey });
+            continue;
+          }
+
+          // Mark as processed
+          this.#processedInThisBatch.add(messageKey);
+          this.#processedMessageIds.add(messageKey);
+          
+          // Convert message to UpdateNewChannelMessage format
+          await this.#handleTelegramEvent({
+            className: 'UpdateNewChannelMessage',
+            message: message,
+          });
         }
       }
 
@@ -797,10 +840,49 @@ class UserBotController {
         this.#logger.debug(`Processing ${otherUpdates.length} other updates`);
         
         for (const update of otherUpdates) {
-          if(update.channelId&&update.className!=="UpdateChannelTooLong"){
-            await this.#handleTelegramEvent(update);
+          
+          var needEvent=[
+            // "UpdateNewChannelMessage",
+            "UpdateDeleteChannelMessages",
+            // "UpdateChannelParticipant"
+          ];
+          console.log(update.className);
+          if (!needEvent.includes(update.className)) {
+            continue;
           }
+
+          // For message updates, check for duplicates
+          if (update.message?.id && update.message?.peerId?.channelId) {
+            const messageKey = `${update.className}_${update.message.peerId.channelId}_${update.message.id}`;
+            
+            if (this.#processedMessageIds.has(messageKey) 
+              || this.#processedInThisBatch.has(messageKey)||
+          !this.#connectedChannels.has(`-100${update.message.peerId.channelId.toString()}`)
+          ) {
+              this.#logger.debug('Skipping duplicate update', { 
+                className: update.className,
+                messageKey 
+              });
+              continue;
+            }
+            
+            this.#processedInThisBatch.add(messageKey);
+            this.#processedMessageIds.add(messageKey);
+          }
+          
+          await this.#handleTelegramEvent(update);
         }
+      }
+
+      // Cleanup old message IDs (keep last 10000)
+      if (this.#processedMessageIds.size > 1000) {
+        const idsArray = Array.from(this.#processedMessageIds);
+        const keepIds = idsArray.slice(-5000); // Keep last 5000
+        this.#processedMessageIds = new Set(keepIds);
+        this.#logger.debug('Cleaned up old message IDs', {
+          before: idsArray.length,
+          after: this.#processedMessageIds.size
+        });
       }
 
     } catch (error) {
