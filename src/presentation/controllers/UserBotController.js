@@ -96,6 +96,29 @@ class UserBotController {
   #channelEventHandlers = null;
 
   /**
+   * Polling interval for getDifference
+   * @private
+   */
+  #pollingInterval = null;
+
+  /**
+   * State for getDifference (pts, date, qts)
+   * @private
+   */
+  #updateState = {
+    pts: 0,
+    date: 0,
+    qts: 0,
+    seq: 0,
+  };
+
+  /**
+   * Polling active flag
+   * @private
+   */
+  #isPolling = false;
+
+  /**
    * Creates UserBot controller
    * @param {Object} dependencies - Injected dependencies
    * @param {Object} sessionData - Session data (adminId, sessionString)
@@ -184,8 +207,8 @@ class UserBotController {
       // Sync channels
       await this.syncChannelsManually();
 
-      // Setup event handlers
-      await this.#setupEventHandlers();
+      // Setup polling with getDifference instead of event handlers
+      await this.#setupPolling();
 
       // Start periodic tasks
       this.#startPeriodicTasks();
@@ -299,6 +322,9 @@ class UserBotController {
   async stop() {
     try {
       this.#logger.info('Stopping UserBot...');
+
+      // Stop polling
+      this.#stopPolling();
 
       // Clear intervals
       if (this.#syncInterval) clearInterval(this.#syncInterval);
@@ -565,6 +591,224 @@ class UserBotController {
   }
 
   /**
+   * Sets up polling with getDifference
+   * @private
+   * @returns {Promise<void>}
+   */
+  async #setupPolling() {
+    try {
+      this.#logger.info('Setting up getDifference polling...');
+
+      // Initialize channel event handlers with dependencies
+      this.#channelEventHandlers = new ChannelEventHandlers({
+        useCases: this.#useCases,
+        services: this.#services,
+        connectedChannels: this.#connectedChannels,
+        sessionData: this.#sessionData,
+        client: this.#client,
+      });
+
+      // Get initial state from Telegram
+      await this.#initializeState();
+
+      // Start polling loop
+      this.#startPolling();
+
+      this.#logger.info('getDifference polling started successfully');
+    } catch (error) {
+      this.#logger.error('Failed to setup polling', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Initializes state for getDifference
+   * @private
+   * @returns {Promise<void>}
+   */
+  async #initializeState() {
+    try {
+      // Get current state from Telegram
+      const state = await this.#client.invoke(
+        new Api.updates.GetState()
+      );
+
+      this.#updateState = {
+        pts: state.pts,
+        date: state.date,
+        qts: state.qts,
+        seq: state.seq,
+      };
+
+      this.#logger.info('Initial state retrieved', {
+        pts: this.#updateState.pts,
+        date: this.#updateState.date,
+      });
+    } catch (error) {
+      this.#logger.error('Failed to initialize state', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Starts polling loop
+   * @private
+   */
+  #startPolling() {
+    if (this.#isPolling) {
+      this.#logger.warn('Polling already active');
+      return;
+    }
+
+    this.#isPolling = true;
+    
+    // Poll every 1 second
+    this.#pollingInterval = setInterval(
+      async () => await this.#pollUpdates(),
+      1000
+    );
+
+    this.#logger.info('Polling loop started');
+  }
+
+  /**
+   * Stops polling loop
+   * @private
+   */
+  #stopPolling() {
+    if (!this.#isPolling) {
+      return;
+    }
+
+    this.#isPolling = false;
+
+    if (this.#pollingInterval) {
+      clearInterval(this.#pollingInterval);
+      this.#pollingInterval = null;
+    }
+
+    this.#logger.info('Polling loop stopped');
+  }
+
+  /**
+   * Polls for updates using getDifference
+   * @private
+   * @returns {Promise<void>}
+   */
+  async #pollUpdates() {
+    if (!this.#client || !this.#isRunning || this.#isPaused) {
+      return;
+    }
+
+    try {
+      // Get difference from Telegram
+      const difference = await this.#client.invoke(
+        new Api.updates.GetDifference({
+          pts: this.#updateState.pts,
+          date: this.#updateState.date,
+          qts: this.#updateState.qts,
+        })
+      );
+      this.#updateState.date = difference.date;
+      if(difference.pts==this.#updateState.pts&&difference.seq==this.#updateState.seq&&difference.qts==this.#updateState.qts){
+        // No new updates
+        return;
+      }
+      // Process based on difference type
+      if (difference.className === 'updates.DifferenceEmpty') {
+        // No new updates
+        this.#updateState.date = difference.date;
+        this.#updateState.seq = difference.seq;
+      } else if (difference.className === 'updates.Difference') {
+        // Process all updates
+        await this.#processUpdates(difference.newMessages, difference.otherUpdates);
+        
+        // Update state
+        this.#updateState = {
+          pts: difference.state.pts,
+          date: difference.state.date,
+          qts: difference.state.qts,
+          seq: difference.state.seq,
+        };
+      } else if (difference.className === 'updates.DifferenceSlice') {
+        // Process partial updates
+        await this.#processUpdates(difference.newMessages, difference.otherUpdates);
+        
+        // Update state (intermediate state, not final)
+        this.#updateState = {
+          pts: difference.intermediateState.pts,
+          date: difference.intermediateState.date,
+          qts: difference.intermediateState.qts,
+          seq: difference.intermediateState.seq,
+        };
+        
+        // Continue polling for remaining updates
+        this.#logger.debug('Received partial updates, continuing...');
+      } else if (difference.className === 'updates.DifferenceTooLong') {
+        // Too many updates, need to reset state
+        this.#logger.warn('Too many updates, resetting state');
+        await this.#initializeState();
+      }
+
+    } catch (error) {
+      // Ignore minor errors to keep polling
+      if (error.errorMessage === 'AUTH_KEY_UNREGISTERED' || error.code === 401) {
+        this.#logger.error('Authentication error in polling', error);
+        await this.#handleSessionError(
+          'AUTH_KEY_UNREGISTERED',
+          'Session expired during polling'
+        );
+        this.#stopPolling();
+      } else {
+        this.#logger.debug('Polling error (will retry)', {
+          error: error.message,
+          code: error.code
+        });
+      }
+    }
+  }
+
+  /**
+   * Processes updates from getDifference
+   * @private
+   * @param {Array} newMessages - New messages
+   * @param {Array} otherUpdates - Other updates
+   * @returns {Promise<void>}
+   */
+  async #processUpdates(newMessages, otherUpdates) {
+    try {
+      // Process new messages
+      if (newMessages && newMessages.length > 0) {
+        this.#logger.debug(`Processing ${newMessages.length} new messages`);
+        
+        for (const message of newMessages) {
+          // Convert message to UpdateNewChannelMessage format
+          if (message.peerId?.channelId) {
+            await this.#handleTelegramEvent({
+              className: 'UpdateNewChannelMessage',
+              message: message,
+            });
+          }
+        }
+      }
+
+      // Process other updates
+      if (otherUpdates && otherUpdates.length > 0) {
+        this.#logger.debug(`Processing ${otherUpdates.length} other updates`);
+        
+        for (const update of otherUpdates) {
+          if(update.channelId&&update.className!=="UpdateChannelTooLong"){
+            await this.#handleTelegramEvent(update);
+          }
+        }
+      }
+
+    } catch (error) {
+      this.#logger.error('Error processing updates', error);
+    }
+  }
+
+  /**
    * Universal event handler - routes events to appropriate handlers based on class name
    * Only processes events from channels where admin has admin rights
    * @private
@@ -722,38 +966,6 @@ class UserBotController {
         error: error.message,
         eventType: event?.className || 'unknown'
       });
-    }
-  }
-
-  /**
-   * Sets up event handlers
-   * @private
-   * @returns {Promise<void>}
-   */
-  async #setupEventHandlers() {
-    try {
-      // // Only setup handlers if we have channels to monitor
-      // if (this.#adminChannelEntities.length === 0) {
-      //   this.#logger.warn('No channels to monitor, skipping event handlers setup');
-      //   return;
-      // }
-
-      // Initialize channel event handlers with dependencies
-      this.#channelEventHandlers = new ChannelEventHandlers({
-        useCases: this.#useCases,
-        services: this.#services,
-        connectedChannels: this.#connectedChannels,
-        sessionData: this.#sessionData,
-        client: this.#client,
-      });
-
-      // Register a single universal event handler for all Telegram updates
-      // This avoids issues with non-constructor Update types
-      this.#client.addEventHandler(
-        async (event) => await this.#handleTelegramEvent(event)
-      );
-    } catch (error) {
-      this.#logger.error('Failed to setup event handlers', error);
     }
   }
 
