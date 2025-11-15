@@ -374,34 +374,34 @@ class Container {
 
     // Register admin use cases
     this.registerTransient('addAdminUseCase', (c) => 
-      new adminUseCases.AddAdminUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.AddAdminUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
     this.registerTransient('updateAdminUseCase', (c) => 
-      new adminUseCases.UpdateAdminUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.UpdateAdminUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
     this.registerTransient('getOrCreateAdminUseCase', (c) => 
-      new adminUseCases.GetOrCreateAdminUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.GetOrCreateAdminUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
     this.registerTransient('removeAdminUseCase', (c) => 
-      new adminUseCases.RemoveAdminUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.RemoveAdminUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
     this.registerTransient('checkAdminAccessUseCase', (c) => 
-      new adminUseCases.CheckAdminAccessUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.CheckAdminAccessUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
     this.registerTransient('getAdminStatsUseCase', (c) => 
-      new adminUseCases.GetAdminStatsUseCase(
-        c.resolve('adminRepository')
-      )
+      new adminUseCases.GetAdminStatsUseCase({
+        adminRepository: c.resolve('adminRepository')
+      })
     );
 
     this.#initialized = true;

@@ -123,6 +123,11 @@ class AdminBotController {
     this.authHandlers = createSessionAuthHandlers({
       createSessionUseCase: this.#useCases.createSession,
       updateAdminUseCase: this.#useCases.updateAdmin,
+      stateManager: this.#stateManager,
+      channelRepository: this.channelRepository,
+      sessionRepository: this.sessionRepository,
+      useCases: this.#useCases,
+      onSessionCreated: this.#handleSessionCreated.bind(this),
     });
 
     // Create Telegraf bot
@@ -157,6 +162,56 @@ class AdminBotController {
       this.#logger.info("AdminBot started successfully");
     } catch (error) {
       this.#logger.error("Failed to start AdminBot", error);
+      throw error;
+    }
+  }
+
+  /**
+   * Handles new session creation
+   * Starts UserBot for the newly created session
+   * @private
+   * @param {string} adminId - Admin ID
+   * @param {Object} session - Created session
+   * @returns {Promise<void>}
+   */
+  async #handleSessionCreated(adminId, session) {
+    try {
+      this.#logger.info('New session created, starting UserBot...', { adminId });
+
+      // Import UserBotController dynamically
+      const { default: UserBotController } = await import('./UserBotController.js');
+      const Container = await import('../../shared/container/Container.js');
+      const container = Container.default.getInstance();
+
+      // Create UserBot instance
+      const userBot = new UserBotController({
+        createSessionUseCase: container.resolve('createSessionUseCase'),
+        addChannelUseCase: container.resolve('addChannelUseCase'),
+        bulkAddUsersUseCase: container.resolve('bulkAddUsersUseCase'),
+        addUserToChannelUseCase: container.resolve('addUserToChannelUseCase'),
+        getUsersByChannelUseCase: container.resolve('getUsersByChannelUseCase'),
+        logMessageUseCase: container.resolve('logMessageUseCase'),
+        markMessageAsDeletedUseCase: container.resolve('markMessageAsDeletedUseCase'),
+        findOldMessagesUseCase: container.resolve('findOldMessagesUseCase'),
+        forwardingService: container.resolve('forwardingService'),
+        queueService: null, 
+        throttleService: container.resolve('throttleService'),
+        stateManager: container.resolve('stateManager'),
+        channelRepository: container.resolve('channelRepository'),
+        sessionRepository: container.resolve('sessionRepository'),
+        messageRepository: container.resolve('messageRepository'),
+      }, {
+        session_string: session.sessionString,
+        admin_id: adminId,
+      });
+
+      // Start UserBot
+      await userBot.start();
+
+      this.#logger.info('UserBot started successfully for new session', { adminId });
+
+    } catch (error) {
+      this.#logger.error('Failed to start UserBot for new session', error);
       throw error;
     }
   }

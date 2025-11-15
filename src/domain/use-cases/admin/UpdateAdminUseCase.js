@@ -28,9 +28,10 @@ class UpdateAdminUseCase {
 
   /**
    * Creates UpdateAdminUseCase
-   * @param {Object} adminRepository - Admin repository
+   * @param {Object} dependencies - Dependencies
+   * @param {Object} dependencies.adminRepository - Admin repository
    */
-  constructor(adminRepository) {
+  constructor({ adminRepository }) {
     this.#adminRepository = adminRepository;
     this.#logger = createChildLogger({ component: 'UpdateAdminUseCase' });
   }

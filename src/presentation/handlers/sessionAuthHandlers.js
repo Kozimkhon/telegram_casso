@@ -22,7 +22,15 @@ const logger = createChildLogger({ component: 'SessionAuthHandlers' });
  * @returns {Object} Handler functions
  */
 export function createSessionAuthHandlers(dependencies) {
-  const { createSessionUseCase, updateAdminUseCase } = dependencies;
+  const { 
+    createSessionUseCase, 
+    updateAdminUseCase, 
+    stateManager,
+    channelRepository,
+    sessionRepository,
+    useCases,
+    onSessionCreated // Callback when session is created
+  } = dependencies;
 
 
 
@@ -299,12 +307,16 @@ export function createSessionAuthHandlers(dependencies) {
         });
 
         // Save session via use case
-        await createSessionUseCase.execute({
+        const result = await createSessionUseCase.execute({
           adminId: ctx.from.id.toString(),
           sessionString: sessionString,
           status: 'active'
         });
 
+        // Notify parent controller to start UserBot
+        if (onSessionCreated) {
+          await onSessionCreated(ctx.from.id.toString(), result.session);
+        }
 
         await ctx.editMessageText(
           `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,
@@ -459,11 +471,16 @@ export function createSessionAuthHandlers(dependencies) {
       });
 
       // Save session via use case
-      await createSessionUseCase.execute({
+      const result = await createSessionUseCase.execute({
         adminId: ctx.from.id.toString(),
         sessionString: sessionString,
         status: 'active'
       });
+
+      // Notify parent controller to start UserBot
+      if (onSessionCreated) {
+        await onSessionCreated(ctx.from.id.toString(), result.session);
+      }
 
       await ctx.reply(
         `✅ <b>Session Added Successfully!</b>\n\nPhone: <code>${authSession.phone}</code>\nUser: <code>${me.firstName || ''} ${me.lastName || ''}</code>\nUsername: <code>@${me.username || 'N/A'}</code>\n\n🎉 Session is now active and ready!`,

@@ -18,9 +18,10 @@ class CheckAdminAccessUseCase {
 
   /**
    * Creates use case
-   * @param {AdminRepository} adminRepository - Admin repository
+   * @param {Object} dependencies - Dependencies
+   * @param {AdminRepository} dependencies.adminRepository - Admin repository
    */
-  constructor(adminRepository) {
+  constructor({ adminRepository }) {
     this.#adminRepository = adminRepository;
   }
 

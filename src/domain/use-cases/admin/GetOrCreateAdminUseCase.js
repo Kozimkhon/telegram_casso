@@ -17,9 +17,10 @@ export default class GetOrCreateAdminUseCase {
 
   /**
    * Creates GetOrCreateAdminUseCase instance
-   * @param {Object} adminRepository - Admin repository
+   * @param {Object} dependencies - Dependencies
+   * @param {Object} dependencies.adminRepository - Admin repository
    */
-  constructor(adminRepository) {
+  constructor({ adminRepository }) {
     this.#adminRepository = adminRepository;
   }
 
