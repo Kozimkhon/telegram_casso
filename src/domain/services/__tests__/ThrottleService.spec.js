@@ -4,6 +4,7 @@
  * @module domain/services/__tests__/ThrottleService.spec
  */
 
+import { jest } from '@jest/globals';
 import ThrottleService from '../ThrottleService.js';
 
 describe('ThrottleService', () => {

@@ -3,13 +3,15 @@
  * Provides in-memory SQLite database for isolated testing
  */
 
-const sqlite3 = require('sqlite3').verbose();
+import sqlite3 from 'sqlite3';
+
+const sqlite = sqlite3.verbose();
 
 let testDatabase;
 
-async function setupTestDatabase() {
+export async function setupTestDatabase() {
   return new Promise((resolve, reject) => {
-    testDatabase = new sqlite3.Database(':memory:', (err) => {
+    testDatabase = new sqlite.Database(':memory:', (err) => {
       if (err) reject(err);
       
       // Enable foreign keys
@@ -112,7 +114,7 @@ async function setupTestDatabase() {
   });
 }
 
-async function teardownTestDatabase() {
+export async function teardownTestDatabase() {
   return new Promise((resolve, reject) => {
     if (testDatabase) {
       testDatabase.close((err) => {
@@ -125,7 +127,7 @@ async function teardownTestDatabase() {
   });
 }
 
-async function clearAllTables() {
+export async function clearAllTables() {
   return new Promise((resolve, reject) => {
     if (!testDatabase) reject(new Error('Database not initialized'));
 
@@ -154,13 +156,6 @@ async function clearAllTables() {
   });
 }
 
-function getDatabase() {
+export function getDatabase() {
   return testDatabase;
 }
-
-module.exports = {
-  setupTestDatabase,
-  teardownTestDatabase,
-  clearAllTables,
-  getDatabase
-};

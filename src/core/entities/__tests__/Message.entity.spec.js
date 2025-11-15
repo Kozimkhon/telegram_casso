@@ -1,275 +1,163 @@
 /**
- * @fileoverview Unit Tests for Message Domain Entity
- * Tests message tracking and state management
+ * @fileoverview Unit tests for Message entity
  */
 
 import Message from '../domain/Message.entity.js';
+import { ForwardingStatus } from '../../../shared/constants/index.js';
 
 describe('Message.entity', () => {
-  
-  const validMessageData = {
-    messageId: 123456,
-    userId: '987654321',
-    forwardedMessageId: 789012,
-    text: 'Test message content',
-    status: 'SUCCESS'
+  const baseData = {
+    messageId: '100',
+    channelId: '-1001',
+    userId: '42',
+    forwardedMessageId: '200',
+    status: ForwardingStatus.SUCCESS,
+    groupedId: 'album-1',
+    isGrouped: true,
+    retryCount: 2,
+    errorMessage: null,
   };
 
-  describe('Constructor & Initialization', () => {
-    test('should create message with valid data', () => {
-      // Act
-      const message = new Message(validMessageData);
+  describe('constructor & validation', () => {
+    test('creates entity with default values', () => {
+      const message = new Message({
+        messageId: '1',
+        channelId: '-100',
+        userId: '99',
+      });
 
-      // Assert
-      expect(message).toBeDefined();
-      expect(message.messageId).toBe(123456);
-      expect(message.userId).toBe('987654321');
+      expect(message.status).toBe(ForwardingStatus.PENDING);
+      expect(message.retryCount).toBe(0);
+      expect(message.forwardedMessageId).toBeNull();
+      expect(message.errorMessage).toBeNull();
+      expect(message.id).toBeNull();
+      expect(message.createdAt).toBeInstanceOf(Date);
+      expect(message.updatedAt).toBeInstanceOf(Date);
     });
 
-    test('should throw error when messageId is missing', () => {
-      // Arrange
-      const invalidData = { ...validMessageData };
-      delete invalidData.messageId;
-
-      // Act & Assert
-      expect(() => new Message(invalidData)).toThrow();
+    test.each([
+      ['Message ID is required', { messageId: undefined }],
+      ['Channel ID is required', { channelId: undefined }],
+      ['User ID is required', { userId: undefined }],
+    ])('throws when %s', (_, override) => {
+      expect(() => new Message({ ...baseData, ...override })).toThrow();
     });
 
-    test('should throw error when userId is missing', () => {
-      // Arrange
-      const invalidData = { ...validMessageData };
-      delete invalidData.userId;
-
-      // Act & Assert
-      expect(() => new Message(invalidData)).toThrow();
-    });
-
-    test('should set status to PENDING by default', () => {
-      // Arrange
-      const data = { ...validMessageData };
-      delete data.status;
-
-      // Act
-      const message = new Message(data);
-
-      // Assert
-      expect(message.status).toBe('PENDING');
+    test('rejects invalid status values', () => {
+      expect(
+        () => new Message({ ...baseData, status: 'INVALID' })
+      ).toThrow(/Invalid status/);
     });
   });
 
-  describe('Message Properties', () => {
-    test('should store all message data', () => {
-      // Act
-      const message = new Message(validMessageData);
+  describe('state transitions', () => {
+    test('markSuccess updates status and forwarded id', () => {
+      const message = new Message(baseData);
+      message.markSuccess('500');
 
-      // Assert
-      expect(message.messageId).toBe(123456);
-      expect(message.userId).toBe('987654321');
-      expect(message.forwardedMessageId).toBe(789012);
-      expect(message.text).toBe('Test message content');
-      expect(message.status).toBe('SUCCESS');
+      expect(message.status).toBe(ForwardingStatus.SUCCESS);
+      expect(message.forwardedMessageId).toBe('500');
+      expect(message.errorMessage).toBeNull();
     });
 
-    test('should allow null optional fields', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        text: null,
-        forwardedMessageId: null
-      };
+    test('markFailed stores error message', () => {
+      const message = new Message(baseData);
+      message.markFailed('boom');
 
-      // Act
-      const message = new Message(data);
+      expect(message.status).toBe(ForwardingStatus.FAILED);
+      expect(message.errorMessage).toBe('boom');
+    });
 
-      // Assert
-      expect(message.text).toBeNull();
+    test('markSkipped stores skip reason', () => {
+      const message = new Message(baseData);
+      message.markSkipped('duplicate');
+
+      expect(message.status).toBe(ForwardingStatus.SKIPPED);
+      expect(message.errorMessage).toBe('duplicate');
+    });
+
+    test('incrementRetry increases retry count', () => {
+      const message = new Message(baseData);
+      message.incrementRetry();
+      expect(message.retryCount).toBe(3);
+    });
+
+    test('markDeleted clears forwarded id', () => {
+      const message = new Message(baseData);
+      message.markDeleted();
       expect(message.forwardedMessageId).toBeNull();
     });
+  });
 
-    test('should handle unicode in text', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        text: 'Салом дунё! 🌍'
-      };
+  describe('boolean helpers', () => {
+    test('isSuccessful/isFailed/isSkipped reflect status', () => {
+      const success = new Message(baseData);
+      expect(success.isSuccessful()).toBe(true);
+      expect(success.isFailed()).toBe(false);
 
-      // Act
-      const message = new Message(data);
+      const failed = new Message({ ...baseData, status: ForwardingStatus.FAILED });
+      expect(failed.isFailed()).toBe(true);
 
-      // Assert
-      expect(message.text).toBe('Салом дунё! 🌍');
+      const skipped = new Message({ ...baseData, status: ForwardingStatus.SKIPPED });
+      expect(skipped.isSkipped()).toBe(true);
+    });
+
+    test('isGroupedMessage requires grouped flag and id', () => {
+      const grouped = new Message(baseData);
+      expect(grouped.isGroupedMessage()).toBe(true);
+
+      const withoutId = new Message({ ...baseData, groupedId: null });
+      expect(withoutId.isGroupedMessage()).toBe(false);
     });
   });
 
-  describe('Status Management', () => {
-    test('should accept valid status values', () => {
-      // Arrange
-      const validStatuses = ['SUCCESS', 'FAILED', 'PENDING', 'PROCESSING'];
+  describe('conversion helpers', () => {
+    test('toObject maps fields to snake_case', () => {
+      const now = new Date();
+      const message = new Message({ ...baseData, createdAt: now, updatedAt: now });
 
-      // Act & Assert
-      validStatuses.forEach(status => {
-        const message = new Message({ ...validMessageData, status });
-        expect(message.status).toBe(status);
+      const obj = message.toObject();
+      expect(obj).toMatchObject({
+        message_id: '100',
+        channel_id: '-1001',
+        user_id: '42',
+        forwarded_message_id: '200',
+        grouped_id: 'album-1',
+        is_grouped: true,
+        status: ForwardingStatus.SUCCESS,
+        retry_count: 2,
+        error_message: null,
       });
+      expect(obj.created_at).toBe(now.toISOString());
+      expect(obj.updated_at).toBe(now.toISOString());
     });
 
-    test('should reject invalid status', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        status: 'INVALID_STATUS'
+    test('fromDatabaseRow normalizes data', () => {
+      const row = {
+        id: 10,
+        message_id: '500',
+        forwarded_message_id: '900',
+        status: 'non-existent',
+        error_message: 'err',
+        retry_count: 7,
+        grouped_id: 'g1',
+        is_grouped: 1,
+        channel_id: '-10050',
+        user_id: '77',
+        created_at: '2024-01-01T00:00:00.000Z',
+        updated_at: '2024-01-02T00:00:00.000Z',
       };
 
-      // Act & Assert
-      expect(() => new Message(data)).toThrow();
-    });
+      const entity = Message.fromDatabaseRow(row);
 
-    test('should be able to update status', () => {
-      // Arrange
-      const message = new Message(validMessageData);
-
-      // Act
-      message.updateStatus('FAILED');
-
-      // Assert
-      expect(message.status).toBe('FAILED');
-    });
-  });
-
-  describe('Grouped Messages', () => {
-    test('should mark message as grouped', () => {
-      // Arrange
-      const message = new Message(validMessageData);
-
-      // Act
-      message.markAsGrouped('group_123');
-
-      // Assert
-      expect(message.isGrouped).toBe(true);
-      expect(message.groupedId).toBe('group_123');
-    });
-
-    test('should handle message without grouping', () => {
-      // Arrange
-      const message = new Message(validMessageData);
-
-      // Act
-      const isGrouped = message.isGrouped;
-
-      // Assert
-      expect(isGrouped).toBe(false);
-    });
-  });
-
-  describe('Validation', () => {
-    test('should validate required fields', () => {
-      // Arrange
-      const invalidData = { text: 'Test' };
-
-      // Act & Assert
-      expect(() => new Message(invalidData)).toThrow();
-    });
-
-    test('should validate messageId is number', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        messageId: 'invalid'
-      };
-
-      // Act & Assert
-      expect(() => new Message(data)).toThrow();
-    });
-
-    test('should validate userId is string', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        userId: 123456
-      };
-
-      // Act & Assert
-      expect(() => new Message(data)).toThrow();
-    });
-  });
-
-  describe('Database Conversion', () => {
-    test('should convert to database row', () => {
-      // Arrange
-      const message = new Message(validMessageData);
-
-      // Act
-      const dbRow = message.toDatabaseRow();
-
-      // Assert
-      expect(dbRow).toBeDefined();
-      expect(dbRow.messageId).toBe(123456);
-      expect(dbRow.userId).toBe('987654321');
-    });
-
-    test('should convert from database row', () => {
-      // Arrange
-      const dbRow = {
-        messageId: 123456,
-        userId: '987654321',
-        forwardedMessageId: 789012,
-        text: 'Test message',
-        status: 'SUCCESS',
-        isGrouped: false,
-        groupedId: null,
-        created_at: new Date()
-      };
-
-      // Act
-      const message = Message.fromDatabaseRow(dbRow);
-
-      // Assert
-      expect(message.messageId).toBe(123456);
-      expect(message.text).toBe('Test message');
-    });
-  });
-
-  describe('Edge Cases', () => {
-    test('should handle very long text', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        text: 'A'.repeat(4096)
-      };
-
-      // Act
-      const message = new Message(data);
-
-      // Assert
-      expect(message.text.length).toBe(4096);
-    });
-
-    test('should handle empty text', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        text: ''
-      };
-
-      // Act
-      const message = new Message(data);
-
-      // Assert
-      expect(message.text).toBe('');
-    });
-
-    test('should handle special characters in text', () => {
-      // Arrange
-      const data = {
-        ...validMessageData,
-        text: '<b>Bold</b> <i>italic</i> @mention #hashtag'
-      };
-
-      // Act
-      const message = new Message(data);
-
-      // Assert
-      expect(message.text).toBe('<b>Bold</b> <i>italic</i> @mention #hashtag');
+      expect(entity.id).toBe(10);
+      expect(entity.status).toBe(ForwardingStatus.PENDING);
+      expect(entity.retryCount).toBe(7);
+      expect(entity.forwardedMessageId).toBe('900');
+      expect(entity.groupedId).toBe('g1');
+      expect(Boolean(entity.isGrouped)).toBe(true);
+      expect(entity.createdAt).toBeInstanceOf(Date);
+      expect(entity.updatedAt).toBeInstanceOf(Date);
     });
   });
 });

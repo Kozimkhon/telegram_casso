@@ -1,338 +1,144 @@
 /**
- * @fileoverview Unit Tests for User Domain Entity
- * Tests user domain entity validation and state management
+ * @fileoverview Unit tests for User entity
  */
 
 import User from '../domain/User.entity.js';
 
 describe('User.entity', () => {
-  
-  // ==================== MOCKS & SETUP ====================
-  
-  const validUserData = {
-    userId: '987654321',
-    firstName: 'Test',
-    lastName: 'User',
-    username: 'testuser',
-    isBot: false
+  const baseData = {
+    userId: '700',
+    firstName: 'Alice',
+    lastName: 'Smith',
+    username: 'alice',
+    phone: '+1234567890',
+    isBot: false,
+    isPremium: true,
+    isActive: true,
   };
 
-  // ==================== INITIALIZATION ====================
-
-  describe('Constructor & Initialization', () => {
-    test('should create user with valid data', () => {
-      // Act
-      const user = new User(validUserData);
-
-      // Assert
-      expect(user).toBeDefined();
-      expect(user.userId).toBe('987654321');
-      expect(user.firstName).toBe('Test');
-    });
-
-    test('should throw error when userId is missing', () => {
-      // Arrange
-      const invalidData = { ...validUserData };
-      delete invalidData.userId;
-
-      // Act & Assert
-      expect(() => new User(invalidData)).toThrow();
-    });
-
-    test('should throw error when firstName is missing', () => {
-      // Arrange
-      const invalidData = { ...validUserData };
-      delete invalidData.firstName;
-
-      // Act & Assert
-      expect(() => new User(invalidData)).toThrow();
-    });
-
-    test('should accept valid numeric userId', () => {
-      // Act
-      const user = new User(validUserData);
-
-      // Assert
-      expect(user.userId).toBe('987654321');
-    });
-
-    test('should set isBot to false by default', () => {
-      // Arrange
-      const data = { ...validUserData };
-      delete data.isBot;
-
-      // Act
-      const user = new User(data);
-
-      // Assert
-      expect(user.isBot).toBe(false);
-    });
-  });
-
-  // ==================== PROPERTIES ====================
-
-  describe('User Properties', () => {
-    test('should store all user data', () => {
-      // Act
-      const user = new User(validUserData);
-
-      // Assert
-      expect(user.userId).toBe(validUserData.userId);
-      expect(user.firstName).toBe(validUserData.firstName);
-      expect(user.lastName).toBe(validUserData.lastName);
-      expect(user.username).toBe(validUserData.username);
-    });
-
-    test('should allow null optional fields', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        username: null,
-        lastName: null
-      };
-
-      // Act
-      const user = new User(data);
-
-      // Assert
-      expect(user.username).toBeNull();
-      expect(user.lastName).toBeNull();
-    });
-
-    test('should handle unicode names', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        firstName: 'Ҷон',
-        lastName: 'Доҳ'
-      };
-
-      // Act
-      const user = new User(data);
-
-      // Assert
-      expect(user.firstName).toBe('Ҷон');
-      expect(user.lastName).toBe('Доҳ');
-    });
-  });
-
-  // ==================== GETTERS & SETTERS ====================
-
-  describe('Getters & Setters', () => {
-    test('should get userId', () => {
-      // Arrange
-      const user = new User(validUserData);
-
-      // Act
-      const userId = user.userId;
-
-      // Assert
-      expect(userId).toBe('987654321');
-    });
-
-    test('should get firstName', () => {
-      // Arrange
-      const user = new User(validUserData);
-
-      // Act
-      const firstName = user.firstName;
-
-      // Assert
-      expect(firstName).toBe('Test');
-    });
-
-    test('should get full name', () => {
-      // Arrange
-      const user = new User(validUserData);
-
-      // Act
-      const fullName = user.getFullName();
-
-      // Assert
-      expect(fullName).toBe('Test User');
-    });
-
-    test('should handle empty lastName in full name', () => {
-      // Arrange
-      const user = new User({ ...validUserData, lastName: null });
-
-      // Act
-      const fullName = user.getFullName();
-
-      // Assert
-      expect(fullName).toBe('Test');
-    });
-  });
-
-  // ==================== VALIDATION ====================
-
-  describe('Validation', () => {
-    test('should validate required fields', () => {
-      // Arrange
-      const invalidData = { firstName: 'Test' };
-
-      // Act & Assert
-      expect(() => new User(invalidData)).toThrow();
-    });
-
-    test('should validate userId format', () => {
-      // Arrange
-      const invalidData = { ...validUserData, userId: '' };
-
-      // Act & Assert
-      expect(() => new User(invalidData)).toThrow();
-    });
-
-    test('should validate firstName format', () => {
-      // Arrange
-      const invalidData = { ...validUserData, firstName: '' };
-
-      // Act & Assert
-      expect(() => new User(invalidData)).toThrow();
-    });
-
-    test('should accept long usernames', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        username: 'a'.repeat(100)
-      };
-
-      // Act
-      const user = new User(data);
-
-      // Assert
-      expect(user.username.length).toBe(100);
-    });
-  });
-
-  // ==================== DATABASE CONVERSION ====================
-
-  describe('Database Conversion', () => {
-    test('should convert to database row', () => {
-      // Arrange
-      const user = new User(validUserData);
-
-      // Act
-      const dbRow = user.toDatabaseRow();
-
-      // Assert
-      expect(dbRow).toBeDefined();
-      expect(dbRow.userId).toBe('987654321');
-      expect(dbRow.firstName).toBe('Test');
-    });
-
-    test('should convert from database row', () => {
-      // Arrange
-      const dbRow = {
-        userId: '987654321',
-        firstName: 'Test',
-        lastName: 'User',
-        username: 'testuser',
-        isBot: 0,
-        created_at: new Date(),
-        updated_at: new Date()
-      };
-
-      // Act
-      const user = User.fromDatabaseRow(dbRow);
-
-      // Assert
-      expect(user.userId).toBe('987654321');
-      expect(user.firstName).toBe('Test');
-    });
-
-    test('should preserve timestamps', () => {
-      // Arrange
-      const now = new Date();
+  describe('constructor & validation', () => {
+    test('creates user with defaults', () => {
       const user = new User({
-        ...validUserData,
-        createdAt: now,
-        updatedAt: now
+        userId: '1',
+        firstName: 'John',
       });
 
-      // Act
-      const dbRow = user.toDatabaseRow();
+      expect(user.lastName).toBeNull();
+      expect(user.username).toBeNull();
+      expect(user.isBot).toBe(false);
+      expect(user.createdAt).toBeInstanceOf(Date);
+      expect(user.updatedAt).toBeInstanceOf(Date);
+    });
 
-      // Assert
-      expect(dbRow.created_at).toBe(now);
-      expect(dbRow.updated_at).toBe(now);
+    test.each([
+      ['User ID is required and must be a string', { userId: null }],
+      ['First name is required and must be a string', { firstName: null }],
+      ['First name must not exceed 100 characters', { firstName: 'A'.repeat(101) }],
+      ['Username must not exceed 50 characters', { username: 'a'.repeat(51) }],
+    ])('throws when %s', (_, override) => {
+      expect(() => new User({ ...baseData, ...override })).toThrow();
     });
   });
 
-  // ==================== EDGE CASES ====================
+  describe('state updates', () => {
+    test('updateFirstName mutates value and timestamp', () => {
+      const user = new User(baseData);
+      const prev = user.updatedAt;
 
-  describe('Edge Cases', () => {
-    test('should handle very long firstName', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        firstName: 'A'.repeat(255)
-      };
+      user.updateFirstName('Bob');
 
-      // Act
-      const user = new User(data);
-
-      // Assert
-      expect(user.firstName.length).toBe(255);
+      expect(user.firstName).toBe('Bob');
+      expect(user.updatedAt.getTime()).toBeGreaterThanOrEqual(prev.getTime());
     });
 
-    test('should handle special characters in names', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        firstName: "O'Brien-Smith",
-        lastName: "Müller"
-      };
+    test('updateLastName/username/phone adjust fields', () => {
+      const user = new User(baseData);
 
-      // Act
-      const user = new User(data);
+      user.updateLastName(null).updateUsername('new_user').updatePhone(null);
 
-      // Assert
-      expect(user.firstName).toBe("O'Brien-Smith");
-      expect(user.lastName).toBe("Müller");
+      expect(user.lastName).toBeNull();
+      expect(user.username).toBe('new_user');
+      expect(user.phone).toBeNull();
+    });
+  });
+
+  describe('helpers', () => {
+    test('getFullName and display helpers', () => {
+      const user = new User(baseData);
+      expect(user.getFullName()).toBe('Alice Smith');
+      expect(user.getDisplayName()).toBe('@alice');
+      expect(user.hasUsername()).toBe(true);
+      expect(user.hasPhone()).toBe(true);
     });
 
-    test('should handle very large userId numbers', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        userId: '999999999999999999'
-      };
+    test('display name falls back to full name', () => {
+      const user = new User({ ...baseData, username: null, lastName: null });
+      expect(user.getDisplayName()).toBe('Alice');
+    });
+  });
 
-      // Act
-      const user = new User(data);
+  describe('conversion', () => {
+    test('toObject maps fields to snake_case', () => {
+      const now = new Date();
+      const user = new User({ ...baseData, createdAt: now, updatedAt: now });
 
-      // Assert
-      expect(user.userId).toBe('999999999999999999');
+      const obj = user.toObject();
+
+      expect(obj).toMatchObject({
+        user_id: '700',
+        first_name: 'Alice',
+        last_name: 'Smith',
+        username: 'alice',
+        phone: '+1234567890',
+        is_bot: 0,
+        is_premium: 1,
+        is_active: 1,
+      });
+      expect(obj.created_at).toBe(now.toISOString());
     });
 
-    test('should handle username with special characters', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        username: 'user_name-123'
+    test('fromDatabaseRow restores entity', () => {
+      const row = {
+        id: 5,
+        user_id: '10',
+        first_name: 'Jane',
+        last_name: null,
+        username: null,
+        phone: null,
+        is_bot: 1,
+        is_premium: 0,
+        is_active: 0,
+        created_at: '2024-01-01T00:00:00.000Z',
+        updated_at: '2024-01-02T00:00:00.000Z',
       };
 
-      // Act
-      const user = new User(data);
+      const entity = User.fromDatabaseRow(row);
 
-      // Assert
-      expect(user.username).toBe('user_name-123');
+      expect(entity.userId).toBe('10');
+      expect(entity.isBot).toBe(true);
+      expect(entity.isActive).toBe(false);
+      expect(entity.createdAt).toBeInstanceOf(Date);
+      expect(entity.id).toBe(5);
     });
+  });
 
-    test('should handle bot user', () => {
-      // Arrange
-      const data = {
-        ...validUserData,
-        isBot: true
+  describe('factory helpers', () => {
+    test('fromTelegramEntity normalizes fields', () => {
+      const telegramUser = {
+        id: BigInt(555),
+        firstName: 'First',
+        lastName: 'Last',
+        username: 'telegram_user',
+        phone: '123',
+        bot: true,
+        premium: true,
       };
 
-      // Act
-      const user = new User(data);
+      const entity = User.fromTelegramEntity(telegramUser);
 
-      // Assert
-      expect(user.isBot).toBe(true);
+      expect(entity.userId).toBe('555');
+      expect(entity.username).toBe('telegram_user');
+      expect(entity.isBot).toBe(false);
     });
   });
 });

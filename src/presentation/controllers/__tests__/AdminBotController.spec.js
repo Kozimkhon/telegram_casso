@@ -4,6 +4,7 @@
  * @module presentation/controllers/__tests__/AdminBotController.spec
  */
 
+import { jest } from '@jest/globals';
 import AdminBotController from '../AdminBotController.js';
 
 describe('AdminBotController', () => {

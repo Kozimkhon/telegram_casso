@@ -353,6 +353,53 @@ class UserRepository extends BaseRepository {
       return [];
     }
   }
+
+  /**
+   * Removes user from channel (removes channel_members association)
+   * @param {string} channelId - Telegram channel ID
+   * @param {string} userId - Telegram user ID
+   * @returns {Promise<boolean>} Success status
+   */
+  async removeFromChannel(channelId, userId) {
+    try {
+      const channelRepo = AppDataSource.getRepository('Channel');
+      const userRepo = this.repository;
+      
+      // Find channel with users
+      const channel = await channelRepo.findOne({ 
+        where: { channelId },
+        relations: ['users']
+      });
+      
+      if (!channel) {
+        console.error('Channel not found:', channelId);
+        return false;
+      }
+      
+      if (!channel.users || channel.users.length === 0) {
+        return false; // No users in channel
+      }
+      
+      // Find user in channel's users array
+      const userIndex = channel.users.findIndex(u => u.userId === userId);
+      
+      if (userIndex === -1) {
+        return false; // User not in channel
+      }
+      
+      // Remove user from array
+      channel.users.splice(userIndex, 1);
+      
+      // Save channel (TypeORM will update many-to-many relationship)
+      await channelRepo.save(channel);
+      
+      console.log(`User ${userId} removed from channel ${channelId}`);
+      return true;
+    } catch (error) {
+      console.error('Error removing user from channel:', error);
+      return false;
+    }
+  }
 }
 
 export default UserRepository;

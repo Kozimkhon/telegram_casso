@@ -11,6 +11,7 @@ import {
   UserRepository,
   MessageRepository as TypeORMMessageRepository,
   MetricRepository,
+  ChannelLogRepository as TypeORMChannelLogRepository,
 } from '../orm/index.js';
 
 /**
@@ -93,6 +94,17 @@ class RepositoryFactory {
   }
 
   /**
+   * Gets ChannelLog repository
+   * @returns {TypeORMChannelLogRepository} ChannelLog repository instance
+   */
+  static getChannelLogRepository() {
+    if (!this.#repositories.has('channelLog')) {
+      this.#repositories.set('channelLog', new TypeORMChannelLogRepository());
+    }
+    return this.#repositories.get('channelLog');
+  }
+
+  /**
    * Gets all repositories
    * @returns {Object} All repository instances
    */
@@ -104,6 +116,7 @@ class RepositoryFactory {
       userRepository: this.getUserRepository(),
       messageRepository: this.getMessageRepository(),
       metricRepository: this.getMetricRepository(),
+      channelLogRepository: this.getChannelLogRepository(),
     };
   }
 

@@ -160,14 +160,17 @@ class Container {
     // Import dependencies
     const { default: StateManager } = await import('../state/StateManager.js');
     
-    // Import repositories (now using TypeORM)
+    // Import domain repositories (these use ORM internally)
     const { 
       ChannelRepository, 
       SessionRepository, 
       UserRepository, 
       MessageRepository, 
-      AdminRepository 
+      AdminRepository
     } = await import('../../data/repositories/index.js');
+
+    // Import ChannelLog ORM repository directly
+    const { default: ChannelLogOrmRepository } = await import('../../data/repositories/orm/ChannelLogRepository.js');
 
     // Import use cases
     const sessionUseCases = await import('../../domain/use-cases/session/index.js');
@@ -187,12 +190,16 @@ class Container {
     // Register core infrastructure
     this.registerSingleton('stateManager', () => StateManager);
 
-    // Register repositories (TypeORM - no datasource needed)
+    // Register domain repositories (these wrap ORM repositories internally)
     this.registerSingleton('channelRepository', () => new ChannelRepository());
     this.registerSingleton('sessionRepository', () => new SessionRepository());
     this.registerSingleton('userRepository', () => new UserRepository());
     this.registerSingleton('messageRepository', () => new MessageRepository());
     this.registerSingleton('adminRepository', () => new AdminRepository());
+    
+    // Import and register ChannelLog domain repository
+    const { default: ChannelLogRepository_Domain } = await import('../../data/repositories/domain/ChannelLogRepository.js');
+    this.registerSingleton('channelLogRepository', () => new ChannelLogRepository_Domain());
 
     // Register domain services
     this.registerSingleton('throttleService', () => new ThrottleService({maxMessages:1000,timeWindow:75000}));
@@ -211,6 +218,26 @@ class Container {
         userRepository: c.resolve('userRepository'),
         messageRepository: c.resolve('messageRepository'),
         adminRepository: c.resolve('adminRepository')
+      })
+    );
+
+    // Register ChannelLogFetcherService
+    const { default: ChannelLogFetcherService } = await import('../../domain/services/ChannelLogFetcherService.js');
+    this.registerSingleton('channelLogFetcherService', (c) =>
+      new ChannelLogFetcherService({
+        channelLogRepository: c.resolve('channelLogRepository'),
+        channelRepository: c.resolve('channelRepository'),
+        userRepository: c.resolve('userRepository')
+      })
+    );
+
+    // Register DailyChannelLogsFetchJob
+    const { default: DailyChannelLogsFetchJob } = await import('../../jobs/DailyChannelLogsFetchJob.js');
+    this.registerSingleton('dailyChannelLogsFetchJob', (c) =>
+      new DailyChannelLogsFetchJob({
+        channelLogFetcherService: c.resolve('channelLogFetcherService'),
+        adminRepository: c.resolve('adminRepository'),
+        sessionManager: c.resolve('stateManager')
       })
     );
 
@@ -378,6 +405,9 @@ class Container {
     );
 
     this.#initialized = true;
+    
+    // Set container reference in StateManager for service access
+    StateManager.setContainer(this);
   }
 
   /**

@@ -3,6 +3,7 @@
  * Tests session data access and lifecycle management
  */
 
+import { jest } from '@jest/globals';
 import SessionRepository from '../domain/SessionRepository.js';
 
 describe('SessionRepository', () => {

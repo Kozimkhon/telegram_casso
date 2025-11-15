@@ -1,424 +1,189 @@
 /**
- * @fileoverview Unit Tests for MessageRepository
- * Tests message data access and tracking operations
+ * @fileoverview Unit tests for MessageRepository facade
  */
 
+import { jest } from '@jest/globals';
 import MessageRepository from '../domain/MessageRepository.js';
+import { Message } from '../../../core/entities/index.js';
+import RepositoryFactory from '../domain/RepositoryFactory.js';
 
-describe('MessageRepository', () => {
+const buildOrmEntity = (overrides = {}) => ({
+  id: 1,
+  messageId: '10',
+  forwardedMessageId: '20',
+  status: 'success',
+  errorMessage: null,
+  retryCount: 0,
+  groupedId: null,
+  isGrouped: false,
+  channelId: '-100',
+  userId: '7',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  ...overrides,
+});
+
+describe('MessageRepository (TypeORM facade)', () => {
   let repository;
-  let mockDatabase;
+  let mockOrmRepo;
+  let getRepoSpy;
 
   beforeEach(() => {
-    mockDatabase = {
-      query: jest.fn(),
-      execute: jest.fn(),
-      transaction: jest.fn()
+    mockOrmRepo = {
+      findAll: jest.fn().mockResolvedValue([
+        buildOrmEntity({ status: 'success', channelId: '-100' }),
+        buildOrmEntity({ id: 2, status: 'failed', channelId: '-200' }),
+      ]),
+      findById: jest.fn().mockResolvedValue(buildOrmEntity()),
+      findByChannel: jest.fn().mockResolvedValue([
+        buildOrmEntity({ messageId: '111' }),
+        buildOrmEntity({ messageId: '222' }),
+      ]),
+      create: jest.fn().mockImplementation(async (data) => buildOrmEntity(data)),
+      update: jest.fn().mockImplementation(async (id, data) =>
+        buildOrmEntity({ id, ...data })
+      ),
+      delete: jest.fn().mockResolvedValue(true),
+      markAsSent: jest.fn().mockResolvedValue(),
+      markAsFailed: jest.fn().mockResolvedValue(),
+      markAsDeleted: jest.fn().mockResolvedValue(),
+      findByGroupedId: jest.fn().mockResolvedValue([
+        buildOrmEntity({ groupedId: 'grp', isGrouped: true }),
+      ]),
+      findOldGroupedMessages: jest.fn().mockResolvedValue(
+        new Map([
+          [
+            '7:grp',
+            [buildOrmEntity({ groupedId: 'grp', isGrouped: true, userId: '7' })],
+          ],
+        ])
+      ),
+      findOldMessages: jest.fn().mockResolvedValue([
+        buildOrmEntity({ id: 3 }),
+      ]),
     };
 
-    repository = new MessageRepository(mockDatabase);
+    getRepoSpy = jest
+      .spyOn(RepositoryFactory, 'getMessageRepository')
+      .mockReturnValue(mockOrmRepo);
+
+    repository = new MessageRepository();
   });
 
-  describe('Create Operations', () => {
-    test('should create new message record', async () => {
-      // Arrange
-      const messageData = {
-        messageId: 123456,
-        userId: 'user_123',
-        text: 'Test message',
-        status: 'SUCCESS'
-      };
-
-      mockDatabase.execute.mockResolvedValue({ id: 1, ...messageData });
-
-      // Act
-      const result = await repository.create(messageData);
-
-      // Assert
-      expect(result.messageId).toBe(123456);
-    });
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
-  describe('Read Operations', () => {
-    test('should find message by ID', async () => {
-      // Arrange
-      const mockMessage = {
-        id: 1,
-        messageId: 123456,
-        userId: 'user_123'
-      };
-
-      mockDatabase.query.mockResolvedValue([mockMessage]);
-
-      // Act
-      const result = await repository.findById(123456);
-
-      // Assert
-      expect(result.messageId).toBe(123456);
+  test('findAll applies filters and maps to domain entities', async () => {
+    const result = await repository.findAll({
+      status: 'success',
+      channelId: '-100',
+      limit: 1,
     });
 
-    test('should get messages by user', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, userId: 'user_1' },
-        { messageId: 222, userId: 'user_1' }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.findByUserId('user_1');
-
-      // Assert
-      expect(result).toHaveLength(2);
-    });
-
-    test('should get messages by channel', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, channelId: 'ch_1' },
-        { messageId: 222, channelId: 'ch_1' }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.findByChannelId('ch_1');
-
-      // Assert
-      expect(result).toHaveLength(2);
-    });
-
-    test('should get messages by status', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, status: 'SUCCESS' },
-        { messageId: 222, status: 'SUCCESS' }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.findByStatus('SUCCESS');
-
-      // Assert
-      expect(result.every(m => m.status === 'SUCCESS')).toBe(true);
-    });
+    expect(mockOrmRepo.findAll).toHaveBeenCalledTimes(1);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toBeInstanceOf(Message);
+    expect(result[0].status).toBe('success');
   });
 
-  describe('Update Operations', () => {
-    test('should update message status', async () => {
-      // Arrange
-      mockDatabase.execute.mockResolvedValue({
-        messageId: 123456,
-        status: 'FAILED'
-      });
-
-      // Act
-      await repository.updateStatus(123456, 'FAILED');
-
-      // Assert
-      expect(mockDatabase.execute).toHaveBeenCalled();
+  test('create converts entity to ORM shape', async () => {
+    const entity = new Message({
+      messageId: '300',
+      channelId: '-100',
+      userId: '7',
+      forwardedMessageId: '400',
+      status: 'success',
     });
 
-    test('should update message details', async () => {
-      // Arrange
-      const updates = { text: 'Updated text' };
+    const created = await repository.create(entity);
 
-      mockDatabase.execute.mockResolvedValue({
-        messageId: 123456,
-        ...updates
-      });
+    expect(mockOrmRepo.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        messageId: '300',
+        forwardedMessageId: '400',
+        channelId: '-100',
+        userId: '7',
+        status: 'success',
+      })
+    );
+    expect(created).toBeInstanceOf(Message);
+    expect(created.messageId).toBe('300');
+  });
 
-      // Act
-      await repository.update(123456, updates);
+  test('update maps snake_case payload to camelCase', async () => {
+    await repository.update(1, {
+      forwarded_message_id: '9',
+      status: 'failed',
+      error_message: 'err',
+      retry_count: 3,
+    });
 
-      // Assert
-      expect(mockDatabase.execute).toHaveBeenCalled();
+    expect(mockOrmRepo.update).toHaveBeenCalledWith(
+      1,
+      expect.objectContaining({
+        forwardedMessageId: '9',
+        status: 'failed',
+        errorMessage: 'err',
+        retryCount: 3,
+      })
+    );
+  });
+
+  test('markAsSent / markAsFailed delegate to ORM and return domain entity', async () => {
+    await repository.markAsSent(5);
+    await repository.markAsFailed(5, 'boom');
+
+    expect(mockOrmRepo.markAsSent).toHaveBeenCalledWith(5);
+    expect(mockOrmRepo.markAsFailed).toHaveBeenCalledWith(5, 'boom');
+    expect(mockOrmRepo.findById).toHaveBeenCalledTimes(2);
+  });
+
+  test('getForwardingStatistics aggregates counts and success rate', async () => {
+    const stats = await repository.getForwardingStatistics();
+
+    expect(stats).toEqual({
+      total: 2,
+      success: 1,
+      failed: 1,
+      skipped: 0,
+      pending: 0,
+      successRate: '50.00%',
     });
   });
 
-  describe('Delete Operations', () => {
-    test('should delete message', async () => {
-      // Arrange
-      mockDatabase.execute.mockResolvedValue(true);
+  test('findByForwardedMessageId filters by provided IDs and maps results', async () => {
+    mockOrmRepo.findByChannel.mockResolvedValue([
+      buildOrmEntity({ messageId: '100' }),
+      buildOrmEntity({ messageId: '200' }),
+      buildOrmEntity({ messageId: '300' }),
+    ]);
 
-      // Act
-      const result = await repository.delete(123456);
+    const messages = await repository.findByForwardedMessageId('-100', [100, 300]);
 
-      // Assert
-      expect(result).toBe(true);
-    });
-
-    test('should delete messages by user', async () => {
-      // Arrange
-      mockDatabase.execute.mockResolvedValue(10);
-
-      // Act
-      const result = await repository.deleteByUserId('user_123');
-
-      // Assert
-      expect(result).toBe(10);
-    });
+    expect(mockOrmRepo.findByChannel).toHaveBeenCalledWith('-100');
+    expect(messages).toHaveLength(2);
+    expect(messages[0]).toBeInstanceOf(Message);
   });
 
-  describe('Search Operations', () => {
-    test('should search messages by text', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, text: 'Hello world' },
-        { messageId: 222, text: 'Hello everyone' }
-      ];
+  test('findOldGroupedMessages converts Map values to domain entities', async () => {
+    const results = await repository.findOldGroupedMessages();
 
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.searchByText('Hello');
-
-      // Assert
-      expect(result.length).toBeGreaterThan(0);
-    });
-
-    test('should search with date range', async () => {
-      // Arrange
-      const startDate = new Date('2024-01-01');
-      const endDate = new Date('2024-01-31');
-
-      const mockMessages = [
-        { messageId: 111, createdAt: new Date('2024-01-15') }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.searchByDateRange(startDate, endDate);
-
-      // Assert
-      expect(result).toHaveLength(1);
-    });
+    expect(mockOrmRepo.findOldGroupedMessages).toHaveBeenCalledWith(7);
+    expect(results).toBeInstanceOf(Map);
+    const [firstKey, value] = results.entries().next().value;
+    expect(firstKey).toBe('7:grp');
+    expect(value[0]).toBeInstanceOf(Message);
   });
 
-  describe('Statistics', () => {
-    test('should count messages by status', async () => {
-      // Arrange
-      mockDatabase.query.mockResolvedValue([
-        { status: 'SUCCESS', count: 950 },
-        { status: 'FAILED', count: 50 }
-      ]);
-
-      // Act
-      const stats = await repository.getStatusStats();
-
-      // Assert
-      expect(stats.SUCCESS).toBe(950);
-      expect(stats.FAILED).toBe(50);
-    });
-
-    test('should get forwarded messages count', async () => {
-      // Arrange
-      mockDatabase.query.mockResolvedValue([{ count: 500 }]);
-
-      // Act
-      const count = await repository.countForwarded();
-
-      // Assert
-      expect(count).toBe(500);
-    });
-
-    test('should get failed messages count', async () => {
-      // Arrange
-      mockDatabase.query.mockResolvedValue([{ count: 25 }]);
-
-      // Act
-      const count = await repository.countFailed();
-
-      // Assert
-      expect(count).toBe(25);
-    });
-
-    test('should calculate success rate', async () => {
-      // Arrange
-      mockDatabase.query.mockResolvedValue([
-        { total: 1000 },
-        { failed: 50 }
-      ]);
-
-      // Act
-      const rate = await repository.getSuccessRate();
-
-      // Assert
-      expect(rate).toBeGreaterThanOrEqual(0);
-      expect(rate).toBeLessThanOrEqual(1);
-    });
+  test('markAsDeleted proxies to ORM repo', async () => {
+    await repository.markAsDeleted('7', '500');
+    expect(mockOrmRepo.markAsDeleted).toHaveBeenCalledWith('7', '500');
   });
 
-  describe('Pagination', () => {
-    test('should get paginated results', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111 },
-        { messageId: 222 }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.getPaginated({ limit: 2, offset: 0 });
-
-      // Assert
-      expect(result.data).toHaveLength(2);
-    });
-
-    test('should calculate pagination metadata', async () => {
-      // Arrange
-      mockDatabase.query.mockResolvedValue([{ count: 100 }]);
-
-      // Act
-      const result = await repository.getPaginated({
-        limit: 10,
-        offset: 0
-      });
-
-      // Assert
-      expect(result.total).toBeDefined();
-      expect(result.pages).toBeDefined();
-    });
-  });
-
-  describe('Batch Operations', () => {
-    test('should create multiple messages', async () => {
-      // Arrange
-      const messages = [
-        { messageId: 111, text: 'Message 1' },
-        { messageId: 222, text: 'Message 2' }
-      ];
-
-      mockDatabase.transaction.mockImplementation(async (fn) => {
-        return fn();
-      });
-      mockDatabase.execute.mockResolvedValue({});
-
-      // Act
-      const result = await repository.createBatch(messages);
-
-      // Assert
-      expect(result).toHaveLength(2);
-    });
-
-    test('should update multiple messages', async () => {
-      // Arrange
-      const updates = {
-        111: { status: 'FAILED' },
-        222: { status: 'SUCCESS' }
-      };
-
-      mockDatabase.transaction.mockImplementation(async (fn) => {
-        return fn();
-      });
-      mockDatabase.execute.mockResolvedValue({});
-
-      // Act
-      await repository.updateBatch(updates);
-
-      // Assert
-      expect(mockDatabase.execute).toHaveBeenCalled();
-    });
-  });
-
-  describe('Grouped Messages', () => {
-    test('should find grouped messages', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, groupId: 'group_1' },
-        { messageId: 222, groupId: 'group_1' }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.findByGroupId('group_1');
-
-      // Assert
-      expect(result).toHaveLength(2);
-    });
-
-    test('should get ungrouped messages', async () => {
-      // Arrange
-      const mockMessages = [
-        { messageId: 111, groupId: null }
-      ];
-
-      mockDatabase.query.mockResolvedValue(mockMessages);
-
-      // Act
-      const result = await repository.getUngrouped();
-
-      // Assert
-      expect(result.every(m => !m.groupId)).toBe(true);
-    });
-  });
-
-  describe('Edge Cases', () => {
-    test('should handle unicode in message text', async () => {
-      // Arrange
-      const mockMessage = {
-        messageId: 123456,
-        text: 'Привет мир! 🌍'
-      };
-
-      mockDatabase.query.mockResolvedValue([mockMessage]);
-
-      // Act
-      const result = await repository.findById(123456);
-
-      // Assert
-      expect(result.text).toBe('Привет мир! 🌍');
-    });
-
-    test('should handle very long messages', async () => {
-      // Arrange
-      const longText = 'A'.repeat(4096);
-      const mockMessage = {
-        messageId: 123456,
-        text: longText
-      };
-
-      mockDatabase.query.mockResolvedValue([mockMessage]);
-
-      // Act
-      const result = await repository.findById(123456);
-
-      // Assert
-      expect(result.text.length).toBe(4096);
-    });
-
-    test('should handle empty message text', async () => {
-      // Arrange
-      const mockMessage = {
-        messageId: 123456,
-        text: ''
-      };
-
-      mockDatabase.query.mockResolvedValue([mockMessage]);
-
-      // Act
-      const result = await repository.findById(123456);
-
-      // Assert
-      expect(result.text).toBe('');
-    });
-  });
-
-  describe('Error Handling', () => {
-    test('should handle database errors', async () => {
-      // Arrange
-      mockDatabase.query.mockRejectedValue(
-        new Error('Database error')
-      );
-
-      // Act & Assert
-      await expect(repository.getStatusStats())
-        .rejects.toThrow('Database error');
-    });
+  test('exists checks via findById', async () => {
+    mockOrmRepo.findById.mockResolvedValue(null);
+    const result = await repository.exists(99);
+    expect(result).toBe(false);
   });
 });

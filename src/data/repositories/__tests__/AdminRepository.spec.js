@@ -4,6 +4,7 @@
  * @module data/repositories/__tests__/AdminRepository.spec
  */
 
+import { jest } from '@jest/globals';
 import AdminRepository from '../domain/AdminRepository.js';
 import Admin from '../../../core/entities/domain/Admin.entity.js';
 import { AdminRole } from '../../../shared/constants/index.js';

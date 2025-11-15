@@ -145,6 +145,15 @@ class ChannelRepository extends IChannelRepository {
     const entities = await this.#ormRepository.findByAdmin(adminId);
     return entities.map(e => this.#toDomainEntity(e)).filter(Boolean);
   }
+
+  /**
+   * Finds all channels by admin ID
+   * @param {string} adminUserId - Admin user ID
+   * @returns {Promise<Array>} Channels
+   */
+  async findByAdminId(adminUserId) {
+    return await this.findByAdminSession(adminUserId);
+  }
 }
 
 export default ChannelRepository;

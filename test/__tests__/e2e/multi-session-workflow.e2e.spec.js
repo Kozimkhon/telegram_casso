@@ -2,7 +2,7 @@
  * E2E Test: Multi-Session Workflow
  */
 
-const { setupTestDatabase, teardownTestDatabase, clearAllTables } = require('../../setup/testDatabaseSetup');
+import { setupTestDatabase, teardownTestDatabase, clearAllTables } from '../../setup/testDatabaseSetup.js';
 
 describe('E2E: Multi-Session Workflow', () => {
   let database;

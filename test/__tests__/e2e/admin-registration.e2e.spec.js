@@ -2,7 +2,7 @@
  * E2E Test: Admin Registration with Extended Validation
  */
 
-const { setupTestDatabase, teardownTestDatabase, clearAllTables } = require('../../setup/testDatabaseSetup');
+import { setupTestDatabase, teardownTestDatabase, clearAllTables } from '../../setup/testDatabaseSetup.js';
 
 describe('E2E: Admin Registration Extended', () => {
   let database;

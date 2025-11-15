@@ -3,6 +3,7 @@
  * Tests user bot command handling and response generation
  */
 
+import { jest } from '@jest/globals';
 import UserBotController from '../UserBotController.js';
 
 describe('UserBotController', () => {

@@ -143,7 +143,10 @@ class AdminBotController {
     try {
       this.#logger.info("Starting AdminBot...");
 
-      await this.#bot.launch();
+      // Launch bot without await - it runs in background
+      this.#bot.launch().catch(error => {
+        this.#logger.error("AdminBot launch error", error);
+      });
 
       // Setup cleanup interval for expired auth sessions (every 5 minutes)
       this.cleanupInterval = setInterval(() => {

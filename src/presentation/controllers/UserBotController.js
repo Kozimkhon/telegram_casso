@@ -690,16 +690,6 @@ class UserBotController {
         'UpdateNewChannelMessage': 'handleNewChannelMessage',
         'UpdateEditChannelMessage': 'handleEditChannelMessage',
         'UpdateDeleteChannelMessages': 'handleDeleteChannelMessages',
-        'UpdateChannel': 'handleChannelUpdate',
-        'UpdateChannelMessageViews': 'handleChannelMessageViews',
-        'UpdateChannelTooLong': 'handleChannelTooLong',
-        'UpdateChannelParticipant': 'handleChannelParticipant',
-        'UpdateChannelUserTyping': 'handleChannelUserTyping',
-        'UpdateChannelMessageForwards': 'handleChannelMessageForwards',
-        'UpdateChannelAvailableMessages': 'handleChannelAvailableMessages',
-        'UpdateChannelReadMessagesContents': 'handleChannelReadMessagesContents',
-        'UpdateReadChannelInbox': 'handleReadChannelInbox',
-        'UpdateReadChannelOutbox': 'handleReadChannelOutbox',
       };
 
       // Get handler method name

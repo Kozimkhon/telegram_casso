@@ -3,6 +3,7 @@
  * Tests admin profile and settings updates
  */
 
+import { jest } from '@jest/globals';
 import UpdateAdminUseCase from '../UpdateAdminUseCase.js';
 
 describe('UpdateAdminUseCase', () => {
