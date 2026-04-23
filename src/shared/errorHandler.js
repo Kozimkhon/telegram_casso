@@ -82,6 +82,15 @@ export function asyncErrorHandler(fn, context = 'AsyncFunction') {
     try {
       return await fn(...args);
     } catch (error) {
+      // Ignore stale callback query errors — these happen when answerCbQuery
+      // is called after Telegram's 10-second window (e.g. during long operations)
+      if (
+        error?.message?.includes('query is too old') ||
+        error?.message?.includes('query ID is invalid') ||
+        error?.message?.includes('QUERY_ID_INVALID')
+      ) {
+        return;
+      }
       handleGlobalError(error, context);
       throw error;
     }

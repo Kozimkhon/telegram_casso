@@ -52,25 +52,30 @@ class DeleteSessionUseCase {
       throw new Error(`Session not found: ${adminId}`);
     }
 
-    // Find associated channels
-    const channels = await this.#channelRepository.findByAdminSession(adminId);
+    // Stop UserBot if running
+    const botInstance = this.#stateManager.getBot(adminId);
+    if (botInstance) {
+      try {
+        await botInstance.stop();
+      } catch (e) {
+        // ignore stop errors
+      }
+      this.#stateManager.unregisterBot(adminId);
+    }
 
-    // Unlink channels
+    // Find associated channels and unlink them
+    const channels = await this.#channelRepository.findByAdminSession(adminId);
     for (const channel of channels) {
-      channel.linkToSession(adminId);
       await this.#channelRepository.update(channel.channelId, {
-        admin_id: adminId
+        admin_id: null
       });
     }
 
-    // Delete session
-    const deleted = await this.#sessionRepository.delete(adminId);
+    // Delete session by primary key
+    const deleted = await this.#sessionRepository.delete(session.id);
     if (!deleted) {
       throw new Error('Failed to delete session');
     }
-
-    // Update state
-    this.#stateManager.removeSession(phone);
 
     return {
       success: true,

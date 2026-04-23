@@ -107,6 +107,10 @@ export function createSessionAuthHandlers(dependencies) {
       return;
     }
 
+    if (!authSession.phone) {
+      await ctx.answerCbQuery('Already empty', { show_alert: false });
+      return;
+    }
     authSession.phone = authSession.phone.slice(0, -1);
 
     const text = `📱 <b>Add New Session</b>\n\n` +
@@ -139,6 +143,13 @@ export function createSessionAuthHandlers(dependencies) {
       return;
     }
 
+    // Guard against double trigger (user pressing confirm twice)
+    if (authSession.connecting) {
+      await ctx.answerCbQuery('⏳ Already connecting...', { show_alert: false });
+      return;
+    }
+    authSession.connecting = true;
+
     try {
       await ctx.editMessageText(
         `📱 <b>Connecting...</b>\n\nPhone: <code>${authSession.phone}</code>\n\n🔄 Connecting to Telegram...`,
@@ -149,14 +160,31 @@ export function createSessionAuthHandlers(dependencies) {
         new StringSession(''),
         config.telegram.apiId,
         config.telegram.apiHash,
-        { connectionRetries: 5 }
+        {
+          connectionRetries: 3,
+          useWSS: false,
+          // Suppress update-loop TIMEOUT noise on unauthenticated clients
+          baseLogger: {
+            levels: ['error'],
+            log: () => {},
+            debug: () => {},
+            info: () => {},
+            warn: () => {},
+            error: () => {},
+            trace: () => {},
+            format: () => {},
+          },
+        }
       );
 
       authSession.client = client;
-      authSession.step = 'code';
-      authSession.code = '';
 
       await client.connect();
+
+      // Ensure connection is ready before invoking
+      if (!client.connected) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
 
       const result = await client.invoke(
         new Api.auth.SendCode({
@@ -168,6 +196,9 @@ export function createSessionAuthHandlers(dependencies) {
       );
 
       authSession.phoneCodeHash = result.phoneCodeHash;
+      // Only switch to code step after SendCode succeeds
+      authSession.step = 'code';
+      authSession.code = '';
 
       const text = `📱 <b>Verification Code</b>\n\n` +
                    `Phone: <code>${authSession.phone}</code>\n` +
@@ -218,6 +249,10 @@ export function createSessionAuthHandlers(dependencies) {
       return;
     }
 
+    if (authSession.code.length >= 5) {
+      await ctx.answerCbQuery('Code is already 5 digits', { show_alert: false });
+      return;
+    }
     authSession.code += digit;
 
     const text = `📱 <b>Verification Code</b>\n\n` +
@@ -246,6 +281,10 @@ export function createSessionAuthHandlers(dependencies) {
       return;
     }
 
+    if (!authSession.code) {
+      await ctx.answerCbQuery('Already empty', { show_alert: false });
+      return;
+    }
     authSession.code = authSession.code.slice(0, -1);
 
     const text = `📱 <b>Verification Code</b>\n\n` +
@@ -262,6 +301,32 @@ export function createSessionAuthHandlers(dependencies) {
     });
   };
 
+  const handleCodeClear = async (ctx) => {
+    const userId = ctx.from.id;
+    const { authId, authSession } = findAuthSession(userId, 'code');
+
+    if (!authSession) {
+      await ctx.answerCbQuery('Session expired', { show_alert: false });
+      return;
+    }
+
+    if (!authSession.code) {
+      await ctx.answerCbQuery('Already empty', { show_alert: false });
+      return;
+    }
+
+    authSession.code = '';
+
+    const text = `📱 <b>Verification Code</b>\n\n` +
+                 `Phone: <code>${authSession.phone}</code>\n` +
+                 `Code sent to your phone!\n\n` +
+                 `Current: <code></code>\n\n` +
+                 `Enter the verification code:`;
+
+    const keyboard = createCodeNumpad('', authId);
+    await ctx.editMessageText(text, { parse_mode: 'HTML', ...keyboard });
+  };
+
   /**
    * Confirms verification code and completes authentication
    */
@@ -274,8 +339,31 @@ export function createSessionAuthHandlers(dependencies) {
       return;
     }
 
-    if (!authSession.code || authSession.code.length < 4) {
-      await ctx.answerCbQuery('❌ Please enter a valid verification code', { show_alert: true });
+    if (!authSession.code || authSession.code.length < 5) {
+      await ctx.answerCbQuery('❌ Please enter all 5 digits of the code', { show_alert: true });
+      return;
+    }
+
+    if (authSession.verifying) {
+      await ctx.answerCbQuery('⏳ Already verifying...', { show_alert: false });
+      return;
+    }
+    authSession.verifying = true;
+
+    if (!authSession.phoneCodeHash) {
+      await ctx.editMessageText(
+        '❌ <b>Session error</b>\n\nPhone verification was not completed. Please start again.',
+        {
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '🔄 Try Again', callback_data: 'add_session' },
+              { text: '🏠 Main Menu', callback_data: 'main_menu' }
+            ]]
+          }
+        }
+      );
+      authSessions.delete(authId);
       return;
     }
 
@@ -373,8 +461,33 @@ export function createSessionAuthHandlers(dependencies) {
         // If it's not a 2FA error, show error message
         logger.error('Sign in failed (not 2FA)', signInError);
 
+        const errorCode = signInError.errorMessage || signInError.message || '';
+
+        if (errorCode.includes('PHONE_CODE_INVALID') || errorCode.includes('PHONE_CODE_EXPIRED')) {
+          // Wrong/expired code — let user try again without restarting the whole flow
+          authSession.code = '';
+          authSession.verifying = false;
+
+          const errLabel = errorCode.includes('EXPIRED')
+            ? '⏰ Code expired. Request a new code.'
+            : '❌ Wrong code. Please try again.';
+
+          const retryKeyboard = errorCode.includes('EXPIRED')
+            ? Markup.inlineKeyboard([
+                [Markup.button.callback('📱 Send new code', 'add_session')],
+                [Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)],
+              ])
+            : createCodeNumpad('', authId);
+
+          await ctx.editMessageText(
+            `📱 <b>Verification Code</b>\n\nPhone: <code>${authSession.phone}</code>\n\n${errLabel}\n\nCurrent: <code></code>\n\nEnter the verification code:`,
+            { parse_mode: 'HTML', ...retryKeyboard }
+          );
+          return;
+        }
+
         await ctx.editMessageText(
-          `❌ <b>Authentication Failed</b>\n\n${signInError.errorMessage || signInError.message}\n\nPlease try again.`,
+          `❌ <b>Authentication Failed</b>\n\n${errorCode}\n\nPlease try again.`,
           {
             parse_mode: 'HTML',
             reply_markup: {
@@ -577,6 +690,7 @@ export function createSessionAuthHandlers(dependencies) {
     handleConfirmPhoneNumber,
     handleCodeDigit,
     handleCodeBackspace,
+    handleCodeClear,
     handleConfirmVerificationCode,
     handlePasswordTextMessage,
     handleCancelAuth,

@@ -298,6 +298,8 @@ class AdminBotController {
     const sessionHandlers = createSessionHandlers({
       sessionRepository: this.sessionRepository,
       adminRepository: this.adminRepository,
+      deleteSessionUseCase: this.#useCases.deleteSession,
+      stateManager: this.stateManager,
     });
 
     const statsHandlers = createStatsHandlers({

@@ -44,6 +44,20 @@ export function setupCallbacks(bot, handlers) {
     await handlers.handleSessionsList(ctx);
   }));
 
+  // Delete session (confirmation dialog)
+  bot.action(/^delete_session_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const adminId = ctx.match[1];
+    await handlers.handleDeleteSession(ctx, adminId);
+  }));
+
+  // Confirm delete session
+  bot.action(/^confirm_delete_session_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const adminId = ctx.match[1];
+    await handlers.handleConfirmDeleteSession(ctx, adminId);
+  }));
+
   // Forwarding stats
   bot.action('forwarding_stats', asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
@@ -125,6 +139,11 @@ export function setupCallbacks(bot, handlers) {
   bot.action('code_backspace', asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
     await handlers.handleCodeBackspace(ctx);
+  }));
+
+  bot.action('code_clear', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleCodeClear(ctx);
   }));
 
   bot.action('code_confirm', asyncErrorHandler(async (ctx) => {
