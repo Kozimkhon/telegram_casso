@@ -112,8 +112,9 @@ export function createStatsHandlers(dependencies) {
     try {
       let statusText = `🎛️ *Queue Status - Multi-Session System*\n\n`;
 
-      // Get all sessions
-      const sessions = await dependencies.sessionRepository.findAll();
+      // Get only caller's own session
+      const ownSession = await dependencies.sessionRepository.findByAdminId(ctx.from.id.toString());
+      const sessions = ownSession ? [ownSession] : [];
       
       if (sessions.length === 0) {
         statusText += `📋 No active sessions\n\n`;

@@ -16,6 +16,7 @@ export async function handleStart(ctx) {
     [Markup.button.callback('🔧 Sessions', 'sessions_list')],
     [Markup.button.callback('📊 Statistics', 'system_stats')],
     [Markup.button.callback('📈 Forwarding Stats', 'forwarding_stats')],
+    [Markup.button.callback('📑 Hisobot', 'report_menu')],
   ]);
 
   const message = `

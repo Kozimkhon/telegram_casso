@@ -21,6 +21,7 @@ import { createSessionHandlers } from "../handlers/sessionHandlers.js";
 import { createStatsHandlers } from "../handlers/statsHandlers.js";
 import { createAdminHandlers } from "../handlers/adminHandlers.js";
 import { createSessionAuthHandlers } from "../handlers/sessionAuthHandlers.js";
+import { createReportHandlers } from "../handlers/reportHandlers.js";
 import { handleAdminNotRegistered } from "../services/admin-bot.js";
 /**
  * AdminBot Controller
@@ -103,6 +104,7 @@ class AdminBotController {
     // Inject domain services
     this.#services = {
       metrics: dependencies.metricsService,
+      channelReport: dependencies.channelReportService,
     };
 
     // Inject state manager
@@ -196,6 +198,7 @@ class AdminBotController {
         forwardingService: container.resolve('forwardingService'),
         queueService: null, 
         throttleService: container.resolve('throttleService'),
+        channelPostService: container.resolve('channelPostService'),
         stateManager: container.resolve('stateManager'),
         channelRepository: container.resolve('channelRepository'),
         sessionRepository: container.resolve('sessionRepository'),
@@ -311,7 +314,12 @@ class AdminBotController {
     const adminHandlers = createAdminHandlers({
       addAdminUseCase: this.#useCases.addAdmin,
     });
-    
+
+    const reportHandlers = createReportHandlers({
+      channelRepository: this.channelRepository,
+      channelReportService: this.#services.channelReport,
+    });
+
     // Combine all handlers (including auth handlers from instance)
     const handlers = {
       handleStart,
@@ -321,6 +329,7 @@ class AdminBotController {
       ...sessionHandlers,
       ...statsHandlers,
       ...adminHandlers,
+      ...reportHandlers,
       ...this.authHandlers, // Add session auth handlers
     };
 
@@ -369,6 +378,39 @@ class AdminBotController {
     } catch (error) {
       this.#logger.error('Failed to send message to admin', {
         adminId,
+        error: error.message
+      });
+      return false;
+    }
+  }
+
+  /**
+   * Sends document (file) to admin
+   * @param {string} adminId - Admin user ID
+   * @param {Buffer} buffer - File content
+   * @param {string} filename - File name
+   * @param {string} [caption] - HTML caption
+   * @returns {Promise<boolean>} Success status
+   */
+  async sendDocumentToAdmin(adminId, buffer, filename, caption = '') {
+    try {
+      if (!this.#isRunning || !this.#bot) {
+        this.#logger.warn('Cannot send document: bot not running', { adminId });
+        return false;
+      }
+
+      await this.#bot.telegram.sendDocument(
+        adminId,
+        { source: buffer, filename },
+        { caption, parse_mode: 'HTML' }
+      );
+
+      this.#logger.debug('Document sent to admin', { adminId, filename });
+      return true;
+    } catch (error) {
+      this.#logger.error('Failed to send document to admin', {
+        adminId,
+        filename,
         error: error.message
       });
       return false;

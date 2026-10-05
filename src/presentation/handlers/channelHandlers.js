@@ -116,12 +116,36 @@ export function createChannelHandlers(dependencies) {
   }
 
   /**
+   * Checks that channel belongs to the caller; shows "not found" otherwise
+   * @param {Object} ctx - Telegraf context
+   * @param {string} channelId - Channel ID
+   * @returns {Promise<boolean>} True if caller owns the channel
+   */
+  async function ensureOwnChannel(ctx, channelId) {
+    const channel = await channelRepository.findByChannelId(channelId);
+
+    if (channel && channel.adminId?.toString() === ctx.from.id.toString()) {
+      return true;
+    }
+
+    logger.warn('Channel access denied', { channelId, userId: ctx.from.id });
+    await ctx.editMessageText('❌ Channel not found.', {
+      ...Markup.inlineKeyboard([
+        [Markup.button.callback('🔙 Back to Channels', 'channels_list')],
+      ]),
+    });
+    return false;
+  }
+
+  /**
    * Handles channel toggle
    * @param {Object} ctx - Telegraf context
    * @param {string} channelId - Channel ID
    */
   async function handleToggleChannel(ctx, channelId) {
     try {
+      if (!(await ensureOwnChannel(ctx, channelId))) return;
+
       // Toggle using use case
       const result = await toggleChannelForwardingUseCase.execute(
         channelId,
@@ -144,6 +168,8 @@ export function createChannelHandlers(dependencies) {
    */
   async function handleChannelDetails(ctx, channelId) {
     try {
+      if (!(await ensureOwnChannel(ctx, channelId))) return;
+
       // Get channel details using use case
       const result = await getChannelStatsUseCase.getChannelDetails(channelId);
       const channel = result.channel;
@@ -206,12 +232,9 @@ export function createChannelHandlers(dependencies) {
   async function handleRemoveChannel(ctx, channelId) {
     try {
       // Get channel details
-      const channel = await channelRepository.findByChannelId(channelId);
+      if (!(await ensureOwnChannel(ctx, channelId))) return;
 
-      if (!channel) {
-        await ctx.editMessageText('❌ Channel not found.');
-        return;
-      }
+      const channel = await channelRepository.findByChannelId(channelId);
 
       const text = `⚠️ *Confirm Channel Removal*\n\nAre you sure you want to remove this channel?\n\n*${channel.title}*\nID: \`${channel.channelId}\`\n\n*This action cannot be undone.*`;
 
@@ -240,6 +263,8 @@ export function createChannelHandlers(dependencies) {
    */
   async function handleConfirmRemoveChannel(ctx, channelId) {
     try {
+      if (!(await ensureOwnChannel(ctx, channelId))) return;
+
       // Use RemoveChannelUseCase if provided
       if (dependencies.removeChannelUseCase) {
         const result = await dependencies.removeChannelUseCase.execute(channelId);

@@ -166,6 +166,7 @@ export function createSessionAuthHandlers(dependencies) {
           // Suppress update-loop TIMEOUT noise on unauthenticated clients
           baseLogger: {
             levels: ['error'],
+            canSend: () => false,
             log: () => {},
             debug: () => {},
             info: () => {},
@@ -181,19 +182,44 @@ export function createSessionAuthHandlers(dependencies) {
 
       await client.connect();
 
-      // Ensure connection is ready before invoking
-      if (!client.connected) {
+      // Wait until fully connected (retry up to 5 times, 1s each)
+      let attempts = 0;
+      while (!client.connected && attempts < 5) {
         await new Promise(resolve => setTimeout(resolve, 1000));
+        attempts++;
+      }
+      if (!client.connected) {
+        throw new Error('Could not connect to Telegram. Please try again.');
       }
 
-      const result = await client.invoke(
-        new Api.auth.SendCode({
-          phoneNumber: authSession.phone,
-          apiId: config.telegram.apiId,
-          apiHash: config.telegram.apiHash,
-          settings: new Api.CodeSettings({})
-        })
-      );
+      // Invoke SendCode with one reconnect-retry on disconnect errors
+      let result;
+      try {
+        result = await client.invoke(
+          new Api.auth.SendCode({
+            phoneNumber: authSession.phone,
+            apiId: config.telegram.apiId,
+            apiHash: config.telegram.apiHash,
+            settings: new Api.CodeSettings({})
+          })
+        );
+      } catch (invokeError) {
+        if (invokeError.message?.includes('disconnected') || invokeError.message?.includes('Cannot send')) {
+          logger.warn('Disconnected during SendCode, reconnecting...', { phone: authSession.phone });
+          await client.connect();
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          result = await client.invoke(
+            new Api.auth.SendCode({
+              phoneNumber: authSession.phone,
+              apiId: config.telegram.apiId,
+              apiHash: config.telegram.apiHash,
+              settings: new Api.CodeSettings({})
+            })
+          );
+        } else {
+          throw invokeError;
+        }
+      }
 
       authSession.phoneCodeHash = result.phoneCodeHash;
       // Only switch to code step after SendCode succeeds
@@ -474,7 +500,7 @@ export function createSessionAuthHandlers(dependencies) {
 
           const retryKeyboard = errorCode.includes('EXPIRED')
             ? Markup.inlineKeyboard([
-                [Markup.button.callback('📱 Send new code', 'add_session')],
+                [Markup.button.callback('� Resend code', `resend_code_${authId}`)],
                 [Markup.button.callback('❌ Cancel', `cancel_auth_${authId}`)],
               ])
             : createCodeNumpad('', authId);
@@ -639,6 +665,59 @@ export function createSessionAuthHandlers(dependencies) {
   /**
    * Cancels authentication process
    */
+  /**
+   * Resends verification code using Telegram's ResendCode API (does not count as new SMS request)
+   */
+  const handleResendCode = async (ctx, authId) => {
+    const authSession = authSessions.get(authId);
+
+    if (!authSession || authSession.step !== 'code') {
+      await ctx.editMessageText('❌ Authentication session expired. Please start again.');
+      return;
+    }
+
+    try {
+      await ctx.editMessageText(
+        `📱 <b>Resending code...</b>\n\nPhone: <code>${authSession.phone}</code>\n\n🔄 Requesting new verification code...`,
+        { parse_mode: 'HTML' }
+      );
+
+      const result = await authSession.client.invoke(
+        new Api.auth.ResendCode({
+          phoneNumber: authSession.phone,
+          phoneCodeHash: authSession.phoneCodeHash,
+        })
+      );
+
+      // Update phoneCodeHash with the new one
+      authSession.phoneCodeHash = result.phoneCodeHash;
+      authSession.code = '';
+      authSession.verifying = false;
+
+      const keyboard = createCodeNumpad('', authId);
+      await ctx.editMessageText(
+        `📱 <b>Verification Code</b>\n\nPhone: <code>${authSession.phone}</code>\nNew code sent!\n\nCurrent: <code></code>\n\nEnter the verification code:`,
+        { parse_mode: 'HTML', ...keyboard }
+      );
+
+      logger.info('Verification code resent successfully', { phone: authSession.phone });
+    } catch (error) {
+      logger.error('Failed to resend code', error);
+      await ctx.editMessageText(
+        `❌ Failed to resend code: ${error.message}\n\nPlease try again from the beginning.`,
+        {
+          parse_mode: 'HTML',
+          reply_markup: {
+            inline_keyboard: [[
+              { text: '🔄 Try Again', callback_data: 'add_session' },
+              { text: '🏠 Main Menu', callback_data: 'main_menu' }
+            ]]
+          }
+        }
+      );
+    }
+  };
+
   const handleCancelAuth = async (ctx, authId) => {
     const authSession = authSessions.get(authId);
 
@@ -694,6 +773,7 @@ export function createSessionAuthHandlers(dependencies) {
     handleConfirmVerificationCode,
     handlePasswordTextMessage,
     handleCancelAuth,
+    handleResendCode,
     cleanupExpiredSessions,
   };
 }

@@ -29,51 +29,44 @@ export function createSessionHandlers(dependencies) {
    */
   async function handleSessionsList(ctx) {
     try {
-      const sessions = await sessionRepository.findAll();
+      const currentUserId = ctx.from.id.toString();
+      const session = await sessionRepository.findByAdminId(currentUserId);
 
-      if (sessions.length === 0) {
+      if (!session) {
         const keyboard = Markup.inlineKeyboard([
           [Markup.button.callback('📱 Add Session', 'add_session')],
           [Markup.button.callback('🏠 Main Menu', 'main_menu')],
         ]);
-        await ctx.editMessageText('🔧 No sessions configured yet.', {
+        await ctx.editMessageText('🔧 No session configured yet.', {
           parse_mode: 'Markdown',
           ...keyboard,
         });
         return;
       }
 
-      let message = `🔧 *Active Sessions* (${sessions.length})\n\n`;
-      const buttons = [];
+      const admin = await adminRepository.findByUserId(session.adminId);
 
-      for (let idx = 0; idx < sessions.length; idx++) {
-        const session = sessions[idx];
-        const admin = await adminRepository.findByUserId(session.adminId);
+      const statusIcon = session.isActive() ? '✅' : '❌';
+      const phone = escapeMarkdown(admin?.phone || 'No phone');
+      const username = admin?.username ? escapeMarkdown(`@${admin.username}`) : 'No username';
 
-        const statusIcon = session.isActive() ? '✅' : '❌';
-        const phone = escapeMarkdown(admin?.phone || 'No phone');
-        const username = admin?.username ? escapeMarkdown(`@${admin.username}`) : 'No username';
+      let message = `🔧 *My Session*\n\n`;
+      message += `${statusIcon} ${phone}\n`;
+      message += `   Username: ${username}\n`;
+      message += `   Status: ${session.status}\n`;
+      message += `   Last Active: ${formatTimestamp(session.lastActive)}\n`;
 
-        message += `${idx + 1}. ${statusIcon} ${phone}\n`;
-        message += `   Username: ${username}\n`;
-        message += `   Status: ${session.status}\n`;
-        message += `   Last Active: ${formatTimestamp(session.lastActive)}\n`;
-
-        if (session.lastError) {
-          message += `   ⚠️ Error: ${escapeMarkdown(session.lastError)}\n`;
-        }
-        if (session.floodWaitUntil && new Date() < session.floodWaitUntil) {
-          message += `   🕐 Flood wait until: ${formatTimestamp(session.floodWaitUntil)}\n`;
-        }
-
-        message += `\n`;
-        buttons.push([
-          Markup.button.callback(`🗑 Delete session ${idx + 1} (${admin?.phone || session.adminId})`, `delete_session_${session.adminId}`),
-        ]);
+      if (session.lastError) {
+        message += `   ⚠️ Error: ${escapeMarkdown(session.lastError)}\n`;
+      }
+      if (session.floodWaitUntil && new Date() < session.floodWaitUntil) {
+        message += `   🕐 Flood wait until: ${formatTimestamp(session.floodWaitUntil)}\n`;
       }
 
-      buttons.push([Markup.button.callback('📱 Add Session', 'add_session')]);
-      buttons.push([Markup.button.callback('🔙 Back', 'main_menu')]);
+      const buttons = [
+        [Markup.button.callback(`🗑 Delete my session (${admin?.phone || session.adminId})`, `delete_session_${session.adminId}`)],
+        [Markup.button.callback('🔙 Back', 'main_menu')],
+      ];
 
       const keyboard = Markup.inlineKeyboard(buttons);
       await ctx.editMessageText(message, { parse_mode: 'Markdown', ...keyboard });
@@ -91,6 +84,12 @@ export function createSessionHandlers(dependencies) {
    */
   async function handleDeleteSession(ctx, adminId) {
     try {
+      // Ownership check — only own session allowed
+      if (adminId !== ctx.from.id.toString()) {
+        await ctx.answerCbQuery('❌ You can only delete your own session.');
+        return;
+      }
+
       const session = await sessionRepository.findByAdminId(adminId);
       if (!session) {
         await ctx.editMessageText('❌ Session not found.', {
@@ -124,33 +123,26 @@ export function createSessionHandlers(dependencies) {
    */
   async function handleConfirmDeleteSession(ctx, adminId) {
     try {
+      // Ownership check — only own session allowed
+      if (adminId !== ctx.from.id.toString()) {
+        await ctx.answerCbQuery('❌ You can only delete your own session.');
+        return;
+      }
+
       await ctx.editMessageText('🔄 Deleting session...');
 
       await deleteSessionUseCase.execute(adminId);
 
-      const currentUserId = ctx.from.id.toString();
-      const isOwnSession = currentUserId === adminId;
+      const keyboard = Markup.inlineKeyboard([
+        [Markup.button.callback('📱 Add New Session', 'add_session')],
+        [Markup.button.callback('🏠 Main Menu', 'main_menu')],
+      ]);
+      await ctx.editMessageText(
+        '✅ *Session deleted successfully.*\n\nYour UserBot session has been removed\\. Add a new session to continue:',
+        { parse_mode: 'Markdown', ...keyboard }
+      );
 
-      if (isOwnSession) {
-        // Own session deleted — redirect to add new session
-        const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('📱 Add New Session', 'add_session')],
-          [Markup.button.callback('🏠 Main Menu', 'main_menu')],
-        ]);
-        await ctx.editMessageText(
-          '✅ *Session deleted successfully.*\n\nYour UserBot session has been removed\\. Add a new session to continue:',
-          { parse_mode: 'Markdown', ...keyboard }
-        );
-      } else {
-        // Someone else's session deleted — go back to sessions list
-        const keyboard = Markup.inlineKeyboard([
-          [Markup.button.callback('🔧 Sessions List', 'sessions_list')],
-          [Markup.button.callback('🏠 Main Menu', 'main_menu')],
-        ]);
-        await ctx.editMessageText('✅ Session deleted successfully.', { ...keyboard });
-      }
-
-      logger.info('Session deleted', { adminId, deletedBy: currentUserId });
+      logger.info('Session deleted', { adminId, deletedBy: adminId });
     } catch (error) {
       logger.error('Error deleting session', error);
       const keyboard = Markup.inlineKeyboard([

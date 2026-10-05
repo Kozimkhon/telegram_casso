@@ -84,6 +84,24 @@ class AddUserToChannelUseCase {
       results: results
     };
   }
+
+  /**
+   * Syncs channel members with the full current member list:
+   * adds new members and removes those who are no longer in the channel
+   * @param {string} channelId - Channel ID
+   * @param {Array<string>} userIds - Complete list of current member user IDs
+   * @returns {Promise<Object>} Result
+   */
+  async syncMembers(channelId, userIds) {
+    const addResult = await this.bulkExecute(channelId, userIds);
+    const removedUserIds = await this.#userRepository.removeFromChannelExcept(channelId, userIds);
+
+    return {
+      ...addResult,
+      removed: removedUserIds.length,
+      removedUserIds
+    };
+  }
 }
 
 export default AddUserToChannelUseCase;

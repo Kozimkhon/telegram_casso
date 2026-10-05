@@ -241,6 +241,34 @@ class Container {
       })
     );
 
+    // Register channel posts storage and reports
+    const { default: ChannelPostRepository } = await import('../../data/repositories/orm/ChannelPostRepository.js');
+    const { default: ChannelPostService } = await import('../../domain/services/ChannelPostService.js');
+    const { default: ChannelReportService } = await import('../../domain/services/ChannelReportService.js');
+    const { default: MonthlyReportJob } = await import('../../jobs/MonthlyReportJob.js');
+    const { config: appConfig } = await import('../../config/index.js');
+
+    this.registerSingleton('channelPostRepository', () => new ChannelPostRepository());
+    this.registerSingleton('channelPostService', (c) =>
+      new ChannelPostService({
+        channelPostRepository: c.resolve('channelPostRepository')
+      })
+    );
+    this.registerSingleton('channelReportService', (c) =>
+      new ChannelReportService({
+        channelPostRepository: c.resolve('channelPostRepository')
+      })
+    );
+    this.registerSingleton('monthlyReportJob', (c) =>
+      new MonthlyReportJob({
+        channelReportService: c.resolve('channelReportService'),
+        channelRepository: c.resolve('channelRepository'),
+        adminRepository: c.resolve('adminRepository'),
+        stateManager: c.resolve('stateManager'),
+        dataDir: appConfig.paths.dataDir
+      })
+    );
+
     // Register session use cases
     this.registerTransient('createSessionUseCase', (c) => 
       new sessionUseCases.CreateSessionUseCase(

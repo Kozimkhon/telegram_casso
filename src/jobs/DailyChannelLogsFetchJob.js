@@ -103,6 +103,7 @@ class DailyChannelLogsFetchJob {
       const summary = {
         totalAdmins: admins.length,
         successCount: 0,
+        skippedCount: 0,
         errorCount: 0,
         totalLogsFetched: 0,
         errors: []
@@ -114,12 +115,9 @@ class DailyChannelLogsFetchJob {
           const userBot = this.#sessionManager.getBot(admin.userId);
           
           if (!userBot) {
-            this.#logger.warn('No active UserBot for admin', { adminUserId: admin.userId });
-            summary.errorCount++;
-            summary.errors.push({
-              adminUserId: admin.userId,
-              error: 'No active UserBot instance'
-            });
+            // No session for this admin — skip silently (not an error)
+            this.#logger.debug('No active UserBot for admin, skipping', { adminUserId: admin.userId });
+            summary.skippedCount++;
             continue;
           }
 
@@ -128,11 +126,7 @@ class DailyChannelLogsFetchJob {
           
           if (!client) {
             this.#logger.warn('UserBot has no active client', { adminUserId: admin.userId });
-            summary.errorCount++;
-            summary.errors.push({
-              adminUserId: admin.userId,
-              error: 'No active Telegram client'
-            });
+            summary.skippedCount++;
             continue;
           }
 
@@ -160,6 +154,21 @@ class DailyChannelLogsFetchJob {
             adminUserId: admin.userId,
             error,
           });
+
+          // AUTH_KEY_UNREGISTERED — session revoked, stop the bot and notify admin
+          if (error.code === 401 || error.errorMessage === 'AUTH_KEY_UNREGISTERED' || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
+            try {
+              const userBot = this.#sessionManager.getBot(admin.userId);
+              if (userBot?.handleAuthKeyUnregistered) {
+                await userBot.handleAuthKeyUnregistered();
+              }
+            } catch (authHandleError) {
+              this.#logger.error('Failed to handle auth key error for admin', {
+                adminUserId: admin.userId,
+                error: authHandleError,
+              });
+            }
+          }
         }
       }
 

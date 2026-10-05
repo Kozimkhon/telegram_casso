@@ -170,3 +170,6 @@ logs/
 Thumbs.dbss
 data/telegram_casso.db
 logs/
+
+# job state
+data/*.json

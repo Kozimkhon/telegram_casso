@@ -5,12 +5,15 @@
 
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Load environment variables
-dotenv.config();
+// Get project root reliably (2 levels up from src/config/)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..', '..');
 
-// Get the project root directory
-const projectRoot = process.cwd();
+// Load environment variables from project root
+dotenv.config({ path: path.join(projectRoot, '.env') });
 
 /**
  * Validates that required environment variables are present
@@ -41,18 +44,18 @@ export const config = {
 
   // Database configuration
   database: {
-    path: process.env.DB_PATH || path.join(process.cwd(), 'data', 'telegram_casso.db'),
+    path: process.env.DB_PATH || path.join(projectRoot, 'data', 'telegram_casso.db'),
   },
 
   // Session and data paths
   paths: {
-    dataDir: process.env.DATA_DIR || path.join(process.cwd(), 'data'),
+    dataDir: process.env.DATA_DIR || path.join(projectRoot, 'data'),
   },
 
   // Logging configuration
   logging: {
     level: process.env.LOG_LEVEL || 'info',
-    logFile: path.join(process.cwd(), 'logs', 'app.log'),
+    logFile: process.env.LOG_FILE || path.join(projectRoot, 'logs', 'app.log'),
   },
 
   // Application settings

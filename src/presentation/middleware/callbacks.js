@@ -175,6 +175,13 @@ export function setupCallbacks(bot, handlers) {
     await handlers.handleCancelAuth(ctx, authId);
   }));
 
+  // Resend verification code (uses ResendCode API — does not trigger new SMS flood)
+  bot.action(/^resend_code_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    const authId = ctx.match[1];
+    await handlers.handleResendCode(ctx, authId);
+  }));
+
   bot.action('queue_status', asyncErrorHandler(async (ctx) => {
     await ctx.answerCbQuery();
     setImmediate(async () => {
@@ -231,5 +238,21 @@ export function setupCallbacks(bot, handlers) {
         await handlers.handleSyncActions(ctx);
       }, "Sync actions callback")
     );
+
+  // Reports
+  bot.action('report_menu', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery();
+    await handlers.handleReportMenu(ctx);
+  }, 'Report menu callback'));
+
+  bot.action('report_all', asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery('⏳ Hisobot tayyorlanmoqda...');
+    await handlers.handleAllChannelsReport(ctx);
+  }, 'Report all channels callback'));
+
+  bot.action(/^report_ch_(.+)$/, asyncErrorHandler(async (ctx) => {
+    await ctx.answerCbQuery('⏳ Hisobot tayyorlanmoqda...');
+    await handlers.handleChannelReport(ctx, ctx.match[1]);
+  }, 'Channel report callback'));
 
 }

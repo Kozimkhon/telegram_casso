@@ -108,6 +108,17 @@ class ChannelEventHandlers {
         return;
       }
 
+      // Save post for reports (must never block forwarding)
+      try {
+        await this.#services.channelPosts?.savePost(fullChannelId, message);
+      } catch (error) {
+        this.#logger.error('Failed to save channel post', {
+          channelId: fullChannelId,
+          messageId: message.id,
+          error: error.message,
+        });
+      }
+
       // Check if message is part of a grouped message (album/media group)
       const groupedId = message.groupedId?.toString();
 
@@ -265,6 +276,17 @@ class ChannelEventHandlers {
         hasMedia: !!message.media,
       });
 
+      // Update stored post text for reports
+      try {
+        await this.#services.channelPosts?.updatePost(fullChannelId, message);
+      } catch (error) {
+        this.#logger.error('Failed to update channel post', {
+          channelId: fullChannelId,
+          messageId: message.id,
+          error: error.message,
+        });
+      }
+
       try {
         // Edit forwarded copies using ForwardingService
         await this.#services.forwarding.editForwardedMessages(
@@ -309,6 +331,16 @@ class ChannelEventHandlers {
         count: messageIds.length,
         messageIds: messageIds.slice(0, 5), // Log first 5 IDs
       });
+
+      // Mark stored posts as deleted for reports
+      try {
+        await this.#services.channelPosts?.markDeleted(fullChannelId, messageIds);
+      } catch (error) {
+        this.#logger.error('Failed to mark channel posts deleted', {
+          channelId: fullChannelId,
+          error: error.message,
+        });
+      }
 
       try {
         // Delete forwarded copies using ForwardingService

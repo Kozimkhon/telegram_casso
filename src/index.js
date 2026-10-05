@@ -67,10 +67,16 @@ class Application {
       // Start UserBot Manager (if sessions exist)
       console.log('🤖 Starting UserBot system...');
       const sessionRepository = this.#container.resolve('sessionRepository');
-      const sessions = await sessionRepository.findByStatus('active');
+      // Load active AND paused sessions (paused = session exists but bot was stopped gracefully)
+      // Skip 'error' status — those need re-authentication
+      const [activeSessions, pausedSessions] = await Promise.all([
+        sessionRepository.findByStatus('active'),
+        sessionRepository.findByStatus('paused'),
+      ]);
+      const sessions = [...activeSessions, ...pausedSessions];
       
       if (sessions.length > 0) {
-        console.log(`   Found ${sessions.length} active session(s)`);
+        console.log(`   Found ${sessions.length} session(s) to start (active: ${activeSessions.length}, paused: ${pausedSessions.length})`);
         
         // Import UserBotController
         const { default: UserBotController } = await import('./presentation/controllers/UserBotController.js');
@@ -90,6 +96,7 @@ class Application {
               forwardingService: this.#container.resolve('forwardingService'),
               queueService: null, // TODO: Create queue per session
               throttleService: this.#container.resolve('throttleService'),
+              channelPostService: this.#container.resolve('channelPostService'),
               stateManager: this.#container.resolve('stateManager'),
               channelRepository: this.#container.resolve('channelRepository'),
               sessionRepository: this.#container.resolve('sessionRepository'),
@@ -154,6 +161,7 @@ class Application {
             
             // Services
             metricsService: this.#container.resolve('metricsService'),
+            channelReportService: this.#container.resolve('channelReportService'),
             
             // State
             stateManager: this.#container.resolve('stateManager'),
@@ -192,6 +200,18 @@ class Application {
         console.log('   ✅ Daily job started successfully');
       } catch (error) {
         console.error('   ❌ Failed to start daily job:', error.message);
+      }
+      console.log('');
+
+      // Start Monthly Report Job (sends previous month report to each admin)
+      console.log('📑 Starting Monthly Report Job...');
+      try {
+        const monthlyReportJob = this.#container.resolve('monthlyReportJob');
+        monthlyReportJob.start();
+        this.#bots.monthlyReportJob = monthlyReportJob;
+        console.log('   ✅ Monthly report job started successfully');
+      } catch (error) {
+        console.error('   ❌ Failed to start monthly report job:', error.message);
       }
       console.log('');
 

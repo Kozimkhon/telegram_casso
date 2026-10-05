@@ -84,6 +84,12 @@ class UserBotController {
   #syncInterval = null;
 
   /**
+   * Channel sync in progress flag
+   * @private
+   */
+  #isSyncing = false;
+
+  /**
    * Delete interval timer
    * @private
    */
@@ -118,6 +124,7 @@ class UserBotController {
       forwarding: dependencies.forwardingService,
       queue: dependencies.queueService,
       throttle: dependencies.throttleService,
+      channelPosts: dependencies.channelPostService,
     };
 
     // Inject state manager
@@ -289,6 +296,52 @@ class UserBotController {
 
     } catch (error) {
       this.#logger.error('Error notifying admin about session error', error);
+    }
+  }
+
+  /**
+   * Handles AUTH_KEY_UNREGISTERED error — deletes session, stops bot, notifies admin with re-auth button
+   * Called externally when a job detects the session is revoked
+   * @returns {Promise<void>}
+   */
+  async handleAuthKeyUnregistered() {
+    this.#logger.error('AUTH_KEY_UNREGISTERED detected — deleting session and stopping bot');
+    const adminId = this.#sessionData.adminId;
+
+    try {
+      // Stop the bot first
+      await this.stop();
+
+      // Delete the invalid session from DB
+      const session = await this.sessionRepository.findByAdminId(adminId);
+      if (session) {
+        await this.sessionRepository.delete(session.id);
+        this.#logger.info('Revoked session deleted from DB', { adminId });
+      }
+
+      // Notify admin with Add Session button
+      if (this.#stateManager) {
+        const adminBot = this.#stateManager.getBot('adminBot');
+        if (adminBot?.sendMessageToAdmin) {
+          await adminBot.sendMessageToAdmin(
+            adminId,
+            `⚠️ <b>Session Revoked</b>\n\n` +
+            `Your Telegram session has been revoked or expired.\n` +
+            `The session has been automatically removed.\n\n` +
+            `Please add a new session to continue:`,
+            {
+              parse_mode: 'HTML',
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '📱 Add New Session', callback_data: 'add_session' }],
+                ],
+              },
+            }
+          );
+        }
+      }
+    } catch (error) {
+      this.#logger.error('Failed to handle AUTH_KEY_UNREGISTERED cleanup', { adminId, error });
     }
   }
 
@@ -469,24 +522,32 @@ class UserBotController {
     try {
       this.#logger.info('Syncing channels...');
 
-      this.#connectedChannels.clear();
-
       // Get channels from database - Session linked to admin via adminId
       // Channels should be linked to session via admin's phone (from Admin entity)
       // For now, get all channels - can be filtered by admin later
       const channels = await this.channelRepository.findByAdminSession(this.#sessionData.adminId);
       if(!channels || channels.length === 0){
+        this.#connectedChannels.clear();
         this.#logger.warn('No channels found', { adminId: this.#sessionData.adminId });
         return;
       }
       this.#logger.info(`Found ${channels?.length} channels to monitor`);
 
-      // Process each channel
+      // Process each channel (cache is updated in place, not cleared,
+      // so events arriving during sync are not treated as unknown channels)
       for (const channel of channels) {
         try {
           await this.#syncChannelMembers(channel);
         } catch (error) {
           this.#logger.error(`Failed to sync channel ${channel.channelId}`, error);
+        }
+      }
+
+      // Drop channels that are no longer assigned to this admin
+      const currentIds = new Set(channels.map(c => c.channelId));
+      for (const channelId of [...this.#connectedChannels.keys()]) {
+        if (!currentIds.has(channelId)) {
+          this.#connectedChannels.delete(channelId);
         }
       }
 
@@ -534,11 +595,16 @@ class UserBotController {
       });
 
       // Get channel participants
+      const participantsLimit = 10000;
       const participants = await this.#client.getParticipants(channelEntity, {
-        limit: 10000,
+        limit: participantsLimit,
       });
 
       this.#logger.info(`Found ${participants.length} members in ${channel.title}`);
+
+      // Member list is complete only if not truncated by limit and matches channel total
+      const isCompleteList = participants.length < participantsLimit
+        && (typeof participants.total !== 'number' || participants.length >= participants.total);
 
       // Extract user data
       const usersData = participants
@@ -552,10 +618,26 @@ class UserBotController {
 
         // Link users to channel
         const userIds = usersData.map(u => u.userId);
-        await this.#useCases.addUserToChannel.bulkExecute(
-          channel.channelId,
-          userIds
-        );
+
+        if (isCompleteList) {
+          // Add new members and remove those who left the channel
+          const syncResult = await this.#useCases.addUserToChannel.syncMembers(
+            channel.channelId,
+            userIds
+          );
+          this.#logger.info(`Removed ${syncResult.removed} users who left ${channel.title}`);
+        } else {
+          // Incomplete list - only add, never remove (avoid dropping real members)
+          this.#logger.warn('Incomplete member list, skipping removal of left users', {
+            channelId: channel.channelId,
+            fetched: participants.length,
+            total: participants.total,
+          });
+          await this.#useCases.addUserToChannel.bulkExecute(
+            channel.channelId,
+            userIds
+          );
+        }
       }
 
     } catch (error) {
@@ -759,6 +841,12 @@ class UserBotController {
       60 * 60 * 1000
     );
 
+    // Sync channels and members every 24 hours (same as "Sync" button)
+    this.#syncInterval = setInterval(async () => {
+      const result = await this.syncChannelsManually();
+      this.#logger.info('Scheduled channel sync finished', result);
+    }, 24 * 60 * 60 * 1000);
+
     this.#logger.info('Periodic tasks started');
   }
 
@@ -915,6 +1003,14 @@ class UserBotController {
    * @returns {Promise<Object>} Sync result
    */
   async syncChannelsManually() {
+    if (this.#isSyncing) {
+      return {
+        success: false,
+        message: 'Sync is already in progress',
+      };
+    }
+    this.#isSyncing = true;
+
     try {
       if (!this.#client || !this.#isRunning) {
         return {
@@ -947,12 +1043,13 @@ class UserBotController {
           const existing = await this.channelRepository.findByChannelId(channelInfo.channelId);
           
           if (existing) {
-            // Update existing channel
+            // Update existing channel (also set adminId in case it was null)
             await this.channelRepository.update(existing.id, {
               title: channelInfo.title,
               username: channelInfo.username,
               access_hash: channelInfo.accessHash,
               member_count: entity.participantsCount || 0,
+              adminId: this.#sessionData.adminId,
             });
             updatedCount++;
           } else {
@@ -972,7 +1069,7 @@ class UserBotController {
       }
 
       this.#logger.info(`Channel sync complete: ${addedCount} added, ${updatedCount} updated`);
-      this.#syncChannels();
+      await this.#syncChannels();
       return {
         success: true,
         message: `Synced successfully: ${addedCount} new channels added, ${updatedCount} updated`,
@@ -986,6 +1083,8 @@ class UserBotController {
         success: false,
         message: error.message,
       };
+    } finally {
+      this.#isSyncing = false;
     }
   }
 

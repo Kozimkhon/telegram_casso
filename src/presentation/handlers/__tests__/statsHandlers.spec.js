@@ -23,6 +23,7 @@ jest.mock('telegraf', () => {
 });
 
 const buildCtx = () => ({
+  from: { id: 1 },
   editMessageText: jest.fn(),
   reply: jest.fn(),
 });
@@ -54,15 +55,13 @@ describe('statsHandlers', () => {
         }),
       },
       sessionRepository: {
-        findAll: jest.fn().mockResolvedValue([
-          {
-            adminId: '1',
-            status: 'active',
-            autoPaused: true,
-            pauseReason: 'Flood',
-            floodWaitUntil: new Date(Date.now() + 5 * 60000).toISOString(),
-          },
-        ]),
+        findByAdminId: jest.fn().mockResolvedValue({
+          adminId: '1',
+          status: 'active',
+          autoPaused: true,
+          pauseReason: 'Flood',
+          floodWaitUntil: new Date(Date.now() + 5 * 60000).toISOString(),
+        }),
       },
     };
 
@@ -129,7 +128,8 @@ describe('statsHandlers', () => {
 
     await handlers.handleQueueStatus(ctx);
 
-    expect(dependencies.sessionRepository.findAll).toHaveBeenCalled();
+    // Only caller's own session is shown
+    expect(dependencies.sessionRepository.findByAdminId).toHaveBeenCalledWith('1');
     expect(ctx.editMessageText).toHaveBeenCalledWith(
       expect.stringContaining('*Session Summary*'),
       expect.objectContaining({ parse_mode: 'Markdown' })
@@ -137,7 +137,7 @@ describe('statsHandlers', () => {
   });
 
   test('handleQueueStatus handles empty sessions and errors', async () => {
-    dependencies.sessionRepository.findAll.mockResolvedValueOnce([]);
+    dependencies.sessionRepository.findByAdminId.mockResolvedValueOnce(null);
     const emptyCtx = buildCtx();
     await handlers.handleQueueStatus(emptyCtx);
     expect(emptyCtx.editMessageText).toHaveBeenCalledWith(
@@ -145,7 +145,7 @@ describe('statsHandlers', () => {
       expect.any(Object)
     );
 
-    dependencies.sessionRepository.findAll.mockRejectedValueOnce(
+    dependencies.sessionRepository.findByAdminId.mockRejectedValueOnce(
       new Error('db down')
     );
     const errorCtx = buildCtx();

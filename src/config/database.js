@@ -23,6 +23,7 @@ import {
   MessageEntity,
   MetricEntity,
   ChannelLogEntity,
+  ChannelPostEntity,
 } from '../core/entities/orm/index.js';
 
 /**
@@ -37,7 +38,7 @@ import {
  */
 export const AppDataSource = new DataSource({
   type: 'sqlite',
-  database: './data/telegram_typeorm.db', // Use new database file
+  database: path.join(__dirname, '..', '..', 'data', 'telegram_typeorm.db'),
   
   // Entities
   entities: [
@@ -48,6 +49,7 @@ export const AppDataSource = new DataSource({
     MessageEntity,
     MetricEntity,
     ChannelLogEntity,
+    ChannelPostEntity,
   ],
   
   // Migrations

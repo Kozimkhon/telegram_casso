@@ -187,6 +187,10 @@ class UserRepository extends IUserRepository {
   async removeFromChannel(channelId, userId) {
     return await this.#ormRepository.removeFromChannel(channelId, userId);
   }
+
+  async removeFromChannelExcept(channelId, keepUserIds) {
+    return await this.#ormRepository.removeFromChannelExcept(channelId, keepUserIds);
+  }
 }
 
 export default UserRepository;

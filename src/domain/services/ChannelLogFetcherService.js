@@ -150,6 +150,14 @@ class ChannelLogFetcherService {
             logsCount: result.count,
           });
         } catch (error) {
+          // AUTH_KEY_UNREGISTERED is fatal — session is revoked, stop immediately
+          if (error.code === 401 || error.errorMessage === 'AUTH_KEY_UNREGISTERED' || error.message?.includes('AUTH_KEY_UNREGISTERED')) {
+            this.#logger.error('Fatal auth error during channel log fetch — session revoked', {
+              channelId: channel.channelId,
+              error,
+            });
+            throw error;
+          }
           this.#logger.error('Failed to fetch logs for channel', { 
             channelId: channel.channelId,
             error 
